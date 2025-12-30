@@ -1,0 +1,21 @@
+{
+  "tbl.kpi.face.yaw_mae.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "analysis/metrics/yaw.json",
+    "schema": "yaw_error_v1",
+    "visibility": "internal"
+  },
+  "metric.face.yaw_mae.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "analysis/metrics/yaw.json",
+    "schema": "yaw_metric_v1",
+    "visibility": "external"
+  },
+  "tbl.kpi.face.yaw_mae.v1.annotation": {
+    "role": "hybrid",
+    "kind": "annotation",
+    "bind-to": "tbl.kpi.face.yaw_mae.v1"
+  }
+}
