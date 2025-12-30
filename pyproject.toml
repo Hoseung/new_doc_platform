@@ -1,0 +1,26 @@
+[project]
+name = "litepub-norm"
+version = "0.1.0"
+description = "AST normalization pipeline for documentation platform"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pypandoc>=1.13",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/litepub_norm"]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+pythonpath = ["src"]
