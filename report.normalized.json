@@ -1,0 +1,63 @@
+{
+  "pandoc-api-version": [1, 23, 1],
+  "meta": {},
+  "blocks": [
+    {"t": "Header", "c": [1, ["demo", [], []], [{"t": "Str", "c": "Demo"}]]},
+
+    {"t": "Para", "c": [{"t": "Str", "c": "Some"}, {"t": "Space"}, {"t": "Str", "c": "prose"}, {"t": "Space"}, {"t": "Str", "c": "before."}]},
+
+    {
+        "t": "Div",
+        "c": [
+          ["tbl.kpi.face.yaw_mae.v1", [], [
+            ["role", "computed"],
+            ["kind", "table"],
+            ["source", "analysis/metrics/yaw.json"],
+            ["schema", "yaw_error_v1"],
+            ["visibility", "internal"],
+            ["lock", "true"]
+          ]],
+          [
+            {"t": "Para", "c": [{"t": "Str", "c": "Yaw"}, {"t": "Space"}, {"t": "Str", "c": "MAE"}, {"t": "Space"}, {"t": "Str", "c": "across"}, {"t": "Space"}, {"t": "Str", "c": "yaw"}, {"t": "Space"}, {"t": "Str", "c": "angles."}]},
+    
+            {"t": "Para", "c": [{"t": "Str", "c": "[[COMPUTED:TABLE]]"}]}
+          ]
+        ]
+    },
+
+    {
+        "t": "Div",
+        "c": [
+          ["metric.face.yaw_mae.v1", [], [
+            ["role", "computed"],
+            ["kind", "metric"],
+            ["source", "analysis/metrics/yaw.json"],
+            ["schema", "yaw_metric_v1"],
+            ["visibility", "external"],
+            ["lock", "true"]
+          ]],
+          [
+            {"t": "Para", "c": [{"t": "Str", "c": "Mean"}, {"t": "Space"}, {"t": "Str", "c": "Absolute"}, {"t": "Space"}, {"t": "Str", "c": "Error"}, {"t": "Space"}, {"t": "Str", "c": "of"}, {"t": "Space"}, {"t": "Str", "c": "face"}, {"t": "Space"}, {"t": "Str", "c": "yaw"}, {"t": "Space"}, {"t": "Str", "c": "estimation"}, {"t": "Space"}, {"t": "Str", "c": "(degrees)."}]},
+    
+            {"t": "Para", "c": [{"t": "Str", "c": "[[COMPUTED:METRIC]]"}]}
+          ]
+        ]
+    },
+
+    {
+        "t": "Div",
+        "c": [
+          ["tbl.kpi.face.yaw_mae.v1.annotation", [], [
+            ["role", "hybrid"],
+            ["kind", "annotation"],
+            ["bind-to", "tbl.kpi.face.yaw_mae.v1"]
+          ]],
+          [
+            {"t": "Para", "c": [{"t": "Str", "c": "Interpretation:"}, {"t": "SoftBreak"}, {"t": "Str", "c": "Error"}, {"t": "Space"}, {"t": "Str", "c": "increases"}, {"t": "Space"}, {"t": "Str", "c": "beyond"}, {"t": "Space"}, {"t": "Str", "c": "±40°"}, {"t": "Space"}, {"t": "Str", "c": "yaw"}, {"t": "Space"}, {"t": "Str", "c": "due"}, {"t": "Space"}, {"t": "Str", "c": "to"}, {"t": "Space"}, {"t": "Str", "c": "occlusion."}]}
+          ]
+        ]
+    },
+
+    {"t": "Para", "c": [{"t": "Str", "c": "Some"}, {"t": "Space"}, {"t": "Str", "c": "prose"}, {"t": "Space"}, {"t": "Str", "c": "after."}]}
+  ]
+}
