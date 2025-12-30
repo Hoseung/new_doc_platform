@@ -10,7 +10,27 @@ from .errors import (
     RegistryIncompleteError,
 )
 
+# Resolution module
+from .resolver import (
+    resolve,
+    build_resolution_plan,
+    load_registry,
+    ResolutionConfig,
+    ResolutionLimits,
+    RegistrySnapshot,
+    RegistryEntry,
+    ResolutionPlan,
+    ResolutionError,
+    RegistryError,
+    PlaceholderError,
+    PayloadError,
+    ValidationError,
+    HashMismatchError,
+    KindMismatchError,
+)
+
 __all__ = [
+    # Normalization
     "normalize_file",
     "normalize_text",
     "Registry",
@@ -19,4 +39,20 @@ __all__ = [
     "FenceOverlapError",
     "UnknownSemanticIdError",
     "RegistryIncompleteError",
+    # Resolution
+    "resolve",
+    "build_resolution_plan",
+    "load_registry",
+    "ResolutionConfig",
+    "ResolutionLimits",
+    "RegistrySnapshot",
+    "RegistryEntry",
+    "ResolutionPlan",
+    "ResolutionError",
+    "RegistryError",
+    "PlaceholderError",
+    "PayloadError",
+    "ValidationError",
+    "HashMismatchError",
+    "KindMismatchError",
 ]
