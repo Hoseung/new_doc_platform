@@ -26,11 +26,13 @@ sys.path.insert(0, str(PROJECT_ROOT / "src"))
 from litepub_norm import (
     normalize_file,
     resolve,
+    build_resolution_plan,
     load_registry,
     Registry,
     ResolutionConfig,
 )
 from litepub_norm.serialize import serialize
+from litepub_norm.resolver.report import build_resolution_report
 
 
 def main():
@@ -108,6 +110,25 @@ def main():
         strict=not args.skip_hash_verify,
     )
 
+    # Build resolution plan first (for reporting)
+    plan = build_resolution_plan(normalized_ast, aarc_registry, config)
+    print(f"  Resolution plan: {len(plan)} items")
+
+    # Generate resolution report (pre-resolution debugging info)
+    if args.output_ast:
+        report = build_resolution_report(plan, aarc_registry, config)
+        report_path = build_dir / "02_resolution_report.json"
+        with open(report_path, "w") as f:
+            json.dump(report.to_dict(), f, indent=2, ensure_ascii=False)
+            f.write("\n")
+        print(f"  Resolution report: {report_path.name}")
+
+        # Print hash verification summary
+        hash_ok = sum(1 for item in report.items if item.hash_match)
+        hash_fail = sum(1 for item in report.items if item.hash_match is False)
+        print(f"  Hash verification: {hash_ok} OK, {hash_fail} mismatch")
+
+    # Apply resolution
     resolved_ast = resolve(normalized_ast, aarc_registry, config)
 
     # Count resolved content
@@ -130,7 +151,7 @@ def main():
         with open(resolved_path, "w") as f:
             f.write(serialize(resolved_ast))
             f.write("\n")
-        print(f"  Saved: {resolved_path}")
+        print(f"  Saved: {resolved_path.name}")
 
     print()
 
