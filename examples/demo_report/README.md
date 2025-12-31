@@ -12,6 +12,11 @@ demo_report/
 │   ├── litepub.yaml              # Global pipeline configuration
 │   ├── normalization_registry.json   # Semantic ID metadata
 │   └── aarc_registry.json        # AARC v1.1 artifact registry
+├── schemas/                      # JSON Schema definitions
+│   ├── metric.json.v1.schema.json
+│   ├── table.simple.json.v1.schema.json
+│   ├── table.pandoc.json.v1.schema.json
+│   └── figure.meta.json.v1.schema.json
 ├── artifacts/                    # Computed artifacts (from analysis pipeline)
 │   ├── metrics/
 │   │   ├── yaw_mae.json          # metric.json@v1
@@ -25,6 +30,7 @@ demo_report/
 │       └── dummy_plot.meta.json  # figure.meta.json@v1
 ├── build/                        # Build outputs (generated)
 │   ├── 01_normalized.json        # Normalized AST
+│   ├── 02_resolution_report.json # Resolution debugging info
 │   └── 02_resolved.json          # Resolved AST
 └── build.py                      # Build script
 ```
@@ -105,9 +111,38 @@ Global configuration:
 
 ## Artifact Formats
 
-| Format | Spec | Description |
-|--------|------|-------------|
-| `metric.json` | `metric.json@v1` | Single KPI value with label, unit |
-| `table.simple.json` | `table.simple.json@v1` | Columns + rows structure |
-| `table.pandoc.json` | `table.pandoc.json@v1` | Native Pandoc Table block |
-| `image.png` | `figure.binary@v1` | Binary image with sidecar metadata |
+| Format | Spec | Schema | Description |
+|--------|------|--------|-------------|
+| `metric.json` | `metric.json@v1` | `schemas/metric.json.v1.schema.json` | Single KPI value with label, unit |
+| `table.simple.json` | `table.simple.json@v1` | `schemas/table.simple.json.v1.schema.json` | Columns + rows structure |
+| `table.pandoc.json` | `table.pandoc.json@v1` | `schemas/table.pandoc.json.v1.schema.json` | Native Pandoc Table block |
+| `image.png` | `figure.binary@v1` | `schemas/figure.meta.json.v1.schema.json` | Binary image with sidecar metadata |
+
+## Schema Validation
+
+The `schemas/` directory contains JSON Schema files for formal validation of artifacts.
+These can be used with tools like `ajv`, `jsonschema`, or IDE plugins for validation.
+
+Example validation with Python:
+```python
+import json
+import jsonschema
+
+with open("schemas/metric.json.v1.schema.json") as f:
+    schema = json.load(f)
+
+with open("artifacts/metrics/yaw_mae.json") as f:
+    payload = json.load(f)
+
+jsonschema.validate(payload, schema)  # Raises if invalid
+```
+
+## Build Outputs
+
+When running with `--output-ast`, the build script generates:
+
+| File | Description |
+|------|-------------|
+| `01_normalized.json` | Pandoc AST with semantic Divs and placeholder tokens |
+| `02_resolution_report.json` | Debugging report with hash verification and payload summaries |
+| `02_resolved.json` | Final Pandoc AST with computed content embedded |

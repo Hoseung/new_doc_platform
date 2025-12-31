@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "table.pandoc.json@v1",
+  "title": "Pandoc Table Payload Schema v1",
+  "description": "Schema for table.pandoc.json@v1 payloads (native Pandoc Table block)",
+  "type": "object",
+  "required": ["t", "c"],
+  "properties": {
+    "t": {
+      "type": "string",
+      "const": "Table",
+      "description": "Block type identifier"
+    },
+    "c": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": [
+        {
+          "description": "Attr: [identifier, classes, key-value pairs]",
+          "type": "array"
+        },
+        {
+          "description": "Caption: [ShortCaption, [Block]]",
+          "type": "array"
+        },
+        {
+          "description": "ColSpecs: [[Alignment, ColWidth], ...]",
+          "type": "array"
+        },
+        {
+          "description": "TableHead: {t: 'TableHead', c: [Attr, [Row]]}",
+          "type": "object"
+        },
+        {
+          "description": "TableBody: [{t: 'TableBody', c: [Attr, RowHeadColumns, IntermediateHead, [Row]]}, ...]",
+          "type": "array"
+        },
+        {
+          "description": "TableFoot: {t: 'TableFoot', c: [Attr, [Row]]}",
+          "type": "object"
+        }
+      ],
+      "description": "Table content array"
+    }
+  },
+  "additionalProperties": false
+}

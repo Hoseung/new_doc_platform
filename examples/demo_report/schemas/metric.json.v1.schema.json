@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "metric.json@v1",
+  "title": "Metric Payload Schema v1",
+  "description": "Schema for metric.json@v1 payloads representing computed scalar values",
+  "type": "object",
+  "required": ["label", "value"],
+  "properties": {
+    "label": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable label for the metric"
+    },
+    "value": {
+      "type": "number",
+      "description": "The metric value (must be finite, no NaN/Inf)"
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit of measurement (can be empty for dimensionless values)"
+    },
+    "lower_is_better": {
+      "type": "boolean",
+      "description": "Whether lower values indicate better performance"
+    },
+    "format": {
+      "type": "string",
+      "description": "Format string hint for rendering (e.g., '{value:.2f} {unit}')"
+    },
+    "notes": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Additional notes about the metric"
+    },
+    "meta": {
+      "type": "object",
+      "description": "Freeform machine metadata (non-semantic)"
+    }
+  },
+  "additionalProperties": false
+}
