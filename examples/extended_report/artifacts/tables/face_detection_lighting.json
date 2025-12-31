@@ -1,0 +1,65 @@
+{
+  "columns": [
+    {
+      "key": "condition",
+      "label": "Lighting Condition"
+    },
+    {
+      "key": "precision",
+      "label": "Precision",
+      "dtype": "float"
+    },
+    {
+      "key": "recall",
+      "label": "Recall",
+      "dtype": "float"
+    },
+    {
+      "key": "f1",
+      "label": "F1 Score",
+      "dtype": "float"
+    },
+    {
+      "key": "samples",
+      "label": "Samples",
+      "dtype": "int"
+    }
+  ],
+  "rows": [
+    {
+      "condition": "Daylight",
+      "precision": 98.5,
+      "recall": 98.2,
+      "f1": 98.3,
+      "samples": 45000
+    },
+    {
+      "condition": "Night (IR)",
+      "precision": 97.2,
+      "recall": 96.8,
+      "f1": 97.0,
+      "samples": 38000
+    },
+    {
+      "condition": "Dusk/Dawn",
+      "precision": 96.8,
+      "recall": 96.1,
+      "f1": 96.4,
+      "samples": 22000
+    },
+    {
+      "condition": "Tunnel Exit",
+      "precision": 94.5,
+      "recall": 93.8,
+      "f1": 94.1,
+      "samples": 8000
+    },
+    {
+      "condition": "Direct Sunlight",
+      "precision": 95.2,
+      "recall": 94.6,
+      "f1": 94.9,
+      "samples": 12000
+    }
+  ]
+}

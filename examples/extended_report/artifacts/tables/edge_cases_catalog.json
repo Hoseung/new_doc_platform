@@ -1,0 +1,52 @@
+{
+  "columns": [
+    {
+      "key": "id",
+      "label": "Case ID"
+    },
+    {
+      "key": "description",
+      "label": "Description"
+    },
+    {
+      "key": "frequency",
+      "label": "Frequency"
+    },
+    {
+      "key": "status",
+      "label": "Status"
+    }
+  ],
+  "rows": [
+    {
+      "id": "EC-001",
+      "description": "Polarized sunglasses with IR reflection",
+      "frequency": "Rare",
+      "status": "Under Investigation"
+    },
+    {
+      "id": "EC-002",
+      "description": "Face tattoos affecting landmark detection",
+      "frequency": "Very Rare",
+      "status": "Known Issue"
+    },
+    {
+      "id": "EC-003",
+      "description": "Extreme backlight during sunset",
+      "frequency": "Occasional",
+      "status": "Mitigated"
+    },
+    {
+      "id": "EC-004",
+      "description": "Medical eye patches",
+      "frequency": "Very Rare",
+      "status": "Documented"
+    },
+    {
+      "id": "EC-005",
+      "description": "Face masks (post-COVID)",
+      "frequency": "Common",
+      "status": "Resolved"
+    }
+  ]
+}

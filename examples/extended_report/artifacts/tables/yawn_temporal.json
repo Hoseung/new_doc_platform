@@ -1,0 +1,40 @@
+{
+  "columns": [
+    {
+      "key": "phase",
+      "label": "Detection Phase"
+    },
+    {
+      "key": "accuracy",
+      "label": "Accuracy (%)",
+      "dtype": "float"
+    },
+    {
+      "key": "latency",
+      "label": "Latency (ms)",
+      "dtype": "int"
+    }
+  ],
+  "rows": [
+    {
+      "phase": "Onset Detection",
+      "accuracy": 94.2,
+      "latency": 85
+    },
+    {
+      "phase": "Peak Detection",
+      "accuracy": 97.8,
+      "latency": 120
+    },
+    {
+      "phase": "End Detection",
+      "accuracy": 91.5,
+      "latency": 95
+    },
+    {
+      "phase": "Duration Estimation",
+      "accuracy": 88.3,
+      "latency": 0
+    }
+  ]
+}

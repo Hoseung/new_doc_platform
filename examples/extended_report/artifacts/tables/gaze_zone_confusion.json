@@ -1,0 +1,94 @@
+{
+  "columns": [
+    {
+      "key": "actual",
+      "label": "Actual Zone"
+    },
+    {
+      "key": "road",
+      "label": "→ Road",
+      "dtype": "float"
+    },
+    {
+      "key": "instrument",
+      "label": "→ Instrument",
+      "dtype": "float"
+    },
+    {
+      "key": "console",
+      "label": "→ Console",
+      "dtype": "float"
+    },
+    {
+      "key": "mirror_l",
+      "label": "→ L Mirror",
+      "dtype": "float"
+    },
+    {
+      "key": "mirror_r",
+      "label": "→ R Mirror",
+      "dtype": "float"
+    },
+    {
+      "key": "phone",
+      "label": "→ Phone",
+      "dtype": "float"
+    }
+  ],
+  "rows": [
+    {
+      "actual": "Road",
+      "road": 96.2,
+      "instrument": 2.1,
+      "console": 0.8,
+      "mirror_l": 0.3,
+      "mirror_r": 0.3,
+      "phone": 0.3
+    },
+    {
+      "actual": "Instrument",
+      "road": 3.8,
+      "instrument": 93.8,
+      "console": 1.5,
+      "mirror_l": 0.2,
+      "mirror_r": 0.2,
+      "phone": 0.5
+    },
+    {
+      "actual": "Console",
+      "road": 1.2,
+      "instrument": 2.3,
+      "console": 94.5,
+      "mirror_l": 0.1,
+      "mirror_r": 0.1,
+      "phone": 1.8
+    },
+    {
+      "actual": "L Mirror",
+      "road": 0.8,
+      "instrument": 0.3,
+      "console": 0.1,
+      "mirror_l": 98.1,
+      "mirror_r": 0.5,
+      "phone": 0.2
+    },
+    {
+      "actual": "R Mirror",
+      "road": 0.9,
+      "instrument": 0.4,
+      "console": 0.1,
+      "mirror_l": 0.6,
+      "mirror_r": 97.8,
+      "phone": 0.2
+    },
+    {
+      "actual": "Phone",
+      "road": 0.5,
+      "instrument": 1.2,
+      "console": 3.5,
+      "mirror_l": 0.1,
+      "mirror_r": 0.1,
+      "phone": 94.6
+    }
+  ]
+}

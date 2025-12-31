@@ -1,0 +1,44 @@
+{
+  "columns": [
+    {
+      "key": "position",
+      "label": "Seating Position"
+    },
+    {
+      "key": "detection_rate",
+      "label": "Detection Rate",
+      "dtype": "float"
+    },
+    {
+      "key": "notes",
+      "label": "Notes"
+    }
+  ],
+  "rows": [
+    {
+      "position": "Driver",
+      "detection_rate": 99.2,
+      "notes": "Primary target"
+    },
+    {
+      "position": "Front Passenger",
+      "detection_rate": 94.5,
+      "notes": "Good coverage"
+    },
+    {
+      "position": "Rear Left",
+      "detection_rate": 78.3,
+      "notes": "Limited FOV"
+    },
+    {
+      "position": "Rear Center",
+      "detection_rate": 65.2,
+      "notes": "Occluded"
+    },
+    {
+      "position": "Rear Right",
+      "detection_rate": 76.8,
+      "notes": "Limited FOV"
+    }
+  ]
+}

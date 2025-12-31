@@ -1,0 +1,52 @@
+{
+  "columns": [
+    {
+      "key": "requirement",
+      "label": "Regulatory Requirement"
+    },
+    {
+      "key": "standard",
+      "label": "Standard"
+    },
+    {
+      "key": "result",
+      "label": "Test Result"
+    },
+    {
+      "key": "compliance",
+      "label": "Compliance"
+    }
+  ],
+  "rows": [
+    {
+      "requirement": "Driver Attention Detection",
+      "standard": "UNECE R79",
+      "result": "PASS",
+      "compliance": "Compliant"
+    },
+    {
+      "requirement": "Drowsiness Warning",
+      "standard": "EU 2019/2144",
+      "result": "PASS",
+      "compliance": "Compliant"
+    },
+    {
+      "requirement": "Distraction Warning",
+      "standard": "EU 2019/2144",
+      "result": "PASS",
+      "compliance": "Compliant"
+    },
+    {
+      "requirement": "System Availability",
+      "standard": "ISO 26262",
+      "result": "99.2%",
+      "compliance": "ASIL-B"
+    },
+    {
+      "requirement": "False Positive Rate",
+      "standard": "Internal",
+      "result": "<2%",
+      "compliance": "Compliant"
+    }
+  ]
+}

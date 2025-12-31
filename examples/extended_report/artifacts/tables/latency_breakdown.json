@@ -1,0 +1,73 @@
+{
+  "columns": [
+    {
+      "key": "stage",
+      "label": "Processing Stage"
+    },
+    {
+      "key": "mean",
+      "label": "Mean (ms)",
+      "dtype": "float"
+    },
+    {
+      "key": "p50",
+      "label": "P50 (ms)",
+      "dtype": "float"
+    },
+    {
+      "key": "p99",
+      "label": "P99 (ms)",
+      "dtype": "float"
+    }
+  ],
+  "rows": [
+    {
+      "stage": "Image Preprocessing",
+      "mean": 1.2,
+      "p50": 1.1,
+      "p99": 2.1
+    },
+    {
+      "stage": "Face Detection",
+      "mean": 4.5,
+      "p50": 4.2,
+      "p99": 6.8
+    },
+    {
+      "stage": "Landmark Extraction",
+      "mean": 2.8,
+      "p50": 2.6,
+      "p99": 4.2
+    },
+    {
+      "stage": "Pose Estimation",
+      "mean": 3.2,
+      "p50": 3.0,
+      "p99": 5.1
+    },
+    {
+      "stage": "Gaze Estimation",
+      "mean": 2.1,
+      "p50": 2.0,
+      "p99": 3.5
+    },
+    {
+      "stage": "Classification",
+      "mean": 1.8,
+      "p50": 1.7,
+      "p99": 2.9
+    },
+    {
+      "stage": "Post-processing",
+      "mean": 0.8,
+      "p50": 0.7,
+      "p99": 1.2
+    },
+    {
+      "stage": "Total",
+      "mean": 16.4,
+      "p50": 15.3,
+      "p99": 23.4
+    }
+  ]
+}

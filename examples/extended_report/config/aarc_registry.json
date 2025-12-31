@@ -1,0 +1,376 @@
+{
+  "registry_version": "aarc-1.1",
+  "generated_at": "2025-12-31T00:00:00Z",
+  "artifact_root": "../artifacts/",
+  "run": {
+    "run_id": "run_extended_2025-12-31T00-00-00Z_dms_eval",
+    "test_id": "DMS_FULL_PERFORMANCE_ANALYSIS",
+    "pipeline": {
+      "name": "dms-analysis-pipeline",
+      "version": "3.2.1"
+    },
+    "code": {
+      "repo": "git@example:dms/eval-pipeline.git",
+      "commit": "abc123def456abc123def456abc123def456abc1",
+      "dirty": false
+    },
+    "inputs": {
+      "dataset_id": "ds_dms_eval_2024_v2",
+      "dataset_fingerprint": "sha256:fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210",
+      "config_fingerprint": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    }
+  },
+  "entries": [
+    {
+      "id": "metric.overall.accuracy.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/overall_accuracy.json",
+      "sha256": "sha256:a7f5e1b169539e3b08362b77773533c2518a3e8a0c14ed838b3f5dea55ade112",
+      "origin": {"producer": "eval_system.py"}
+    },
+    {
+      "id": "metric.latency.p99.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/latency_p99.json",
+      "sha256": "sha256:20948a264a3a7d04290223f8c30e32b66776f12673ca54747932651f32a87d7b",
+      "origin": {"producer": "benchmark_latency.py"}
+    },
+    {
+      "id": "tbl.executive.summary.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/executive_summary.json",
+      "sha256": "sha256:af0704da17bdc69a927e73d537a6b21c20a9db463a0dbebfce3a6e81d9fef85a",
+      "origin": {"producer": "generate_summary.py"}
+    },
+    {
+      "id": "metric.face.detection.precision.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/face_precision.json",
+      "sha256": "sha256:6f69f20f4f3b46c4ff1a2a5bce129679578ab22220469b935d06fe3ed1790c98",
+      "origin": {"producer": "eval_face_detection.py"}
+    },
+    {
+      "id": "metric.face.detection.recall.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/face_recall.json",
+      "sha256": "sha256:ed919ec33a570f2dbd4e77026c9516c07ecd0916daeb506415d581cee48ac6fb",
+      "origin": {"producer": "eval_face_detection.py"}
+    },
+    {
+      "id": "tbl.face.detection.by_lighting.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/face_detection_lighting.json",
+      "sha256": "sha256:0d6e8dd2d4bd6d10785e30fead1b60ebdd9861ec71f684175819bdb94ab51605",
+      "origin": {"producer": "eval_face_detection.py"}
+    },
+    {
+      "id": "tbl.pose.yaw.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/pose_yaw.json",
+      "sha256": "sha256:4dba487753deb67f3203762416f3b800f54d2d2b6d0ca94670509ebf7f9f3a8e",
+      "origin": {"producer": "eval_pose.py"}
+    },
+    {
+      "id": "tbl.pose.pitch.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/pose_pitch.json",
+      "sha256": "sha256:bd55b3fb960e93cf1258c5ebea6dd4a24f9423eb252ce4fe3cb64b815a3681dd",
+      "origin": {"producer": "eval_pose.py"}
+    },
+    {
+      "id": "fig.pose.error_distribution.v1",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/pose_error_dist.png",
+      "sha256": "sha256:8896d4dda8e42593f4e46a680f227e3189e437b7b056dbd2fa8623d12b53434e",
+      "origin": {"producer": "plot_pose_error.py"},
+      "meta_uri": "figures/pose_error_dist.meta.json",
+      "meta_sha256": "sha256:aed782d549ec3c990bd046df29ab6ac685bd0dcb6c39ca700873a999c7cdb9a3",
+      "meta_spec": "figure.meta.json@v1"
+    },
+    {
+      "id": "metric.gaze.angular_error.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/gaze_angular_error.json",
+      "sha256": "sha256:1bbd1dea796c538eab86eac92ce9f03829aa799ef29b74dd8721a2b8440345d0",
+      "origin": {"producer": "eval_gaze.py"}
+    },
+    {
+      "id": "tbl.gaze.by_region.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/gaze_by_region.json",
+      "sha256": "sha256:30194e38a9b90f24f37359d4c991fdb04fb1705bea2e848b6c5fd3a78b0d4baf",
+      "origin": {"producer": "eval_gaze.py"}
+    },
+    {
+      "id": "fig.gaze.heatmap.v1",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/gaze_heatmap.png",
+      "sha256": "sha256:8896d4dda8e42593f4e46a680f227e3189e437b7b056dbd2fa8623d12b53434e",
+      "origin": {"producer": "plot_gaze_heatmap.py"},
+      "meta_uri": "figures/gaze_heatmap.meta.json",
+      "meta_sha256": "sha256:e1d1e3f2bdc7b0fb20c62cf326b0e460861210e28586f61e9ea3043add76b918",
+      "meta_spec": "figure.meta.json@v1"
+    },
+    {
+      "id": "tbl.gaze.zone_confusion.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/gaze_zone_confusion.json",
+      "sha256": "sha256:f02ab4c18113629f91b0251dea70614fe0877838be42e4326ab2941149b2f4f6",
+      "origin": {"producer": "eval_gaze.py"}
+    },
+    {
+      "id": "metric.eye.perclos.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/eye_perclos.json",
+      "sha256": "sha256:d943cb7d39f964413dadada0bc827927cd4d8eadae89b01e66819593a24dfa9e",
+      "origin": {"producer": "eval_drowsiness.py"}
+    },
+    {
+      "id": "tbl.eye.blink.metrics.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/eye_blink_metrics.json",
+      "sha256": "sha256:8278bda675da681b83ded6f71b3ea741cc5b1ed30939be817bdce8a3acbacd46",
+      "origin": {"producer": "eval_drowsiness.py"}
+    },
+    {
+      "id": "fig.drowsiness.roc.v1",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/drowsiness_roc.png",
+      "sha256": "sha256:8896d4dda8e42593f4e46a680f227e3189e437b7b056dbd2fa8623d12b53434e",
+      "origin": {"producer": "plot_drowsiness_roc.py"},
+      "meta_uri": "figures/drowsiness_roc.meta.json",
+      "meta_sha256": "sha256:1fbd01570537ad3a8e664e59b5d2d5eb20f11af995e57c2c9eb6f78ef47adbff",
+      "meta_spec": "figure.meta.json@v1"
+    },
+    {
+      "id": "metric.yawn.detection.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/yawn_detection.json",
+      "sha256": "sha256:93c24a4a5f0a75ad1774e28ab778d17671eba590c617eec76147f671f25ee141",
+      "origin": {"producer": "eval_drowsiness.py"}
+    },
+    {
+      "id": "tbl.yawn.temporal.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/yawn_temporal.json",
+      "sha256": "sha256:68c56a1dd6513d0e753f95b9011f286dfff335e1c3ac68cdbf1218be25ac1f6e",
+      "origin": {"producer": "eval_drowsiness.py"}
+    },
+    {
+      "id": "tbl.distraction.activities.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/distraction_activities.json",
+      "sha256": "sha256:fb0f278f8b665a1476e4990f49e99c7bb7f942d714e8a4f2774dc6a6782fe579",
+      "origin": {"producer": "eval_distraction.py"}
+    },
+    {
+      "id": "fig.distraction.confusion.v1",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/distraction_confusion.png",
+      "sha256": "sha256:8896d4dda8e42593f4e46a680f227e3189e437b7b056dbd2fa8623d12b53434e",
+      "origin": {"producer": "plot_distraction_confusion.py"},
+      "meta_uri": "figures/distraction_confusion.meta.json",
+      "meta_sha256": "sha256:9369aaf3afcd49b2b7b3bf70fdea990964947b5c2903b8b9252a60734cfa2fa9",
+      "meta_spec": "figure.meta.json@v1"
+    },
+    {
+      "id": "metric.attention.score.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/attention_score.json",
+      "sha256": "sha256:03487bd0fdccd629ec7b7b016c119b6480f0cae0f8a0cc9e7a2c427134cc2d61",
+      "origin": {"producer": "eval_attention.py"}
+    },
+    {
+      "id": "tbl.attention.thresholds.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/attention_thresholds.json",
+      "sha256": "sha256:7fcc003d6f711ed2144d180c3829f4865b24902442583a2a23909d27303e6608",
+      "origin": {"producer": "eval_attention.py"}
+    },
+    {
+      "id": "tbl.latency.breakdown.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/latency_breakdown.json",
+      "sha256": "sha256:bf17b839d3ce56029f062007a922c6f3d80f36bcb92aa1be81759010f10c2eb0",
+      "origin": {"producer": "benchmark_latency.py"}
+    },
+    {
+      "id": "fig.latency.histogram.v1",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/latency_histogram.png",
+      "sha256": "sha256:8896d4dda8e42593f4e46a680f227e3189e437b7b056dbd2fa8623d12b53434e",
+      "origin": {"producer": "plot_latency_hist.py"},
+      "meta_uri": "figures/latency_histogram.meta.json",
+      "meta_sha256": "sha256:bdfcbf45030458057e3d700733496aff5de730f78564ff002a68d6dc26bd8343",
+      "meta_spec": "figure.meta.json@v1"
+    },
+    {
+      "id": "tbl.resource.utilization.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/resource_utilization.json",
+      "sha256": "sha256:ed1615f954f5b1fe6cd4625d36d716fdfed8a9cafcdc95df3cf82bd64b3e2de1",
+      "origin": {"producer": "benchmark_resources.py"}
+    },
+    {
+      "id": "tbl.failures.by_category.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/failures_by_category.json",
+      "sha256": "sha256:349a98eb4a01a2df153d7bca9b979b4b93a9f4cced4b133e9ce60e1820555771",
+      "origin": {"producer": "analyze_failures.py"}
+    },
+    {
+      "id": "tbl.edge_cases.catalog.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/edge_cases_catalog.json",
+      "sha256": "sha256:d1b5d775b44f7d20a20d568282daafd24f53363074982f356f8801599a17b4c3",
+      "origin": {"producer": "catalog_edge_cases.py"}
+    },
+    {
+      "id": "fig.edge_cases.examples.v1",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/edge_cases_examples.png",
+      "sha256": "sha256:8896d4dda8e42593f4e46a680f227e3189e437b7b056dbd2fa8623d12b53434e",
+      "origin": {"producer": "visualize_edge_cases.py"},
+      "meta_uri": "figures/edge_cases_examples.meta.json",
+      "meta_sha256": "sha256:07f223b4a5bc42db459f751ca63782b73bc7bf12676a87307f20b3ce195e3ad6",
+      "meta_spec": "figure.meta.json@v1"
+    },
+    {
+      "id": "tbl.debug.feature_stats.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/debug_feature_stats.json",
+      "sha256": "sha256:58746529bbb6b8fed82618fd94b4d9c27d190753f46ef47fbbeb72193f5db1ff",
+      "origin": {"producer": "debug_features.py"}
+    },
+    {
+      "id": "metric.multioccupant.accuracy.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/multioccupant_accuracy.json",
+      "sha256": "sha256:be8645843b9f8fb8515f2ab82958e4054ff7429354faebc799597de9409828eb",
+      "origin": {"producer": "eval_multioccupant.py"}
+    },
+    {
+      "id": "tbl.multioccupant.positions.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/multioccupant_positions.json",
+      "sha256": "sha256:cb8c59b86576a383339bc1bfda1f38e22a4476f0514283a1cefe5a4599549f30",
+      "origin": {"producer": "eval_multioccupant.py"}
+    },
+    {
+      "id": "tbl.emotion.preliminary.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/emotion_preliminary.json",
+      "sha256": "sha256:095f21e00d730b8e4a34c7b429a5b680da75b8cac79e384b8854a09308a85b9c",
+      "origin": {"producer": "eval_emotion_wip.py"}
+    },
+    {
+      "id": "tbl.verbose.per_subject.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/verbose_per_subject.json",
+      "sha256": "sha256:99cb60f17614d532ab15100b152f3f9fb4679f7063ef26052604596e72e9715e",
+      "origin": {"producer": "generate_verbose_tables.py"}
+    },
+    {
+      "id": "tbl.verbose.per_frame.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/verbose_per_frame.json",
+      "sha256": "sha256:e5c842318f21b2e2282814ee6d355e088d86ff9e0016e3b3f5297d7ad1343c81",
+      "origin": {"producer": "generate_verbose_tables.py"}
+    },
+    {
+      "id": "tbl.verbose.feature_distributions.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/verbose_feature_distributions.json",
+      "sha256": "sha256:36b50f13589910f5f93b9c2f93640dbcddb8e998a8c272b26dcf8e286f41731f",
+      "origin": {"producer": "generate_verbose_tables.py"}
+    },
+    {
+      "id": "tbl.dossier.regulatory_summary.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/regulatory_summary.json",
+      "sha256": "sha256:9eb7b17d0f8276684eb81505b60402c8174578544693abdb9b39b867bab9a161",
+      "origin": {"producer": "generate_regulatory_summary.py"}
+    },
+    {
+      "id": "metric.dossier.safety_score.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/safety_score.json",
+      "sha256": "sha256:de8a3bd6f0ab9654c27e7e5cd3ef97007fdbb84d9224d11400e8b0c05a8e3219",
+      "origin": {"producer": "compute_safety_score.py"}
+    }
+  ]
+}

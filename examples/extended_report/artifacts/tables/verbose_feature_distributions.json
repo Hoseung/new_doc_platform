@@ -1,0 +1,85 @@
+{
+  "columns": [
+    {
+      "key": "bin",
+      "label": "Bin"
+    },
+    {
+      "key": "face_conf",
+      "label": "Face Conf",
+      "dtype": "int"
+    },
+    {
+      "key": "eye_ar",
+      "label": "Eye AR",
+      "dtype": "int"
+    },
+    {
+      "key": "mouth_ar",
+      "label": "Mouth AR",
+      "dtype": "int"
+    }
+  ],
+  "rows": [
+    {
+      "bin": "0-10",
+      "face_conf": 50,
+      "eye_ar": 30,
+      "mouth_ar": 20
+    },
+    {
+      "bin": "10-20",
+      "face_conf": 70,
+      "eye_ar": 45,
+      "mouth_ar": 30
+    },
+    {
+      "bin": "20-30",
+      "face_conf": 90,
+      "eye_ar": 60,
+      "mouth_ar": 40
+    },
+    {
+      "bin": "30-40",
+      "face_conf": 110,
+      "eye_ar": 75,
+      "mouth_ar": 50
+    },
+    {
+      "bin": "40-50",
+      "face_conf": 130,
+      "eye_ar": 90,
+      "mouth_ar": 60
+    },
+    {
+      "bin": "50-60",
+      "face_conf": 150,
+      "eye_ar": 105,
+      "mouth_ar": 70
+    },
+    {
+      "bin": "60-70",
+      "face_conf": 170,
+      "eye_ar": 120,
+      "mouth_ar": 80
+    },
+    {
+      "bin": "70-80",
+      "face_conf": 190,
+      "eye_ar": 135,
+      "mouth_ar": 90
+    },
+    {
+      "bin": "80-90",
+      "face_conf": 210,
+      "eye_ar": 150,
+      "mouth_ar": 100
+    },
+    {
+      "bin": "90-100",
+      "face_conf": 230,
+      "eye_ar": 165,
+      "mouth_ar": 110
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "label": "Multi-Occupant Detection",
+  "value": 87.2,
+  "unit": "%",
+  "notes": [
+    "Preliminary results",
+    "Not validated for production"
+  ]
+}

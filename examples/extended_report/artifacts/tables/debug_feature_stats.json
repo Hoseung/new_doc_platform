@@ -1,0 +1,65 @@
+{
+  "columns": [
+    {
+      "key": "feature",
+      "label": "Feature"
+    },
+    {
+      "key": "mean",
+      "label": "Mean",
+      "dtype": "float"
+    },
+    {
+      "key": "std",
+      "label": "Std",
+      "dtype": "float"
+    },
+    {
+      "key": "min",
+      "label": "Min",
+      "dtype": "float"
+    },
+    {
+      "key": "max",
+      "label": "Max",
+      "dtype": "float"
+    }
+  ],
+  "rows": [
+    {
+      "feature": "face_confidence",
+      "mean": 0.92,
+      "std": 0.08,
+      "min": 0.51,
+      "max": 0.99
+    },
+    {
+      "feature": "eye_aspect_ratio",
+      "mean": 0.28,
+      "std": 0.05,
+      "min": 0.12,
+      "max": 0.45
+    },
+    {
+      "feature": "mouth_aspect_ratio",
+      "mean": 0.15,
+      "std": 0.12,
+      "min": 0.02,
+      "max": 0.68
+    },
+    {
+      "feature": "head_pose_yaw",
+      "mean": -2.3,
+      "std": 18.5,
+      "min": -85.2,
+      "max": 82.1
+    },
+    {
+      "feature": "gaze_pitch",
+      "mean": -8.5,
+      "std": 12.3,
+      "min": -45.0,
+      "max": 35.2
+    }
+  ]
+}

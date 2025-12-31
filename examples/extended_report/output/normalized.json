@@ -1,0 +1,7049 @@
+{
+  "pandoc-api-version": [
+    1,
+    23,
+    1
+  ],
+  "meta": {},
+  "blocks": [
+    {
+      "t": "Header",
+      "c": [
+        1,
+        [
+          "driver-monitoring-system-performance-analysis-report",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "Driver"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Monitoring"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "System"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "\u2014"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Performance"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Analysis"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Report"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "This"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "comprehensive"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "report"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "evaluates"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "the"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Driver"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Monitoring"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "System"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "(DMS)"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "across"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "multiple"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "performance"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "dimensions"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "including"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "face"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "detection,"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "gaze"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "estimation,"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "drowsiness"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "detection,"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "and"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "distraction"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "classification."
+        }
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Strong",
+          "c": [
+            {
+              "t": "Str",
+              "c": "Report"
+            },
+            {
+              "t": "Space"
+            },
+            {
+              "t": "Str",
+              "c": "Configuration:"
+            }
+          ]
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Dataset:"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "ds_dms_eval_2024_v2"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Model"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Version:"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "DMS-Core-v3.2.1"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Evaluation"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Date:"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "2024-12-15"
+        }
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "executive-summary",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "Executive"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Summary"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "This"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "section"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "provides"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "high-level"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "metrics"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "suitable"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "for"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "external"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "stakeholders."
+        }
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.overall.accuracy.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "source",
+              "artifacts/metrics/overall_accuracy.json"
+            ],
+            [
+              "schema",
+              "metric.json@v1"
+            ],
+            [
+              "visibility",
+              "dossier"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Overall"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "system"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "across"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "all"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "tasks."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:METRIC]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.latency.p99.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "source",
+              "artifacts/metrics/latency_p99.json"
+            ],
+            [
+              "schema",
+              "metric.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "99th"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "percentile"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "inference"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "latency"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "on"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "target"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "hardware."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:METRIC]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.executive.summary.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/executive_summary.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "dossier"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Summary"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "key"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "performance"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "indicators"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "executive"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "review."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "face-detection-performance",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "1."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Face"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detection"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Performance"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "detection-accuracy",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "1.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detection"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Accuracy"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.face.detection.precision.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "source",
+              "artifacts/metrics/face_precision.json"
+            ],
+            [
+              "schema",
+              "metric.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Face"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "precision"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "under"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "standard"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "lighting"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "conditions."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:METRIC]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.face.detection.recall.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "source",
+              "artifacts/metrics/face_recall.json"
+            ],
+            [
+              "schema",
+              "metric.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Face"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "recall"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "ensuring"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "no"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "missed"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detections."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:METRIC]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.face.detection.by_lighting.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/face_detection_lighting.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "performance"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "breakdown"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "by"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "lighting"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "condition"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "(day,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "night,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "mixed)."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.face.detection.by_lighting.v1.annotation",
+          [],
+          [
+            [
+              "role",
+              "hybrid"
+            ],
+            [
+              "kind",
+              "annotation"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "bind-to",
+              "tbl.face.detection.by_lighting.v1"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Strong",
+                "c": [
+                  {
+                    "t": "Str",
+                    "c": "Analysis"
+                  },
+                  {
+                    "t": "Space"
+                  },
+                  {
+                    "t": "Str",
+                    "c": "Notes:"
+                  }
+                ]
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Night"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "performance"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "shows"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "3%"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "degradation"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "compared"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "to"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "daytime"
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "IR"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "illumination"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "compensates"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "effectively"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "low-light"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "conditions"
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Mixed"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "lighting"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "(tunnel"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "exits)"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "remains"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "the"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "most"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "challenging"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "scenario"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "pose-estimation",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "1.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Pose"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Estimation"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.pose.yaw.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/pose_yaw.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Yaw"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "angle"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "estimation"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "across"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "the"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "operational"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "range."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.pose.pitch.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/pose_pitch.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Pitch"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "angle"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "estimation"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "head"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "tilt"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "fig.pose.error_distribution.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "figure"
+            ],
+            [
+              "source",
+              "artifacts/figures/pose_error_dist.png"
+            ],
+            [
+              "schema",
+              "figure.binary@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Distribution"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "pose"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "estimation"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "errors"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "across"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "the"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "test"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "dataset."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:FIGURE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "gaze-estimation",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "2."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Gaze"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Estimation"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "gaze-vector-accuracy",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "2.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Gaze"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Vector"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Accuracy"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.gaze.angular_error.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "source",
+              "artifacts/metrics/gaze_angular_error.json"
+            ],
+            [
+              "schema",
+              "metric.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Mean"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "angular"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "error"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "gaze"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "direction"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "estimation."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:METRIC]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.gaze.by_region.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/gaze_by_region.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Gaze"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "breakdown"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "by"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "dashboard"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "region"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "(instrument"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "cluster,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "center"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "console,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "mirrors)."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "fig.gaze.heatmap.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "figure"
+            ],
+            [
+              "source",
+              "artifacts/figures/gaze_heatmap.png"
+            ],
+            [
+              "schema",
+              "figure.binary@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Heatmap"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "showing"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "gaze"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "estimation"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "across"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "the"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "driver"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "field"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "view."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:FIGURE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "gaze-zone-classification",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "2.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Gaze"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Zone"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Classification"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.gaze.zone_confusion.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/gaze_zone_confusion.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Confusion"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "matrix"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "gaze"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "zone"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "classification"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "(road,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "left"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "mirror,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "right"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "mirror,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "instrument,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "phone,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "other)."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.gaze.zone_confusion.v1.annotation",
+          [],
+          [
+            [
+              "role",
+              "hybrid"
+            ],
+            [
+              "kind",
+              "annotation"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "bind-to",
+              "tbl.gaze.zone_confusion.v1"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Strong",
+                "c": [
+                  {
+                    "t": "Str",
+                    "c": "Key"
+                  },
+                  {
+                    "t": "Space"
+                  },
+                  {
+                    "t": "Str",
+                    "c": "Observations:"
+                  }
+                ]
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Road"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "vs.\u00a0instrument"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "cluster"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "confusion"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "is"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "the"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "primary"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "error"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "mode"
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Left/right"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "mirror"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "discrimination"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "is"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "highly"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accurate"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "(>98%)"
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Quoted",
+                "c": [
+                  {
+                    "t": "DoubleQuote"
+                  },
+                  [
+                    {
+                      "t": "Str",
+                      "c": "Phone"
+                    }
+                  ]
+                ]
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "specifically"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "important"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "distraction"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "alerts"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "drowsiness-detection",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "3."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Drowsiness"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detection"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "eye-state-analysis",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "3.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Eye"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "State"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Analysis"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.eye.perclos.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "source",
+              "artifacts/metrics/eye_perclos.json"
+            ],
+            [
+              "schema",
+              "metric.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "PERCLOS"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "(Percentage"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Eye"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Closure)"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:METRIC]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.eye.blink.metrics.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/eye_blink_metrics.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Blink"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "metrics"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "including"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "blink"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "rate"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "and"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "duration"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "analysis."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "fig.drowsiness.roc.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "figure"
+            ],
+            [
+              "source",
+              "artifacts/figures/drowsiness_roc.png"
+            ],
+            [
+              "schema",
+              "figure.binary@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "ROC"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "curve"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "drowsiness"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "at"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "various"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "thresholds."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:FIGURE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "yawn-detection",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "3.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Yawn"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detection"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.yawn.detection.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "source",
+              "artifacts/metrics/yawn_detection.json"
+            ],
+            [
+              "schema",
+              "metric.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Yawn"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "F1"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "score."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:METRIC]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.yawn.temporal.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/yawn_temporal.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Temporal"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "analysis"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "yawn"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "including"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "onset"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "and"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "duration"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "distraction-classification",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "4."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Distraction"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Classification"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "activity-recognition",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "4.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Activity"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Recognition"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.distraction.activities.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/distraction_activities.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Classification"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "distracted"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "driving"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "activities."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "fig.distraction.confusion.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "figure"
+            ],
+            [
+              "source",
+              "artifacts/figures/distraction_confusion.png"
+            ],
+            [
+              "schema",
+              "figure.binary@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Confusion"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "matrix"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "visualization"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "distraction"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "activity"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "classification."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:FIGURE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.distraction.activities.v1.annotation",
+          [],
+          [
+            [
+              "role",
+              "hybrid"
+            ],
+            [
+              "kind",
+              "annotation"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "bind-to",
+              "tbl.distraction.activities.v1"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Strong",
+                "c": [
+                  {
+                    "t": "Str",
+                    "c": "Critical"
+                  },
+                  {
+                    "t": "Space"
+                  },
+                  {
+                    "t": "Str",
+                    "c": "Findings:"
+                  }
+                ]
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Phone"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "usage"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "achieves"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "94.2%"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy"
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Eating/drinking"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "distinction"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "remains"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "challenging"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "(78.3%)"
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Talking"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "to"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "passenger"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "vs.\u00a0phone"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "call"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "differentiation"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "needs"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "improvement"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "attention-score",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "4.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Attention"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Score"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.attention.score.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "source",
+              "artifacts/metrics/attention_score.json"
+            ],
+            [
+              "schema",
+              "metric.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Composite"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "attention"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "score"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "combining"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "all"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "distraction"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "indicators."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:METRIC]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.attention.thresholds.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/attention_thresholds.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Alert"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "threshold"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "calibration"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "across"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "attention"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "score"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "ranges."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "system-performance",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "5."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "System"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Performance"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "latency-analysis",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "5.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Latency"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Analysis"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.latency.breakdown.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/latency_breakdown.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Latency"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "breakdown"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "by"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "processing"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "stage"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "(detection,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "landmarks,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "classification)."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "fig.latency.histogram.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "figure"
+            ],
+            [
+              "source",
+              "artifacts/figures/latency_histogram.png"
+            ],
+            [
+              "schema",
+              "figure.binary@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Histogram"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "end-to-end"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "processing"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "latency."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:FIGURE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "resource-utilization",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "5.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Resource"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Utilization"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.resource.utilization.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/resource_utilization.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "external"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "CPU/GPU"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "utilization"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "and"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "memory"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "footprint"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "during"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "inference."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "failure-analysis-internal-only",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "6."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Failure"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Analysis"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "(Internal"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Only)"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "This"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "section"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "contains"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "detailed"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "failure"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "analysis"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "for"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "internal"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "engineering"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "review."
+        }
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "error-categorization",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "6.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Error"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Categorization"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.failures.by_category.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/failures_by_category.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Breakdown"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "failures"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "by"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "root"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "cause"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "category."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.failures.by_category.v1.annotation",
+          [],
+          [
+            [
+              "role",
+              "hybrid"
+            ],
+            [
+              "kind",
+              "annotation"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "bind-to",
+              "tbl.failures.by_category.v1"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Strong",
+                "c": [
+                  {
+                    "t": "Str",
+                    "c": "Engineering"
+                  },
+                  {
+                    "t": "Space"
+                  },
+                  {
+                    "t": "Str",
+                    "c": "Notes:"
+                  }
+                ]
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Sunglasses"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "remain"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "the"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "top"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "failure"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "mode"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "(23%"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "all"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "failures)"
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "Consider"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "adding"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "polarized"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "lens"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "as"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "a"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "feature"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "flag"
+              },
+              {
+                "t": "SoftBreak"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "IR"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "reflection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "issues"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "in"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "certain"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "sunglasses"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "types"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "identified"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "edge-cases",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "6.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Edge"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Cases"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.edge_cases.catalog.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/edge_cases_catalog.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Catalog"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "identified"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "edge"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "cases"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "with"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "reproduction"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "steps."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "fig.edge_cases.examples.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "figure"
+            ],
+            [
+              "source",
+              "artifacts/figures/edge_cases_examples.png"
+            ],
+            [
+              "schema",
+              "figure.binary@v1"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Visual"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "examples"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "challenging"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "edge"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "cases."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:FIGURE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "debug-information",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "6.3"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Debug"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Information"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.debug.feature_stats.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/debug_feature_stats.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Internal"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "feature"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "statistics"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "model"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "debugging."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "experimental-results-draft",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "7."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Experimental"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Results"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "(Draft)"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "These"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "results"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "are"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "from"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "experimental"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "features"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "not"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "yet"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "validated"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "for"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "production."
+        }
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "multi-occupant-detection",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "7.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Multi-Occupant"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detection"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.multioccupant.accuracy.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "source",
+              "artifacts/metrics/multioccupant_accuracy.json"
+            ],
+            [
+              "schema",
+              "metric.json@v1"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Preliminary"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "multi-occupant"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:METRIC]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.multioccupant.positions.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/multioccupant_positions.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "by"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "seating"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "position"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "(driver,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "front"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "passenger,"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "rear)."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "emotion-recognition-wip",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "7.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Emotion"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Recognition"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "(WIP)"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.emotion.preliminary.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/emotion_preliminary.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Preliminary"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "emotion"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "recognition"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "results"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "-"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "work"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "in"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "progress."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "recommendations",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "8."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Recommendations"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "Based"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "on"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "the"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "analysis,"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "we"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "recommend"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "the"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "following"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "improvements:"
+        }
+      ]
+    },
+    {
+      "t": "OrderedList",
+      "c": [
+        [
+          1,
+          {
+            "t": "Decimal"
+          },
+          {
+            "t": "Period"
+          }
+        ],
+        [
+          [
+            {
+              "t": "Plain",
+              "c": [
+                {
+                  "t": "Strong",
+                  "c": [
+                    {
+                      "t": "Str",
+                      "c": "Sunglasses"
+                    },
+                    {
+                      "t": "Space"
+                    },
+                    {
+                      "t": "Str",
+                      "c": "Handling"
+                    }
+                  ]
+                },
+                {
+                  "t": "Str",
+                  "c": ":"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "Implement"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "adaptive"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "IR"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "intensity"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "for"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "sunglasses"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "detection"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "t": "Plain",
+              "c": [
+                {
+                  "t": "Strong",
+                  "c": [
+                    {
+                      "t": "Str",
+                      "c": "Gaze"
+                    },
+                    {
+                      "t": "Space"
+                    },
+                    {
+                      "t": "Str",
+                      "c": "Calibration"
+                    }
+                  ]
+                },
+                {
+                  "t": "Str",
+                  "c": ":"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "Add"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "per-driver"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "gaze"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "calibration"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "for"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "improved"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "accuracy"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "t": "Plain",
+              "c": [
+                {
+                  "t": "Strong",
+                  "c": [
+                    {
+                      "t": "Str",
+                      "c": "Latency"
+                    },
+                    {
+                      "t": "Space"
+                    },
+                    {
+                      "t": "Str",
+                      "c": "Optimization"
+                    }
+                  ]
+                },
+                {
+                  "t": "Str",
+                  "c": ":"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "Target"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "15ms"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "reduction"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "through"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "model"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "pruning"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "t": "Plain",
+              "c": [
+                {
+                  "t": "Strong",
+                  "c": [
+                    {
+                      "t": "Str",
+                      "c": "Edge"
+                    },
+                    {
+                      "t": "Space"
+                    },
+                    {
+                      "t": "Str",
+                      "c": "Case"
+                    },
+                    {
+                      "t": "Space"
+                    },
+                    {
+                      "t": "Str",
+                      "c": "Coverage"
+                    }
+                  ]
+                },
+                {
+                  "t": "Str",
+                  "c": ":"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "Expand"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "training"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "data"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "for"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "identified"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "failure"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "modes"
+                }
+              ]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "appendix-a-methodology",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "Appendix"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "A:"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Methodology"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "a.1-dataset-description",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "A.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Dataset"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Description"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "The"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "evaluation"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "dataset"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "(ds_dms_eval_2024_v2)"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "contains:"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "150,000"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "annotated"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "frames"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "500"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "unique"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "subjects"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "12"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "lighting"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "conditions"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "8"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "vehicle"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "types"
+        }
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "a.2-evaluation-protocol",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "A.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Evaluation"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Protocol"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "All"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "metrics"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "were"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "computed"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "using:"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "5-fold"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "cross-validation"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Stratified"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "sampling"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "by"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "subject"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Held-out"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "test"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "set"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "(20%"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "of"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "data)"
+        }
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "appendix-b-detailed-tables-verbose",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "Appendix"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "B:"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detailed"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Tables"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "(Verbose)"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "b.1-per-subject-performance",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "B.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Per-Subject"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Performance"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.verbose.per_subject.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/verbose_per_subject.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Performance"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "metrics"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "broken"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "down"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "by"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "individual"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "test"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "subjects."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "b.2-per-frame-analysis",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "B.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Per-Frame"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Analysis"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.verbose.per_frame.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/verbose_per_frame.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Frame-by-frame"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "analysis"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "with"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "confidence"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "scores."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "b.3-raw-feature-distributions",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "B.3"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Raw"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Feature"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Distributions"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.verbose.feature_distributions.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/verbose_feature_distributions.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "internal"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Raw"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "feature"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "value"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "distributions"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "model"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "interpretability."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "appendix-c-dossier-only-content",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "Appendix"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "C:"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Dossier-Only"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Content"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "This"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "section"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "contains"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "highly"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "condensed"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "summary"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "for"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "regulatory"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "dossier."
+        }
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.dossier.regulatory_summary.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "source",
+              "artifacts/tables/regulatory_summary.json"
+            ],
+            [
+              "schema",
+              "table.simple.json@v1"
+            ],
+            [
+              "visibility",
+              "dossier"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Regulatory"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "compliance"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "summary"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "table."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:TABLE]]"
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.dossier.safety_score.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "source",
+              "artifacts/metrics/safety_score.json"
+            ],
+            [
+              "schema",
+              "metric.json@v1"
+            ],
+            [
+              "visibility",
+              "dossier"
+            ],
+            [
+              "lock",
+              "true"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Composite"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "safety"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "score"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "regulatory"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "filing."
+              }
+            ]
+          },
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "[[COMPUTED:METRIC]]"
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

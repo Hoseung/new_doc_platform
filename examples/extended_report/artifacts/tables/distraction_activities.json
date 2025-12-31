@@ -1,0 +1,61 @@
+{
+  "columns": [
+    {
+      "key": "activity",
+      "label": "Activity"
+    },
+    {
+      "key": "precision",
+      "label": "Precision",
+      "dtype": "float"
+    },
+    {
+      "key": "recall",
+      "label": "Recall",
+      "dtype": "float"
+    },
+    {
+      "key": "f1",
+      "label": "F1",
+      "dtype": "float"
+    }
+  ],
+  "rows": [
+    {
+      "activity": "Phone Usage",
+      "precision": 95.2,
+      "recall": 93.3,
+      "f1": 94.2
+    },
+    {
+      "activity": "Texting",
+      "precision": 92.1,
+      "recall": 89.5,
+      "f1": 90.8
+    },
+    {
+      "activity": "Eating/Drinking",
+      "precision": 81.2,
+      "recall": 75.6,
+      "f1": 78.3
+    },
+    {
+      "activity": "Reaching Back",
+      "precision": 88.5,
+      "recall": 85.2,
+      "f1": 86.8
+    },
+    {
+      "activity": "Talking to Passenger",
+      "precision": 79.8,
+      "recall": 82.1,
+      "f1": 80.9
+    },
+    {
+      "activity": "Adjusting Controls",
+      "precision": 86.3,
+      "recall": 84.7,
+      "f1": 85.5
+    }
+  ]
+}

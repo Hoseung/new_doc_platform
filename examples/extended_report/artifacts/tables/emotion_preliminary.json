@@ -1,0 +1,44 @@
+{
+  "columns": [
+    {
+      "key": "emotion",
+      "label": "Emotion"
+    },
+    {
+      "key": "accuracy",
+      "label": "Accuracy",
+      "dtype": "float"
+    },
+    {
+      "key": "status",
+      "label": "Status"
+    }
+  ],
+  "rows": [
+    {
+      "emotion": "Neutral",
+      "accuracy": 82.5,
+      "status": "WIP"
+    },
+    {
+      "emotion": "Happy",
+      "accuracy": 75.2,
+      "status": "WIP"
+    },
+    {
+      "emotion": "Angry",
+      "accuracy": 68.3,
+      "status": "WIP"
+    },
+    {
+      "emotion": "Surprised",
+      "accuracy": 71.8,
+      "status": "WIP"
+    },
+    {
+      "emotion": "Drowsy",
+      "accuracy": 88.2,
+      "status": "Validated"
+    }
+  ]
+}

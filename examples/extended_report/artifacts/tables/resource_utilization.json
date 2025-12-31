@@ -1,0 +1,46 @@
+{
+  "columns": [
+    {
+      "key": "resource",
+      "label": "Resource"
+    },
+    {
+      "key": "mean",
+      "label": "Mean Usage"
+    },
+    {
+      "key": "peak",
+      "label": "Peak Usage"
+    },
+    {
+      "key": "limit",
+      "label": "Limit"
+    }
+  ],
+  "rows": [
+    {
+      "resource": "CPU",
+      "mean": "45%",
+      "peak": "62%",
+      "limit": "70%"
+    },
+    {
+      "resource": "GPU",
+      "mean": "38%",
+      "peak": "55%",
+      "limit": "80%"
+    },
+    {
+      "resource": "Memory",
+      "mean": "512 MB",
+      "peak": "680 MB",
+      "limit": "1 GB"
+    },
+    {
+      "resource": "NPU",
+      "mean": "72%",
+      "peak": "85%",
+      "limit": "100%"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "columns": [
+    {
+      "key": "level",
+      "label": "Attention Level"
+    },
+    {
+      "key": "score_range",
+      "label": "Score Range"
+    },
+    {
+      "key": "action",
+      "label": "System Action"
+    },
+    {
+      "key": "occurrence",
+      "label": "Occurrence (%)",
+      "dtype": "float"
+    }
+  ],
+  "rows": [
+    {
+      "level": "Fully Attentive",
+      "score_range": "90-100",
+      "action": "None",
+      "occurrence": 78.5
+    },
+    {
+      "level": "Mild Distraction",
+      "score_range": "70-89",
+      "action": "Visual Alert",
+      "occurrence": 15.2
+    },
+    {
+      "level": "Moderate Distraction",
+      "score_range": "50-69",
+      "action": "Audio Alert",
+      "occurrence": 4.8
+    },
+    {
+      "level": "Severe Distraction",
+      "score_range": "30-49",
+      "action": "Haptic + Audio",
+      "occurrence": 1.2
+    },
+    {
+      "level": "Critical",
+      "score_range": "0-29",
+      "action": "Emergency Protocol",
+      "occurrence": 0.3
+    }
+  ]
+}

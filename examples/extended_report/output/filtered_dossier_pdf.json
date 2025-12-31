@@ -1,0 +1,5245 @@
+{
+  "pandoc-api-version": [
+    1,
+    23,
+    1
+  ],
+  "meta": {},
+  "blocks": [
+    {
+      "t": "Header",
+      "c": [
+        1,
+        [
+          "driver-monitoring-system-performance-analysis-report",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "Driver"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Monitoring"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "System"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "\u2014"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Performance"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Analysis"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Report"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "This"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "comprehensive"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "report"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "evaluates"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "the"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Driver"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Monitoring"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "System"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "(DMS)"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "across"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "multiple"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "performance"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "dimensions"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "including"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "face"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "detection,"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "gaze"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "estimation,"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "drowsiness"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "detection,"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "and"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "distraction"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "classification."
+        }
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Strong",
+          "c": [
+            {
+              "t": "Str",
+              "c": "Report"
+            },
+            {
+              "t": "Space"
+            },
+            {
+              "t": "Str",
+              "c": "Configuration:"
+            }
+          ]
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Dataset:"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "ds_dms_eval_2024_v2"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Model"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Version:"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "DMS-Core-v3.2.1"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Evaluation"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Date:"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "2024-12-15"
+        }
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "executive-summary",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "Executive"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Summary"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "This"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "section"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "provides"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "high-level"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "metrics"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "suitable"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "for"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "external"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "stakeholders."
+        }
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.overall.accuracy.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "visibility",
+              "dossier"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Overall"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "system"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "accuracy"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "across"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "all"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "detection"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "tasks."
+              }
+            ]
+          },
+          {
+            "t": "Table",
+            "c": [
+              [
+                "",
+                [],
+                []
+              ],
+              [
+                null,
+                []
+              ],
+              [
+                [
+                  {
+                    "t": "AlignLeft"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ],
+                [
+                  {
+                    "t": "AlignRight"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ]
+              ],
+              {
+                "t": "TableHead",
+                "c": [
+                  [
+                    "",
+                    [],
+                    []
+                  ],
+                  [
+                    {
+                      "t": "Row",
+                      "c": [
+                        [
+                          "",
+                          [],
+                          []
+                        ],
+                        [
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Metric"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          },
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Value"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                ]
+              },
+              [
+                {
+                  "t": "TableBody",
+                  "c": [
+                    [
+                      "",
+                      [],
+                      []
+                    ],
+                    0,
+                    [],
+                    [
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Overall"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "System"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Accuracy"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "96.7"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    ]
+                  ]
+                }
+              ],
+              {
+                "t": "TableFoot",
+                "c": [
+                  [
+                    "",
+                    [],
+                    []
+                  ],
+                  []
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.executive.summary.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "visibility",
+              "dossier"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Summary"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "of"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "key"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "performance"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "indicators"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "executive"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "review."
+              }
+            ]
+          },
+          {
+            "t": "Table",
+            "c": [
+              [
+                "",
+                [],
+                []
+              ],
+              [
+                null,
+                []
+              ],
+              [
+                [
+                  {
+                    "t": "AlignDefault"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ],
+                [
+                  {
+                    "t": "AlignDefault"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ],
+                [
+                  {
+                    "t": "AlignDefault"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ],
+                [
+                  {
+                    "t": "AlignDefault"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ],
+                [
+                  {
+                    "t": "AlignDefault"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ]
+              ],
+              {
+                "t": "TableHead",
+                "c": [
+                  [
+                    "",
+                    [],
+                    []
+                  ],
+                  [
+                    {
+                      "t": "Row",
+                      "c": [
+                        [
+                          "",
+                          [],
+                          []
+                        ],
+                        [
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Category"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          },
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Metric"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          },
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Value"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          },
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Target"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          },
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Status"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                ]
+              },
+              [
+                {
+                  "t": "TableBody",
+                  "c": [
+                    [
+                      "",
+                      [],
+                      []
+                    ],
+                    0,
+                    [],
+                    [
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Detection"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Face"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Detection"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "98.0%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": ">95%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "PASS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Detection"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Eye"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Detection"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "96.5%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": ">95%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "PASS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Estimation"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Gaze"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Accuracy"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "4.2\u00b0"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "<5\u00b0"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "PASS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Estimation"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Pose"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Accuracy"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "3.1\u00b0"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "<5\u00b0"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "PASS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Classification"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Drowsiness"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "94.5%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": ">90%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "PASS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Classification"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Distraction"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "91.3%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": ">90%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "PASS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Performance"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Latency"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "P99"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "23.4ms"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "<30ms"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "PASS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    ]
+                  ]
+                }
+              ],
+              {
+                "t": "TableFoot",
+                "c": [
+                  [
+                    "",
+                    [],
+                    []
+                  ],
+                  []
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "face-detection-performance",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "1."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Face"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detection"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Performance"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "detection-accuracy",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "1.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detection"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Accuracy"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "pose-estimation",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "1.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Pose"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Estimation"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "gaze-estimation",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "2."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Gaze"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Estimation"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "gaze-vector-accuracy",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "2.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Gaze"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Vector"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Accuracy"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "gaze-zone-classification",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "2.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Gaze"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Zone"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Classification"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "drowsiness-detection",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "3."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Drowsiness"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detection"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "eye-state-analysis",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "3.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Eye"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "State"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Analysis"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "yawn-detection",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "3.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Yawn"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detection"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "distraction-classification",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "4."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Distraction"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Classification"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "activity-recognition",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "4.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Activity"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Recognition"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "attention-score",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "4.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Attention"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Score"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "system-performance",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "5."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "System"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Performance"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "latency-analysis",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "5.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Latency"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Analysis"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "resource-utilization",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "5.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Resource"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Utilization"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "failure-analysis-internal-only",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "6."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Failure"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Analysis"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "(Internal"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Only)"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "This"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "section"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "contains"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "detailed"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "failure"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "analysis"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "for"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "internal"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "engineering"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "review."
+        }
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "error-categorization",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "6.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Error"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Categorization"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "edge-cases",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "6.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Edge"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Cases"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "debug-information",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "6.3"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Debug"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Information"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "experimental-results-draft",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "7."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Experimental"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Results"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "(Draft)"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "These"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "results"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "are"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "from"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "experimental"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "features"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "not"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "yet"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "validated"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "for"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "production."
+        }
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "multi-occupant-detection",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "7.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Multi-Occupant"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detection"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "emotion-recognition-wip",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "7.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Emotion"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Recognition"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "(WIP)"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "recommendations",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "8."
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Recommendations"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "Based"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "on"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "the"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "analysis,"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "we"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "recommend"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "the"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "following"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "improvements:"
+        }
+      ]
+    },
+    {
+      "t": "OrderedList",
+      "c": [
+        [
+          1,
+          {
+            "t": "Decimal"
+          },
+          {
+            "t": "Period"
+          }
+        ],
+        [
+          [
+            {
+              "t": "Plain",
+              "c": [
+                {
+                  "t": "Strong",
+                  "c": [
+                    {
+                      "t": "Str",
+                      "c": "Sunglasses"
+                    },
+                    {
+                      "t": "Space"
+                    },
+                    {
+                      "t": "Str",
+                      "c": "Handling"
+                    }
+                  ]
+                },
+                {
+                  "t": "Str",
+                  "c": ":"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "Implement"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "adaptive"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "IR"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "intensity"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "for"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "sunglasses"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "detection"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "t": "Plain",
+              "c": [
+                {
+                  "t": "Strong",
+                  "c": [
+                    {
+                      "t": "Str",
+                      "c": "Gaze"
+                    },
+                    {
+                      "t": "Space"
+                    },
+                    {
+                      "t": "Str",
+                      "c": "Calibration"
+                    }
+                  ]
+                },
+                {
+                  "t": "Str",
+                  "c": ":"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "Add"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "per-driver"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "gaze"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "calibration"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "for"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "improved"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "accuracy"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "t": "Plain",
+              "c": [
+                {
+                  "t": "Strong",
+                  "c": [
+                    {
+                      "t": "Str",
+                      "c": "Latency"
+                    },
+                    {
+                      "t": "Space"
+                    },
+                    {
+                      "t": "Str",
+                      "c": "Optimization"
+                    }
+                  ]
+                },
+                {
+                  "t": "Str",
+                  "c": ":"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "Target"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "15ms"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "reduction"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "through"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "model"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "pruning"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "t": "Plain",
+              "c": [
+                {
+                  "t": "Strong",
+                  "c": [
+                    {
+                      "t": "Str",
+                      "c": "Edge"
+                    },
+                    {
+                      "t": "Space"
+                    },
+                    {
+                      "t": "Str",
+                      "c": "Case"
+                    },
+                    {
+                      "t": "Space"
+                    },
+                    {
+                      "t": "Str",
+                      "c": "Coverage"
+                    }
+                  ]
+                },
+                {
+                  "t": "Str",
+                  "c": ":"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "Expand"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "training"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "data"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "for"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "identified"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "failure"
+                },
+                {
+                  "t": "Space"
+                },
+                {
+                  "t": "Str",
+                  "c": "modes"
+                }
+              ]
+            }
+          ]
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "appendix-a-methodology",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "Appendix"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "A:"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Methodology"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "a.1-dataset-description",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "A.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Dataset"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Description"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "The"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "evaluation"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "dataset"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "(ds_dms_eval_2024_v2)"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "contains:"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "150,000"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "annotated"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "frames"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "500"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "unique"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "subjects"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "12"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "lighting"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "conditions"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "8"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "vehicle"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "types"
+        }
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "a.2-evaluation-protocol",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "A.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Evaluation"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Protocol"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "All"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "metrics"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "were"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "computed"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "using:"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "5-fold"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "cross-validation"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Stratified"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "sampling"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "by"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "subject"
+        },
+        {
+          "t": "SoftBreak"
+        },
+        {
+          "t": "Str",
+          "c": "-"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "Held-out"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "test"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "set"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "(20%"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "of"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "data)"
+        }
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "appendix-b-detailed-tables-verbose",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "Appendix"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "B:"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Detailed"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Tables"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "(Verbose)"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "b.1-per-subject-performance",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "B.1"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Per-Subject"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Performance"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "b.2-per-frame-analysis",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "B.2"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Per-Frame"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Analysis"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Header",
+      "c": [
+        3,
+        [
+          "b.3-raw-feature-distributions",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "B.3"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Raw"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Feature"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Distributions"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "HorizontalRule"
+    },
+    {
+      "t": "Header",
+      "c": [
+        2,
+        [
+          "appendix-c-dossier-only-content",
+          [],
+          []
+        ],
+        [
+          {
+            "t": "Str",
+            "c": "Appendix"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "C:"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Dossier-Only"
+          },
+          {
+            "t": "Space"
+          },
+          {
+            "t": "Str",
+            "c": "Content"
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Para",
+      "c": [
+        {
+          "t": "Str",
+          "c": "This"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "section"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "contains"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "highly"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "condensed"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "summary"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "for"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "regulatory"
+        },
+        {
+          "t": "Space"
+        },
+        {
+          "t": "Str",
+          "c": "dossier."
+        }
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "tbl.dossier.regulatory_summary.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "table"
+            ],
+            [
+              "visibility",
+              "dossier"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Regulatory"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "compliance"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "summary"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "table."
+              }
+            ]
+          },
+          {
+            "t": "Table",
+            "c": [
+              [
+                "",
+                [],
+                []
+              ],
+              [
+                null,
+                []
+              ],
+              [
+                [
+                  {
+                    "t": "AlignDefault"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ],
+                [
+                  {
+                    "t": "AlignDefault"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ],
+                [
+                  {
+                    "t": "AlignDefault"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ],
+                [
+                  {
+                    "t": "AlignDefault"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ]
+              ],
+              {
+                "t": "TableHead",
+                "c": [
+                  [
+                    "",
+                    [],
+                    []
+                  ],
+                  [
+                    {
+                      "t": "Row",
+                      "c": [
+                        [
+                          "",
+                          [],
+                          []
+                        ],
+                        [
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Regulatory"
+                                    },
+                                    {
+                                      "t": "Space"
+                                    },
+                                    {
+                                      "t": "Str",
+                                      "c": "Requirement"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          },
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Standard"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          },
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Test"
+                                    },
+                                    {
+                                      "t": "Space"
+                                    },
+                                    {
+                                      "t": "Str",
+                                      "c": "Result"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          },
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Compliance"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                ]
+              },
+              [
+                {
+                  "t": "TableBody",
+                  "c": [
+                    [
+                      "",
+                      [],
+                      []
+                    ],
+                    0,
+                    [],
+                    [
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Driver"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Attention"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Detection"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "UNECE"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "R79"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "PASS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Compliant"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Drowsiness"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Warning"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "EU"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "2019/2144"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "PASS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Compliant"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Distraction"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Warning"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "EU"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "2019/2144"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "PASS"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Compliant"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "System"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Availability"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "ISO"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "26262"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "99.2%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "ASIL-B"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "False"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Positive"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Rate"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Internal"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "<2%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Compliant"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    ]
+                  ]
+                }
+              ],
+              {
+                "t": "TableFoot",
+                "c": [
+                  [
+                    "",
+                    [],
+                    []
+                  ],
+                  []
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "t": "Div",
+      "c": [
+        [
+          "metric.dossier.safety_score.v1",
+          [],
+          [
+            [
+              "role",
+              "computed"
+            ],
+            [
+              "kind",
+              "metric"
+            ],
+            [
+              "visibility",
+              "dossier"
+            ]
+          ]
+        ],
+        [
+          {
+            "t": "Para",
+            "c": [
+              {
+                "t": "Str",
+                "c": "Composite"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "safety"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "score"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "for"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "regulatory"
+              },
+              {
+                "t": "Space"
+              },
+              {
+                "t": "Str",
+                "c": "filing."
+              }
+            ]
+          },
+          {
+            "t": "Table",
+            "c": [
+              [
+                "",
+                [],
+                []
+              ],
+              [
+                null,
+                []
+              ],
+              [
+                [
+                  {
+                    "t": "AlignLeft"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ],
+                [
+                  {
+                    "t": "AlignRight"
+                  },
+                  {
+                    "t": "ColWidthDefault"
+                  }
+                ]
+              ],
+              {
+                "t": "TableHead",
+                "c": [
+                  [
+                    "",
+                    [],
+                    []
+                  ],
+                  [
+                    {
+                      "t": "Row",
+                      "c": [
+                        [
+                          "",
+                          [],
+                          []
+                        ],
+                        [
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Metric"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          },
+                          {
+                            "t": "Cell",
+                            "c": [
+                              [
+                                "",
+                                [],
+                                []
+                              ],
+                              {
+                                "t": "AlignDefault"
+                              },
+                              1,
+                              1,
+                              [
+                                {
+                                  "t": "Plain",
+                                  "c": [
+                                    {
+                                      "t": "Str",
+                                      "c": "Value"
+                                    }
+                                  ]
+                                }
+                              ]
+                            ]
+                          }
+                        ]
+                      ]
+                    }
+                  ]
+                ]
+              },
+              [
+                {
+                  "t": "TableBody",
+                  "c": [
+                    [
+                      "",
+                      [],
+                      []
+                    ],
+                    0,
+                    [],
+                    [
+                      {
+                        "t": "Row",
+                        "c": [
+                          [
+                            "",
+                            [],
+                            []
+                          ],
+                          [
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "Composite"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Safety"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "Score"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            },
+                            {
+                              "t": "Cell",
+                              "c": [
+                                [
+                                  "",
+                                  [],
+                                  []
+                                ],
+                                {
+                                  "t": "AlignDefault"
+                                },
+                                1,
+                                1,
+                                [
+                                  {
+                                    "t": "Plain",
+                                    "c": [
+                                      {
+                                        "t": "Str",
+                                        "c": "94.8"
+                                      },
+                                      {
+                                        "t": "Space"
+                                      },
+                                      {
+                                        "t": "Str",
+                                        "c": "%"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              ]
+                            }
+                          ]
+                        ]
+                      }
+                    ]
+                  ]
+                }
+              ],
+              {
+                "t": "TableFoot",
+                "c": [
+                  [
+                    "",
+                    [],
+                    []
+                  ],
+                  []
+                ]
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

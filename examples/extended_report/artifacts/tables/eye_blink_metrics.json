@@ -1,0 +1,46 @@
+{
+  "columns": [
+    {
+      "key": "metric",
+      "label": "Metric"
+    },
+    {
+      "key": "value",
+      "label": "Value"
+    },
+    {
+      "key": "unit",
+      "label": "Unit"
+    },
+    {
+      "key": "threshold",
+      "label": "Alert Threshold"
+    }
+  ],
+  "rows": [
+    {
+      "metric": "Blink Detection Rate",
+      "value": "97.2%",
+      "unit": "",
+      "threshold": ">95%"
+    },
+    {
+      "metric": "Mean Blink Duration",
+      "value": "215",
+      "unit": "ms",
+      "threshold": ">400ms"
+    },
+    {
+      "metric": "PERCLOS (1 min)",
+      "value": "8.3%",
+      "unit": "",
+      "threshold": ">15%"
+    },
+    {
+      "metric": "Blink Rate",
+      "value": "14.2",
+      "unit": "blinks/min",
+      "threshold": "<8 or >25"
+    }
+  ]
+}

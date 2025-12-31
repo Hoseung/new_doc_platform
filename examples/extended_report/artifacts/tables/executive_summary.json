@@ -1,0 +1,75 @@
+{
+  "columns": [
+    {
+      "key": "category",
+      "label": "Category"
+    },
+    {
+      "key": "metric",
+      "label": "Metric"
+    },
+    {
+      "key": "value",
+      "label": "Value"
+    },
+    {
+      "key": "target",
+      "label": "Target"
+    },
+    {
+      "key": "status",
+      "label": "Status"
+    }
+  ],
+  "rows": [
+    {
+      "category": "Detection",
+      "metric": "Face Detection",
+      "value": "98.0%",
+      "target": ">95%",
+      "status": "PASS"
+    },
+    {
+      "category": "Detection",
+      "metric": "Eye Detection",
+      "value": "96.5%",
+      "target": ">95%",
+      "status": "PASS"
+    },
+    {
+      "category": "Estimation",
+      "metric": "Gaze Accuracy",
+      "value": "4.2°",
+      "target": "<5°",
+      "status": "PASS"
+    },
+    {
+      "category": "Estimation",
+      "metric": "Pose Accuracy",
+      "value": "3.1°",
+      "target": "<5°",
+      "status": "PASS"
+    },
+    {
+      "category": "Classification",
+      "metric": "Drowsiness",
+      "value": "94.5%",
+      "target": ">90%",
+      "status": "PASS"
+    },
+    {
+      "category": "Classification",
+      "metric": "Distraction",
+      "value": "91.3%",
+      "target": ">90%",
+      "status": "PASS"
+    },
+    {
+      "category": "Performance",
+      "metric": "Latency P99",
+      "value": "23.4ms",
+      "target": "<30ms",
+      "status": "PASS"
+    }
+  ]
+}

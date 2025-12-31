@@ -1,0 +1,50 @@
+{
+  "columns": [
+    {
+      "key": "region",
+      "label": "Gaze Region"
+    },
+    {
+      "key": "accuracy",
+      "label": "Accuracy (%)",
+      "dtype": "float"
+    },
+    {
+      "key": "samples",
+      "label": "Samples",
+      "dtype": "int"
+    }
+  ],
+  "rows": [
+    {
+      "region": "Road Ahead",
+      "accuracy": 96.2,
+      "samples": 85000
+    },
+    {
+      "region": "Instrument Cluster",
+      "accuracy": 93.8,
+      "samples": 25000
+    },
+    {
+      "region": "Center Console",
+      "accuracy": 94.5,
+      "samples": 18000
+    },
+    {
+      "region": "Left Mirror",
+      "accuracy": 98.1,
+      "samples": 8000
+    },
+    {
+      "region": "Right Mirror",
+      "accuracy": 97.8,
+      "samples": 7500
+    },
+    {
+      "region": "Rear View Mirror",
+      "accuracy": 95.2,
+      "samples": 6500
+    }
+  ]
+}

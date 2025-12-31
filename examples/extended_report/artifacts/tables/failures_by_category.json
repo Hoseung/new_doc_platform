@@ -1,0 +1,72 @@
+{
+  "columns": [
+    {
+      "key": "category",
+      "label": "Failure Category"
+    },
+    {
+      "key": "count",
+      "label": "Count",
+      "dtype": "int"
+    },
+    {
+      "key": "percentage",
+      "label": "Percentage",
+      "dtype": "float"
+    },
+    {
+      "key": "severity",
+      "label": "Severity"
+    }
+  ],
+  "rows": [
+    {
+      "category": "Sunglasses (reflective)",
+      "count": 1842,
+      "percentage": 23.1,
+      "severity": "High"
+    },
+    {
+      "category": "Extreme Pose",
+      "count": 1456,
+      "percentage": 18.3,
+      "severity": "Medium"
+    },
+    {
+      "category": "Motion Blur",
+      "count": 1123,
+      "percentage": 14.1,
+      "severity": "Medium"
+    },
+    {
+      "category": "Occlusion (hand)",
+      "count": 987,
+      "percentage": 12.4,
+      "severity": "Medium"
+    },
+    {
+      "category": "Low Contrast",
+      "count": 856,
+      "percentage": 10.7,
+      "severity": "Low"
+    },
+    {
+      "category": "IR Saturation",
+      "count": 723,
+      "percentage": 9.1,
+      "severity": "High"
+    },
+    {
+      "category": "Multiple Faces",
+      "count": 512,
+      "percentage": 6.4,
+      "severity": "Low"
+    },
+    {
+      "category": "Other",
+      "count": 471,
+      "percentage": 5.9,
+      "severity": "Low"
+    }
+  ]
+}

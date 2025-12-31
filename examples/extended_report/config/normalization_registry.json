@@ -1,0 +1,308 @@
+{
+  "_comment": "Normalization registry with diverse visibility and policy configurations",
+
+  "metric.overall.accuracy.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/overall_accuracy.json",
+    "schema": "metric.json@v1",
+    "visibility": "dossier"
+  },
+  "metric.latency.p99.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/latency_p99.json",
+    "schema": "metric.json@v1",
+    "visibility": "external"
+  },
+  "tbl.executive.summary.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/executive_summary.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "dossier"
+  },
+
+  "metric.face.detection.precision.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/face_precision.json",
+    "schema": "metric.json@v1",
+    "visibility": "external"
+  },
+  "metric.face.detection.recall.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/face_recall.json",
+    "schema": "metric.json@v1",
+    "visibility": "external"
+  },
+  "tbl.face.detection.by_lighting.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/face_detection_lighting.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+  "tbl.face.detection.by_lighting.v1.annotation": {
+    "role": "hybrid",
+    "kind": "annotation",
+    "bind-to": "tbl.face.detection.by_lighting.v1",
+    "visibility": "external"
+  },
+
+  "tbl.pose.yaw.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/pose_yaw.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+  "tbl.pose.pitch.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/pose_pitch.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+  "fig.pose.error_distribution.v1": {
+    "role": "computed",
+    "kind": "figure",
+    "source": "artifacts/figures/pose_error_dist.png",
+    "schema": "figure.binary@v1",
+    "visibility": "external"
+  },
+
+  "metric.gaze.angular_error.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/gaze_angular_error.json",
+    "schema": "metric.json@v1",
+    "visibility": "external"
+  },
+  "tbl.gaze.by_region.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/gaze_by_region.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+  "fig.gaze.heatmap.v1": {
+    "role": "computed",
+    "kind": "figure",
+    "source": "artifacts/figures/gaze_heatmap.png",
+    "schema": "figure.binary@v1",
+    "visibility": "external"
+  },
+  "tbl.gaze.zone_confusion.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/gaze_zone_confusion.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+  "tbl.gaze.zone_confusion.v1.annotation": {
+    "role": "hybrid",
+    "kind": "annotation",
+    "bind-to": "tbl.gaze.zone_confusion.v1",
+    "visibility": "external"
+  },
+
+  "metric.eye.perclos.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/eye_perclos.json",
+    "schema": "metric.json@v1",
+    "visibility": "external"
+  },
+  "tbl.eye.blink.metrics.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/eye_blink_metrics.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+  "fig.drowsiness.roc.v1": {
+    "role": "computed",
+    "kind": "figure",
+    "source": "artifacts/figures/drowsiness_roc.png",
+    "schema": "figure.binary@v1",
+    "visibility": "external"
+  },
+  "metric.yawn.detection.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/yawn_detection.json",
+    "schema": "metric.json@v1",
+    "visibility": "external"
+  },
+  "tbl.yawn.temporal.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/yawn_temporal.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+
+  "tbl.distraction.activities.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/distraction_activities.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+  "fig.distraction.confusion.v1": {
+    "role": "computed",
+    "kind": "figure",
+    "source": "artifacts/figures/distraction_confusion.png",
+    "schema": "figure.binary@v1",
+    "visibility": "external"
+  },
+  "tbl.distraction.activities.v1.annotation": {
+    "role": "hybrid",
+    "kind": "annotation",
+    "bind-to": "tbl.distraction.activities.v1",
+    "visibility": "external"
+  },
+  "metric.attention.score.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/attention_score.json",
+    "schema": "metric.json@v1",
+    "visibility": "external"
+  },
+  "tbl.attention.thresholds.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/attention_thresholds.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+
+  "tbl.latency.breakdown.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/latency_breakdown.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+  "fig.latency.histogram.v1": {
+    "role": "computed",
+    "kind": "figure",
+    "source": "artifacts/figures/latency_histogram.png",
+    "schema": "figure.binary@v1",
+    "visibility": "external"
+  },
+  "tbl.resource.utilization.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/resource_utilization.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+
+  "tbl.failures.by_category.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/failures_by_category.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal",
+    "policies": "internal-only"
+  },
+  "tbl.failures.by_category.v1.annotation": {
+    "role": "hybrid",
+    "kind": "annotation",
+    "bind-to": "tbl.failures.by_category.v1",
+    "visibility": "internal",
+    "policies": "internal-only"
+  },
+  "tbl.edge_cases.catalog.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/edge_cases_catalog.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal",
+    "policies": "internal-only"
+  },
+  "fig.edge_cases.examples.v1": {
+    "role": "computed",
+    "kind": "figure",
+    "source": "artifacts/figures/edge_cases_examples.png",
+    "schema": "figure.binary@v1",
+    "visibility": "internal",
+    "policies": "internal-only"
+  },
+  "tbl.debug.feature_stats.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/debug_feature_stats.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal",
+    "policies": "internal-only"
+  },
+
+  "metric.multioccupant.accuracy.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/multioccupant_accuracy.json",
+    "schema": "metric.json@v1",
+    "visibility": "internal",
+    "policies": "draft"
+  },
+  "tbl.multioccupant.positions.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/multioccupant_positions.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal",
+    "policies": "draft"
+  },
+  "tbl.emotion.preliminary.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/emotion_preliminary.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal",
+    "policies": "wip"
+  },
+
+  "tbl.verbose.per_subject.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/verbose_per_subject.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal",
+    "policies": "verbose,additional"
+  },
+  "tbl.verbose.per_frame.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/verbose_per_frame.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal",
+    "policies": "verbose,additional"
+  },
+  "tbl.verbose.feature_distributions.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/verbose_feature_distributions.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal",
+    "policies": "verbose,additional"
+  },
+
+  "tbl.dossier.regulatory_summary.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/regulatory_summary.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "dossier"
+  },
+  "metric.dossier.safety_score.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/safety_score.json",
+    "schema": "metric.json@v1",
+    "visibility": "dossier"
+  }
+}

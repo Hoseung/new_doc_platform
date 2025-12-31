@@ -1,0 +1,45 @@
+{
+  "columns": [
+    {
+      "key": "range",
+      "label": "Pitch Range"
+    },
+    {
+      "key": "mae",
+      "label": "MAE (degrees)",
+      "dtype": "float"
+    },
+    {
+      "key": "std",
+      "label": "Std Dev",
+      "dtype": "float"
+    }
+  ],
+  "rows": [
+    {
+      "range": "-45° to -30°",
+      "mae": 4.2,
+      "std": 1.8
+    },
+    {
+      "range": "-30° to -15°",
+      "mae": 2.8,
+      "std": 1.2
+    },
+    {
+      "range": "-15° to 15°",
+      "mae": 1.9,
+      "std": 0.7
+    },
+    {
+      "range": "15° to 30°",
+      "mae": 2.6,
+      "std": 1.1
+    },
+    {
+      "range": "30° to 45°",
+      "mae": 4.5,
+      "std": 1.9
+    }
+  ]
+}

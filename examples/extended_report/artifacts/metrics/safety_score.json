@@ -1,0 +1,8 @@
+{
+  "label": "Composite Safety Score",
+  "value": 94.8,
+  "unit": "%",
+  "notes": [
+    "Computed per ISO 26262 guidelines"
+  ]
+}
