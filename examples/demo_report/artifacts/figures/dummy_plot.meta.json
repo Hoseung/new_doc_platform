@@ -1,0 +1,11 @@
+{
+  "caption": "Dummy plot for resolution tests (샘플 캡션).",
+  "alt": "A placeholder image with a box and toy bars.",
+  "notes": [
+    "This is not a real metric plot.",
+    "Used only to test figure resolution plumbing."
+  ],
+  "meta": {
+    "generator": "aarc_example_pack"
+  }
+}

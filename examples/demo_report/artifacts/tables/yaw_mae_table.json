@@ -1,0 +1,59 @@
+{
+  "caption": "Mean Absolute Error of face yaw estimation across yaw angles. (샘플 표)",
+  "columns": [
+    {
+      "key": "yaw_deg",
+      "label": "Yaw (deg)",
+      "unit": "deg",
+      "dtype": "int"
+    },
+    {
+      "key": "mae_deg",
+      "label": "MAE (deg)",
+      "unit": "deg",
+      "dtype": "float"
+    },
+    {
+      "key": "n_frames",
+      "label": "Frames",
+      "dtype": "int"
+    }
+  ],
+  "rows": [
+    {
+      "yaw_deg": -60,
+      "mae_deg": 4.2,
+      "n_frames": 2100
+    },
+    {
+      "yaw_deg": -45,
+      "mae_deg": 3.6,
+      "n_frames": 2400
+    },
+    {
+      "yaw_deg": -30,
+      "mae_deg": 3.1,
+      "n_frames": 2600
+    },
+    {
+      "yaw_deg": -15,
+      "mae_deg": 2.7,
+      "n_frames": 2500
+    },
+    {
+      "yaw_deg": 0,
+      "mae_deg": 2.4,
+      "n_frames": 2245
+    }
+  ],
+  "notes": [
+    "N=12345",
+    "filter: occlusion<0.2"
+  ],
+  "meta": {
+    "group_by": [
+      "yaw_deg"
+    ],
+    "aggregation": "mean_abs"
+  }
+}

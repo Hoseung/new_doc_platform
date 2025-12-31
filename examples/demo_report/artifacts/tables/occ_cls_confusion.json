@@ -1,0 +1,56 @@
+{
+  "caption": "Occupant classification confusion matrix (toy example)",
+  "columns": [
+    {
+      "key": "true_class",
+      "label": "True",
+      "dtype": "string"
+    },
+    {
+      "key": "pred_driver",
+      "label": "Pred:Driver",
+      "dtype": "int"
+    },
+    {
+      "key": "pred_passenger",
+      "label": "Pred:Passenger",
+      "dtype": "int"
+    },
+    {
+      "key": "pred_empty",
+      "label": "Pred:Empty",
+      "dtype": "int"
+    }
+  ],
+  "rows": [
+    {
+      "true_class": "driver",
+      "pred_driver": 93,
+      "pred_passenger": 4,
+      "pred_empty": 3
+    },
+    {
+      "true_class": "passenger",
+      "pred_driver": 5,
+      "pred_passenger": 90,
+      "pred_empty": 5
+    },
+    {
+      "true_class": "empty",
+      "pred_driver": 1,
+      "pred_passenger": 2,
+      "pred_empty": 97
+    }
+  ],
+  "notes": [
+    "Just for testing resolution; not real metrics."
+  ],
+  "meta": {
+    "type": "confusion_matrix",
+    "labels": [
+      "driver",
+      "passenger",
+      "empty"
+    ]
+  }
+}

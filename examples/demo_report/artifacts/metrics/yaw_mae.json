@@ -1,0 +1,15 @@
+{
+  "label": "Face yaw MAE (얼굴 yaw 평균절대오차)",
+  "value": 3.72193,
+  "unit": "deg",
+  "lower_is_better": true,
+  "notes": [
+    "N=12345",
+    "filtered: occlusion<0.2",
+    "내부 분석용 샘플 데이터"
+  ],
+  "meta": {
+    "population": "front_ir_night",
+    "aggregation": "mean_abs"
+  }
+}

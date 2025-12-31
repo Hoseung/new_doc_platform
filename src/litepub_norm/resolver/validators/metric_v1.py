@@ -46,14 +46,13 @@ def validate_metric_v1(payload: dict[str, Any], semantic_id: str) -> None:
             semantic_id=semantic_id,
         )
 
-    # Optional: unit (non-empty string if present)
+    # Optional: unit (string if present, can be empty for dimensionless values)
     unit = payload.get("unit")
-    if unit is not None:
-        if not isinstance(unit, str) or not unit.strip():
-            raise ValidationError(
-                "Metric.unit must be a non-empty string when present",
-                semantic_id=semantic_id,
-            )
+    if unit is not None and not isinstance(unit, str):
+        raise ValidationError(
+            "Metric.unit must be a string when present",
+            semantic_id=semantic_id,
+        )
 
     # Optional: format (string if present)
     fmt = payload.get("format")

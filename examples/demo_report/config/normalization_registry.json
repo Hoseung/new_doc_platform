@@ -1,0 +1,49 @@
+{
+  "metric.face.yaw_mae.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/yaw_mae.json",
+    "schema": "metric.json@v1",
+    "visibility": "external"
+  },
+  "metric.driver.eye_open_ratio.v1": {
+    "role": "computed",
+    "kind": "metric",
+    "source": "artifacts/metrics/eye_open_ratio.json",
+    "schema": "metric.json@v1",
+    "visibility": "internal"
+  },
+  "tbl.kpi.face.yaw_mae.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/yaw_mae_table.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal"
+  },
+  "tbl.kpi.face.yaw_mae.v1.annotation": {
+    "role": "hybrid",
+    "kind": "annotation",
+    "bind-to": "tbl.kpi.face.yaw_mae.v1"
+  },
+  "tbl.occ_cls.confusion_matrix.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/occ_cls_confusion.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal"
+  },
+  "tbl.summary.category_hierarchy.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/category_hierarchy.table.json",
+    "schema": "table.pandoc.json@v1",
+    "visibility": "external"
+  },
+  "fig.demo.dummy_plot.v1": {
+    "role": "computed",
+    "kind": "figure",
+    "source": "artifacts/figures/dummy_plot.png",
+    "schema": "figure.binary@v1",
+    "visibility": "external"
+  }
+}

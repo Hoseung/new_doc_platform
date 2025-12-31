@@ -1,0 +1,100 @@
+{
+  "registry_version": "aarc-1.1",
+  "generated_at": "2025-12-31T00:00:00Z",
+  "artifact_root": "../artifacts/",
+  "run": {
+    "run_id": "run_demo_2025-12-31T00-00-00Z_demo",
+    "test_id": "DEMO_INTERNAL_PERF_ANALYSIS",
+    "pipeline": {
+      "name": "demo-analysis-pipeline",
+      "version": "0.1.0"
+    },
+    "code": {
+      "repo": "git@example:demo/analysis.git",
+      "commit": "deadbeefdeadbeef",
+      "dirty": false
+    },
+    "inputs": {
+      "dataset_id": "ds_demo_front_ir_v0",
+      "dataset_fingerprint": "sha256:1111111111111111111111111111111111111111111111111111111111111111",
+      "config_fingerprint": "sha256:2222222222222222222222222222222222222222222222222222222222222222"
+    }
+  },
+  "entries": [
+    {
+      "id": "metric.face.yaw_mae.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/yaw_mae.json",
+      "sha256": "sha256:ca8abb398fd96ffdd774406cd6c9381cb5cac1bc92b7e0b7cecffea0e078e3a2",
+      "origin": {
+        "producer": "eval_yaw.py"
+      }
+    },
+    {
+      "id": "metric.driver.eye_open_ratio.v1",
+      "artifact_type": "metric",
+      "format": "metric.json",
+      "spec": "metric.json@v1",
+      "uri": "metrics/eye_open_ratio.json",
+      "sha256": "sha256:266bf6988948c599e8f13445d3a4a2f202b0bbe0f9e73cfdcc9534837d4b73e0",
+      "origin": {
+        "producer": "eval_eye.py"
+      }
+    },
+    {
+      "id": "tbl.kpi.face.yaw_mae.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/yaw_mae_table.json",
+      "sha256": "sha256:82a415a51005d1920b0bc3044ffaa246bd17d12bbc4ab6edb5584bc408615b0c",
+      "origin": {
+        "producer": "eval_yaw.py"
+      },
+      "related": [
+        {
+          "type": "dataset",
+          "id": "ds_demo_front_ir_v0"
+        }
+      ]
+    },
+    {
+      "id": "tbl.occ_cls.confusion_matrix.v1",
+      "artifact_type": "table",
+      "format": "table.simple.json",
+      "spec": "table.simple.json@v1",
+      "uri": "tables/occ_cls_confusion.json",
+      "sha256": "sha256:38963a583ee39613eabd7597326ced93458c8bfdc44f3cd014b78020622314a0",
+      "origin": {
+        "producer": "eval_occ_cls.py"
+      }
+    },
+    {
+      "id": "tbl.summary.category_hierarchy.v1",
+      "artifact_type": "table",
+      "format": "table.pandoc.json",
+      "spec": "table.pandoc.json@v1",
+      "uri": "tables/category_hierarchy.table.json",
+      "sha256": "sha256:1e0deccd5070cfff6c1c4282022554b182bc4bcdc12c8b5eaeeccab729aa6453",
+      "origin": {
+        "producer": "make_hierarchy_table.py"
+      }
+    },
+    {
+      "id": "fig.demo.dummy_plot.v1",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/dummy_plot.png",
+      "sha256": "sha256:1f4f1da0cd3b340a5b6238d14292e140d99fa3973673b81fe3c612fd71026a0d",
+      "origin": {
+        "producer": "plot_dummy.py"
+      },
+      "meta_uri": "figures/dummy_plot.meta.json",
+      "meta_sha256": "sha256:c0d0112002b4af391235c38137e742e977d312e170d6d2455d7b8c54cab79b2e",
+      "meta_spec": "figure.meta.json@v1"
+    }
+  ]
+}

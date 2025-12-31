@@ -1,0 +1,53 @@
+# LitePub Configuration
+# Global configuration for the documentation build pipeline
+
+project:
+  name: "Face Pose Estimation Analysis Report"
+  version: "1.0.0"
+  authors:
+    - "Analysis Team"
+
+# Source documents
+sources:
+  - path: src/report.md
+    format: markdown
+
+# Registry files
+registries:
+  normalization: config/normalization_registry.json
+  artifacts: config/aarc_registry.json
+
+# Build targets
+targets:
+  internal:
+    description: "Full report with internal metrics"
+    visibility_filter: ["internal", "external"]
+    output_formats:
+      - html
+      - pdf
+
+  external:
+    description: "External report (filtered)"
+    visibility_filter: ["external"]
+    output_formats:
+      - pdf
+
+# Resolution settings
+resolution:
+  strict: true                    # Enforce hash verification
+  allow_raw_pandoc: false         # Disallow RawBlock/RawInline
+  limits:
+    max_table_rows: 10000
+    max_table_cols: 100
+    max_table_cells: 200000
+
+# Output settings
+output:
+  directory: build/
+  ast_intermediate: true          # Save intermediate AST files
+
+# Pandoc settings (for transformation stage - future)
+pandoc:
+  highlight_style: tango
+  toc: true
+  toc_depth: 3

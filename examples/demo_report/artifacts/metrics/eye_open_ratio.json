@@ -1,0 +1,10 @@
+{
+  "label": "Driver eye openness ratio",
+  "value": 0.873421,
+  "unit": "",
+  "lower_is_better": false,
+  "format": "{value}",
+  "notes": [
+    "Example metric with explicit format hint"
+  ]
+}
