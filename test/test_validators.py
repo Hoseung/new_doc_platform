@@ -11,9 +11,9 @@ Tests based on plan_validation.md checklist:
 import math
 import pytest
 
-from litepub_norm.resolver.errors import ValidationError
+from litepub_norm.validator.errors import ValidationError
 from litepub_norm.resolver.config import ResolutionConfig, ResolutionLimits
-from litepub_norm.resolver.validators import (
+from litepub_norm.validator import (
     validate_metric_v1,
     validate_table_simple_v1,
     validate_table_pandoc_v1,

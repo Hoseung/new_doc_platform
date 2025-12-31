@@ -26,10 +26,12 @@ from litepub_norm.resolver.loaders.metric_v1 import load_metric_v1
 from litepub_norm.resolver.loaders.table_simple_v1 import load_table_simple_v1
 from litepub_norm.resolver.loaders.table_pandoc_v1 import load_table_pandoc_v1
 from litepub_norm.resolver.loaders.figure_v1 import load_figure_v1, load_figure_meta_v1
-from litepub_norm.resolver.validators.metric_v1 import validate_metric_v1
-from litepub_norm.resolver.validators.table_simple_v1 import validate_table_simple_v1
-from litepub_norm.resolver.validators.table_pandoc_v1 import validate_table_pandoc_v1
-from litepub_norm.resolver.validators.figure_v1 import validate_figure_meta_v1
+from litepub_norm.validator import (
+    validate_metric_v1,
+    validate_table_simple_v1,
+    validate_table_pandoc_v1,
+    validate_figure_meta_v1,
+)
 from litepub_norm.resolver.emitters.metric_v1 import emit_metric_as_table
 from litepub_norm.resolver.emitters.table_simple_v1 import emit_simple_table
 from litepub_norm.resolver.emitters.table_pandoc_v1 import emit_pandoc_table

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from ..errors import ValidationError
-from ..config import ResolutionConfig, ResolutionLimits
+from .errors import ValidationError
+from ..resolver.config import ResolutionConfig, ResolutionLimits
 from .pandoc_walk import (
     walk_pandoc,
     WalkContext,

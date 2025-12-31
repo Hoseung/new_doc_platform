@@ -16,7 +16,7 @@ from __future__ import annotations
 import re
 from typing import Any
 
-from .errors import FenceMismatchError, FenceOverlapError
+from ..errors import FenceMismatchError, FenceOverlapError
 
 
 # Regex patterns for HTML comment fences

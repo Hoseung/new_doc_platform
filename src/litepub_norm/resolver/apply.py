@@ -17,10 +17,12 @@ from .loaders.table_pandoc_v1 import load_table_pandoc_v1
 from .loaders.figure_v1 import load_figure_v1, load_figure_meta_v1
 
 # Validators
-from .validators.metric_v1 import validate_metric_v1
-from .validators.table_simple_v1 import validate_table_simple_v1
-from .validators.table_pandoc_v1 import validate_table_pandoc_v1
-from .validators.figure_v1 import validate_figure_meta_v1
+from ..validator import (
+    validate_metric_v1,
+    validate_table_simple_v1,
+    validate_table_pandoc_v1,
+    validate_figure_meta_v1,
+)
 
 # Emitters
 from .emitters.metric_v1 import emit_metric_as_table

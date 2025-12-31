@@ -14,7 +14,7 @@ from __future__ import annotations
 from typing import Any
 
 from .registry import Registry
-from .errors import DuplicateIdError
+from ..errors import DuplicateIdError
 
 
 # Placeholder markers for computed blocks

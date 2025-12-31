@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from .errors import UnknownSemanticIdError, RegistryIncompleteError
+from ..errors import UnknownSemanticIdError, RegistryIncompleteError
 
 
 # Required fields for computed blocks

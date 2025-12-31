@@ -6,7 +6,7 @@ import math
 import re
 from typing import Any
 
-from ..errors import ValidationError
+from .errors import ValidationError
 
 # Allowed tokens in format string
 _FORMAT_TOKENS = frozenset(["value", "unit"])

@@ -1,4 +1,11 @@
-"""Payload validators for different artifact types."""
+"""Validation stage - validates AST invariants and contracts.
+
+Validators ensure:
+- Payload schemas are correct
+- Content is safe (no raw HTML/LaTeX injection)
+- Size limits are respected
+- Document invariants hold after resolution
+"""
 
 from .metric_v1 import validate_metric_v1
 from .table_simple_v1 import validate_table_simple_v1, validate_table_simple_optional_fields

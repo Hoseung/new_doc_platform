@@ -176,5 +176,5 @@ def apply(ast: dict) -> dict:
         Modified AST with wrapper Div candidates.
     """
     # Import here to avoid circular dependency
-    from . import md_adapter
-    return md_adapter.apply(ast)
+    from . import markdown
+    return markdown.apply(ast)

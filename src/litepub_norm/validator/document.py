@@ -13,8 +13,8 @@ import re
 from dataclasses import dataclass, field
 from typing import Any
 
-from ..errors import ValidationError
-from ..config import ResolutionConfig, BuildTarget
+from .errors import ValidationError
+from ..resolver.config import ResolutionConfig, BuildTarget
 from .pandoc_walk import walk_pandoc, WalkContext, NodeContext
 
 # Placeholder pattern

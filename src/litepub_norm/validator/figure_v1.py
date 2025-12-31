@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from ..errors import ValidationError
+from .errors import ValidationError
 
 
 def validate_figure_meta_v1(

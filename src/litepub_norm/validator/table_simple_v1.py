@@ -6,8 +6,8 @@ import math
 import re
 from typing import Any
 
-from ..errors import ValidationError
-from ..config import ResolutionLimits
+from .errors import ValidationError
+from ..resolver.config import ResolutionLimits
 
 # Column key identifier pattern: alphanumeric + underscore, not starting with digit
 _KEY_PATTERN = re.compile(r"^[a-zA-Z_][a-zA-Z0-9_]*$")

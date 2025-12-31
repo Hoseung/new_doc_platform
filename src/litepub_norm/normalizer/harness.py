@@ -14,10 +14,10 @@ from typing import Any
 import pypandoc
 
 from .registry import Registry
-from . import md_adapter
-from . import rst_adapter
-from . import core_normalize
-from .serialize import serialize
+from ..adapters import markdown as md_adapter
+from ..adapters import rst as rst_adapter
+from . import core as core_normalize
+from ..serialize import serialize
 
 
 def parse_to_pandoc_ast(text: str, fmt: str) -> dict:
