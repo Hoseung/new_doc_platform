@@ -44,7 +44,34 @@ class PayloadError(ResolutionError):
 class ValidationError(ResolutionError):
     """Error validating payload content."""
 
-    pass
+    def __init__(
+        self,
+        message: str,
+        *,
+        code: str | None = None,
+        semantic_id: str | None = None,
+        path: str | None = None,
+        spec: str | None = None,
+        ast_path: str | None = None,
+        hint: str | None = None,
+    ):
+        super().__init__(message, semantic_id=semantic_id, path=path)
+        self.code = code
+        self.spec = spec
+        self.ast_path = ast_path
+        self.hint = hint
+
+    def __str__(self) -> str:
+        parts = [super().__str__()]
+        if self.code:
+            parts.insert(0, f"[{self.code}]")
+        if self.spec:
+            parts.append(f"[spec={self.spec}]")
+        if self.ast_path:
+            parts.append(f"[ast_path={self.ast_path}]")
+        if self.hint:
+            parts.append(f"Hint: {self.hint}")
+        return " ".join(parts)
 
 
 class HashMismatchError(PayloadError):
