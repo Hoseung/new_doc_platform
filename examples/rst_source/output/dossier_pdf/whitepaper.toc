@@ -1,0 +1,121 @@
+\contentsline {section}{\numberline {1}White Paper Title}{1}{section.1}%
+\contentsline {chapter}{Abstract}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Indices and tables}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Introduction}{4}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Background}{4}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Objectives}{4}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Document Structure}{4}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.4}Cross-References}{5}{subsubsection.1.2.4}%
+\contentsline {subsection}{\numberline {1.3}Methodology}{5}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}System Architecture}{5}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Content Generation}{5}{subsubsection.1.3.2}%
+\contentsline {paragraph}{Figure Generation}{5}{subsubsection.1.3.2}%
+\contentsline {paragraph}{Table Generation}{6}{Item.12}%
+\contentsline {subsubsection}{\numberline {1.3.3}Mathematical Notation}{6}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.4}Build Process}{6}{subsubsection.1.3.4}%
+\contentsline {subsection}{\numberline {1.4}Results}{7}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Visualization Results}{7}{subsubsection.1.4.1}%
+\contentsline {paragraph}{Line Plots}{7}{subsubsection.1.4.1}%
+\contentsline {paragraph}{Categorical Comparisons}{7}{subsubsection.1.4.1}%
+\contentsline {paragraph}{Distribution Analysis}{7}{subsubsection.1.4.1}%
+\contentsline {paragraph}{Correlation Analysis}{7}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Tabular Results}{7}{subsubsection.1.4.2}%
+\contentsline {paragraph}{Experimental Data}{7}{subsubsection.1.4.2}%
+\contentsline {paragraph}{Statistical Summary}{8}{table.2}%
+\contentsline {paragraph}{Performance Metrics}{8}{table.3}%
+\contentsline {subsubsection}{\numberline {1.4.3}Key Findings}{8}{subsubsection.1.4.3}%
+\contentsline {subsection}{\numberline {1.5}Conclusion}{9}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Summary of Contributions}{9}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\numberline {1.5.2}Results Overview}{9}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\numberline {1.5.3}Best Practices}{10}{subsubsection.1.5.3}%
+\contentsline {paragraph}{Content Management}{10}{subsubsection.1.5.3}%
+\contentsline {paragraph}{Figure Generation}{10}{subsubsection.1.5.3}%
+\contentsline {paragraph}{Table Generation}{10}{subsubsection.1.5.3}%
+\contentsline {paragraph}{Build Automation}{10}{subsubsection.1.5.3}%
+\contentsline {subsubsection}{\numberline {1.5.4}Limitations and Future Work}{10}{subsubsection.1.5.4}%
+\contentsline {subsubsection}{\numberline {1.5.5}Final Remarks}{11}{subsubsection.1.5.5}%
+\contentsline {subsubsection}{\numberline {1.5.6}Acknowledgments}{11}{subsubsection.1.5.6}%
+\contentsline {subsection}{\numberline {1.6}한글 사용 예제 / Korean Example}{11}{subsection.1.6}%
+\contentsline {subsubsection}{\numberline {1.6.1}혼합 언어 작성 / Mixed Language Writing}{11}{subsubsection.1.6.1}%
+\contentsline {paragraph}{기본 텍스트 / Basic Text}{11}{subsubsection.1.6.1}%
+\contentsline {paragraph}{수식과 한글 / Equations with Korean}{12}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {1.6.2}표와 그림 / Tables and Figures}{12}{subsubsection.1.6.2}%
+\contentsline {paragraph}{한글 표 / Korean Tables}{12}{subsubsection.1.6.2}%
+\contentsline {paragraph}{방법론 비교 표 / Method Comparison Table}{12}{table.5}%
+\contentsline {subsubsection}{\numberline {1.6.3}교차 참조 / Cross-References}{13}{subsubsection.1.6.3}%
+\contentsline {paragraph}{섹션 참조 / Section References}{13}{subsubsection.1.6.3}%
+\contentsline {paragraph}{그림 참조 / Figure References}{13}{subsubsection.1.6.3}%
+\contentsline {paragraph}{수식 참조 / Equation References}{13}{subsubsection.1.6.3}%
+\contentsline {subsubsection}{\numberline {1.6.4}인용 / Citations}{13}{subsubsection.1.6.4}%
+\contentsline {subsubsection}{\numberline {1.6.5}코드 블록 / Code Blocks}{13}{subsubsection.1.6.5}%
+\contentsline {subsubsection}{\numberline {1.6.6}목록 / Lists}{14}{subsubsection.1.6.6}%
+\contentsline {paragraph}{순서 있는 목록 / Ordered List}{14}{subsubsection.1.6.6}%
+\contentsline {paragraph}{순서 없는 목록 / Unordered List}{14}{Item.30}%
+\contentsline {subsubsection}{\numberline {1.6.7}강조와 서식 / Emphasis and Formatting}{14}{subsubsection.1.6.7}%
+\contentsline {subsubsection}{\numberline {1.6.8}주요 결과 / Key Findings}{14}{subsubsection.1.6.8}%
+\contentsline {subsubsection}{\numberline {1.6.9}결론 / Conclusion}{15}{subsubsection.1.6.9}%
+\contentsline {subsection}{\numberline {1.7}System Overview and Use Cases}{15}{subsection.1.7}%
+\contentsline {subsubsection}{\numberline {1.7.1}Design Philosophy}{15}{subsubsection.1.7.1}%
+\contentsline {subsubsection}{\numberline {1.7.2}Key Features}{15}{subsubsection.1.7.2}%
+\contentsline {subparagraph}{Dual Build System}{15}{subsubsection.1.7.2}%
+\contentsline {subparagraph}{Automated Content Generation}{16}{Item.38}%
+\contentsline {subparagraph}{Self-Contained Tables}{16}{Item.38}%
+\contentsline {subparagraph}{Korean/CJK Support}{16}{Item.38}%
+\contentsline {subparagraph}{Adaptive Toolchain}{17}{Item.38}%
+\contentsline {subsubsection}{\numberline {1.7.3}Use Cases}{17}{subsubsection.1.7.3}%
+\contentsline {subparagraph}{Technical Reports and White Papers}{17}{subsubsection.1.7.3}%
+\contentsline {subparagraph}{Reproducible Research}{17}{Item.42}%
+\contentsline {subparagraph}{LLM-Assisted Documentation}{17}{Item.42}%
+\contentsline {subparagraph}{Multi-Format Publishing}{18}{Item.47}%
+\contentsline {subparagraph}{Collaborative Writing}{18}{Item.47}%
+\contentsline {subsubsection}{\numberline {1.7.4}Getting Started}{18}{subsubsection.1.7.4}%
+\contentsline {subsubsection}{\numberline {1.7.5}Summary}{19}{subsubsection.1.7.5}%
+\contentsline {subsection}{\numberline {1.8}Appendix: Project Documentation}{19}{subsection.1.8}%
+\contentsline {subsubsection}{\numberline {1.8.1}A. Quick Start Guide}{19}{subsubsection.1.8.1}%
+\contentsline {paragraph}{Installation (Linux)}{19}{subsubsection.1.8.1}%
+\contentsline {paragraph}{Daily Workflow}{20}{subsubsection.1.8.1}%
+\contentsline {paragraph}{Common Commands}{20}{subsubsection.1.8.1}%
+\contentsline {subsubsection}{\numberline {1.8.2}B. Build System Guide}{20}{subsubsection.1.8.2}%
+\contentsline {paragraph}{Makefile vs Shell Script}{20}{subsubsection.1.8.2}%
+\contentsline {paragraph}{Build Process}{20}{subsubsection.1.8.2}%
+\contentsline {subsubsection}{\numberline {1.8.3}C. Korean/CJK Language Support}{20}{subsubsection.1.8.3}%
+\contentsline {paragraph}{Setup}{20}{subsubsection.1.8.3}%
+\contentsline {paragraph}{Usage}{21}{subsubsection.1.8.3}%
+\contentsline {paragraph}{Korean in Matplotlib}{21}{subsubsection.1.8.3}%
+\contentsline {subsubsection}{\numberline {1.8.4}D. Automatic Table System}{21}{subsubsection.1.8.4}%
+\contentsline {paragraph}{Table Format (Self-Contained Objects)}{21}{subsubsection.1.8.4}%
+\contentsline {paragraph}{Creating Tables}{21}{subsubsection.1.8.4}%
+\contentsline {paragraph}{Using Tables in Chapters}{22}{subsubsection.1.8.4}%
+\contentsline {paragraph}{Build Process}{22}{subsubsection.1.8.4}%
+\contentsline {paragraph}{Manual Preprocessing}{22}{subsubsection.1.8.4}%
+\contentsline {subsubsection}{\numberline {1.8.5}E. Path Configuration}{22}{subsubsection.1.8.5}%
+\contentsline {paragraph}{Path Rules}{22}{subsubsection.1.8.5}%
+\contentsline {paragraph}{Correct Paths}{23}{subsubsection.1.8.5}%
+\contentsline {paragraph}{Fixing Path Issues}{23}{subsubsection.1.8.5}%
+\contentsline {subsubsection}{\numberline {1.8.6}F. Troubleshooting}{23}{subsubsection.1.8.6}%
+\contentsline {paragraph}{Common Issues}{23}{subsubsection.1.8.6}%
+\contentsline {subsubsection}{\numberline {1.8.7}G. Project Architecture}{23}{subsubsection.1.8.7}%
+\contentsline {paragraph}{Directory Structure}{23}{subsubsection.1.8.7}%
+\contentsline {paragraph}{File Organization}{24}{subsubsection.1.8.7}%
+\contentsline {subsubsection}{\numberline {1.8.8}H. Advanced Features}{24}{subsubsection.1.8.8}%
+\contentsline {paragraph}{Cross-References}{24}{subsubsection.1.8.8}%
+\contentsline {paragraph}{Citations}{25}{subsubsection.1.8.8}%
+\contentsline {paragraph}{Custom Pandoc Options}{25}{subsubsection.1.8.8}%
+\contentsline {paragraph}{Multiple Output Formats}{25}{subsubsection.1.8.8}%
+\contentsline {subsubsection}{\numberline {1.8.9}I. Best Practices}{25}{subsubsection.1.8.9}%
+\contentsline {paragraph}{1. Version Control}{25}{subsubsection.1.8.9}%
+\contentsline {paragraph}{2. Table Management}{26}{subsubsection.1.8.9}%
+\contentsline {paragraph}{3. Figure Quality}{26}{subsubsection.1.8.9}%
+\contentsline {paragraph}{4. Modular Chapters}{26}{subsubsection.1.8.9}%
+\contentsline {paragraph}{5. Reproducibility}{26}{subsubsection.1.8.9}%
+\contentsline {subsubsection}{\numberline {1.8.10}J. Quick Reference}{26}{subsubsection.1.8.10}%
+\contentsline {paragraph}{Build Commands}{26}{subsubsection.1.8.10}%
+\contentsline {paragraph}{Python Scripts}{26}{subsubsection.1.8.10}%
+\contentsline {paragraph}{Markdown Syntax}{27}{subsubsection.1.8.10}%
+\contentsline {paragraph}{File Paths}{27}{subsubsection.1.8.10}%
+\contentsline {subsubsection}{\numberline {1.8.11}K. Resources}{27}{subsubsection.1.8.11}%
+\contentsline {paragraph}{Documentation}{27}{subsubsection.1.8.11}%
+\contentsline {paragraph}{Project Files}{27}{subsubsection.1.8.11}%
+\contentsline {paragraph}{Getting Help}{27}{subsubsection.1.8.11}%
+\contentsline {subsubsection}{\numberline {1.8.12}L. Summary of Features}{28}{subsubsection.1.8.12}%
+\contentsline {paragraph}{✅ Implemented Features}{28}{subsubsection.1.8.12}%

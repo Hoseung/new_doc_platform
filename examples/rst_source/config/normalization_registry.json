@@ -1,0 +1,37 @@
+{
+  "fig:example_plot": {
+    "role": "computed",
+    "kind": "figure",
+    "visibility": "external",
+    "policy": [],
+    "source": "figures/example_line_plot.png"
+  },
+  "fig:scatter": {
+    "role": "computed",
+    "kind": "figure",
+    "visibility": "external",
+    "policy": [],
+    "source": "figures/example_scatter_plot.png"
+  },
+  "fig:bars": {
+    "role": "computed",
+    "kind": "figure",
+    "visibility": "external",
+    "policy": [],
+    "source": "figures/example_bar_chart.png"
+  },
+  "fig:histogram": {
+    "role": "computed",
+    "kind": "figure",
+    "visibility": "external",
+    "policy": [],
+    "source": "figures/example_histogram.png"
+  },
+  "fig:heatmap": {
+    "role": "computed",
+    "kind": "figure",
+    "visibility": "external",
+    "policy": [],
+    "source": "figures/example_heatmap.png"
+  }
+}

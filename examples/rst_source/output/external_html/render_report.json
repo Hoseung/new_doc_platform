@@ -1,0 +1,38 @@
+{
+  "timestamps": {
+    "started_at": "2026-01-01T02:45:16.574871+00:00",
+    "completed_at": "2026-01-01T02:45:16.637511+00:00"
+  },
+  "tools": {
+    "pandoc_version": "3.8.2.1",
+    "latex_engine": null,
+    "latex_engine_version": null
+  },
+  "context": {
+    "build_target": "external",
+    "render_target": "html",
+    "strict_mode": true
+  },
+  "templates": {
+    "template_path": "/home/hoseung/Work/DMS_eval/new_doc_platform/src/litepub_norm/render/html/templates/template.html",
+    "template_hash": "sha256:4961e9e0d3b1b17226f810cb5f884b7b9d526bdae6f6dc29c685299a68f669b1",
+    "assets_dir": "/home/hoseung/Work/DMS_eval/new_doc_platform/src/litepub_norm/render/html/assets",
+    "assets_hash": "sha256:de8b2dc61883fa768a1904b02ca7305ba9d0e042f7dd70a34e6c362d05308833",
+    "lua_filters": [
+      "/home/hoseung/Work/DMS_eval/new_doc_platform/src/litepub_norm/render/html/lua/foldable.lua"
+    ],
+    "lua_filter_hashes": {
+      "/home/hoseung/Work/DMS_eval/new_doc_platform/src/litepub_norm/render/html/lua/foldable.lua": "sha256:d8ae3a3f99b91c51656a46b8e7a800bbb416b9556e577d0fcfe88a1da67dabf8"
+    }
+  },
+  "output": {
+    "files": [
+      "/home/hoseung/Work/DMS_eval/new_doc_platform/examples/rst_source/output/external_html/whitepaper.html",
+      "/home/hoseung/Work/DMS_eval/new_doc_platform/examples/rst_source/output/external_html/assets"
+    ]
+  },
+  "diagnostics": {
+    "warnings": [],
+    "errors": []
+  }
+}

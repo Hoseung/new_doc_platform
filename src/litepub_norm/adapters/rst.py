@@ -15,7 +15,7 @@ import re
 from typing import Any
 
 
-# Known directive types that represent semantic blocks
+# Known directive types that represent semantic blocks (custom litepub directives)
 KNOWN_DIRECTIVES = {
     "computed-table",
     "computed-figure",
@@ -24,13 +24,28 @@ KNOWN_DIRECTIVES = {
     "prose",
 }
 
+# Standard RST directives that can also be semantic blocks if they have :name:
+STANDARD_DIRECTIVES = {
+    "figure",
+    "table",
+    "image",
+}
+
 # Regex to match RST directive start: ".. directive-name::"
 DIRECTIVE_PATTERN = re.compile(
     r"^(\s*)\.\.\s+(" + "|".join(re.escape(d) for d in KNOWN_DIRECTIVES) + r")::\s*$"
 )
 
-# Regex to match :id: field
+# Regex to match standard RST directives: ".. figure:: path" or ".. table::"
+STANDARD_DIRECTIVE_PATTERN = re.compile(
+    r"^(\s*)\.\.\s+(" + "|".join(re.escape(d) for d in STANDARD_DIRECTIVES) + r")::\s*(.*)$"
+)
+
+# Regex to match :id: field (for custom directives)
 ID_FIELD_PATTERN = re.compile(r"^\s+:id:\s+(\S+)\s*$")
+
+# Regex to match :name: field (for standard RST directives)
+NAME_FIELD_PATTERN = re.compile(r"^\s+:name:\s+(\S+)\s*$")
 
 
 def preprocess_rst(text: str) -> str:
@@ -38,6 +53,10 @@ def preprocess_rst(text: str) -> str:
     Preprocess RST text to convert known directives to fenced Divs.
 
     This allows Pandoc to parse them as Div blocks with identifiers.
+
+    Handles both:
+    - Custom litepub directives (computed-table, computed-figure, etc.) with :id: field
+    - Standard RST directives (figure, table, image) with :name: field
 
     Args:
         text: Raw RST source text.
@@ -51,7 +70,12 @@ def preprocess_rst(text: str) -> str:
 
     while i < len(lines):
         line = lines[i]
+
+        # Check for custom litepub directives first
         match = DIRECTIVE_PATTERN.match(line)
+
+        # Also check for standard RST directives with :name:
+        std_match = STANDARD_DIRECTIVE_PATTERN.match(line) if not match else None
 
         if match:
             indent = match.group(1)
@@ -143,6 +167,76 @@ def preprocess_rst(text: str) -> str:
                     result_lines.append(f"{indent}{body_line}")
                 else:
                     result_lines.append("")
+
+            result_lines.append("")
+            result_lines.append(f"{indent}.. raw:: html")
+            result_lines.append("")
+            result_lines.append(f"{indent}   <!-- END {semantic_id} -->")
+            result_lines.append("")
+
+            i = j
+
+        elif std_match:
+            # Handle standard RST directives (figure, table, image) with :name:
+            indent = std_match.group(1)
+            directive_type = std_match.group(2)
+            directive_arg = std_match.group(3)  # e.g., path for figure
+
+            # Scan for :name: field and collect directive options
+            semantic_id = None
+            options_lines = [line]  # Start with the directive line
+            j = i + 1
+            directive_indent = len(indent)
+
+            while j < len(lines):
+                next_line = lines[j]
+
+                # Empty line before body content
+                if not next_line.strip():
+                    options_lines.append(next_line)
+                    j += 1
+                    continue
+
+                # Check for :name: field
+                name_match = NAME_FIELD_PATTERN.match(next_line)
+                if name_match:
+                    semantic_id = name_match.group(1)
+                    options_lines.append(next_line)
+                    j += 1
+                    continue
+
+                # Check for other option fields (:width:, :alt:, etc.)
+                if re.match(r"^\s+:\w+:", next_line):
+                    options_lines.append(next_line)
+                    j += 1
+                    continue
+
+                # Check if this is body content (caption for figure, etc.)
+                line_indent = len(next_line) - len(next_line.lstrip())
+                if line_indent > directive_indent:
+                    # Body content - continue collecting
+                    options_lines.append(next_line)
+                    j += 1
+                    continue
+
+                # End of directive
+                break
+
+            if semantic_id is None:
+                # No :name: found - pass through as-is
+                result_lines.append(line)
+                i += 1
+                continue
+
+            # Wrap the entire directive with semantic markers
+            result_lines.append(f"{indent}.. raw:: html")
+            result_lines.append("")
+            result_lines.append(f"{indent}   <!-- BEGIN {semantic_id} -->")
+            result_lines.append("")
+
+            # Add the original directive lines
+            for opt_line in options_lines:
+                result_lines.append(opt_line)
 
             result_lines.append("")
             result_lines.append(f"{indent}.. raw:: html")

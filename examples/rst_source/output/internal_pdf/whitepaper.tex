@@ -1,0 +1,2121 @@
+% LitePub Norm - LaTeX Template for PDF Generation
+% Supports English + Korean (CJK) text with XeLaTeX
+%
+% Required: XeLaTeX engine with fontspec
+
+\documentclass[11pt,a4paper]{article}
+
+% Essential packages
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{array}
+\usepackage{calc}
+
+% Page geometry
+\geometry{
+  a4paper,
+  margin=2.5cm,
+  top=3cm,
+  bottom=3cm,
+  headheight=14pt
+}
+
+% Font configuration
+% Main font (Latin)
+\setmainfont{DejaVu Serif}[
+  BoldFont=DejaVu Serif Bold,
+  ItalicFont=DejaVu Serif Italic,
+  BoldItalicFont=DejaVu Serif Bold Italic
+]
+
+% Sans font
+\setsansfont{DejaVu Sans}[
+  BoldFont=DejaVu Sans Bold,
+  ItalicFont=DejaVu Sans Oblique
+]
+
+% Monospace font for code
+\setmonofont{DejaVu Sans Mono}[
+  Scale=0.9
+]
+
+% CJK configuration
+% Preserve spaces in CJK text (important for Korean)
+\xeCJKsetup{
+  CJKspace=true,
+  CJKecglue={\hskip 0.15em plus 0.05em minus 0.05em}
+}
+
+% CJK font (Korean)
+% Try common Korean fonts, fallback to available CJK font
+\setCJKmainfont{Noto Sans CJK KR}[
+  BoldFont=Noto Sans CJK KR Bold
+]
+\setCJKsansfont{Noto Sans CJK KR}
+\setCJKmonofont{Noto Sans Mono CJK KR}
+
+% Hyperref configuration
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  urlcolor=blue!60!black,
+  citecolor=green!50!black,
+  pdfauthor={},
+  pdftitle={},
+  pdfsubject={},
+  pdfkeywords={},
+  bookmarksnumbered=true,
+  bookmarksopen=true
+}
+
+% Headers and footers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Code listing style
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=true,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  frame=single,
+  framesep=3pt,
+  backgroundcolor=\color{gray!5},
+  rulecolor=\color{gray!30},
+  showstringspaces=false,
+  tabsize=2,
+  captionpos=b
+}
+
+% Section title formatting
+\titleformat{\section}
+  {\Large\bfseries}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\large\bfseries}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% Table styling
+\renewcommand{\arraystretch}{1.3}
+
+% Paragraph spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% List customization
+\setlist{noitemsep, topsep=0.5em}
+
+% Custom commands
+\newcommand{\placeholder}[1]{\textcolor{red}{\textbf{[#1]}}}
+
+% Compatibility: Define \chapter for article class (used by some RST sources)
+\makeatletter
+\@ifundefined{chapter}{%
+  % Handle both \chapter and \chapter* using unique names to avoid conflicts
+  \newcommand{\@litepub@chapter}[1]{\section{#1}}
+  \newcommand{\@litepub@schapter}[1]{\section*{#1}}
+  \newcommand{\chapter}{\@ifstar\@litepub@schapter\@litepub@chapter}
+  \providecommand{\chaptermark}[1]{\markboth{#1}{}}
+}{}
+\makeatother
+
+% Pandoc-specific settings
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Pandoc 3.x bounded image support
+\providecommand{\pandocbounded}[1]{#1}
+
+% Pandoc 3.x table width support (calc package \real for column widths)
+\makeatletter
+\providecommand{\real}[1]{\strip@pt\dimexpr #1pt\relax}
+\makeatother
+
+% Allow long tables to break across pages
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+
+
+
+% Document info
+
+\begin{document}
+
+
+
+
+
+\section{White Paper Title}\label{white-paper-title}
+
+\textbf{An Example Technical Document}
+
+\begin{description}
+\tightlist
+\item[Author]
+Author Name
+\item[Organization]
+Organization
+\item[Email]
+\href{mailto:author@example.com}{\nolinkurl{author@example.com}}
+\item[Date]
+2025-11-23
+\end{description}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+This is an example abstract for the white paper. It provides a brief
+overview of the document\textquotesingle s contents, methodology, and
+key findings. The abstract should be concise yet informative, typically
+150-250 words.
+
+This document demonstrates the use of Pandoc for professional technical
+writing with automated figure and table generation using Python scripts.
+
+한글도 완벽하게 지원됩니다! Korean text is fully supported!
+
+\textbf{Keywords:} technical writing, pandoc, markdown, automation,
+multilingual
+
+\tableofcontents
+\clearpage
+
+chapters/01-introduction chapters/02-methodology chapters/03-results
+chapters/04-conclusion chapters/05-korean-example
+chapters/06-system-overview chapters/90-appendix-documentation
+
+\subsection{Indices and tables}\label{indices-and-tables}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{genindex}
+\item
+  \texttt{search}
+\end{itemize}
+
+\subsection{Introduction}\label{sec:introduction}
+
+This document serves as an example white paper template using Pandoc and
+Markdown. It demonstrates how to structure a professional technical
+document with automated figure and table generation using Python
+scripts.
+
+\subsubsection{Background}\label{sec:background}
+
+Technical writing often requires the integration of dynamically
+generated content such as figures, tables, and data visualizations.
+Traditional document preparation systems can make this process
+cumbersome and error-prone. This template provides a modern,
+reproducible approach to technical writing that combines:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Markdown} for easy-to-write, human-readable content
+\item
+  \textbf{Pandoc} for professional document conversion
+\item
+  \textbf{Python} for automated content generation
+\item
+  \textbf{Version control} for collaborative editing
+\end{itemize}
+
+As demonstrated in previous work {[}@example2024{]}, automated
+documentation workflows significantly improve reproducibility and reduce
+errors in scientific and technical publications.
+
+\subsubsection{Objectives}\label{sec:objectives}
+
+The primary objectives of this white paper template are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Simplicity}: Enable writers to focus on content rather than
+  formatting
+\item
+  \textbf{Reproducibility}: Ensure all figures and tables can be
+  regenerated consistently
+\item
+  \textbf{Flexibility}: Support multiple output formats (PDF, HTML,
+  DOCX) from the same source
+\item
+  \textbf{Professional Quality}: Produce publication-ready documents
+  with proper numbering and cross-references
+\end{enumerate}
+
+\subsubsection{Document Structure}\label{sec:structure}
+
+This white paper is organized as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Chapter 1 (Introduction)}: Provides context and objectives
+\item
+  \textbf{Chapter 2 (Methodology)}: Describes the technical approach
+\item
+  \textbf{Chapter 3 (Results)}: Presents findings with figures and
+  tables
+\item
+  \textbf{Chapter 4 (Conclusion)}: Summarizes key takeaways
+\end{itemize}
+
+Each chapter is maintained as a separate Markdown file in the
+\texttt{chapters/} directory, making it easy to edit and manage content
+modularly.
+
+\subsubsection{Cross-References}\label{cross-references}
+
+This template supports automatic cross-referencing of:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Sections}: Reference Section @sec:methodology for technical
+  details
+\item
+  \textbf{Figures}: See Figure @fig:example\_plot for a visual example
+\item
+  \textbf{Tables}: Refer to Table @tbl:comparison for data comparison
+\item
+  \textbf{Equations}: Equation @eq:example demonstrates mathematical
+  notation
+\end{itemize}
+
+These cross-references are automatically updated when the document is
+built, ensuring consistency throughout the paper.
+
+\subsection{Methodology}\label{sec:methodology}
+
+This chapter describes the technical approach and methodology used in
+this white paper template system.
+
+\subsubsection{System Architecture}\label{sec:architecture}
+
+The documentation system consists of several integrated components:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Content Layer}: Markdown files containing the written content
+\item
+  \textbf{Generation Layer}: Python scripts that create figures and
+  tables
+\item
+  \textbf{Build Layer}: Pandoc and Make for document compilation
+\item
+  \textbf{Output Layer}: Generated documents in various formats
+\end{enumerate}
+
+This modular architecture ensures that each component can be developed
+and maintained independently, as discussed by @examplebook2023.
+
+\subsubsection{Content Generation}\label{sec:content-generation}
+
+\paragraph{Figure Generation}\label{sec:figures}
+
+Figures are generated programmatically using Python's matplotlib
+library. The generation process follows these steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Define the data and visualization parameters
+\item
+  Create the plot using matplotlib
+\item
+  Apply styling for professional appearance
+\item
+  Save to the \texttt{../\_static/figures/} directory at high resolution
+  (300 DPI)
+\end{enumerate}
+
+For example, the sine wave shown in Figure @fig:example\_plot is
+generated using:
+
+\begin{verbatim}
+x = np.linspace(0, 10, 1000)
+y = np.sin(x)
+plt.plot(x, y)
+plt.savefig('../_static/figures/example_line_plot.png', dpi=300)
+\end{verbatim}
+
+\protect\phantomsection\label{fig:example_plot}
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/rst_source/config/../_static/figures/example_line_plot.png}}
+\caption{}\label{fig:example_plot}
+\end{figure}
+
+\paragraph{Table Generation}\label{sec:tables}
+
+Tables are generated using pandas DataFrames and exported as Markdown
+format. This ensures:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Data integrity}: Tables reflect actual data values
+\item
+  \textbf{Consistency}: Formatting is uniform across all tables
+\item
+  \textbf{Reproducibility}: Tables can be regenerated with updated data
+\end{itemize}
+
+Table @tbl:comparison shows an example of a comparison table generated
+from the \texttt{generate\_tables.py} script.
+
+\begin{longtable}[]{@{}lllll@{}}
+\caption{Comparison of different methodological
+approaches}\tabularnewline
+\toprule\noalign{}
+Method & Accuracy (\%) & Speed (ms) & Memory (MB) & Complexity \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Method & Accuracy (\%) & Speed (ms) & Memory (MB) & Complexity \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Method A & 92.5 & 12.3 & 256 & Low \\
+Method B & 94.3 & 15.7 & 512 & Medium \\
+Method C & 91.8 & 10.2 & 128 & Low \\
+Method D & 95.1 & 18.4 & 1024 & High \\
+\end{longtable}
+
+\subsubsection{Mathematical Notation}\label{sec:mathematics}
+
+The system supports mathematical equations using LaTeX syntax. For
+instance, the Gaussian function is defined as:
+
+\[f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}\]
+
+\{\#eq:gaussian\}
+
+where \(\mu\) is the mean and \(\sigma\) is the standard deviation.
+
+More complex equations can also be included. The general form of a
+neural network layer computation is:
+
+\[\mathbf{y} = \sigma(W\mathbf{x} + \mathbf{b})\]
+
+\{\#eq:neural\}
+
+where \(W\) is the weight matrix, \(\mathbf{b}\) is the bias vector, and
+\(\sigma\) is the activation function.
+
+\subsubsection{Build Process}\label{sec:build}
+
+The document build process is automated using a Makefile:
+
+\begin{verbatim}
+make all      # Generate figures, tables, and PDF
+make pdf      # Build PDF only
+make html     # Build HTML version
+make clean    # Remove generated files
+\end{verbatim}
+
+This automation ensures reproducibility and simplifies the workflow for
+authors, as noted in recent conference proceedings
+{[}@exampleconf2024{]}.
+
+\subsection{Results}\label{sec:results}
+
+This chapter presents the results obtained using the methodologies
+described in Section @sec:methodology. All figures and tables are
+generated automatically from Python scripts to ensure reproducibility.
+
+\textbf{Automatic Table Generation}
+
+Tables in this chapter are generated using the TableManager system. They
+are automatically created by running:
+
+\begin{verbatim}
+python scripts/generate_tables_v2.py
+\end{verbatim}
+
+Tables are saved to \texttt{../\_static/tables/chapter-03/} and can be
+easily included or updated. See
+\href{../TABLE_WORKFLOW.md}{TABLE\_WORKFLOW.md} for details.
+
+\subsubsection{Visualization Results}\label{sec:visualization}
+
+\paragraph{Line Plots}\label{sec:line-plots}
+
+Figure @fig:scatter shows the relationship between variables with a
+fitted trend line. The scatter plot reveals a strong linear correlation
+with coefficient of determination R² = 0.89.
+
+\protect\phantomsection\label{fig:scatter}
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/rst_source/config/../_static/figures/example_scatter_plot.png}}
+\caption{}\label{fig:scatter}
+\end{figure}
+
+\paragraph{Categorical Comparisons}\label{sec:bar-charts}
+
+Figure @fig:bars presents a categorical comparison across five different
+categories. Category D shows the highest value at 78 units, while
+Category E demonstrates the lowest at 32 units.
+
+\protect\phantomsection\label{fig:bars}
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/rst_source/config/../_static/figures/example_bar_chart.png}}
+\caption{}\label{fig:bars}
+\end{figure}
+
+\paragraph{Distribution Analysis}\label{sec:distributions}
+
+The histogram in Figure @fig:histogram illustrates the distribution of
+measured values. The data closely follows a normal distribution with
+mean μ = 100.2 and standard deviation σ = 14.8.
+
+\protect\phantomsection\label{fig:histogram}
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/rst_source/config/../_static/figures/example_histogram.png}}
+\caption{}\label{fig:histogram}
+\end{figure}
+
+\paragraph{Correlation Analysis}\label{sec:correlation}
+
+Figure @fig:heatmap presents the correlation matrix between six
+different variables. Strong positive correlations (\textgreater0.7) are
+observed between Variables 1 and 3, while Variables 2 and 5 show weak
+correlation (\textless0.3).
+
+\protect\phantomsection\label{fig:heatmap}
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/rst_source/config/../_static/figures/example_heatmap.png}}
+\caption{}\label{fig:heatmap}
+\end{figure}
+
+\subsubsection{Tabular Results}\label{sec:tabular}
+
+\paragraph{Experimental Data}\label{sec:experimental-data}
+
+Table @tbl:experimental presents the experimental results across five
+different conditions. The data shows a clear trend of increasing yield
+with temperature, from 78.3\% at 20.5°C to 92.5\% at 40.5°C.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1688}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2468}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2208}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1558}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1688}}@{}}
+\caption{Experimental results under different temperature and pressure
+conditions}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Experiment
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Temperature (°C)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pressure (kPa)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Yield (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Time (min)
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Experiment
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Temperature (°C)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pressure (kPa)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Yield (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Time (min)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Exp-1 & 20.5 & 101.3 & 78.3 & 45 \\
+Exp-2 & 25.0 & 105.2 & 82.1 & 42 \\
+Exp-3 & 30.5 & 110.1 & 85.7 & 38 \\
+Exp-4 & 35.0 & 115.8 & 89.2 & 35 \\
+Exp-5 & 40.5 & 121.3 & 92.5 & 32 \\
+\end{longtable}
+
+\paragraph{Statistical Summary}\label{sec:statistics}
+
+Table @tbl:stats provides a statistical summary of three datasets.
+Dataset B exhibits the highest mean value (119.64) and largest standard
+deviation (20.31), indicating greater variability compared to the other
+datasets.
+
+\begin{longtable}[]{@{}llllll@{}}
+\caption{Statistical summary of experimental datasets}\tabularnewline
+\toprule\noalign{}
+Dataset & Mean & Std Dev & Min & Max & Median \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Dataset & Mean & Std Dev & Min & Max & Median \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Dataset A & 100.18 & 15.07 & 60.42 & 139.62 & 100.35 \\
+Dataset B & 119.64 & 20.31 & 61.70 & 176.47 & 120.17 \\
+Dataset C & 89.82 & 9.91 & 62.04 & 116.93 & 89.95 \\
+\end{longtable}
+
+\paragraph{Performance Metrics}\label{sec:performance}
+
+Model performance across different data splits is summarized in Table
+@tbl:performance. The results demonstrate good generalization, with test
+set performance (F1-Score: 0.915) closely matching validation set
+performance (F1-Score: 0.918).
+
+\begin{longtable}[]{@{}llll@{}}
+\caption{Performance metrics evaluated on training, validation, and test
+sets}\tabularnewline
+\toprule\noalign{}
+Metric & Training Set & Validation Set & Test Set \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Metric & Training Set & Validation Set & Test Set \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Precision & 0.953 & 0.921 & 0.918 \\
+Recall & 0.947 & 0.915 & 0.912 \\
+F1-Score & 0.950 & 0.918 & 0.915 \\
+Accuracy & 0.948 & 0.916 & 0.913 \\
+AUC-ROC & 0.982 & 0.965 & 0.961 \\
+\end{longtable}
+
+\subsubsection{Key Findings}\label{sec:findings}
+
+The analysis presented in this chapter yields several important
+findings:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Strong Linear Relationships}: As shown in Figure @fig:scatter,
+  the linear model provides excellent fit to the experimental data
+\item
+  \textbf{Temperature Dependence}: Table @tbl:experimental demonstrates
+  a clear positive correlation between temperature and yield
+\item
+  \textbf{Model Robustness}: Performance metrics in Table
+  @tbl:performance indicate minimal overfitting
+\item
+  \textbf{Variable Independence}: The correlation analysis (Figure
+  @fig:heatmap) reveals which variables can be treated independently
+\end{enumerate}
+
+These findings support the methodology outlined in Chapter
+@sec:methodology and provide a foundation for the conclusions drawn in
+Chapter @sec:conclusion.
+
+\subsection{Conclusion}\label{sec:conclusion}
+
+This white paper has demonstrated a comprehensive approach to technical
+document authoring using Markdown, Pandoc, and Python for automated
+content generation.
+
+\subsubsection{Summary of Contributions}\label{sec:summary}
+
+The key contributions of this template system include:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Automated Workflow}: Integration of Python-based figure and
+  table generation with Pandoc document compilation
+\item
+  \textbf{Reproducibility}: All content can be regenerated consistently
+  from source data
+\item
+  \textbf{Professional Output}: High-quality documents suitable for
+  academic and technical publications
+\item
+  \textbf{Multi-format Support}: Single source generates PDF, HTML, and
+  DOCX outputs
+\item
+  \textbf{Version Control Friendly}: Plain text format enables effective
+  collaboration using Git
+\end{enumerate}
+
+As discussed in Section @sec:methodology, the modular architecture
+separates content creation, visualization, and document compilation into
+distinct, manageable components.
+
+\subsubsection{Results Overview}\label{sec:results-overview}
+
+The results presented in Chapter @sec:results demonstrate the
+capabilities of this system:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Visualizations}: High-quality figures (Figures
+  @fig:example\_plot, @fig:scatter, @fig:bars, @fig:histogram,
+  @fig:heatmap) generated at publication quality (300 DPI)
+\item
+  \textbf{Tables}: Automatically formatted tables (Tables
+  @tbl:comparison, @tbl:experimental, @tbl:stats, @tbl:performance) with
+  consistent styling
+\item
+  \textbf{Cross-references}: Seamless linking between sections, figures,
+  tables, and equations
+\item
+  \textbf{Mathematical Notation}: Professional typesetting of equations
+  (e.g., Equations @eq:gaussian, @eq:neural)
+\end{itemize}
+
+\subsubsection{Best Practices}\label{sec:best-practices}
+
+Based on the implementation of this system, several best practices
+emerge:
+
+\paragraph{Content Management}\label{content-management}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Modular Chapters}: Maintain each chapter in a separate file
+  for easier editing and collaboration
+\item
+  \textbf{Meaningful IDs}: Use descriptive identifiers for
+  cross-references (e.g., \texttt{\#fig:methodology-flowchart} rather
+  than \texttt{\#fig1})
+\item
+  \textbf{Version Control}: Commit source files (.md, .py, .yaml) but
+  exclude generated outputs (.pdf, .png)
+\end{itemize}
+
+\paragraph{Figure Generation}\label{figure-generation-1}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{High Resolution}: Save figures at 300 DPI or higher for
+  publication quality
+\item
+  \textbf{Consistent Styling}: Define standard plot styles in a
+  configuration file or module
+\item
+  \textbf{Descriptive Names}: Use clear, descriptive filenames for
+  generated figures
+\end{itemize}
+
+\paragraph{Table Generation}\label{table-generation-1}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Data-Driven}: Generate tables from actual data rather than
+  manual entry
+\item
+  \textbf{Standard Format}: Use pandas DataFrames for consistency across
+  all tables
+\item
+  \textbf{Precision Control}: Specify appropriate decimal places for
+  numerical values
+\end{itemize}
+
+\paragraph{Build Automation}\label{build-automation}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Makefile Targets}: Define clear targets for common build
+  operations
+\item
+  \textbf{Dependency Tracking}: Ensure figures and tables are
+  regenerated before document compilation
+\item
+  \textbf{Clean Operations}: Provide targets to remove generated files
+  and start fresh
+\end{itemize}
+
+\subsubsection{Limitations and Future Work}\label{sec:limitations}
+
+While this system provides a robust foundation for technical writing,
+several areas merit future development:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Template Customization}: Additional LaTeX templates for
+  specific publication styles
+\item
+  \textbf{Interactive HTML}: Enhanced HTML output with interactive plots
+  using Plotly or Bokeh
+\item
+  \textbf{Collaborative Editing}: Integration with real-time
+  collaboration tools
+\item
+  \textbf{Automated Testing}: Unit tests for Python scripts to ensure
+  correct figure/table generation
+\item
+  \textbf{Bibliography Management}: Tighter integration with reference
+  management systems (Zotero, Mendeley)
+\end{enumerate}
+
+\subsubsection{Final Remarks}\label{sec:final-remarks}
+
+This white paper template provides a modern, efficient approach to
+technical writing that addresses the common challenges of
+reproducibility, version control, and multi-format output. By combining
+the simplicity of Markdown with the power of Pandoc and Python, authors
+can focus on content creation while maintaining professional standards.
+
+The complete source code and documentation for this template are
+available in the project repository. Users are encouraged to customize
+and extend the system to meet their specific requirements.
+
+As noted in the Pandoc documentation {[}@exampleweb2024{]}, the future
+of technical writing lies in formats that are both human-readable and
+machine-processable. This template embraces that philosophy while
+maintaining compatibility with traditional publishing workflows.
+
+\subsubsection{Acknowledgments}\label{sec:acknowledgments}
+
+This template builds upon the excellent work of the Pandoc development
+team, the Python scientific computing community, and countless
+contributors to open-source documentation tools. Special thanks to the
+maintainers of pandoc-crossref for enabling sophisticated
+cross-referencing capabilities.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{For questions or contributions, please refer to the project
+repository documentation.}
+
+\subsection{한글 사용 예제 / Korean Example}\label{sec:korean}
+
+이 장에서는 한글과 영어를 함께 사용하는 방법을 보여줍니다.
+
+This chapter demonstrates how to use Korean and English together in your
+white paper.
+
+\subsubsection{혼합 언어 작성 / Mixed Language Writing}\label{sec:mixed}
+
+\paragraph{기본 텍스트 / Basic
+Text}\label{uxae30uxbcf8-uxd14duxc2a4uxd2b8-basic-text}
+
+한글과 영어를 자연스럽게 섞어서 사용할 수 있습니다. You can naturally
+mix Korean and English text. 예를 들어, \textbf{머신러닝} (machine
+learning)이나 \textbf{딥러닝} (deep learning)과 같은 기술 용어를 함께
+사용할 수 있습니다.
+
+기술 문서에서는 종종 한글 설명과 영어 원어를 병기합니다:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{인공지능} (Artificial Intelligence, AI)
+\item
+  \textbf{자연어 처리} (Natural Language Processing, NLP)
+\item
+  \textbf{컴퓨터 비전} (Computer Vision, CV)
+\end{itemize}
+
+\paragraph{수식과 한글 / Equations with
+Korean}\label{uxc218uxc2dduxacfc-uxd55cuxae00-equations-with-korean}
+
+한글 설명과 함께 수학 공식을 사용할 수 있습니다. Mathematical equations
+can be used with Korean explanations.
+
+정규분포의 확률밀도함수는 다음과 같이 정의됩니다:
+
+\[f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}\]
+
+\{\#eq:korean-normal\}
+
+여기서 \(\mu\)는 평균 (mean), \(\sigma\)는 표준편차 (standard
+deviation)입니다.
+
+\subsubsection{표와 그림 / Tables and Figures}\label{sec:korean-tables}
+
+\paragraph{한글 표 / Korean
+Tables}\label{uxd55cuxae00-uxd45c-korean-tables}
+
+한글로 작성된 표의 예시입니다. Here is an example of a table with Korean
+text:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1364}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1364}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1477}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1477}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.1591}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 12\tabcolsep) * \real{0.0909}}@{}}
+\caption{온도에 따른 실험 결과 / Experimental results by
+temperature}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+실험 번호
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+온도 (°C)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+압력 (kPa)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+수율 (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Experiment
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Temperature
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Yield
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+실험 번호
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+온도 (°C)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+압력 (kPa)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+수율 (\%)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Experiment
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Temperature
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Yield
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+실험-1 & 20.5 & 101.3 & 78.3 & Exp-1 & 20.5°C & 78.3\% \\
+실험-2 & 25.0 & 105.2 & 82.1 & Exp-2 & 25.0°C & 82.1\% \\
+실험-3 & 30.5 & 110.1 & 85.7 & Exp-3 & 30.5°C & 85.7\% \\
+실험-4 & 35.0 & 115.8 & 89.2 & Exp-4 & 35.0°C & 89.2\% \\
+실험-5 & 40.5 & 121.3 & 92.5 & Exp-5 & 40.5°C & 92.5\% \\
+\end{longtable}
+
+표 @tbl:korean-exp 에서 볼 수 있듯이, 온도가 증가함에 따라 수율도 함께
+증가했습니다.
+
+As shown in Table @tbl:korean-exp, the yield increased with temperature.
+
+\paragraph{방법론 비교 표 / Method Comparison
+Table}\label{uxbc29uxbc95uxb860-uxbe44uxad50-uxd45c-method-comparison-table}
+
+\begin{longtable}[]{@{}lllll@{}}
+\caption{다양한 방법론의 성능 비교 / Performance comparison of different
+methods}\tabularnewline
+\toprule\noalign{}
+방법 & 정확도 (\%) & 속도 (ms) & 메모리 (MB) & 복잡도 \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+방법 & 정확도 (\%) & 속도 (ms) & 메모리 (MB) & 복잡도 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+방법 A & 92.5 & 12.3 & 256 & 낮음 \\
+방법 B & 94.3 & 15.7 & 512 & 중간 \\
+방법 C & 91.8 & 10.2 & 128 & 낮음 \\
+방법 D & 95.1 & 18.4 & 1024 & 높음 \\
+\end{longtable}
+
+\subsubsection{교차 참조 / Cross-References}\label{sec:korean-refs}
+
+\paragraph{섹션 참조 / Section
+References}\label{uxc139uxc158-uxcc38uxc870-section-references}
+
+한글로 된 섹션도 쉽게 참조할 수 있습니다. Korean sections can be easily
+referenced.
+
+\begin{itemize}
+\tightlist
+\item
+  서론은 Section @sec:introduction 을 참조하세요
+\item
+  방법론은 Section @sec:methodology 를 참조하세요
+\item
+  이 장의 표 섹션은 Section @sec:korean-tables 에 있습니다
+\end{itemize}
+
+\paragraph{그림 참조 / Figure
+References}\label{uxadf8uxb9bc-uxcc38uxc870-figure-references}
+
+영어 장의 그림도 참조할 수 있습니다:
+
+\begin{itemize}
+\tightlist
+\item
+  Figure @fig:example\_plot 는 삼각함수 그래프를 보여줍니다
+\item
+  Figure @fig:scatter 는 산점도와 회귀선을 보여줍니다
+\item
+  Figure @fig:heatmap 은 상관관계 히트맵입니다
+\end{itemize}
+
+\paragraph{수식 참조 / Equation
+References}\label{uxc218uxc2dd-uxcc38uxc870-equation-references}
+
+Equation @eq:korean-normal 은 정규분포를 나타내며, Equation @eq:gaussian
+은 같은 공식의 영어 버전입니다.
+
+\subsubsection{인용 / Citations}\label{sec:korean-citations}
+
+한글로 작성할 때도 인용을 동일하게 사용할 수 있습니다. Citations work
+the same way in Korean text.
+
+최근 연구에 따르면 {[}@example2024{]}, 자동화된 문서 작성 시스템이
+재현성을 크게 향상시킨다고 합니다.
+
+여러 문헌을 동시에 인용할 수도 있습니다 {[}@example2024;
+@examplebook2023{]}.
+
+\subsubsection{코드 블록 / Code Blocks}\label{sec:korean-code}
+
+한글 주석이 포함된 코드 예제:
+
+\begin{verbatim}
+# 한글 주석도 잘 표시됩니다
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 데이터 생성
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+# 그래프 그리기
+plt.plot(x, y)
+plt.xlabel('시간 (초)')  # X축 레이블
+plt.ylabel('진폭')       # Y축 레이블
+plt.title('사인파 그래프')
+plt.show()
+\end{verbatim}
+
+\subsubsection{목록 / Lists}\label{sec:korean-lists}
+
+\paragraph{순서 있는 목록 / Ordered
+List}\label{uxc21cuxc11c-uxc788uxb294-uxbaa9uxb85d-ordered-list}
+
+연구 진행 단계:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{문헌 조사} (Literature Review)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    관련 연구 검색
+  \item
+    선행 연구 분석
+  \end{itemize}
+\item
+  \textbf{실험 설계} (Experimental Design)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    변수 선정
+  \item
+    측정 방법 결정
+  \end{itemize}
+\item
+  \textbf{데이터 수집} (Data Collection)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    실험 수행
+  \item
+    결과 기록
+  \end{itemize}
+\item
+  \textbf{분석 및 해석} (Analysis and Interpretation)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    통계 분석
+  \item
+    결과 해석
+  \end{itemize}
+\end{enumerate}
+
+\paragraph{순서 없는 목록 / Unordered
+List}\label{uxc21cuxc11c-uxc5c6uxb294-uxbaa9uxb85d-unordered-list}
+
+주요 기여사항:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{재현성 향상}: 모든 그림과 표를 자동으로 생성
+\item
+  \textbf{다국어 지원}: 한글, 영어, 일본어, 중국어 등 지원
+\item
+  \textbf{버전 관리}: Git을 통한 효율적인 협업
+\item
+  \textbf{다양한 출력 형식}: PDF, HTML, DOCX 등
+\end{itemize}
+
+\subsubsection{강조와 서식 / Emphasis and
+Formatting}\label{sec:korean-formatting}
+
+한글에서도 다양한 서식을 사용할 수 있습니다:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{굵게} (bold)
+\item
+  \emph{기울임} (italic)
+\item
+  {[}STRIKEOUT:취소선{]} (strikethrough)
+\item
+  \texttt{코드} (inline code)
+\item
+  \href{https://example.com}{링크} (link)
+\end{itemize}
+
+\subsubsection{주요 결과 / Key Findings}\label{sec:korean-findings}
+
+이 예제 장에서 다룬 내용:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{혼합 언어 작성}: 한글과 영어를 자연스럽게 섞어 사용
+\item
+  \textbf{표와 그림}: 한글 레이블과 캡션 사용 (Tables @tbl:korean-exp,
+  @tbl:korean-methods)
+\item
+  \textbf{수식}: 한글 설명과 함께 수학 공식 사용 (Equation
+  @eq:korean-normal)
+\item
+  \textbf{교차 참조}: 한글 텍스트에서 섹션, 그림, 표 참조
+\item
+  \textbf{코드}: 한글 주석이 포함된 코드 블록
+\item
+  \textbf{서식}: 다양한 마크다운 서식 기능
+\end{enumerate}
+
+\subsubsection{결론 / Conclusion}\label{sec:korean-conclusion}
+
+Pandoc과 XeLaTeX를 사용하면 한글과 영어를 완벽하게 혼용할 수 있습니다.
+Using Pandoc with XeLaTeX enables perfect mixing of Korean and English.
+
+한글 폰트가 제대로 설치되어 있다면, 별도의 추가 설정 없이도 한글 문서를
+작성할 수 있습니다. With proper Korean fonts installed, you can write
+Korean documents without additional configuration.
+
+더 자세한 정보는 \href{../KOREAN_SUPPORT.md}{KOREAN\_SUPPORT.md} 문서를
+참조하세요. For more information, see the
+\href{../KOREAN_SUPPORT.md}{KOREAN\_SUPPORT.md} guide.
+
+\subsection{System Overview and Use Cases}\label{sec:system-overview}
+
+This chapter describes the design philosophy, features, and practical
+use cases of this documentation system.
+
+\subsubsection{Design Philosophy}\label{sec:design-philosophy}
+
+This documentation system is built around four core principles that
+address common pain points in technical writing:
+
+\begin{description}
+\item[\textbf{Easy to Edit}]
+Content is written in plain text formats (Markdown or reStructuredText)
+that require no special software. Any text editor works, and the syntax
+is human-readable even without rendering.
+\item[\textbf{Easy to Automate}]
+Python scripts generate figures and tables programmatically. When
+underlying data changes, a single command regenerates all derived
+content. This ensures reproducibility and eliminates manual copy-paste
+errors.
+\item[\textbf{Easy to Render}]
+A single source produces multiple output formats: PDF for printing, HTML
+for web viewing, DOCX for collaboration with Word users, and EPUB for
+e-readers. The Makefile handles all conversion automatically.
+\item[\textbf{Easy to Process}]
+Plain text sources with semantic markup are ideal for processing by
+language models and other automated tools. The structured organization
+and metadata-rich tables preserve context for AI-assisted workflows.
+\end{description}
+
+\subsubsection{Key Features}\label{sec:key-features}
+
+\subparagraph{Dual Build System}\label{dual-build-system}
+
+The system supports two documentation toolchains:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Pandoc workflow}: Write in Markdown, convert to PDF/HTML/DOCX
+  using Pandoc with pandoc-crossref for cross-references.
+\item
+  \textbf{Sphinx workflow}: Write in reStructuredText, build with Sphinx
+  for full-featured HTML documentation with search, PDF via LaTeX, and
+  EPUB.
+\end{enumerate}
+
+Both workflows share the same Python scripts for figure and table
+generation, allowing you to choose the toolchain that best fits your
+needs.
+
+\begin{verbatim}
+# Pandoc workflow
+make all          # Build PDF and HTML
+make pdf          # Build PDF only
+
+# Sphinx workflow
+make sphinx-html  # Build HTML documentation
+make sphinx-pdf   # Build PDF via LaTeX
+\end{verbatim}
+
+\subparagraph{Automated Content
+Generation}\label{automated-content-generation}
+
+Figures and tables are generated by Python scripts rather than created
+manually:
+
+\textbf{Figures}: The \texttt{generate\_figures.py} script creates
+publication-quality plots using matplotlib at 300 DPI. When data or
+visualization requirements change, regenerating figures is a single
+command.
+
+\textbf{Tables}: The \texttt{TableManager} class creates tables with
+YAML frontmatter containing metadata (caption, label, description). The
+preprocessor automatically replaces placeholders like
+\texttt{\{\{table:tbl:03-results\}\}} with actual table content during
+build.
+
+\begin{verbatim}
+from scripts.table_manager import TableManager
+
+tm = TableManager(chapter=3)
+tm.save_table(
+    dataframe,
+    name="experimental-results",
+    caption="Experimental Results Summary",
+    description="Results from the primary experiment series."
+)
+\end{verbatim}
+
+\subparagraph{Self-Contained Tables}\label{self-contained-tables}
+
+Each generated table is a self-contained file with YAML frontmatter:
+
+\begin{verbatim}
+---
+label: tbl:03-experimental-results
+caption: Experimental Results Summary
+chapter: 3
+description: Results from the primary experiment series.
+generated: 2025-01-15T10:30:00
+---
+
+| Metric | Value | Unit |
+|--------|-------|------|
+| Accuracy | 95.2 | % |
+| Precision | 94.8 | % |
+\end{verbatim}
+
+This metadata travels with the table, providing context even when
+processed by external tools or language models.
+
+\subparagraph{Korean/CJK Support}\label{koreancjk-support}
+
+Full support for Korean, Japanese, and Chinese text:
+
+\begin{itemize}
+\tightlist
+\item
+  Pre-configured Noto CJK fonts for PDF output
+\item
+  Korean matplotlib utilities for properly rendered plot labels
+\item
+  Mixed-language documents work seamlessly
+\item
+  UTF-8 throughout the entire pipeline
+\end{itemize}
+
+\begin{verbatim}
+from scripts.utils.korean_plot import setup_korean_font
+
+setup_korean_font()
+plt.xlabel('측정값 (Measurements)')
+plt.title('실험 결과 분석')
+\end{verbatim}
+
+\subparagraph{Adaptive Toolchain}\label{adaptive-toolchain}
+
+The Makefile automatically detects your Pandoc version and adjusts
+accordingly:
+
+\begin{itemize}
+\tightlist
+\item
+  Uses \texttt{-\/-citeproc} for Pandoc 2.11+ or
+  \texttt{-\/-filter\ pandoc-citeproc} for older versions
+\item
+  Gracefully degrades when optional filters (pandoc-crossref) are
+  unavailable
+\item
+  Provides warnings but continues building when possible
+\end{itemize}
+
+This ensures the system works across different environments without
+manual configuration.
+
+\subsubsection{Use Cases}\label{sec:use-cases}
+
+\subparagraph{Technical Reports and White
+Papers}\label{technical-reports-and-white-papers}
+
+The primary use case: writing technical documents where figures and
+tables derive from data analysis.
+
+\textbf{Workflow}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Perform analysis in Python, generating figures and tables
+\item
+  Write narrative content in Markdown/RST
+\item
+  Reference figures and tables using cross-reference syntax
+\item
+  Build the complete document with \texttt{make\ pdf}
+\end{enumerate}
+
+When the analysis updates, regenerate content and rebuild. The document
+stays synchronized with your data.
+
+\subparagraph{Reproducible Research}\label{reproducible-research}
+
+For academic papers or research reports where reproducibility matters:
+
+\begin{itemize}
+\tightlist
+\item
+  All figures regenerable from source data via Python scripts
+\item
+  Git tracks both content and generation scripts
+\item
+  Anyone can clone the repository and rebuild the exact same document
+\item
+  Changes to methodology are reflected automatically in output
+\end{itemize}
+
+\subparagraph{LLM-Assisted
+Documentation}\label{llm-assisted-documentation}
+
+The plain text format and structured organization make this system ideal
+for AI-assisted workflows:
+
+\textbf{Content generation}: Language models can read the source files,
+understand the document structure, and generate new sections that follow
+existing patterns.
+
+\textbf{Data analysis}: LLMs can write Python scripts that generate
+figures and tables, which integrate seamlessly into the document.
+
+\textbf{Review and editing}: The semantic markup (cross-references,
+labeled sections) provides context that helps LLMs understand
+relationships between document parts.
+
+\textbf{Automation}: LLM agents can trigger build commands, check for
+errors, and iterate on content.
+
+Example LLM workflow:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Provide the LLM with source files for context
+\item
+  Request new analysis or content
+\item
+  LLM generates Python scripts and/or document sections
+\item
+  Build and review the output
+\item
+  Iterate as needed
+\end{enumerate}
+
+\subparagraph{Multi-Format Publishing}\label{multi-format-publishing}
+
+When the same content must reach different audiences:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{PDF}: For formal distribution, printing, archival
+\item
+  \textbf{HTML}: For web publishing with navigation and search
+\item
+  \textbf{DOCX}: For collaboration with reviewers who use Word
+\item
+  \textbf{EPUB}: For reading on mobile devices
+\end{itemize}
+
+Write once, publish everywhere. The Makefile handles all conversions.
+
+\subparagraph{Collaborative Writing}\label{collaborative-writing}
+
+Git-friendly plain text enables effective collaboration:
+
+\begin{itemize}
+\tightlist
+\item
+  Multiple authors work on different chapters simultaneously
+\item
+  Pull requests for review before merging changes
+\item
+  Clear diff views show exactly what changed
+\item
+  No binary file conflicts
+\end{itemize}
+
+\subsubsection{Getting Started}\label{sec:getting-started}
+
+Quick setup for new users:
+
+\begin{verbatim}
+# Clone or create project
+cd your-project
+
+# Set up Python environment
+uv venv
+uv sync --all-extras
+
+# Generate content and build
+make all
+\end{verbatim}
+
+The document builds to \texttt{whitepaper.pdf} and
+\texttt{whitepaper.html}.
+
+For Sphinx output:
+
+\begin{verbatim}
+make sphinx-html
+\end{verbatim}
+
+Output appears in \texttt{output/html/index.html}.
+
+\subsubsection{Summary}\label{sec:system-summary}
+
+This documentation system addresses the core challenges of technical
+writing:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7000}}@{}}
+\caption{System Capabilities}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Capability
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Capability
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Easy editing & Plain text Markdown/RST with any editor \\
+Reproducibility & Python scripts regenerate all derived content \\
+Multi-format output & PDF, HTML, DOCX, EPUB from single source \\
+LLM compatibility & Structured plain text ideal for AI processing \\
+Automation & Single command builds via Makefile \\
+Collaboration & Git-friendly with clear diffs \\
+Internationalization & Full Korean/CJK support \\
+\end{longtable}
+
+The result is a modern documentation workflow that scales from simple
+reports to complex technical publications, supports both human and AI
+authors, and produces professional output in any required format.
+
+\subsection{Appendix: Project Documentation}\label{sec:appendix}
+
+This appendix contains comprehensive documentation for the Pandoc white
+paper authoring system.
+
+\subsubsection{A. Quick Start Guide}\label{sec:quickstart}
+
+\paragraph{Installation (Linux)}\label{installation-linux}
+
+\begin{verbatim}
+# System dependencies
+sudo apt update
+sudo apt install pandoc texlive-full fonts-noto-cjk build-essential
+
+# Python environment
+curl -LsSf https://astral.sh/uv/install.sh | sh
+cd pandoc_report
+uv venv
+source .venv/bin/activate
+uv pip install matplotlib numpy pandas seaborn scipy pillow tabulate pyyaml
+\end{verbatim}
+
+\paragraph{Daily Workflow}\label{daily-workflow}
+
+\begin{verbatim}
+# 1. Activate environment
+source .venv/bin/activate
+
+# 2. Generate content
+python scripts/generate_figures.py
+python scripts/generate_tables_v2.py
+
+# 3. Build document
+make pdf              # or: make html, make all
+\end{verbatim}
+
+\paragraph{Common Commands}\label{common-commands}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Command & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{make\ all} & Generate figures, tables, and PDF \\
+\texttt{make\ pdf} & Build PDF only \\
+\texttt{make\ html} & Build HTML only \\
+\texttt{make\ clean} & Remove generated documents \\
+\texttt{make\ help} & Show all available commands \\
+\end{longtable}
+}
+
+\subsubsection{B. Build System Guide}\label{sec:build-guide}
+
+\paragraph{Makefile vs Shell Script}\label{makefile-vs-shell-script}
+
+\textbf{Use ``make pdf`` (Recommended):} - Simpler commands - Automatic
+dependency handling - Includes pandoc-crossref filter - Industry
+standard
+
+\textbf{Use ``./build\_example.sh`` (For learning):} - Shows exact
+Pandoc commands - Useful for debugging - Educational purposes
+
+\paragraph{Build Process}\label{build-process-1}
+
+\begin{verbatim}
+1. make figures  →  2. make tables  →  3. make preprocess  →  4. Pandoc build
+   (Python)            (Python)           (Replace {{table:..}})    (PDF/HTML)
+\end{verbatim}
+
+\subsubsection{C. Korean/CJK Language Support}\label{sec:korean-support}
+
+\paragraph{Setup}\label{setup}
+
+\begin{verbatim}
+# Install Korean fonts
+sudo apt install fonts-noto-cjk fonts-noto-cjk-extra
+
+# Fonts are pre-configured in metadata.yaml:
+# CJKmainfont: "Noto Serif CJK KR"
+\end{verbatim}
+
+\paragraph{Usage}\label{usage}
+
+Simply write Korean in your markdown:
+
+\begin{verbatim}
+# 서론 {#sec:intro}
+
+한글과 English를 자유롭게 섞어 사용할 수 있습니다.
+
+{{table:tbl:05-korean-data}}
+\end{verbatim}
+
+\paragraph{Korean in Matplotlib}\label{korean-in-matplotlib}
+
+\begin{verbatim}
+from utils.korean_plot import setup_korean_font
+setup_korean_font()
+
+plt.xlabel('한글 레이블')
+plt.ylabel('값')
+\end{verbatim}
+
+\subsubsection{D. Automatic Table System}\label{sec:automatic-tables}
+
+\paragraph{Table Format (Self-Contained
+Objects)}\label{table-format-self-contained-objects}
+
+Each table is a \texttt{.md} file with YAML frontmatter:
+
+\begin{verbatim}
+---
+id: tbl:03-results
+caption: "Experimental results"
+description: "Detailed context about the table"
+chapter: 3
+tags: [experimental, temperature]
+---
+
+| Column 1 | Column 2 |
+|----------|----------|
+| Data     | Data     |
+\end{verbatim}
+
+\paragraph{Creating Tables}\label{creating-tables}
+
+\begin{verbatim}
+from table_manager import TableManager
+
+tm = TableManager(chapter=3)
+tm.save_table(
+    data,
+    name="my-results",
+    caption="Experimental results",
+    description="Results from temperature experiments",
+    tags=["experimental"]
+)
+# Saves to: ../_static/tables/chapter-03/table-my-results.md
+\end{verbatim}
+
+\paragraph{Using Tables in Chapters}\label{using-tables-in-chapters}
+
+\textbf{Placeholder syntax:}
+
+\begin{verbatim}
+## Results
+
+We conducted experiments:
+
+{{table:tbl:03-my-results}}
+
+The results show...
+\end{verbatim}
+
+\textbf{Modes:} - \texttt{\{\{table:tbl:03-name\}\}} - Full mode
+(includes description) -
+\texttt{\{\{table:tbl:03-name\textbar{}inline\}\}} - Inline mode (table
+only)
+
+\paragraph{Build Process}\label{build-process-1}
+
+\begin{verbatim}
+make pdf  # Automatically replaces placeholders!
+\end{verbatim}
+
+The preprocessor: 1. Scans chapters for \texttt{\{\{table:...\}\}}
+placeholders 2. Loads tables from \texttt{../\_static/tables/} 3.
+Replaces placeholders with actual content 4. Builds document
+
+\paragraph{Manual Preprocessing}\label{manual-preprocessing}
+
+\begin{verbatim}
+# Preview changes
+python scripts/table_preprocessor.py --dry-run
+
+# Replace placeholders
+python scripts/table_preprocessor.py
+
+# List available tables
+python scripts/table_preprocessor.py --list-tables
+\end{verbatim}
+
+\subsubsection{E. Path Configuration}\label{sec:paths}
+
+\paragraph{Path Rules}\label{path-rules}
+
+All paths in markdown files are \textbf{relative to project root}:
+
+\begin{verbatim}
+pandoc_report/              ← Run `make pdf` here
+├── chapters/
+│   └── 03-results.md       ← Your file
+├── ../_static/
+│   ├── figures/
+│   │   └── plot.png        → ../_static/figures/plot.png
+│   └── tables/
+│       └── chapter-03/     → {{table:tbl:03-name}}
+└── assets/
+    └── images/
+        └── logo.png         → assets/images/logo.png
+\end{verbatim}
+
+\paragraph{Correct Paths}\label{correct-paths}
+
+\begin{verbatim}
+<!-- ✅ CORRECT -->
+![Plot](../_static/figures/example_plot.png){#fig:plot}
+![Logo](assets/images/logo.png)
+{{table:tbl:03-results}}
+
+<!-- ❌ WRONG -->
+![Plot](../../_static/figures/example_plot.png)
+\end{verbatim}
+
+\paragraph{Fixing Path Issues}\label{fixing-path-issues}
+
+\begin{verbatim}
+# Fix all image paths
+find chapters/ -name "*.md" -exec sed -i 's|../../_static/|../_static/|g' {} \;
+\end{verbatim}
+
+\subsubsection{F. Troubleshooting}\label{sec:troubleshooting}
+
+\paragraph{Common Issues}\label{common-issues}
+
+\textbf{Makefile: ``source: not found''} - Fixed! Makefile now uses bash
+shell directly - Python called via \texttt{.venv/bin/python}
+
+\textbf{Images not found} - Check paths are from project root:
+\texttt{../\_static/figures/plot.png} - Not relative to chapter:
+\texttt{../../\_static/figures/plot.png}
+
+\textbf{Korean text shows as boxes}
+
+\begin{verbatim}
+sudo apt install fonts-noto-cjk
+fc-cache -fv
+\end{verbatim}
+
+\textbf{Table placeholder not replaced}
+
+\begin{verbatim}
+# List available tables
+python scripts/table_preprocessor.py --list-tables
+
+# Check placeholder syntax
+{{table:tbl:03-name}}  # ✅ Correct
+{{tbl:03-name}}        # ❌ Wrong
+\end{verbatim}
+
+\textbf{pandoc-crossref version warning} - Minor warning, usually safe
+to ignore - Cross-references still work - Update pandoc-crossref to
+match Pandoc version if needed - See:
+\url{https://github.com/lierdakil/pandoc-crossref/releases}
+
+\textbf{Python ModuleNotFoundError}
+
+\begin{verbatim}
+source .venv/bin/activate
+uv pip install matplotlib numpy pandas seaborn scipy pillow tabulate pyyaml
+\end{verbatim}
+
+\subsubsection{G. Project Architecture}\label{sec:architecture}
+
+\paragraph{Directory Structure}\label{directory-structure}
+
+\begin{verbatim}
+pandoc_report/
+├── chapters/              # Markdown chapter files
+│   ├── 01-introduction.md
+│   ├── 02-methodology.md
+│   ├── 03-results.md
+│   └── 90-appendix-documentation.md
+├── scripts/              # Python scripts
+│   ├── generate_figures.py
+│   ├── generate_tables_v2.py
+│   ├── table_manager.py
+│   ├── table_preprocessor.py
+│   └── utils/
+│       └── korean_plot.py
+├── ../_static/               # Generated content
+│   ├── figures/
+│   └── tables/
+│       └── chapter-{NN}/
+├── assets/               # Static resources
+│   └── images/
+├── templates/            # Pandoc templates
+├── references/           # Bibliography
+│   └── references.bib
+├── metadata.yaml         # Document metadata
+├── Makefile             # Build automation
+├── pyproject.toml       # Python dependencies
+└── README.md            # Quick start guide
+\end{verbatim}
+
+\paragraph{File Organization}\label{file-organization}
+
+\textbf{Source files (commit to git):} - \texttt{chapters/*.md} - Your
+content - \texttt{scripts/*.py} - Analysis and generation -
+\texttt{metadata.yaml} - Document configuration - \texttt{Makefile} -
+Build system - \texttt{pyproject.toml} - Dependencies
+
+\textbf{Generated files (don't commit):} -
+\texttt{../\_static/figures/*.png} - Generated plots -
+\texttt{../\_static/tables/**/*.md} - Generated tables - \texttt{*.pdf},
+\texttt{*.html} - Build outputs - \texttt{.venv/} - Virtual environment
+
+\subsubsection{H. Advanced Features}\label{sec:advanced}
+
+\paragraph{Cross-References}\label{cross-references-1}
+
+\begin{verbatim}
+# Chapter {#sec:chapter}
+
+## Results {#sec:results}
+
+![Plot](../_static/figures/plot.png){#fig:plot width=80%}
+
+| A | B |
+|---|---|
+| 1 | 2 |
+
+: Caption {#tbl:data}
+
+$$E = mc^2$$ {#eq:einstein}
+
+See Section @sec:results, Figure @fig:plot,
+Table @tbl:data, and Equation @eq:einstein.
+\end{verbatim}
+
+\paragraph{Citations}\label{citations}
+
+\begin{verbatim}
+Recent work [@smith2020; @jones2021] shows...
+@smith2020 demonstrated that...
+\end{verbatim}
+
+Add entries to \texttt{references/references.bib}:
+
+\begin{verbatim}
+@article{smith2020,
+  title={Example Article},
+  author={Smith, John},
+  journal={Example Journal},
+  year={2020}
+}
+\end{verbatim}
+
+\paragraph{Custom Pandoc Options}\label{custom-pandoc-options}
+
+Edit \texttt{Makefile} to add options:
+
+\begin{verbatim}
+COMMON_OPTS = --number-sections --toc --toc-depth=3 \
+              --highlight-style=tango \
+              --variable=geometry:margin=1in
+\end{verbatim}
+
+\paragraph{Multiple Output Formats}\label{multiple-output-formats}
+
+\begin{verbatim}
+make pdf          # PDF via LaTeX
+make html         # Standalone HTML
+make docx         # Microsoft Word
+make all-formats  # All formats
+\end{verbatim}
+
+\subsubsection{I. Best Practices}\label{sec:best-practices}
+
+\paragraph{1. Version Control}\label{version-control}
+
+\begin{verbatim}
+# Commit source files
+chapters/
+scripts/
+metadata.yaml
+Makefile
+pyproject.toml
+
+# Don't commit generated files
+../_static/
+*.pdf
+*.html
+.venv/
+\end{verbatim}
+
+\paragraph{2. Table Management}\label{table-management}
+
+\begin{itemize}
+\tightlist
+\item
+  Use descriptive names: \texttt{table-temperature-results.md}
+\item
+  Include descriptions for context
+\item
+  Tag tables for organization
+\item
+  Regenerate when data changes
+\end{itemize}
+
+\paragraph{3. Figure Quality}\label{figure-quality}
+
+\begin{verbatim}
+# Save at high DPI for publication
+plt.savefig('../_static/figures/plot.png', dpi=300, bbox_inches='tight')
+\end{verbatim}
+
+\paragraph{4. Modular Chapters}\label{modular-chapters}
+
+\begin{itemize}
+\tightlist
+\item
+  One chapter per file
+\item
+  Use meaningful section IDs
+\item
+  Keep chapters focused
+\end{itemize}
+
+\paragraph{5. Reproducibility}\label{reproducibility}
+
+\begin{verbatim}
+# Document your workflow
+make clean-all    # Remove everything
+make all          # Rebuild from scratch
+\end{verbatim}
+
+\subsubsection{J. Quick Reference}\label{sec:reference}
+
+\paragraph{Build Commands}\label{build-commands}
+
+\begin{verbatim}
+make pdf          # Build PDF
+make html         # Build HTML
+make all          # Everything
+make clean        # Remove outputs
+make help         # Show options
+\end{verbatim}
+
+\paragraph{Python Scripts}\label{python-scripts}
+
+\begin{verbatim}
+# Generate content
+python scripts/generate_figures.py
+python scripts/generate_tables_v2.py
+python scripts/my_analysis.py
+
+# Manage tables
+python scripts/table_preprocessor.py --list-tables
+python scripts/table_preprocessor.py --dry-run
+\end{verbatim}
+
+\paragraph{Markdown Syntax}\label{markdown-syntax}
+
+\begin{verbatim}
+# Heading {#sec:id}
+![Caption](path){#fig:id width=80%}
+: Caption {#tbl:id}
+$$equation$$ {#eq:id}
+{{table:tbl:03-name}}
+[@citation]
+@fig:id, @tbl:id, @sec:id
+\end{verbatim}
+
+\paragraph{File Paths}\label{file-paths}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Resource & Path Format \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Figures & \texttt{../\_static/figures/name.png} \\
+Tables & \texttt{\{\{table:tbl:NN-name\}\}} \\
+Static images & \texttt{assets/images/name.png} \\
+Bibliography & \texttt{references/references.bib} \\
+\end{longtable}
+}
+
+\subsubsection{K. Resources}\label{sec:resources}
+
+\paragraph{Documentation}\label{documentation}
+
+\begin{itemize}
+\tightlist
+\item
+  Pandoc Manual: \url{https://pandoc.org/MANUAL.html}
+\item
+  Pandoc-Crossref: \url{https://lierdakil.github.io/pandoc-crossref/}
+\item
+  Markdown Guide: \url{https://www.markdownguide.org/}
+\item
+  UV: \url{https://github.com/astral-sh/uv}
+\item
+  Matplotlib: \url{https://matplotlib.org/}
+\end{itemize}
+
+\paragraph{Project Files}\label{project-files}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{scripts/table\_manager.py} - TableManager API
+\item
+  \texttt{scripts/table\_preprocessor.py} - Preprocessor
+\item
+  \texttt{scripts/demo\_table\_workflow.py} - Working demo
+\item
+  \texttt{Makefile} - Build system reference
+\end{itemize}
+
+\paragraph{Getting Help}\label{getting-help}
+
+\begin{verbatim}
+# Show available make targets
+make help
+
+# List available tables
+python scripts/table_preprocessor.py --list-tables
+
+# Check versions
+pandoc --version
+python --version
+make --version
+\end{verbatim}
+
+\subsubsection{L. Summary of Features}\label{sec:feature-summary}
+
+\paragraph{✅ Implemented Features}\label{implemented-features}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Automated Build System}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Makefile with dependency management
+  \item
+    Automatic figure/table generation
+  \item
+    Multi-format output (PDF, HTML, DOCX)
+  \end{itemize}
+\item
+  \textbf{Korean/CJK Language Support}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Full UTF-8 support
+  \item
+    Korean fonts configured
+  \item
+    Mixed language documents
+  \item
+    Korean matplotlib plots
+  \end{itemize}
+\item
+  \textbf{Automatic Table System}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Self-contained table objects
+  \item
+    YAML frontmatter metadata
+  \item
+    Placeholder replacement
+  \item
+    Multiple modes (full/inline)
+  \end{itemize}
+\item
+  \textbf{Reproducible Workflow}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Python-based generation
+  \item
+    Version control friendly
+  \item
+    UV virtual environment
+  \item
+    Documented dependencies
+  \end{itemize}
+\item
+  \textbf{Professional Output}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Publication-quality figures (300 DPI)
+  \item
+    Automatic numbering
+  \item
+    Cross-references
+  \item
+    Bibliography management
+  \end{itemize}
+\item
+  \textbf{Developer-Friendly}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Modular architecture
+  \item
+    Clear documentation
+  \item
+    Example scripts
+  \item
+    Troubleshooting guides
+  \end{itemize}
+\end{enumerate}
+
+This system provides a complete, professional authoring environment for
+technical white papers with automated content generation and
+multi-language support.
+
+
+\end{document}

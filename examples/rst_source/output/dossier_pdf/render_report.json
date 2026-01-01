@@ -1,0 +1,34 @@
+{
+  "timestamps": {
+    "started_at": "2026-01-01T02:45:16.687041+00:00",
+    "completed_at": "2026-01-01T02:45:18.055104+00:00"
+  },
+  "tools": {
+    "pandoc_version": "3.8.2.1",
+    "latex_engine": "xelatex",
+    "latex_engine_version": "XeTeX 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian)"
+  },
+  "context": {
+    "build_target": "dossier",
+    "render_target": "pdf",
+    "strict_mode": true
+  },
+  "templates": {
+    "template_path": "/home/hoseung/Work/DMS_eval/new_doc_platform/src/litepub_norm/render/pdf/templates/template.tex",
+    "template_hash": "sha256:e915632441f84ab429b53c1780a92bbb0b5332a40ffc64c48e294e0608b4a4e3",
+    "assets_dir": null,
+    "assets_hash": null,
+    "lua_filters": [],
+    "lua_filter_hashes": {}
+  },
+  "output": {
+    "files": [
+      "/home/hoseung/Work/DMS_eval/new_doc_platform/examples/rst_source/output/dossier_pdf/whitepaper.tex",
+      "/home/hoseung/Work/DMS_eval/new_doc_platform/examples/rst_source/output/dossier_pdf/whitepaper.pdf"
+    ]
+  },
+  "diagnostics": {
+    "warnings": [],
+    "errors": []
+  }
+}

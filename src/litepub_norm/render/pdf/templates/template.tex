@@ -19,6 +19,8 @@
 \usepackage{titlesec}
 \usepackage{enumitem}
 \usepackage{float}
+\usepackage{array}
+\usepackage{calc}
 
 % Page geometry
 \geometry{
@@ -47,6 +49,13 @@
 \setmonofont{DejaVu Sans Mono}[
   Scale=0.9
 ]
+
+% CJK configuration
+% Preserve spaces in CJK text (important for Korean)
+\xeCJKsetup{
+  CJKspace=true,
+  CJKecglue={\hskip 0.15em plus 0.05em minus 0.05em}
+}
 
 % CJK font (Korean)
 % Try common Korean fonts, fallback to available CJK font
@@ -117,9 +126,28 @@
 % Custom commands
 \newcommand{\placeholder}[1]{\textcolor{red}{\textbf{[#1]}}}
 
+% Compatibility: Define \chapter for article class (used by some RST sources)
+\makeatletter
+\@ifundefined{chapter}{%
+  % Handle both \chapter and \chapter* using unique names to avoid conflicts
+  \newcommand{\@litepub@chapter}[1]{\section{#1}}
+  \newcommand{\@litepub@schapter}[1]{\section*{#1}}
+  \newcommand{\chapter}{\@ifstar\@litepub@schapter\@litepub@chapter}
+  \providecommand{\chaptermark}[1]{\markboth{#1}{}}
+}{}
+\makeatother
+
 % Pandoc-specific settings
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Pandoc 3.x bounded image support
+\providecommand{\pandocbounded}[1]{#1}
+
+% Pandoc 3.x table width support (calc package \real for column widths)
+\makeatletter
+\providecommand{\real}[1]{\strip@pt\dimexpr #1pt\relax}
+\makeatother
 
 % Allow long tables to break across pages
 \setlength{\LTpre}{0pt}

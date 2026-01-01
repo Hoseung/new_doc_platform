@@ -1,0 +1,70 @@
+{
+  "registry_version": "aarc-1.1",
+  "generated_at": "2025-12-31T00:00:00Z",
+  "artifact_root": "../_static/",
+  "run": {
+    "run_id": "rst_source_example_2025-12-31",
+    "test_id": "WHITE_PAPER_EXAMPLE",
+    "pipeline": {
+      "name": "manual-generation",
+      "version": "1.0.0"
+    },
+    "code": {
+      "repo": "local",
+      "commit": "manual",
+      "dirty": false
+    },
+    "inputs": {
+      "dataset_id": "example_data",
+      "dataset_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "config_fingerprint": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "entries": [
+    {
+      "id": "fig:example_plot",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/example_line_plot.png",
+      "sha256": "sha256:eaedf02557361f8de035c9ffe2e65b501804f124337b56e7283ca5182cd211b2",
+      "origin": {"producer": "generate_figures.py"}
+    },
+    {
+      "id": "fig:scatter",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/example_scatter_plot.png",
+      "sha256": "sha256:ea35eac74dee4ee9273cf77c1f03c8290abbe0442539df5a6b14fd40c0b5d9ff",
+      "origin": {"producer": "generate_figures.py"}
+    },
+    {
+      "id": "fig:bars",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/example_bar_chart.png",
+      "sha256": "sha256:397e0ec97abb889df3d72a6a1f3cf6dc3074a9db399c7cf6661986a77edf4f88",
+      "origin": {"producer": "generate_figures.py"}
+    },
+    {
+      "id": "fig:histogram",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/example_histogram.png",
+      "sha256": "sha256:de97130f90729b623fc56ef770b0e6fe6a090f58307f428d048e6bef1a2eac42",
+      "origin": {"producer": "generate_figures.py"}
+    },
+    {
+      "id": "fig:heatmap",
+      "artifact_type": "figure",
+      "format": "image.png",
+      "spec": "figure.binary@v1",
+      "uri": "figures/example_heatmap.png",
+      "sha256": "sha256:be44c67088f4e23560e79968013969a78f05b0e2f940d247082122e17dd189e1",
+      "origin": {"producer": "generate_figures.py"}
+    }
+  ]
+}
