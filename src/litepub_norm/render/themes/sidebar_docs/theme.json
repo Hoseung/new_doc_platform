@@ -1,0 +1,16 @@
+{
+  "id": "sidebar_docs",
+  "name": "Sidebar Docs",
+  "version": "1.0.0",
+  "description": "RTD/Furo-inspired documentation theme with fixed sidebar navigation and TOC.",
+  "base": "base",
+  "entry": {
+    "template": "template.html",
+    "css": ["assets/theme.css"],
+    "js": ["assets/theme.js"]
+  },
+  "supports": {
+    "single": true,
+    "site": true
+  }
+}

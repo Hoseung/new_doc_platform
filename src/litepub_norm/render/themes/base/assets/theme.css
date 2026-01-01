@@ -1,0 +1,495 @@
+/**
+ * LitePub Base Theme
+ *
+ * Minimal styling that works without JavaScript.
+ * All other themes extend this base.
+ */
+
+/* ==========================================================================
+   CSS Variables (theme tokens)
+   ========================================================================== */
+
+:root {
+  /* Colors */
+  --color-text: #24292e;
+  --color-text-secondary: #586069;
+  --color-background: #ffffff;
+  --color-background-secondary: #f6f8fa;
+  --color-border: #e1e4e8;
+  --color-link: #0366d6;
+  --color-link-hover: #0056b3;
+  --color-code-bg: #f6f8fa;
+  --color-code-border: #e1e4e8;
+  --color-table-header-bg: #f6f8fa;
+  --color-table-stripe: #fafbfc;
+
+  /* Typography */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Noto Sans CJK KR", sans-serif;
+  --font-family-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, "Noto Sans Mono CJK KR", monospace;
+  --font-size-base: 16px;
+  --line-height-base: 1.6;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* Layout */
+  --content-max-width: 900px;
+  --sidebar-width: 280px;
+}
+
+/* ==========================================================================
+   Base Reset & Typography
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+/* ==========================================================================
+   Navigation (#lp-nav)
+   ========================================================================== */
+
+#lp-nav {
+  background-color: var(--color-background-secondary);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+#lp-nav:empty {
+  display: none;
+}
+
+#lp-nav .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+#lp-nav .nav-list a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+#lp-nav .nav-list a:hover {
+  color: var(--color-link);
+}
+
+/* ==========================================================================
+   Header (#lp-header)
+   ========================================================================== */
+
+#lp-header {
+  padding: var(--spacing-xl) var(--spacing-md);
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+#lp-header .title {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+#lp-header .subtitle {
+  margin: 0 0 var(--spacing-md);
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+}
+
+#lp-header .author,
+#lp-header .date {
+  margin: var(--spacing-xs) 0;
+  color: var(--color-text-secondary);
+}
+
+#lp-header .abstract {
+  max-width: var(--content-max-width);
+  margin: var(--spacing-lg) auto 0;
+  padding: var(--spacing-md);
+  background-color: var(--color-background-secondary);
+  border-radius: 4px;
+  text-align: left;
+}
+
+#lp-header .abstract-title {
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ==========================================================================
+   Page Layout
+   ========================================================================== */
+
+.page-wrapper {
+  display: flex;
+  max-width: calc(var(--content-max-width) + var(--sidebar-width) + var(--spacing-xl) * 2);
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  gap: var(--spacing-xl);
+}
+
+/* ==========================================================================
+   Sidebar (#lp-sidebar)
+   ========================================================================== */
+
+#lp-sidebar {
+  flex-shrink: 0;
+  width: var(--sidebar-width);
+}
+
+#lp-sidebar:empty {
+  display: none;
+}
+
+/* ==========================================================================
+   Table of Contents (#lp-toc)
+   ========================================================================== */
+
+#lp-toc {
+  position: sticky;
+  top: var(--spacing-lg);
+  max-height: calc(100vh - var(--spacing-xl) * 2);
+  overflow-y: auto;
+  padding: var(--spacing-md);
+  background-color: var(--color-background-secondary);
+  border-radius: 4px;
+}
+
+#lp-toc .toc-title {
+  margin: 0 0 var(--spacing-md);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#lp-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#lp-toc li {
+  margin: var(--spacing-xs) 0;
+}
+
+#lp-toc ul ul {
+  padding-left: var(--spacing-md);
+}
+
+#lp-toc a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+#lp-toc a:hover {
+  color: var(--color-link);
+}
+
+/* ==========================================================================
+   Main Content (#lp-content)
+   ========================================================================== */
+
+#lp-content {
+  flex: 1;
+  min-width: 0;
+  max-width: var(--content-max-width);
+}
+
+/* Headings */
+#lp-content h1,
+#lp-content h2,
+#lp-content h3,
+#lp-content h4,
+#lp-content h5,
+#lp-content h6 {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+#lp-content h1 { font-size: 2rem; }
+#lp-content h2 { font-size: 1.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: var(--spacing-sm); }
+#lp-content h3 { font-size: 1.25rem; }
+#lp-content h4 { font-size: 1rem; }
+#lp-content h5 { font-size: 0.875rem; }
+#lp-content h6 { font-size: 0.85rem; color: var(--color-text-secondary); }
+
+/* Paragraphs */
+#lp-content p {
+  margin: 0 0 var(--spacing-md);
+}
+
+/* Links */
+#lp-content a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+#lp-content a:hover {
+  text-decoration: underline;
+}
+
+/* Lists */
+#lp-content ul,
+#lp-content ol {
+  margin: 0 0 var(--spacing-md);
+  padding-left: var(--spacing-xl);
+}
+
+#lp-content li {
+  margin: var(--spacing-xs) 0;
+}
+
+/* ==========================================================================
+   Code Blocks
+   ========================================================================== */
+
+#lp-content code {
+  font-family: var(--font-family-mono);
+  font-size: 0.875em;
+  padding: 0.2em 0.4em;
+  background-color: var(--color-code-bg);
+  border-radius: 3px;
+}
+
+#lp-content pre {
+  margin: 0 0 var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: var(--color-code-bg);
+  border: 1px solid var(--color-code-border);
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+#lp-content pre code {
+  padding: 0;
+  background: none;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+#lp-content table {
+  width: 100%;
+  margin: 0 0 var(--spacing-md);
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+#lp-content th,
+#lp-content td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+#lp-content th {
+  background-color: var(--color-table-header-bg);
+  font-weight: 600;
+}
+
+#lp-content tr:nth-child(even) {
+  background-color: var(--color-table-stripe);
+}
+
+/* ==========================================================================
+   Semantic Blocks (computed content)
+   ========================================================================== */
+
+.computed-figure,
+.computed-table,
+.computed-metric {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md);
+  background-color: var(--color-background-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.computed-figure figcaption,
+.computed-table .table-caption,
+.computed-metric .metric-label {
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+}
+
+.computed-figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.computed-metric .metric-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-link);
+}
+
+.computed-metric .metric-unit {
+  color: var(--color-text-secondary);
+  margin-left: var(--spacing-xs);
+}
+
+/* ==========================================================================
+   Foldable Sections
+   ========================================================================== */
+
+.foldable {
+  margin: var(--spacing-md) 0;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.foldable-header {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-background-secondary);
+  cursor: pointer;
+  user-select: none;
+}
+
+.foldable-header::before {
+  content: "\25B6";
+  margin-right: var(--spacing-sm);
+  font-size: 0.75em;
+  transition: transform 0.2s;
+}
+
+.foldable.open .foldable-header::before {
+  transform: rotate(90deg);
+}
+
+.foldable-content {
+  display: none;
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.foldable.open .foldable-content {
+  display: block;
+}
+
+/* Alternative: use <details>/<summary> */
+details.foldable {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+details.foldable summary {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-background-secondary);
+  cursor: pointer;
+}
+
+details.foldable[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+details.foldable > *:not(summary) {
+  padding: var(--spacing-md);
+}
+
+/* ==========================================================================
+   Blockquotes & Admonitions
+   ========================================================================== */
+
+#lp-content blockquote {
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-md);
+  border-left: 4px solid var(--color-border);
+  background-color: var(--color-background-secondary);
+  color: var(--color-text-secondary);
+}
+
+#lp-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Footer (#lp-footer)
+   ========================================================================== */
+
+#lp-footer {
+  padding: var(--spacing-lg) var(--spacing-md);
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+#lp-footer:empty {
+  display: none;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .page-wrapper {
+    flex-direction: column;
+    padding: var(--spacing-md);
+  }
+
+  #lp-sidebar {
+    width: 100%;
+    order: -1;
+  }
+
+  #lp-toc {
+    position: static;
+    max-height: none;
+  }
+
+  #lp-header .title {
+    font-size: 1.75rem;
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  #lp-nav,
+  #lp-sidebar,
+  #lp-footer {
+    display: none;
+  }
+
+  .page-wrapper {
+    display: block;
+  }
+
+  #lp-content {
+    max-width: none;
+  }
+
+  .foldable-content {
+    display: block !important;
+  }
+}

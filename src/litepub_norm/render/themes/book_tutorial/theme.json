@@ -1,0 +1,16 @@
+{
+  "id": "book_tutorial",
+  "name": "Book Tutorial",
+  "version": "1.0.0",
+  "description": "JupyterBook/Sphinx-book-theme inspired with chapter navigation and reading-friendly layout.",
+  "base": "base",
+  "entry": {
+    "template": "template.html",
+    "css": ["assets/theme.css"],
+    "js": ["assets/theme.js"]
+  },
+  "supports": {
+    "single": true,
+    "site": true
+  }
+}

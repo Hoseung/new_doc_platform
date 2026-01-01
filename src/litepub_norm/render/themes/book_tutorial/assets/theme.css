@@ -1,0 +1,700 @@
+/**
+ * LitePub Book Tutorial Theme
+ *
+ * JupyterBook/Sphinx-book-theme inspired with:
+ * - Left chapter sidebar
+ * - Right "on this page" TOC
+ * - Prev/next navigation
+ * - Reading-friendly layout
+ */
+
+/* ==========================================================================
+   CSS Variables
+   ========================================================================== */
+
+:root {
+  /* Colors */
+  --color-primary: #0073e6;
+  --color-primary-light: #e6f2ff;
+  --color-text: #3b4045;
+  --color-text-secondary: #6c757d;
+  --color-background: #ffffff;
+  --color-background-secondary: #f7f7f7;
+  --color-border: #e5e5e5;
+  --color-link: #0073e6;
+  --color-link-hover: #004d99;
+  --color-sidebar-bg: #fafafa;
+  --color-code-bg: #f5f5f5;
+
+  /* Typography */
+  --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", "Noto Sans CJK KR", sans-serif;
+  --font-family-mono: "SFMono-Regular", Menlo, Monaco, Consolas, "Noto Sans Mono CJK KR", monospace;
+  --font-size-base: 16px;
+  --line-height-base: 1.75;
+
+  /* Layout */
+  --sidebar-width: 280px;
+  --page-toc-width: 220px;
+  --content-max-width: 800px;
+  --topbar-height: 56px;
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+}
+
+/* ==========================================================================
+   Base Reset
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-base);
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+/* ==========================================================================
+   Top Bar (#lp-nav)
+   ========================================================================== */
+
+#lp-nav.book-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topbar-height);
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 1000;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--spacing-md);
+  gap: var(--spacing-md);
+}
+
+.sidebar-toggle {
+  display: none;
+  padding: var(--spacing-sm);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-icon {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--color-text);
+  position: relative;
+}
+
+.toggle-icon::before,
+.toggle-icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--color-text);
+  left: 0;
+}
+
+.toggle-icon::before { top: -6px; }
+.toggle-icon::after { top: 6px; }
+
+.book-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.book-title:hover {
+  color: var(--color-link);
+}
+
+.chapter-nav {
+  margin-left: auto;
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.chapter-nav a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.chapter-nav a:hover {
+  color: var(--color-link);
+}
+
+/* ==========================================================================
+   Book Layout
+   ========================================================================== */
+
+.book-wrapper {
+  display: flex;
+  padding-top: var(--topbar-height);
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   Left Sidebar (Chapter Navigation)
+   ========================================================================== */
+
+#lp-sidebar.chapter-sidebar {
+  position: fixed;
+  top: var(--topbar-height);
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background: var(--color-sidebar-bg);
+  border-right: 1px solid var(--color-border);
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.sidebar-inner {
+  padding: var(--spacing-lg);
+}
+
+.sidebar-header {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.project-name {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+  margin-bottom: var(--spacing-xs);
+}
+
+.project-name:hover {
+  color: var(--color-link);
+}
+
+.version {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Chapter TOC (#lp-toc)
+   ========================================================================== */
+
+#lp-toc.chapter-toc {
+  /* Already in sidebar */
+}
+
+.toc-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-md);
+}
+
+#lp-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#lp-toc li {
+  margin: var(--spacing-xs) 0;
+}
+
+#lp-toc ul ul {
+  padding-left: var(--spacing-md);
+  margin-top: var(--spacing-xs);
+}
+
+#lp-toc a {
+  display: block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+
+#lp-toc a:hover {
+  background: var(--color-primary-light);
+  color: var(--color-link);
+}
+
+#lp-toc a.active {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Content Wrapper
+   ========================================================================== */
+
+.content-wrapper {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  margin-right: var(--page-toc-width);
+  padding: var(--spacing-xxl) var(--spacing-xl);
+  max-width: calc(100% - var(--sidebar-width) - var(--page-toc-width));
+}
+
+/* ==========================================================================
+   Header (#lp-header)
+   ========================================================================== */
+
+#lp-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.chapter-title {
+  margin: 0 0 var(--spacing-sm);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.chapter-subtitle {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+}
+
+#lp-header .author,
+#lp-header .date {
+  margin: var(--spacing-xs) 0;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.chapter-abstract {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg);
+  background: var(--color-primary-light);
+  border-radius: 8px;
+}
+
+.chapter-abstract h2 {
+  margin: 0 0 var(--spacing-md);
+  font-size: 1.1rem;
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Main Content (#lp-content)
+   ========================================================================== */
+
+#lp-content {
+  max-width: var(--content-max-width);
+}
+
+/* Headings */
+#lp-content h1, #lp-content h2, #lp-content h3,
+#lp-content h4, #lp-content h5, #lp-content h6 {
+  font-weight: 600;
+  margin-top: var(--spacing-xxl);
+  margin-bottom: var(--spacing-md);
+  color: var(--color-text);
+}
+
+#lp-content h1 { font-size: 1.9rem; }
+#lp-content h2 { font-size: 1.5rem; padding-bottom: var(--spacing-sm); border-bottom: 1px solid var(--color-border); }
+#lp-content h3 { font-size: 1.25rem; }
+#lp-content h4 { font-size: 1.1rem; }
+
+/* Paragraphs & Links */
+#lp-content p {
+  margin: 0 0 var(--spacing-lg);
+}
+
+#lp-content a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+#lp-content a:hover {
+  text-decoration: underline;
+}
+
+/* Lists */
+#lp-content ul, #lp-content ol {
+  margin: 0 0 var(--spacing-lg);
+  padding-left: var(--spacing-xl);
+}
+
+#lp-content li {
+  margin: var(--spacing-sm) 0;
+}
+
+/* ==========================================================================
+   Code Blocks
+   ========================================================================== */
+
+#lp-content code {
+  font-family: var(--font-family-mono);
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
+  background-color: var(--color-code-bg);
+  border-radius: 4px;
+}
+
+#lp-content pre {
+  margin: 0 0 var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--color-code-bg);
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 0.9rem;
+}
+
+#lp-content pre code {
+  padding: 0;
+  background: none;
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+#lp-content table {
+  width: 100%;
+  margin: 0 0 var(--spacing-lg);
+  border-collapse: collapse;
+}
+
+#lp-content th, #lp-content td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+#lp-content th {
+  background-color: var(--color-background-secondary);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Semantic Blocks
+   ========================================================================== */
+
+.computed-figure,
+.computed-table,
+.computed-metric {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg);
+  background-color: var(--color-background-secondary);
+  border-radius: 8px;
+}
+
+.computed-figure figcaption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-md);
+}
+
+.computed-figure img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+.computed-metric .metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Foldable Sections
+   ========================================================================== */
+
+.foldable {
+  margin: var(--spacing-lg) 0;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.foldable-header {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--color-background-secondary);
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.foldable-header::before {
+  content: "\25B6";
+  margin-right: var(--spacing-sm);
+  font-size: 0.75em;
+  transition: transform 0.2s;
+}
+
+.foldable.open .foldable-header::before {
+  transform: rotate(90deg);
+}
+
+.foldable-content {
+  display: none;
+  padding: var(--spacing-lg);
+}
+
+.foldable.open .foldable-content {
+  display: block;
+}
+
+/* ==========================================================================
+   Admonitions / Callouts
+   ========================================================================== */
+
+#lp-content blockquote {
+  margin: var(--spacing-lg) 0;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-primary-light);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 8px 8px 0;
+}
+
+#lp-content blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Page Navigation (Prev/Next)
+   ========================================================================== */
+
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xxl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.page-nav a {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-background-secondary);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s;
+  max-width: 45%;
+}
+
+.page-nav a:hover {
+  background: var(--color-primary-light);
+}
+
+.page-nav .label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.page-nav .title {
+  font-weight: 600;
+  color: var(--color-link);
+}
+
+.page-nav-next {
+  margin-left: auto;
+  text-align: right;
+}
+
+/* ==========================================================================
+   Right Sidebar (On This Page)
+   ========================================================================== */
+
+.page-toc {
+  position: fixed;
+  top: var(--topbar-height);
+  right: 0;
+  bottom: 0;
+  width: var(--page-toc-width);
+  padding: var(--spacing-xl) var(--spacing-md);
+  overflow-y: auto;
+}
+
+.page-toc-inner {
+  position: sticky;
+  top: var(--spacing-lg);
+}
+
+.page-toc-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-md);
+}
+
+.page-toc-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page-toc-nav li {
+  margin: var(--spacing-xs) 0;
+}
+
+.page-toc-nav a {
+  display: block;
+  padding: var(--spacing-xs) 0;
+  padding-left: var(--spacing-sm);
+  border-left: 2px solid transparent;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.page-toc-nav a:hover {
+  color: var(--color-link);
+}
+
+.page-toc-nav a.active {
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+}
+
+/* ==========================================================================
+   Footer (#lp-footer)
+   ========================================================================== */
+
+#lp-footer {
+  margin-top: var(--spacing-xxl);
+  padding: var(--spacing-lg) 0;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   Overlay
+   ========================================================================== */
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .page-toc {
+    display: none;
+  }
+
+  .content-wrapper {
+    margin-right: 0;
+    max-width: calc(100% - var(--sidebar-width));
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar-toggle {
+    display: block;
+  }
+
+  #lp-sidebar.chapter-sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  body.sidebar-open #lp-sidebar.chapter-sidebar {
+    transform: translateX(0);
+  }
+
+  body.sidebar-open .sidebar-overlay {
+    display: block;
+  }
+
+  .content-wrapper {
+    margin-left: 0;
+    max-width: 100%;
+    padding: var(--spacing-lg);
+  }
+
+  .chapter-title {
+    font-size: 1.75rem;
+  }
+
+  .page-nav {
+    flex-direction: column;
+  }
+
+  .page-nav a {
+    max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+  #lp-nav,
+  #lp-sidebar,
+  .page-toc,
+  .page-nav,
+  #lp-footer {
+    display: none !important;
+  }
+
+  .book-wrapper {
+    display: block;
+    padding-top: 0;
+  }
+
+  .content-wrapper {
+    margin: 0;
+    max-width: none;
+    padding: 0;
+  }
+
+  .foldable-content {
+    display: block !important;
+  }
+}
