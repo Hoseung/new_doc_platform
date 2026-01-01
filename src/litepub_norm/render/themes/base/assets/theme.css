@@ -342,6 +342,12 @@ body {
   margin: 0 auto;
 }
 
+/* All images in content should be contained */
+#lp-content img {
+  max-width: 100%;
+  height: auto;
+}
+
 .computed-metric .metric-value {
   font-size: 1.5rem;
   font-weight: 600;
@@ -457,7 +463,11 @@ details.foldable > *:not(summary) {
 
   #lp-sidebar {
     width: 100%;
-    order: -1;
+    order: 1;  /* Sidebar comes after main content on mobile */
+  }
+
+  #lp-content {
+    order: 0;  /* Main content first on mobile */
   }
 
   #lp-toc {
