@@ -48,11 +48,11 @@ Key point: the **canonical document** lives in the repo as **AST** (serialized J
 ## 3. Main components (modules) and responsibilities
 
 ### 3.1 Authoring Front-Ends
-**Inputs:** `.md`, `.rst`  
+**Inputs:** `.md`, `.rst`
 **Goal:** let humans (and LLMs) express minimal semantic intent.
 
 - `.md`: HTML comment fences (primary), Pandoc fenced Divs (secondary)
-- `.rst`: directives with `:id:` only
+- `.rst`: custom litepub directives with `:id:` (primary), standard RST directives with `:name:` (secondary)
 
 **Output:** text files only. No registry metadata is authored.
 

@@ -204,7 +204,7 @@ For Pandoc fenced Divs, the adapter treats them as already wrapped and passes th
 
 ### 7.2 reStructuredText (`.rst`) Adapter
 
-The `.rst` adapter recognizes semantic intent from Pandoc’s `.rst` reader output and/or from known directive patterns (depending on how you implement `.rst` directives).
+The `.rst` adapter recognizes semantic intent from Pandoc's `.rst` reader output and/or from known directive patterns (depending on how you implement `.rst` directives).
 
 v1 requirement (MUST):
 
@@ -212,7 +212,29 @@ v1 requirement (MUST):
     - as `Div` nodes with identifiers, or
     - as detectable patterns that the adapter rewrites into wrapper `Div` candidates.
 
-The adapter’s goal is that `.rst` and `.md` converge to the same wrapper-candidate representation before Core Normalization.
+The adapter's goal is that `.rst` and `.md` converge to the same wrapper-candidate representation before Core Normalization.
+
+### 7.2.1 Recognized RST Semantic Intent Forms
+
+The adapter MUST recognize two forms of semantic block declaration:
+
+1. **Custom litepub directives** (primary):
+   ```rst
+   .. computed-figure::
+      :id: fig.example.v1
+   ```
+   Custom directives (`computed-figure`, `computed-table`, `metric`, `annotation`, `prose`) with `:id:` field.
+
+2. **Standard RST directives with `:name:`** (secondary):
+   ```rst
+   .. figure:: path/to/image.png
+      :name: fig.example.v1
+   ```
+   Standard RST directives (`figure`, `table`, `image`) with `:name:` attribute.
+
+**Rationale**: Standard RST `:name:` is the idiomatic way to assign semantic identity in RST. Supporting it preserves RST's readability and allows authors to use familiar syntax. The `:name:` attribute is semantically equivalent to `:id:` in custom directives.
+
+**Priority**: If both forms are present in the same document, both are recognized. The semantic ID uniqueness constraint (G3) applies regardless of which form is used.
 
 ---
 

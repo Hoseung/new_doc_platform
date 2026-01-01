@@ -70,11 +70,13 @@ Computed blocks represent quantitative artifacts generated from analysis results
 
 Authors declare **only identity and optional explanatory prose**.
 
+Two syntactic forms are supported: custom litepub directives and standard RST directives.
+
 ---
 
 ### 3.1 Computed Tables
 
-### Authoring Syntax (minimal)
+#### Custom directive syntax (primary)
 
 ```
 .. computed-table::
@@ -94,6 +96,8 @@ Rules:
 
 ### 3.2 Computed Figures
 
+#### Custom directive syntax (primary)
+
 ```
 .. computed-figure::
    :id: fig.occlusion.confusion_matrix.front.v2
@@ -110,7 +114,57 @@ Rules:
 
 ---
 
-### 3.3 Metric Blocks
+### 3.3 Standard RST Syntax (Alternative)
+
+For authors who prefer standard RST syntax, or when integrating existing RST documents, semantic identity can be declared using the `:name:` attribute:
+
+#### Figures
+
+```
+.. figure:: figures/confusion_matrix.png
+   :name: fig.occlusion.confusion_matrix.front.v2
+
+   Confusion matrix for front-facing camera occlusion detection.
+
+```
+
+#### Tables
+
+```
+.. table::
+   :name: tbl.kpi.face.yaw_mae.v1
+
+   +---------+---------+
+   | Col A   | Col B   |
+   +=========+=========+
+   | ...     | ...     |
+   +---------+---------+
+
+```
+
+**Equivalence**: The `:name:` attribute in standard RST directives is semantically equivalent to the `:id:` field in custom litepub directives. Both forms produce identical canonical AST after normalization.
+
+**Behavior differences**:
+
+| Aspect | Custom directive (`:id:`) | Standard RST (`:name:`) |
+|--------|---------------------------|-------------------------|
+| Content | Body is caption only; no payload | Syntactically complete but replaced |
+| Image path | Not required | Required (will be replaced) |
+| Table rows | Forbidden | Allowed (will be replaced) |
+
+**When to use which**:
+
+| Use Case | Recommended Form |
+|----------|------------------|
+| New documents designed for this pipeline | Custom directives (`:id:`) |
+| Existing RST documents being integrated | Standard directives (`:name:`) |
+| Documents that must also render outside this pipeline | Standard directives (`:name:`) |
+
+**Note**: When using standard `.. figure::` directives, the image path is required by RST syntax. For computed figures, the path should reference the actual artifact location (e.g., `figures/example.png`). The resolution stage will validate that the referenced file exists.
+
+---
+
+### 3.4 Metric Blocks
 
 Metric blocks represent scalar or small structured values.
 
