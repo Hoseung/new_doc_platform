@@ -17,6 +17,7 @@ sys.path.insert(0, str(Path(__file__).parents[2] / "src"))
 from litepub_norm.normalizer import harness
 from litepub_norm.resolver import resolve, ResolutionConfig, load_registry
 from litepub_norm.filters import apply_filters, BuildContext, FilterConfig
+from litepub_norm.render import render, RenderConfig
 
 
 # Paths
@@ -72,6 +73,7 @@ def build_for_target(
     registry,
     target: str,
     render_target: str = "html",
+    do_render: bool = False,
 ) -> dict:
     """Build the document for a specific target."""
     print(f"\n{'='*60}")
@@ -102,6 +104,25 @@ def build_for_target(
         actions[key].append(entry.semantic_id)
     for action, ids in sorted(actions.items()):
         print(f"      [{action}] ({len(ids)} items): {', '.join(ids[:5])}{'...' if len(ids) > 5 else ''}")
+
+    # Render if requested
+    if do_render:
+        print(f"\n  Rendering to {render_target}...")
+        render_output_dir = OUTPUT_DIR / f"{target}_{render_target}"
+        render_config = RenderConfig(output_dir=render_output_dir)
+        output_name = f"report.{render_target}" if render_target != "pdf" else "report.pdf"
+
+        render_result = render(filtered, context, render_config, output_name)
+
+        if render_result.success:
+            print(f"    Rendered successfully!")
+            print(f"    Primary output: {render_result.primary_output}")
+            for f in render_result.output_files[1:4]:  # Show first few secondary files
+                print(f"    Secondary: {f}")
+        else:
+            print(f"    Render failed!")
+            for err in render_result.errors:
+                print(f"      Error: {err.code} - {err.message}")
 
     return filtered
 
@@ -142,20 +163,22 @@ def main():
     aarc_registry = load_registry(aarc_registry_path)
 
     # Step 2: Build for different targets
+    # Tuple: (build_target, render_target, do_render)
     targets = [
-        ("internal", "html"),
-        ("internal", "pdf"),
-        ("external", "html"),
-        ("external", "pdf"),
-        ("dossier", "pdf"),
+        ("internal", "html", True),   # Render HTML
+        ("internal", "pdf", True),    # Render PDF
+        ("external", "html", True),   # Render HTML
+        ("external", "pdf", False),   # Skip PDF for external (just filter)
+        ("dossier", "pdf", True),     # Render PDF for dossier
     ]
 
-    for build_target, render_target in targets:
+    for build_target, render_target, do_render in targets:
         filtered = build_for_target(
             normalized,
             aarc_registry,
             build_target,
             render_target,
+            do_render=do_render,
         )
 
         # Save filtered AST

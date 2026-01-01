@@ -1,0 +1,34 @@
+{
+  "timestamps": {
+    "started_at": "2026-01-01T01:27:46.347710+00:00",
+    "completed_at": "2026-01-01T01:27:47.634972+00:00"
+  },
+  "tools": {
+    "pandoc_version": "3.8.2.1",
+    "latex_engine": "xelatex",
+    "latex_engine_version": "XeTeX 3.141592653-2.6-0.999993 (TeX Live 2022/dev/Debian)"
+  },
+  "context": {
+    "build_target": "internal",
+    "render_target": "pdf",
+    "strict_mode": true
+  },
+  "templates": {
+    "template_path": null,
+    "template_hash": null,
+    "assets_dir": null,
+    "assets_hash": null,
+    "lua_filters": [],
+    "lua_filter_hashes": {}
+  },
+  "output": {
+    "files": [
+      "/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/output/internal_pdf/report.tex",
+      "/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/output/internal_pdf/report.pdf"
+    ]
+  },
+  "diagnostics": {
+    "warnings": [],
+    "errors": []
+  }
+}

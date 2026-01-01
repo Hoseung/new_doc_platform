@@ -1,0 +1,174 @@
+% LitePub Norm - LaTeX Template for PDF Generation
+% Supports English + Korean (CJK) text with XeLaTeX
+%
+% Required: XeLaTeX engine with fontspec
+
+\documentclass[11pt,a4paper]{article}
+
+% Essential packages
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{float}
+
+% Page geometry
+\geometry{
+  a4paper,
+  margin=2.5cm,
+  top=3cm,
+  bottom=3cm,
+  headheight=14pt
+}
+
+% Font configuration
+% Main font (Latin)
+\setmainfont{DejaVu Serif}[
+  BoldFont=DejaVu Serif Bold,
+  ItalicFont=DejaVu Serif Italic,
+  BoldItalicFont=DejaVu Serif Bold Italic
+]
+
+% Sans font
+\setsansfont{DejaVu Sans}[
+  BoldFont=DejaVu Sans Bold,
+  ItalicFont=DejaVu Sans Oblique
+]
+
+% Monospace font for code
+\setmonofont{DejaVu Sans Mono}[
+  Scale=0.9
+]
+
+% CJK font (Korean)
+% Try common Korean fonts, fallback to available CJK font
+\setCJKmainfont{Noto Sans CJK KR}[
+  BoldFont=Noto Sans CJK KR Bold
+]
+\setCJKsansfont{Noto Sans CJK KR}
+\setCJKmonofont{Noto Sans Mono CJK KR}
+
+% Hyperref configuration
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  urlcolor=blue!60!black,
+  citecolor=green!50!black,
+  pdfauthor={$author-meta$},
+  pdftitle={$title-meta$},
+  pdfsubject={$subject$},
+  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+  bookmarksnumbered=true,
+  bookmarksopen=true
+}
+
+% Headers and footers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Code listing style
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=true,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  frame=single,
+  framesep=3pt,
+  backgroundcolor=\color{gray!5},
+  rulecolor=\color{gray!30},
+  showstringspaces=false,
+  tabsize=2,
+  captionpos=b
+}
+
+% Section title formatting
+\titleformat{\section}
+  {\Large\bfseries}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\large\bfseries}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalsize\bfseries}
+  {\thesubsubsection}{1em}{}
+
+% Table styling
+\renewcommand{\arraystretch}{1.3}
+
+% Paragraph spacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% List customization
+\setlist{noitemsep, topsep=0.5em}
+
+% Custom commands
+\newcommand{\placeholder}[1]{\textcolor{red}{\textbf{[#1]}}}
+
+% Pandoc-specific settings
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Allow long tables to break across pages
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+% Document info
+$if(title)$
+\title{$title$$if(subtitle)$\\[0.5em]{\large $subtitle$}$endif$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$if(date)$
+\date{$date$}
+$endif$
+
+\begin{document}
+
+$if(title)$
+\maketitle
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+$abstract$
+\end{abstract}
+$endif$
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(toc)$
+\tableofcontents
+\newpage
+$endif$
+
+$body$
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+\end{document}

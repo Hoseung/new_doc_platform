@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ast_d7de30e3ecb8b52f</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="driver-monitoring-system-performance-analysis-report">Driver
+Monitoring System — Performance Analysis Report</h1>
+<p>This comprehensive report evaluates the Driver Monitoring System
+(DMS) across multiple performance dimensions including face detection,
+gaze estimation, drowsiness detection, and distraction
+classification.</p>
+<p><strong>Report Configuration:</strong> - Dataset: ds_dms_eval_2024_v2
+- Model Version: DMS-Core-v3.2.1 - Evaluation Date: 2024-12-15</p>
+<h2 id="executive-summary">Executive Summary</h2>
+<p>This section provides high-level metrics suitable for external
+stakeholders.</p>
+<div id="metric.overall.accuracy.v1" role="computed" kind="metric"
+data-visibility="dossier" data-lock="true">
+<p>Overall system accuracy across all detection tasks.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Overall System Accuracy</td>
+<td style="text-align: right;">96.7 %</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="metric.latency.p99.v1" role="computed" kind="metric"
+data-visibility="external" data-lock="true">
+<p>99th percentile inference latency on target hardware.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">P99 Latency</td>
+<td style="text-align: right;">23.4 ms</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl.executive.summary.v1" role="computed" kind="table"
+data-visibility="dossier" data-lock="true">
+<p>Summary of key performance indicators for executive review.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Metric</th>
+<th>Value</th>
+<th>Target</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Detection</td>
+<td>Face Detection</td>
+<td>98.0%</td>
+<td>&gt;95%</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Detection</td>
+<td>Eye Detection</td>
+<td>96.5%</td>
+<td>&gt;95%</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Estimation</td>
+<td>Gaze Accuracy</td>
+<td>4.2°</td>
+<td>&lt;5°</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Estimation</td>
+<td>Pose Accuracy</td>
+<td>3.1°</td>
+<td>&lt;5°</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Classification</td>
+<td>Drowsiness</td>
+<td>94.5%</td>
+<td>&gt;90%</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Classification</td>
+<td>Distraction</td>
+<td>91.3%</td>
+<td>&gt;90%</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Latency P99</td>
+<td>23.4ms</td>
+<td>&lt;30ms</td>
+<td>PASS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="face-detection-performance">1. Face Detection Performance</h2>
+<h3 id="detection-accuracy">1.1 Detection Accuracy</h3>
+<div id="metric.face.detection.precision.v1" role="computed"
+kind="metric" data-visibility="external" data-lock="true">
+<p>Face detection precision under standard lighting conditions.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Face Detection Precision</td>
+<td style="text-align: right;">98.2 %</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="metric.face.detection.recall.v1" role="computed" kind="metric"
+data-visibility="external" data-lock="true">
+<p>Face detection recall ensuring no missed detections.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Face Detection Recall</td>
+<td style="text-align: right;">97.8 %</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl.face.detection.by_lighting.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>Detection performance breakdown by lighting condition (day, night,
+mixed).</p>
+<table>
+<thead>
+<tr>
+<th>Lighting Condition</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>F1 Score</th>
+<th>Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Daylight</td>
+<td>98.5</td>
+<td>98.2</td>
+<td>98.3</td>
+<td>45000</td>
+</tr>
+<tr>
+<td>Night (IR)</td>
+<td>97.2</td>
+<td>96.8</td>
+<td>97</td>
+<td>38000</td>
+</tr>
+<tr>
+<td>Dusk/Dawn</td>
+<td>96.8</td>
+<td>96.1</td>
+<td>96.4</td>
+<td>22000</td>
+</tr>
+<tr>
+<td>Tunnel Exit</td>
+<td>94.5</td>
+<td>93.8</td>
+<td>94.1</td>
+<td>8000</td>
+</tr>
+<tr>
+<td>Direct Sunlight</td>
+<td>95.2</td>
+<td>94.6</td>
+<td>94.9</td>
+<td>12000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl.face.detection.by_lighting.v1.annotation" role="hybrid"
+kind="annotation" data-visibility="external"
+data-bind-to="tbl.face.detection.by_lighting.v1">
+<p><strong>Analysis Notes:</strong> - Night performance shows 3%
+degradation compared to daytime - IR illumination compensates
+effectively for low-light conditions - Mixed lighting (tunnel exits)
+remains the most challenging scenario</p>
+</div>
+<h3 id="pose-estimation">1.2 Pose Estimation</h3>
+<div id="tbl.pose.yaw.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>Yaw angle estimation accuracy across the operational range.</p>
+<table>
+<thead>
+<tr>
+<th>Yaw Range</th>
+<th>MAE (degrees)</th>
+<th>Std Dev</th>
+<th>Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-90° to -60°</td>
+<td>5.8</td>
+<td>2.1</td>
+<td>8500</td>
+</tr>
+<tr>
+<td>-60° to -30°</td>
+<td>3.2</td>
+<td>1.4</td>
+<td>22000</td>
+</tr>
+<tr>
+<td>-30° to 0°</td>
+<td>2.1</td>
+<td>0.9</td>
+<td>45000</td>
+</tr>
+<tr>
+<td>0° to 30°</td>
+<td>2</td>
+<td>0.8</td>
+<td>48000</td>
+</tr>
+<tr>
+<td>30° to 60°</td>
+<td>3.4</td>
+<td>1.5</td>
+<td>21000</td>
+</tr>
+<tr>
+<td>60° to 90°</td>
+<td>6.1</td>
+<td>2.3</td>
+<td>7500</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl.pose.pitch.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>Pitch angle estimation accuracy for head tilt detection.</p>
+<table>
+<thead>
+<tr>
+<th>Pitch Range</th>
+<th>MAE (degrees)</th>
+<th>Std Dev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-45° to -30°</td>
+<td>4.2</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td>-30° to -15°</td>
+<td>2.8</td>
+<td>1.2</td>
+</tr>
+<tr>
+<td>-15° to 15°</td>
+<td>1.9</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>15° to 30°</td>
+<td>2.6</td>
+<td>1.1</td>
+</tr>
+<tr>
+<td>30° to 45°</td>
+<td>4.5</td>
+<td>1.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="fig.pose.error_distribution.v1" role="computed" kind="figure"
+data-visibility="external" data-lock="true">
+<p>Distribution of pose estimation errors across the test dataset.</p>
+<figure id="fig.pose.error_distribution.v1" class="figure">
+<p><img
+src="/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/pose_error_dist.png"
+alt="Figure showing pose error dist" /></p>
+<figcaption><p>Visualization: Pose Error Dist</p></figcaption>
+</figure>
+</div>
+<hr />
+<h2 id="gaze-estimation">2. Gaze Estimation</h2>
+<h3 id="gaze-vector-accuracy">2.1 Gaze Vector Accuracy</h3>
+<div id="metric.gaze.angular_error.v1" role="computed" kind="metric"
+data-visibility="external" data-lock="true">
+<p>Mean angular error of gaze direction estimation.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Gaze Angular Error</td>
+<td style="text-align: right;">4.2 degrees</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl.gaze.by_region.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>Gaze accuracy breakdown by dashboard region (instrument cluster,
+center console, mirrors).</p>
+<table>
+<thead>
+<tr>
+<th>Gaze Region</th>
+<th>Accuracy (%)</th>
+<th>Samples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Road Ahead</td>
+<td>96.2</td>
+<td>85000</td>
+</tr>
+<tr>
+<td>Instrument Cluster</td>
+<td>93.8</td>
+<td>25000</td>
+</tr>
+<tr>
+<td>Center Console</td>
+<td>94.5</td>
+<td>18000</td>
+</tr>
+<tr>
+<td>Left Mirror</td>
+<td>98.1</td>
+<td>8000</td>
+</tr>
+<tr>
+<td>Right Mirror</td>
+<td>97.8</td>
+<td>7500</td>
+</tr>
+<tr>
+<td>Rear View Mirror</td>
+<td>95.2</td>
+<td>6500</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="fig.gaze.heatmap.v1" role="computed" kind="figure"
+data-visibility="external" data-lock="true">
+<p>Heatmap showing gaze estimation accuracy across the driver field of
+view.</p>
+<figure id="fig.gaze.heatmap.v1" class="figure">
+<p><img
+src="/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/gaze_heatmap.png"
+alt="Figure showing gaze heatmap" /></p>
+<figcaption><p>Visualization: Gaze Heatmap</p></figcaption>
+</figure>
+</div>
+<h3 id="gaze-zone-classification">2.2 Gaze Zone Classification</h3>
+<div id="tbl.gaze.zone_confusion.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>Confusion matrix for gaze zone classification (road, left mirror,
+right mirror, instrument, phone, other).</p>
+<table>
+<thead>
+<tr>
+<th>Actual Zone</th>
+<th>→ Road</th>
+<th>→ Instrument</th>
+<th>→ Console</th>
+<th>→ L Mirror</th>
+<th>→ R Mirror</th>
+<th>→ Phone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Road</td>
+<td>96.2</td>
+<td>2.1</td>
+<td>0.8</td>
+<td>0.3</td>
+<td>0.3</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>Instrument</td>
+<td>3.8</td>
+<td>93.8</td>
+<td>1.5</td>
+<td>0.2</td>
+<td>0.2</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>Console</td>
+<td>1.2</td>
+<td>2.3</td>
+<td>94.5</td>
+<td>0.1</td>
+<td>0.1</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td>L Mirror</td>
+<td>0.8</td>
+<td>0.3</td>
+<td>0.1</td>
+<td>98.1</td>
+<td>0.5</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>R Mirror</td>
+<td>0.9</td>
+<td>0.4</td>
+<td>0.1</td>
+<td>0.6</td>
+<td>97.8</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>Phone</td>
+<td>0.5</td>
+<td>1.2</td>
+<td>3.5</td>
+<td>0.1</td>
+<td>0.1</td>
+<td>94.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl.gaze.zone_confusion.v1.annotation" role="hybrid"
+kind="annotation" data-visibility="external"
+data-bind-to="tbl.gaze.zone_confusion.v1">
+<p><strong>Key Observations:</strong> - Road vs. instrument cluster
+confusion is the primary error mode - Left/right mirror discrimination
+is highly accurate (&gt;98%) - “Phone” detection specifically important
+for distraction alerts</p>
+</div>
+<hr />
+<h2 id="drowsiness-detection">3. Drowsiness Detection</h2>
+<h3 id="eye-state-analysis">3.1 Eye State Analysis</h3>
+<div id="metric.eye.perclos.v1" role="computed" kind="metric"
+data-visibility="external" data-lock="true">
+<p>PERCLOS (Percentage of Eye Closure) detection accuracy.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">PERCLOS Accuracy</td>
+<td style="text-align: right;">94.5 %</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl.eye.blink.metrics.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>Blink detection metrics including blink rate and duration
+analysis.</p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+<th>Unit</th>
+<th>Alert Threshold</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blink Detection Rate</td>
+<td>97.2%</td>
+<td></td>
+<td>&gt;95%</td>
+</tr>
+<tr>
+<td>Mean Blink Duration</td>
+<td>215</td>
+<td>ms</td>
+<td>&gt;400ms</td>
+</tr>
+<tr>
+<td>PERCLOS (1 min)</td>
+<td>8.3%</td>
+<td></td>
+<td>&gt;15%</td>
+</tr>
+<tr>
+<td>Blink Rate</td>
+<td>14.2</td>
+<td>blinks/min</td>
+<td>&lt;8 or &gt;25</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="fig.drowsiness.roc.v1" role="computed" kind="figure"
+data-visibility="external" data-lock="true">
+<p>ROC curve for drowsiness detection at various thresholds.</p>
+<figure id="fig.drowsiness.roc.v1" class="figure">
+<p><img
+src="/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/drowsiness_roc.png"
+alt="Figure showing drowsiness roc" /></p>
+<figcaption><p>Visualization: Drowsiness Roc</p></figcaption>
+</figure>
+</div>
+<h3 id="yawn-detection">3.2 Yawn Detection</h3>
+<div id="metric.yawn.detection.v1" role="computed" kind="metric"
+data-visibility="external" data-lock="true">
+<p>Yawn detection F1 score.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Yawn Detection F1</td>
+<td style="text-align: right;">0.923</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl.yawn.temporal.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>Temporal analysis of yawn detection including onset and duration
+accuracy.</p>
+<table>
+<thead>
+<tr>
+<th>Detection Phase</th>
+<th>Accuracy (%)</th>
+<th>Latency (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Onset Detection</td>
+<td>94.2</td>
+<td>85</td>
+</tr>
+<tr>
+<td>Peak Detection</td>
+<td>97.8</td>
+<td>120</td>
+</tr>
+<tr>
+<td>End Detection</td>
+<td>91.5</td>
+<td>95</td>
+</tr>
+<tr>
+<td>Duration Estimation</td>
+<td>88.3</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="distraction-classification">4. Distraction Classification</h2>
+<h3 id="activity-recognition">4.1 Activity Recognition</h3>
+<div id="tbl.distraction.activities.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>Classification accuracy for distracted driving activities.</p>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Precision</th>
+<th>Recall</th>
+<th>F1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phone Usage</td>
+<td>95.2</td>
+<td>93.3</td>
+<td>94.2</td>
+</tr>
+<tr>
+<td>Texting</td>
+<td>92.1</td>
+<td>89.5</td>
+<td>90.8</td>
+</tr>
+<tr>
+<td>Eating/Drinking</td>
+<td>81.2</td>
+<td>75.6</td>
+<td>78.3</td>
+</tr>
+<tr>
+<td>Reaching Back</td>
+<td>88.5</td>
+<td>85.2</td>
+<td>86.8</td>
+</tr>
+<tr>
+<td>Talking to Passenger</td>
+<td>79.8</td>
+<td>82.1</td>
+<td>80.9</td>
+</tr>
+<tr>
+<td>Adjusting Controls</td>
+<td>86.3</td>
+<td>84.7</td>
+<td>85.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="fig.distraction.confusion.v1" role="computed" kind="figure"
+data-visibility="external" data-lock="true">
+<p>Confusion matrix visualization for distraction activity
+classification.</p>
+<figure id="fig.distraction.confusion.v1" class="figure">
+<p><img
+src="/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/distraction_confusion.png"
+alt="Figure showing distraction confusion" /></p>
+<figcaption><p>Visualization: Distraction Confusion</p></figcaption>
+</figure>
+</div>
+<div id="tbl.distraction.activities.v1.annotation" role="hybrid"
+kind="annotation" data-visibility="external"
+data-bind-to="tbl.distraction.activities.v1">
+<p><strong>Critical Findings:</strong> - Phone usage detection achieves
+94.2% accuracy - Eating/drinking distinction remains challenging (78.3%)
+- Talking to passenger vs. phone call differentiation needs
+improvement</p>
+</div>
+<h3 id="attention-score">4.2 Attention Score</h3>
+<div id="metric.attention.score.v1" role="computed" kind="metric"
+data-visibility="external" data-lock="true">
+<p>Composite attention score combining all distraction indicators.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Attention Score Accuracy</td>
+<td style="text-align: right;">91.3 %</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="tbl.attention.thresholds.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>Alert threshold calibration across attention score ranges.</p>
+<table>
+<thead>
+<tr>
+<th>Attention Level</th>
+<th>Score Range</th>
+<th>System Action</th>
+<th>Occurrence (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fully Attentive</td>
+<td>90-100</td>
+<td>None</td>
+<td>78.5</td>
+</tr>
+<tr>
+<td>Mild Distraction</td>
+<td>70-89</td>
+<td>Visual Alert</td>
+<td>15.2</td>
+</tr>
+<tr>
+<td>Moderate Distraction</td>
+<td>50-69</td>
+<td>Audio Alert</td>
+<td>4.8</td>
+</tr>
+<tr>
+<td>Severe Distraction</td>
+<td>30-49</td>
+<td>Haptic + Audio</td>
+<td>1.2</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td>0-29</td>
+<td>Emergency Protocol</td>
+<td>0.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="system-performance">5. System Performance</h2>
+<h3 id="latency-analysis">5.1 Latency Analysis</h3>
+<div id="tbl.latency.breakdown.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>Latency breakdown by processing stage (detection, landmarks,
+classification).</p>
+<table>
+<thead>
+<tr>
+<th>Processing Stage</th>
+<th>Mean (ms)</th>
+<th>P50 (ms)</th>
+<th>P99 (ms)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Image Preprocessing</td>
+<td>1.2</td>
+<td>1.1</td>
+<td>2.1</td>
+</tr>
+<tr>
+<td>Face Detection</td>
+<td>4.5</td>
+<td>4.2</td>
+<td>6.8</td>
+</tr>
+<tr>
+<td>Landmark Extraction</td>
+<td>2.8</td>
+<td>2.6</td>
+<td>4.2</td>
+</tr>
+<tr>
+<td>Pose Estimation</td>
+<td>3.2</td>
+<td>3</td>
+<td>5.1</td>
+</tr>
+<tr>
+<td>Gaze Estimation</td>
+<td>2.1</td>
+<td>2</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td>Classification</td>
+<td>1.8</td>
+<td>1.7</td>
+<td>2.9</td>
+</tr>
+<tr>
+<td>Post-processing</td>
+<td>0.8</td>
+<td>0.7</td>
+<td>1.2</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>16.4</td>
+<td>15.3</td>
+<td>23.4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="fig.latency.histogram.v1" role="computed" kind="figure"
+data-visibility="external" data-lock="true">
+<p>Histogram of end-to-end processing latency.</p>
+<figure id="fig.latency.histogram.v1" class="figure">
+<p><img
+src="/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/latency_histogram.png"
+alt="Figure showing latency histogram" /></p>
+<figcaption><p>Visualization: Latency Histogram</p></figcaption>
+</figure>
+</div>
+<h3 id="resource-utilization">5.2 Resource Utilization</h3>
+<div id="tbl.resource.utilization.v1" role="computed" kind="table"
+data-visibility="external" data-lock="true">
+<p>CPU/GPU utilization and memory footprint during inference.</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Mean Usage</th>
+<th>Peak Usage</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>45%</td>
+<td>62%</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>38%</td>
+<td>55%</td>
+<td>80%</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>512 MB</td>
+<td>680 MB</td>
+<td>1 GB</td>
+</tr>
+<tr>
+<td>NPU</td>
+<td>72%</td>
+<td>85%</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr />
+<h2 id="failure-analysis-internal-only">6. Failure Analysis (Internal
+Only)</h2>
+<p>This section contains detailed failure analysis for internal
+engineering review.</p>
+<h3 id="error-categorization">6.1 Error Categorization</h3>
+<h3 id="edge-cases">6.2 Edge Cases</h3>
+<h3 id="debug-information">6.3 Debug Information</h3>
+<hr />
+<h2 id="experimental-results-draft">7. Experimental Results (Draft)</h2>
+<p>These results are from experimental features not yet validated for
+production.</p>
+<h3 id="multi-occupant-detection">7.1 Multi-Occupant Detection</h3>
+<h3 id="emotion-recognition-wip">7.2 Emotion Recognition (WIP)</h3>
+<hr />
+<h2 id="recommendations">8. Recommendations</h2>
+<p>Based on the analysis, we recommend the following improvements:</p>
+<ol type="1">
+<li><strong>Sunglasses Handling</strong>: Implement adaptive IR
+intensity for sunglasses detection</li>
+<li><strong>Gaze Calibration</strong>: Add per-driver gaze calibration
+for improved accuracy</li>
+<li><strong>Latency Optimization</strong>: Target 15ms reduction through
+model pruning</li>
+<li><strong>Edge Case Coverage</strong>: Expand training data for
+identified failure modes</li>
+</ol>
+<hr />
+<h2 id="appendix-a-methodology">Appendix A: Methodology</h2>
+<h3 id="a.1-dataset-description">A.1 Dataset Description</h3>
+<p>The evaluation dataset (ds_dms_eval_2024_v2) contains: - 150,000
+annotated frames - 500 unique subjects - 12 lighting conditions - 8
+vehicle types</p>
+<h3 id="a.2-evaluation-protocol">A.2 Evaluation Protocol</h3>
+<p>All metrics were computed using: - 5-fold cross-validation -
+Stratified sampling by subject - Held-out test set (20% of data)</p>
+<hr />
+<h2 id="appendix-b-detailed-tables-verbose">Appendix B: Detailed Tables
+(Verbose)</h2>
+<h3 id="b.1-per-subject-performance">B.1 Per-Subject Performance</h3>
+<h3 id="b.2-per-frame-analysis">B.2 Per-Frame Analysis</h3>
+<h3 id="b.3-raw-feature-distributions">B.3 Raw Feature
+Distributions</h3>
+<hr />
+<h2 id="appendix-c-dossier-only-content">Appendix C: Dossier-Only
+Content</h2>
+<p>This section contains highly condensed summary for regulatory
+dossier.</p>
+<div id="tbl.dossier.regulatory_summary.v1" role="computed" kind="table"
+data-visibility="dossier" data-lock="true">
+<p>Regulatory compliance summary table.</p>
+<table>
+<thead>
+<tr>
+<th>Regulatory Requirement</th>
+<th>Standard</th>
+<th>Test Result</th>
+<th>Compliance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Driver Attention Detection</td>
+<td>UNECE R79</td>
+<td>PASS</td>
+<td>Compliant</td>
+</tr>
+<tr>
+<td>Drowsiness Warning</td>
+<td>EU 2019/2144</td>
+<td>PASS</td>
+<td>Compliant</td>
+</tr>
+<tr>
+<td>Distraction Warning</td>
+<td>EU 2019/2144</td>
+<td>PASS</td>
+<td>Compliant</td>
+</tr>
+<tr>
+<td>System Availability</td>
+<td>ISO 26262</td>
+<td>99.2%</td>
+<td>ASIL-B</td>
+</tr>
+<tr>
+<td>False Positive Rate</td>
+<td>Internal</td>
+<td>&lt;2%</td>
+<td>Compliant</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="metric.dossier.safety_score.v1" role="computed" kind="metric"
+data-visibility="dossier" data-lock="true">
+<p>Composite safety score for regulatory filing.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Composite Safety Score</td>
+<td style="text-align: right;">94.8 %</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

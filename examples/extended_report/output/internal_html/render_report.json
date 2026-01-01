@@ -1,0 +1,33 @@
+{
+  "timestamps": {
+    "started_at": "2026-01-01T01:27:46.167598+00:00",
+    "completed_at": "2026-01-01T01:27:46.247099+00:00"
+  },
+  "tools": {
+    "pandoc_version": "3.8.2.1",
+    "latex_engine": null,
+    "latex_engine_version": null
+  },
+  "context": {
+    "build_target": "internal",
+    "render_target": "html",
+    "strict_mode": true
+  },
+  "templates": {
+    "template_path": null,
+    "template_hash": null,
+    "assets_dir": null,
+    "assets_hash": null,
+    "lua_filters": [],
+    "lua_filter_hashes": {}
+  },
+  "output": {
+    "files": [
+      "/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/output/internal_html/report.html"
+    ]
+  },
+  "diagnostics": {
+    "warnings": [],
+    "errors": []
+  }
+}

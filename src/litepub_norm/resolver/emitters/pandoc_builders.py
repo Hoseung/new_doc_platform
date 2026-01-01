@@ -54,9 +54,12 @@ def make_table_cell(
     align: str = "AlignDefault",
     row_span: int = 1,
     col_span: int = 1,
-) -> dict:
+) -> list:
     """
     Create a Cell node for Pandoc tables.
+
+    In Pandoc 3.x JSON format, Cell is an array:
+    [Attr, Alignment, RowSpan, ColSpan, [Block]]
 
     Args:
         content: List of block nodes for cell content.
@@ -65,55 +68,58 @@ def make_table_cell(
         col_span: Number of columns this cell spans.
 
     Returns:
-        Cell node dict.
+        Cell as an array.
     """
-    return {
-        "t": "Cell",
-        "c": [
-            make_attr(),  # Attr
-            {"t": align},  # Alignment
-            row_span,
-            col_span,
-            content,
-        ],
-    }
+    return [
+        make_attr(),  # Attr
+        {"t": align},  # Alignment
+        row_span,
+        col_span,
+        content,
+    ]
 
 
-def make_row(cells: list[dict]) -> dict:
-    """Create a Row node."""
-    return {
-        "t": "Row",
-        "c": [make_attr(), cells],
-    }
+def make_row(cells: list) -> list:
+    """
+    Create a Row node.
+
+    In Pandoc 3.x JSON format, Row is an array: [Attr, [Cell]]
+    """
+    return [make_attr(), cells]
 
 
-def make_table_head(rows: list[dict]) -> dict:
-    """Create a TableHead node."""
-    return {
-        "t": "TableHead",
-        "c": [make_attr(), rows],
-    }
+def make_table_head(rows: list) -> list:
+    """
+    Create a TableHead node.
+
+    In Pandoc 3.x JSON format, TableHead is an array: [Attr, [Row]]
+    """
+    return [make_attr(), rows]
 
 
-def make_table_body(rows: list[dict]) -> dict:
-    """Create a TableBody node."""
-    return {
-        "t": "TableBody",
-        "c": [
-            make_attr(),
-            0,  # RowHeadColumns
-            [],  # Intermediate head (empty)
-            rows,
-        ],
-    }
+def make_table_body(rows: list) -> list:
+    """
+    Create a TableBody node.
+
+    In Pandoc 3.x JSON format, TableBody is an array:
+    [Attr, RowHeadColumns, [Row], [Row]]
+    (Attr, number of row header columns, intermediate head rows, body rows)
+    """
+    return [
+        make_attr(),
+        0,  # RowHeadColumns
+        [],  # Intermediate head (empty)
+        rows,
+    ]
 
 
-def make_table_foot() -> dict:
-    """Create an empty TableFoot node."""
-    return {
-        "t": "TableFoot",
-        "c": [make_attr(), []],
-    }
+def make_table_foot() -> list:
+    """
+    Create an empty TableFoot node.
+
+    In Pandoc 3.x JSON format, TableFoot is an array: [Attr, [Row]]
+    """
+    return [make_attr(), []]
 
 
 def make_col_spec(align: str = "AlignDefault", width: str = "ColWidthDefault") -> list:

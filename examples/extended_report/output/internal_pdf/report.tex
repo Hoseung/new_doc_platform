@@ -1,0 +1,1167 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Driver Monitoring System --- Performance Analysis
+Report}\label{driver-monitoring-system-performance-analysis-report}
+
+This comprehensive report evaluates the Driver Monitoring System (DMS)
+across multiple performance dimensions including face detection, gaze
+estimation, drowsiness detection, and distraction classification.
+
+\textbf{Report Configuration:} - Dataset: ds\_dms\_eval\_2024\_v2 -
+Model Version: DMS-Core-v3.2.1 - Evaluation Date: 2024-12-15
+
+\subsection{Executive Summary}\label{executive-summary}
+
+This section provides high-level metrics suitable for external
+stakeholders.
+
+\protect\phantomsection\label{metric.overall.accuracy.v1}
+Overall system accuracy across all detection tasks.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Overall System Accuracy & 96.7 \% \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{metric.latency.p99.v1}
+99th percentile inference latency on target hardware.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+P99 Latency & 23.4 ms \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.executive.summary.v1}
+Summary of key performance indicators for executive review.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+Category & Metric & Value & Target & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Detection & Face Detection & 98.0\% & \textgreater95\% & PASS \\
+Detection & Eye Detection & 96.5\% & \textgreater95\% & PASS \\
+Estimation & Gaze Accuracy & 4.2° & \textless5° & PASS \\
+Estimation & Pose Accuracy & 3.1° & \textless5° & PASS \\
+Classification & Drowsiness & 94.5\% & \textgreater90\% & PASS \\
+Classification & Distraction & 91.3\% & \textgreater90\% & PASS \\
+Performance & Latency P99 & 23.4ms & \textless30ms & PASS \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Face Detection
+Performance}\label{face-detection-performance}
+
+\subsubsection{1.1 Detection Accuracy}\label{detection-accuracy}
+
+\protect\phantomsection\label{metric.face.detection.precision.v1}
+Face detection precision under standard lighting conditions.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Face Detection Precision & 98.2 \% \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{metric.face.detection.recall.v1}
+Face detection recall ensuring no missed detections.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Face Detection Recall & 97.8 \% \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.face.detection.by_lighting.v1}
+Detection performance breakdown by lighting condition (day, night,
+mixed).
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+Lighting Condition & Precision & Recall & F1 Score & Samples \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Daylight & 98.5 & 98.2 & 98.3 & 45000 \\
+Night (IR) & 97.2 & 96.8 & 97 & 38000 \\
+Dusk/Dawn & 96.8 & 96.1 & 96.4 & 22000 \\
+Tunnel Exit & 94.5 & 93.8 & 94.1 & 8000 \\
+Direct Sunlight & 95.2 & 94.6 & 94.9 & 12000 \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.face.detection.by_lighting.v1.annotation}
+\textbf{Analysis Notes:} - Night performance shows 3\% degradation
+compared to daytime - IR illumination compensates effectively for
+low-light conditions - Mixed lighting (tunnel exits) remains the most
+challenging scenario
+
+\subsubsection{1.2 Pose Estimation}\label{pose-estimation}
+
+\protect\phantomsection\label{tbl.pose.yaw.v1}
+Yaw angle estimation accuracy across the operational range.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Yaw Range & MAE (degrees) & Std Dev & Samples \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+-90° to -60° & 5.8 & 2.1 & 8500 \\
+-60° to -30° & 3.2 & 1.4 & 22000 \\
+-30° to 0° & 2.1 & 0.9 & 45000 \\
+0° to 30° & 2 & 0.8 & 48000 \\
+30° to 60° & 3.4 & 1.5 & 21000 \\
+60° to 90° & 6.1 & 2.3 & 7500 \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.pose.pitch.v1}
+Pitch angle estimation accuracy for head tilt detection.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Pitch Range & MAE (degrees) & Std Dev \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+-45° to -30° & 4.2 & 1.8 \\
+-30° to -15° & 2.8 & 1.2 \\
+-15° to 15° & 1.9 & 0.7 \\
+15° to 30° & 2.6 & 1.1 \\
+30° to 45° & 4.5 & 1.9 \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{fig.pose.error_distribution.v1}
+Distribution of pose estimation errors across the test dataset.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure showing pose error dist}]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/pose_error_dist.png}}
+\caption{Visualization: Pose Error
+Dist}\label{fig.pose.error_distribution.v1}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Gaze Estimation}\label{gaze-estimation}
+
+\subsubsection{2.1 Gaze Vector Accuracy}\label{gaze-vector-accuracy}
+
+\protect\phantomsection\label{metric.gaze.angular_error.v1}
+Mean angular error of gaze direction estimation.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Gaze Angular Error & 4.2 degrees \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.gaze.by_region.v1}
+Gaze accuracy breakdown by dashboard region (instrument cluster, center
+console, mirrors).
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Gaze Region & Accuracy (\%) & Samples \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Road Ahead & 96.2 & 85000 \\
+Instrument Cluster & 93.8 & 25000 \\
+Center Console & 94.5 & 18000 \\
+Left Mirror & 98.1 & 8000 \\
+Right Mirror & 97.8 & 7500 \\
+Rear View Mirror & 95.2 & 6500 \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{fig.gaze.heatmap.v1}
+Heatmap showing gaze estimation accuracy across the driver field of
+view.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure showing gaze heatmap}]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/gaze_heatmap.png}}
+\caption{Visualization: Gaze Heatmap}\label{fig.gaze.heatmap.v1}
+\end{figure}
+
+\subsubsection{2.2 Gaze Zone
+Classification}\label{gaze-zone-classification}
+
+\protect\phantomsection\label{tbl.gaze.zone_confusion.v1}
+Confusion matrix for gaze zone classification (road, left mirror, right
+mirror, instrument, phone, other).
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllllll@{}}
+\toprule\noalign{}
+Actual Zone & → Road & → Instrument & → Console & → L Mirror & → R
+Mirror & → Phone \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Road & 96.2 & 2.1 & 0.8 & 0.3 & 0.3 & 0.3 \\
+Instrument & 3.8 & 93.8 & 1.5 & 0.2 & 0.2 & 0.5 \\
+Console & 1.2 & 2.3 & 94.5 & 0.1 & 0.1 & 1.8 \\
+L Mirror & 0.8 & 0.3 & 0.1 & 98.1 & 0.5 & 0.2 \\
+R Mirror & 0.9 & 0.4 & 0.1 & 0.6 & 97.8 & 0.2 \\
+Phone & 0.5 & 1.2 & 3.5 & 0.1 & 0.1 & 94.6 \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.gaze.zone_confusion.v1.annotation}
+\textbf{Key Observations:} - Road vs.~instrument cluster confusion is
+the primary error mode - Left/right mirror discrimination is highly
+accurate (\textgreater98\%) - ``Phone'' detection specifically important
+for distraction alerts
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Drowsiness Detection}\label{drowsiness-detection}
+
+\subsubsection{3.1 Eye State Analysis}\label{eye-state-analysis}
+
+\protect\phantomsection\label{metric.eye.perclos.v1}
+PERCLOS (Percentage of Eye Closure) detection accuracy.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+PERCLOS Accuracy & 94.5 \% \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.eye.blink.metrics.v1}
+Blink detection metrics including blink rate and duration analysis.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Metric & Value & Unit & Alert Threshold \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Blink Detection Rate & 97.2\% & & \textgreater95\% \\
+Mean Blink Duration & 215 & ms & \textgreater400ms \\
+PERCLOS (1 min) & 8.3\% & & \textgreater15\% \\
+Blink Rate & 14.2 & blinks/min & \textless8 or \textgreater25 \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{fig.drowsiness.roc.v1}
+ROC curve for drowsiness detection at various thresholds.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure showing drowsiness roc}]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/drowsiness_roc.png}}
+\caption{Visualization: Drowsiness Roc}\label{fig.drowsiness.roc.v1}
+\end{figure}
+
+\subsubsection{3.2 Yawn Detection}\label{yawn-detection}
+
+\protect\phantomsection\label{metric.yawn.detection.v1}
+Yawn detection F1 score.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Yawn Detection F1 & 0.923 \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.yawn.temporal.v1}
+Temporal analysis of yawn detection including onset and duration
+accuracy.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Detection Phase & Accuracy (\%) & Latency (ms) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Onset Detection & 94.2 & 85 \\
+Peak Detection & 97.8 & 120 \\
+End Detection & 91.5 & 95 \\
+Duration Estimation & 88.3 & 0 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Distraction
+Classification}\label{distraction-classification}
+
+\subsubsection{4.1 Activity Recognition}\label{activity-recognition}
+
+\protect\phantomsection\label{tbl.distraction.activities.v1}
+Classification accuracy for distracted driving activities.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Activity & Precision & Recall & F1 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Phone Usage & 95.2 & 93.3 & 94.2 \\
+Texting & 92.1 & 89.5 & 90.8 \\
+Eating/Drinking & 81.2 & 75.6 & 78.3 \\
+Reaching Back & 88.5 & 85.2 & 86.8 \\
+Talking to Passenger & 79.8 & 82.1 & 80.9 \\
+Adjusting Controls & 86.3 & 84.7 & 85.5 \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{fig.distraction.confusion.v1}
+Confusion matrix visualization for distraction activity classification.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure showing distraction confusion}]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/distraction_confusion.png}}
+\caption{Visualization: Distraction
+Confusion}\label{fig.distraction.confusion.v1}
+\end{figure}
+
+\protect\phantomsection\label{tbl.distraction.activities.v1.annotation}
+\textbf{Critical Findings:} - Phone usage detection achieves 94.2\%
+accuracy - Eating/drinking distinction remains challenging (78.3\%) -
+Talking to passenger vs.~phone call differentiation needs improvement
+
+\subsubsection{4.2 Attention Score}\label{attention-score}
+
+\protect\phantomsection\label{metric.attention.score.v1}
+Composite attention score combining all distraction indicators.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Attention Score Accuracy & 91.3 \% \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.attention.thresholds.v1}
+Alert threshold calibration across attention score ranges.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Attention Level & Score Range & System Action & Occurrence (\%) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Fully Attentive & 90-100 & None & 78.5 \\
+Mild Distraction & 70-89 & Visual Alert & 15.2 \\
+Moderate Distraction & 50-69 & Audio Alert & 4.8 \\
+Severe Distraction & 30-49 & Haptic + Audio & 1.2 \\
+Critical & 0-29 & Emergency Protocol & 0.3 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. System Performance}\label{system-performance}
+
+\subsubsection{5.1 Latency Analysis}\label{latency-analysis}
+
+\protect\phantomsection\label{tbl.latency.breakdown.v1}
+Latency breakdown by processing stage (detection, landmarks,
+classification).
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Processing Stage & Mean (ms) & P50 (ms) & P99 (ms) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Image Preprocessing & 1.2 & 1.1 & 2.1 \\
+Face Detection & 4.5 & 4.2 & 6.8 \\
+Landmark Extraction & 2.8 & 2.6 & 4.2 \\
+Pose Estimation & 3.2 & 3 & 5.1 \\
+Gaze Estimation & 2.1 & 2 & 3.5 \\
+Classification & 1.8 & 1.7 & 2.9 \\
+Post-processing & 0.8 & 0.7 & 1.2 \\
+Total & 16.4 & 15.3 & 23.4 \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{fig.latency.histogram.v1}
+Histogram of end-to-end processing latency.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure showing latency histogram}]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/latency_histogram.png}}
+\caption{Visualization: Latency
+Histogram}\label{fig.latency.histogram.v1}
+\end{figure}
+
+\subsubsection{5.2 Resource Utilization}\label{resource-utilization}
+
+\protect\phantomsection\label{tbl.resource.utilization.v1}
+CPU/GPU utilization and memory footprint during inference.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Resource & Mean Usage & Peak Usage & Limit \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+CPU & 45\% & 62\% & 70\% \\
+GPU & 38\% & 55\% & 80\% \\
+Memory & 512 MB & 680 MB & 1 GB \\
+NPU & 72\% & 85\% & 100\% \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Failure Analysis (Internal
+Only)}\label{failure-analysis-internal-only}
+
+This section contains detailed failure analysis for internal engineering
+review.
+
+\subsubsection{6.1 Error Categorization}\label{error-categorization}
+
+\protect\phantomsection\label{tbl.failures.by_category.v1}
+Breakdown of detection failures by root cause category.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Failure Category & Count & Percentage & Severity \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Sunglasses (reflective) & 1842 & 23.1 & High \\
+Extreme Pose & 1456 & 18.3 & Medium \\
+Motion Blur & 1123 & 14.1 & Medium \\
+Occlusion (hand) & 987 & 12.4 & Medium \\
+Low Contrast & 856 & 10.7 & Low \\
+IR Saturation & 723 & 9.1 & High \\
+Multiple Faces & 512 & 6.4 & Low \\
+Other & 471 & 5.9 & Low \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.failures.by_category.v1.annotation}
+\textbf{Engineering Notes:} - Sunglasses remain the top failure mode
+(23\% of all failures) - Consider adding polarized lens detection as a
+feature flag - IR reflection issues in certain sunglasses types
+identified
+
+\subsubsection{6.2 Edge Cases}\label{edge-cases}
+
+\protect\phantomsection\label{tbl.edge_cases.catalog.v1}
+Catalog of identified edge cases with reproduction steps.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Case ID & Description & Frequency & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+EC-001 & Polarized sunglasses with IR reflection & Rare & Under
+Investigation \\
+EC-002 & Face tattoos affecting landmark detection & Very Rare & Known
+Issue \\
+EC-003 & Extreme backlight during sunset & Occasional & Mitigated \\
+EC-004 & Medical eye patches & Very Rare & Documented \\
+EC-005 & Face masks (post-COVID) & Common & Resolved \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{fig.edge_cases.examples.v1}
+Visual examples of challenging edge cases.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figure showing edge cases examples}]{/home/hoseung/Work/DMS_eval/new_doc_platform/examples/extended_report/config/../artifacts/figures/edge_cases_examples.png}}
+\caption{Visualization: Edge Cases
+Examples}\label{fig.edge_cases.examples.v1}
+\end{figure}
+
+\subsubsection{6.3 Debug Information}\label{debug-information}
+
+\protect\phantomsection\label{tbl.debug.feature_stats.v1}
+Internal feature statistics for model debugging.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+Feature & Mean & Std & Min & Max \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+face\_confidence & 0.92 & 0.08 & 0.51 & 0.99 \\
+eye\_aspect\_ratio & 0.28 & 0.05 & 0.12 & 0.45 \\
+mouth\_aspect\_ratio & 0.15 & 0.12 & 0.02 & 0.68 \\
+head\_pose\_yaw & -2.3 & 18.5 & -85.2 & 82.1 \\
+gaze\_pitch & -8.5 & 12.3 & -45 & 35.2 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Experimental Results
+(Draft)}\label{experimental-results-draft}
+
+These results are from experimental features not yet validated for
+production.
+
+\subsubsection{7.1 Multi-Occupant
+Detection}\label{multi-occupant-detection}
+
+\protect\phantomsection\label{metric.multioccupant.accuracy.v1}
+Preliminary accuracy for multi-occupant detection.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Multi-Occupant Detection & 87.2 \% \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.multioccupant.positions.v1}
+Detection accuracy by seating position (driver, front passenger, rear).
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Seating Position & Detection Rate & Notes \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Driver & 99.2 & Primary target \\
+Front Passenger & 94.5 & Good coverage \\
+Rear Left & 78.3 & Limited FOV \\
+Rear Center & 65.2 & Occluded \\
+Rear Right & 76.8 & Limited FOV \\
+\end{longtable}
+}
+
+\subsubsection{7.2 Emotion Recognition
+(WIP)}\label{emotion-recognition-wip}
+
+\protect\phantomsection\label{tbl.emotion.preliminary.v1}
+Preliminary emotion recognition results - work in progress.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Emotion & Accuracy & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Neutral & 82.5 & WIP \\
+Happy & 75.2 & WIP \\
+Angry & 68.3 & WIP \\
+Surprised & 71.8 & WIP \\
+Drowsy & 88.2 & Validated \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Recommendations}\label{recommendations}
+
+Based on the analysis, we recommend the following improvements:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Sunglasses Handling}: Implement adaptive IR intensity for
+  sunglasses detection
+\item
+  \textbf{Gaze Calibration}: Add per-driver gaze calibration for
+  improved accuracy
+\item
+  \textbf{Latency Optimization}: Target 15ms reduction through model
+  pruning
+\item
+  \textbf{Edge Case Coverage}: Expand training data for identified
+  failure modes
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix A: Methodology}\label{appendix-a-methodology}
+
+\subsubsection{A.1 Dataset Description}\label{a.1-dataset-description}
+
+The evaluation dataset (ds\_dms\_eval\_2024\_v2) contains: - 150,000
+annotated frames - 500 unique subjects - 12 lighting conditions - 8
+vehicle types
+
+\subsubsection{A.2 Evaluation Protocol}\label{a.2-evaluation-protocol}
+
+All metrics were computed using: - 5-fold cross-validation - Stratified
+sampling by subject - Held-out test set (20\% of data)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix B: Detailed Tables
+(Verbose)}\label{appendix-b-detailed-tables-verbose}
+
+\subsubsection{B.1 Per-Subject
+Performance}\label{b.1-per-subject-performance}
+
+\protect\phantomsection\label{tbl.verbose.per_subject.v1}
+Performance metrics broken down by individual test subjects.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+Subject ID & Age Group & Gender & Accuracy & Sessions \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+S0000 & 18-25 & M & 90 & 3 \\
+S0001 & 26-35 & F & 91 & 4 \\
+S0002 & 36-45 & M & 92 & 5 \\
+S0003 & 46-55 & F & 93 & 6 \\
+S0004 & 56+ & M & 94 & 7 \\
+S0005 & 18-25 & F & 95 & 3 \\
+S0006 & 26-35 & M & 96 & 4 \\
+S0007 & 36-45 & F & 97 & 5 \\
+S0008 & 46-55 & M & 98 & 6 \\
+S0009 & 56+ & F & 99 & 7 \\
+S0010 & 18-25 & M & 90 & 3 \\
+S0011 & 26-35 & F & 91 & 4 \\
+S0012 & 36-45 & M & 92 & 5 \\
+S0013 & 46-55 & F & 93 & 6 \\
+S0014 & 56+ & M & 94 & 7 \\
+S0015 & 18-25 & F & 95 & 3 \\
+S0016 & 26-35 & M & 96 & 4 \\
+S0017 & 36-45 & F & 97 & 5 \\
+S0018 & 46-55 & M & 98 & 6 \\
+S0019 & 56+ & F & 99 & 7 \\
+S0020 & 18-25 & M & 90 & 3 \\
+S0021 & 26-35 & F & 91 & 4 \\
+S0022 & 36-45 & M & 92 & 5 \\
+S0023 & 46-55 & F & 93 & 6 \\
+S0024 & 56+ & M & 94 & 7 \\
+S0025 & 18-25 & F & 95 & 3 \\
+S0026 & 26-35 & M & 96 & 4 \\
+S0027 & 36-45 & F & 97 & 5 \\
+S0028 & 46-55 & M & 98 & 6 \\
+S0029 & 56+ & F & 99 & 7 \\
+S0030 & 18-25 & M & 90 & 3 \\
+S0031 & 26-35 & F & 91 & 4 \\
+S0032 & 36-45 & M & 92 & 5 \\
+S0033 & 46-55 & F & 93 & 6 \\
+S0034 & 56+ & M & 94 & 7 \\
+S0035 & 18-25 & F & 95 & 3 \\
+S0036 & 26-35 & M & 96 & 4 \\
+S0037 & 36-45 & F & 97 & 5 \\
+S0038 & 46-55 & M & 98 & 6 \\
+S0039 & 56+ & F & 99 & 7 \\
+S0040 & 18-25 & M & 90 & 3 \\
+S0041 & 26-35 & F & 91 & 4 \\
+S0042 & 36-45 & M & 92 & 5 \\
+S0043 & 46-55 & F & 93 & 6 \\
+S0044 & 56+ & M & 94 & 7 \\
+S0045 & 18-25 & F & 95 & 3 \\
+S0046 & 26-35 & M & 96 & 4 \\
+S0047 & 36-45 & F & 97 & 5 \\
+S0048 & 46-55 & M & 98 & 6 \\
+S0049 & 56+ & F & 99 & 7 \\
+S0050 & 18-25 & M & 90 & 3 \\
+S0051 & 26-35 & F & 91 & 4 \\
+S0052 & 36-45 & M & 92 & 5 \\
+S0053 & 46-55 & F & 93 & 6 \\
+S0054 & 56+ & M & 94 & 7 \\
+S0055 & 18-25 & F & 95 & 3 \\
+S0056 & 26-35 & M & 96 & 4 \\
+S0057 & 36-45 & F & 97 & 5 \\
+S0058 & 46-55 & M & 98 & 6 \\
+S0059 & 56+ & F & 99 & 7 \\
+S0060 & 18-25 & M & 90 & 3 \\
+S0061 & 26-35 & F & 91 & 4 \\
+S0062 & 36-45 & M & 92 & 5 \\
+S0063 & 46-55 & F & 93 & 6 \\
+S0064 & 56+ & M & 94 & 7 \\
+S0065 & 18-25 & F & 95 & 3 \\
+S0066 & 26-35 & M & 96 & 4 \\
+S0067 & 36-45 & F & 97 & 5 \\
+S0068 & 46-55 & M & 98 & 6 \\
+S0069 & 56+ & F & 99 & 7 \\
+S0070 & 18-25 & M & 90 & 3 \\
+S0071 & 26-35 & F & 91 & 4 \\
+S0072 & 36-45 & M & 92 & 5 \\
+S0073 & 46-55 & F & 93 & 6 \\
+S0074 & 56+ & M & 94 & 7 \\
+S0075 & 18-25 & F & 95 & 3 \\
+S0076 & 26-35 & M & 96 & 4 \\
+S0077 & 36-45 & F & 97 & 5 \\
+S0078 & 46-55 & M & 98 & 6 \\
+S0079 & 56+ & F & 99 & 7 \\
+S0080 & 18-25 & M & 90 & 3 \\
+S0081 & 26-35 & F & 91 & 4 \\
+S0082 & 36-45 & M & 92 & 5 \\
+S0083 & 46-55 & F & 93 & 6 \\
+S0084 & 56+ & M & 94 & 7 \\
+S0085 & 18-25 & F & 95 & 3 \\
+S0086 & 26-35 & M & 96 & 4 \\
+S0087 & 36-45 & F & 97 & 5 \\
+S0088 & 46-55 & M & 98 & 6 \\
+S0089 & 56+ & F & 99 & 7 \\
+S0090 & 18-25 & M & 90 & 3 \\
+S0091 & 26-35 & F & 91 & 4 \\
+S0092 & 36-45 & M & 92 & 5 \\
+S0093 & 46-55 & F & 93 & 6 \\
+S0094 & 56+ & M & 94 & 7 \\
+S0095 & 18-25 & F & 95 & 3 \\
+S0096 & 26-35 & M & 96 & 4 \\
+S0097 & 36-45 & F & 97 & 5 \\
+S0098 & 46-55 & M & 98 & 6 \\
+S0099 & 56+ & F & 99 & 7 \\
+\end{longtable}
+}
+
+\subsubsection{B.2 Per-Frame Analysis}\label{b.2-per-frame-analysis}
+
+\protect\phantomsection\label{tbl.verbose.per_frame.v1}
+Frame-by-frame analysis with confidence scores.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llllll@{}}
+\toprule\noalign{}
+Frame & Confidence & Yaw & Pitch & Gaze X & Gaze Y \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+F000000 & 0.85 & -30 & -15 & -20 & -10 \\
+F000001 & 0.86 & -29 & -14 & -19 & -9 \\
+F000002 & 0.87 & -28 & -13 & -18 & -8 \\
+F000003 & 0.88 & -27 & -12 & -17 & -7 \\
+F000004 & 0.89 & -26 & -11 & -16 & -6 \\
+F000005 & 0.9 & -25 & -10 & -15 & -5 \\
+F000006 & 0.91 & -24 & -9 & -14 & -4 \\
+F000007 & 0.92 & -23 & -8 & -13 & -3 \\
+F000008 & 0.93 & -22 & -7 & -12 & -2 \\
+F000009 & 0.94 & -21 & -6 & -11 & -1 \\
+F000010 & 0.95 & -20 & -5 & -10 & 0 \\
+F000011 & 0.96 & -19 & -4 & -9 & 1 \\
+F000012 & 0.97 & -18 & -3 & -8 & 2 \\
+F000013 & 0.98 & -17 & -2 & -7 & 3 \\
+F000014 & 0.99 & -16 & -1 & -6 & 4 \\
+F000015 & 0.85 & -15 & 0 & -5 & 5 \\
+F000016 & 0.86 & -14 & 1 & -4 & 6 \\
+F000017 & 0.87 & -13 & 2 & -3 & 7 \\
+F000018 & 0.88 & -12 & 3 & -2 & 8 \\
+F000019 & 0.89 & -11 & 4 & -1 & 9 \\
+F000020 & 0.9 & -10 & 5 & 0 & -10 \\
+F000021 & 0.91 & -9 & 6 & 1 & -9 \\
+F000022 & 0.92 & -8 & 7 & 2 & -8 \\
+F000023 & 0.93 & -7 & 8 & 3 & -7 \\
+F000024 & 0.94 & -6 & 9 & 4 & -6 \\
+F000025 & 0.95 & -5 & 10 & 5 & -5 \\
+F000026 & 0.96 & -4 & 11 & 6 & -4 \\
+F000027 & 0.97 & -3 & 12 & 7 & -3 \\
+F000028 & 0.98 & -2 & 13 & 8 & -2 \\
+F000029 & 0.99 & -1 & 14 & 9 & -1 \\
+F000030 & 0.85 & 0 & -15 & 10 & 0 \\
+F000031 & 0.86 & 1 & -14 & 11 & 1 \\
+F000032 & 0.87 & 2 & -13 & 12 & 2 \\
+F000033 & 0.88 & 3 & -12 & 13 & 3 \\
+F000034 & 0.89 & 4 & -11 & 14 & 4 \\
+F000035 & 0.9 & 5 & -10 & 15 & 5 \\
+F000036 & 0.91 & 6 & -9 & 16 & 6 \\
+F000037 & 0.92 & 7 & -8 & 17 & 7 \\
+F000038 & 0.93 & 8 & -7 & 18 & 8 \\
+F000039 & 0.94 & 9 & -6 & 19 & 9 \\
+F000040 & 0.95 & 10 & -5 & -20 & -10 \\
+F000041 & 0.96 & 11 & -4 & -19 & -9 \\
+F000042 & 0.97 & 12 & -3 & -18 & -8 \\
+F000043 & 0.98 & 13 & -2 & -17 & -7 \\
+F000044 & 0.99 & 14 & -1 & -16 & -6 \\
+F000045 & 0.85 & 15 & 0 & -15 & -5 \\
+F000046 & 0.86 & 16 & 1 & -14 & -4 \\
+F000047 & 0.87 & 17 & 2 & -13 & -3 \\
+F000048 & 0.88 & 18 & 3 & -12 & -2 \\
+F000049 & 0.89 & 19 & 4 & -11 & -1 \\
+F000050 & 0.9 & 20 & 5 & -10 & 0 \\
+F000051 & 0.91 & 21 & 6 & -9 & 1 \\
+F000052 & 0.92 & 22 & 7 & -8 & 2 \\
+F000053 & 0.93 & 23 & 8 & -7 & 3 \\
+F000054 & 0.94 & 24 & 9 & -6 & 4 \\
+F000055 & 0.95 & 25 & 10 & -5 & 5 \\
+F000056 & 0.96 & 26 & 11 & -4 & 6 \\
+F000057 & 0.97 & 27 & 12 & -3 & 7 \\
+F000058 & 0.98 & 28 & 13 & -2 & 8 \\
+F000059 & 0.99 & 29 & 14 & -1 & 9 \\
+F000060 & 0.85 & -30 & -15 & 0 & -10 \\
+F000061 & 0.86 & -29 & -14 & 1 & -9 \\
+F000062 & 0.87 & -28 & -13 & 2 & -8 \\
+F000063 & 0.88 & -27 & -12 & 3 & -7 \\
+F000064 & 0.89 & -26 & -11 & 4 & -6 \\
+F000065 & 0.9 & -25 & -10 & 5 & -5 \\
+F000066 & 0.91 & -24 & -9 & 6 & -4 \\
+F000067 & 0.92 & -23 & -8 & 7 & -3 \\
+F000068 & 0.93 & -22 & -7 & 8 & -2 \\
+F000069 & 0.94 & -21 & -6 & 9 & -1 \\
+F000070 & 0.95 & -20 & -5 & 10 & 0 \\
+F000071 & 0.96 & -19 & -4 & 11 & 1 \\
+F000072 & 0.97 & -18 & -3 & 12 & 2 \\
+F000073 & 0.98 & -17 & -2 & 13 & 3 \\
+F000074 & 0.99 & -16 & -1 & 14 & 4 \\
+F000075 & 0.85 & -15 & 0 & 15 & 5 \\
+F000076 & 0.86 & -14 & 1 & 16 & 6 \\
+F000077 & 0.87 & -13 & 2 & 17 & 7 \\
+F000078 & 0.88 & -12 & 3 & 18 & 8 \\
+F000079 & 0.89 & -11 & 4 & 19 & 9 \\
+F000080 & 0.9 & -10 & 5 & -20 & -10 \\
+F000081 & 0.91 & -9 & 6 & -19 & -9 \\
+F000082 & 0.92 & -8 & 7 & -18 & -8 \\
+F000083 & 0.93 & -7 & 8 & -17 & -7 \\
+F000084 & 0.94 & -6 & 9 & -16 & -6 \\
+F000085 & 0.95 & -5 & 10 & -15 & -5 \\
+F000086 & 0.96 & -4 & 11 & -14 & -4 \\
+F000087 & 0.97 & -3 & 12 & -13 & -3 \\
+F000088 & 0.98 & -2 & 13 & -12 & -2 \\
+F000089 & 0.99 & -1 & 14 & -11 & -1 \\
+F000090 & 0.85 & 0 & -15 & -10 & 0 \\
+F000091 & 0.86 & 1 & -14 & -9 & 1 \\
+F000092 & 0.87 & 2 & -13 & -8 & 2 \\
+F000093 & 0.88 & 3 & -12 & -7 & 3 \\
+F000094 & 0.89 & 4 & -11 & -6 & 4 \\
+F000095 & 0.9 & 5 & -10 & -5 & 5 \\
+F000096 & 0.91 & 6 & -9 & -4 & 6 \\
+F000097 & 0.92 & 7 & -8 & -3 & 7 \\
+F000098 & 0.93 & 8 & -7 & -2 & 8 \\
+F000099 & 0.94 & 9 & -6 & -1 & 9 \\
+F000100 & 0.95 & 10 & -5 & 0 & -10 \\
+F000101 & 0.96 & 11 & -4 & 1 & -9 \\
+F000102 & 0.97 & 12 & -3 & 2 & -8 \\
+F000103 & 0.98 & 13 & -2 & 3 & -7 \\
+F000104 & 0.99 & 14 & -1 & 4 & -6 \\
+F000105 & 0.85 & 15 & 0 & 5 & -5 \\
+F000106 & 0.86 & 16 & 1 & 6 & -4 \\
+F000107 & 0.87 & 17 & 2 & 7 & -3 \\
+F000108 & 0.88 & 18 & 3 & 8 & -2 \\
+F000109 & 0.89 & 19 & 4 & 9 & -1 \\
+F000110 & 0.9 & 20 & 5 & 10 & 0 \\
+F000111 & 0.91 & 21 & 6 & 11 & 1 \\
+F000112 & 0.92 & 22 & 7 & 12 & 2 \\
+F000113 & 0.93 & 23 & 8 & 13 & 3 \\
+F000114 & 0.94 & 24 & 9 & 14 & 4 \\
+F000115 & 0.95 & 25 & 10 & 15 & 5 \\
+F000116 & 0.96 & 26 & 11 & 16 & 6 \\
+F000117 & 0.97 & 27 & 12 & 17 & 7 \\
+F000118 & 0.98 & 28 & 13 & 18 & 8 \\
+F000119 & 0.99 & 29 & 14 & 19 & 9 \\
+F000120 & 0.85 & -30 & -15 & -20 & -10 \\
+F000121 & 0.86 & -29 & -14 & -19 & -9 \\
+F000122 & 0.87 & -28 & -13 & -18 & -8 \\
+F000123 & 0.88 & -27 & -12 & -17 & -7 \\
+F000124 & 0.89 & -26 & -11 & -16 & -6 \\
+F000125 & 0.9 & -25 & -10 & -15 & -5 \\
+F000126 & 0.91 & -24 & -9 & -14 & -4 \\
+F000127 & 0.92 & -23 & -8 & -13 & -3 \\
+F000128 & 0.93 & -22 & -7 & -12 & -2 \\
+F000129 & 0.94 & -21 & -6 & -11 & -1 \\
+F000130 & 0.95 & -20 & -5 & -10 & 0 \\
+F000131 & 0.96 & -19 & -4 & -9 & 1 \\
+F000132 & 0.97 & -18 & -3 & -8 & 2 \\
+F000133 & 0.98 & -17 & -2 & -7 & 3 \\
+F000134 & 0.99 & -16 & -1 & -6 & 4 \\
+F000135 & 0.85 & -15 & 0 & -5 & 5 \\
+F000136 & 0.86 & -14 & 1 & -4 & 6 \\
+F000137 & 0.87 & -13 & 2 & -3 & 7 \\
+F000138 & 0.88 & -12 & 3 & -2 & 8 \\
+F000139 & 0.89 & -11 & 4 & -1 & 9 \\
+F000140 & 0.9 & -10 & 5 & 0 & -10 \\
+F000141 & 0.91 & -9 & 6 & 1 & -9 \\
+F000142 & 0.92 & -8 & 7 & 2 & -8 \\
+F000143 & 0.93 & -7 & 8 & 3 & -7 \\
+F000144 & 0.94 & -6 & 9 & 4 & -6 \\
+F000145 & 0.95 & -5 & 10 & 5 & -5 \\
+F000146 & 0.96 & -4 & 11 & 6 & -4 \\
+F000147 & 0.97 & -3 & 12 & 7 & -3 \\
+F000148 & 0.98 & -2 & 13 & 8 & -2 \\
+F000149 & 0.99 & -1 & 14 & 9 & -1 \\
+F000150 & 0.85 & 0 & -15 & 10 & 0 \\
+F000151 & 0.86 & 1 & -14 & 11 & 1 \\
+F000152 & 0.87 & 2 & -13 & 12 & 2 \\
+F000153 & 0.88 & 3 & -12 & 13 & 3 \\
+F000154 & 0.89 & 4 & -11 & 14 & 4 \\
+F000155 & 0.9 & 5 & -10 & 15 & 5 \\
+F000156 & 0.91 & 6 & -9 & 16 & 6 \\
+F000157 & 0.92 & 7 & -8 & 17 & 7 \\
+F000158 & 0.93 & 8 & -7 & 18 & 8 \\
+F000159 & 0.94 & 9 & -6 & 19 & 9 \\
+F000160 & 0.95 & 10 & -5 & -20 & -10 \\
+F000161 & 0.96 & 11 & -4 & -19 & -9 \\
+F000162 & 0.97 & 12 & -3 & -18 & -8 \\
+F000163 & 0.98 & 13 & -2 & -17 & -7 \\
+F000164 & 0.99 & 14 & -1 & -16 & -6 \\
+F000165 & 0.85 & 15 & 0 & -15 & -5 \\
+F000166 & 0.86 & 16 & 1 & -14 & -4 \\
+F000167 & 0.87 & 17 & 2 & -13 & -3 \\
+F000168 & 0.88 & 18 & 3 & -12 & -2 \\
+F000169 & 0.89 & 19 & 4 & -11 & -1 \\
+F000170 & 0.9 & 20 & 5 & -10 & 0 \\
+F000171 & 0.91 & 21 & 6 & -9 & 1 \\
+F000172 & 0.92 & 22 & 7 & -8 & 2 \\
+F000173 & 0.93 & 23 & 8 & -7 & 3 \\
+F000174 & 0.94 & 24 & 9 & -6 & 4 \\
+F000175 & 0.95 & 25 & 10 & -5 & 5 \\
+F000176 & 0.96 & 26 & 11 & -4 & 6 \\
+F000177 & 0.97 & 27 & 12 & -3 & 7 \\
+F000178 & 0.98 & 28 & 13 & -2 & 8 \\
+F000179 & 0.99 & 29 & 14 & -1 & 9 \\
+F000180 & 0.85 & -30 & -15 & 0 & -10 \\
+F000181 & 0.86 & -29 & -14 & 1 & -9 \\
+F000182 & 0.87 & -28 & -13 & 2 & -8 \\
+F000183 & 0.88 & -27 & -12 & 3 & -7 \\
+F000184 & 0.89 & -26 & -11 & 4 & -6 \\
+F000185 & 0.9 & -25 & -10 & 5 & -5 \\
+F000186 & 0.91 & -24 & -9 & 6 & -4 \\
+F000187 & 0.92 & -23 & -8 & 7 & -3 \\
+F000188 & 0.93 & -22 & -7 & 8 & -2 \\
+F000189 & 0.94 & -21 & -6 & 9 & -1 \\
+F000190 & 0.95 & -20 & -5 & 10 & 0 \\
+F000191 & 0.96 & -19 & -4 & 11 & 1 \\
+F000192 & 0.97 & -18 & -3 & 12 & 2 \\
+F000193 & 0.98 & -17 & -2 & 13 & 3 \\
+F000194 & 0.99 & -16 & -1 & 14 & 4 \\
+F000195 & 0.85 & -15 & 0 & 15 & 5 \\
+F000196 & 0.86 & -14 & 1 & 16 & 6 \\
+F000197 & 0.87 & -13 & 2 & 17 & 7 \\
+F000198 & 0.88 & -12 & 3 & 18 & 8 \\
+F000199 & 0.89 & -11 & 4 & 19 & 9 \\
+\end{longtable}
+}
+
+\subsubsection{B.3 Raw Feature
+Distributions}\label{b.3-raw-feature-distributions}
+
+\protect\phantomsection\label{tbl.verbose.feature_distributions.v1}
+Raw feature value distributions for model interpretability.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Bin & Face Conf & Eye AR & Mouth AR \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0-10 & 50 & 30 & 20 \\
+10-20 & 70 & 45 & 30 \\
+20-30 & 90 & 60 & 40 \\
+30-40 & 110 & 75 & 50 \\
+40-50 & 130 & 90 & 60 \\
+50-60 & 150 & 105 & 70 \\
+60-70 & 170 & 120 & 80 \\
+70-80 & 190 & 135 & 90 \\
+80-90 & 210 & 150 & 100 \\
+90-100 & 230 & 165 & 110 \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix C: Dossier-Only
+Content}\label{appendix-c-dossier-only-content}
+
+This section contains highly condensed summary for regulatory dossier.
+
+\protect\phantomsection\label{tbl.dossier.regulatory_summary.v1}
+Regulatory compliance summary table.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Regulatory Requirement & Standard & Test Result & Compliance \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Driver Attention Detection & UNECE R79 & PASS & Compliant \\
+Drowsiness Warning & EU 2019/2144 & PASS & Compliant \\
+Distraction Warning & EU 2019/2144 & PASS & Compliant \\
+System Availability & ISO 26262 & 99.2\% & ASIL-B \\
+False Positive Rate & Internal & \textless2\% & Compliant \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{metric.dossier.safety_score.v1}
+Composite safety score for regulatory filing.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Composite Safety Score & 94.8 \% \\
+\end{longtable}
+}
+
+\end{document}

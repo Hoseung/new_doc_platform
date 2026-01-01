@@ -1,0 +1,279 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\section{Driver Monitoring System --- Performance Analysis
+Report}\label{driver-monitoring-system-performance-analysis-report}
+
+This comprehensive report evaluates the Driver Monitoring System (DMS)
+across multiple performance dimensions including face detection, gaze
+estimation, drowsiness detection, and distraction classification.
+
+\textbf{Report Configuration:} - Dataset: ds\_dms\_eval\_2024\_v2 -
+Model Version: DMS-Core-v3.2.1 - Evaluation Date: 2024-12-15
+
+\subsection{Executive Summary}\label{executive-summary}
+
+This section provides high-level metrics suitable for external
+stakeholders.
+
+\protect\phantomsection\label{metric.overall.accuracy.v1}
+Overall system accuracy across all detection tasks.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Overall System Accuracy & 96.7 \% \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{tbl.executive.summary.v1}
+Summary of key performance indicators for executive review.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lllll@{}}
+\toprule\noalign{}
+Category & Metric & Value & Target & Status \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Detection & Face Detection & 98.0\% & \textgreater95\% & PASS \\
+Detection & Eye Detection & 96.5\% & \textgreater95\% & PASS \\
+Estimation & Gaze Accuracy & 4.2° & \textless5° & PASS \\
+Estimation & Pose Accuracy & 3.1° & \textless5° & PASS \\
+Classification & Drowsiness & 94.5\% & \textgreater90\% & PASS \\
+Classification & Distraction & 91.3\% & \textgreater90\% & PASS \\
+Performance & Latency P99 & 23.4ms & \textless30ms & PASS \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{1. Face Detection
+Performance}\label{face-detection-performance}
+
+\subsubsection{1.1 Detection Accuracy}\label{detection-accuracy}
+
+\subsubsection{1.2 Pose Estimation}\label{pose-estimation}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{2. Gaze Estimation}\label{gaze-estimation}
+
+\subsubsection{2.1 Gaze Vector Accuracy}\label{gaze-vector-accuracy}
+
+\subsubsection{2.2 Gaze Zone
+Classification}\label{gaze-zone-classification}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{3. Drowsiness Detection}\label{drowsiness-detection}
+
+\subsubsection{3.1 Eye State Analysis}\label{eye-state-analysis}
+
+\subsubsection{3.2 Yawn Detection}\label{yawn-detection}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{4. Distraction
+Classification}\label{distraction-classification}
+
+\subsubsection{4.1 Activity Recognition}\label{activity-recognition}
+
+\subsubsection{4.2 Attention Score}\label{attention-score}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{5. System Performance}\label{system-performance}
+
+\subsubsection{5.1 Latency Analysis}\label{latency-analysis}
+
+\subsubsection{5.2 Resource Utilization}\label{resource-utilization}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{6. Failure Analysis (Internal
+Only)}\label{failure-analysis-internal-only}
+
+This section contains detailed failure analysis for internal engineering
+review.
+
+\subsubsection{6.1 Error Categorization}\label{error-categorization}
+
+\subsubsection{6.2 Edge Cases}\label{edge-cases}
+
+\subsubsection{6.3 Debug Information}\label{debug-information}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{7. Experimental Results
+(Draft)}\label{experimental-results-draft}
+
+These results are from experimental features not yet validated for
+production.
+
+\subsubsection{7.1 Multi-Occupant
+Detection}\label{multi-occupant-detection}
+
+\subsubsection{7.2 Emotion Recognition
+(WIP)}\label{emotion-recognition-wip}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{8. Recommendations}\label{recommendations}
+
+Based on the analysis, we recommend the following improvements:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Sunglasses Handling}: Implement adaptive IR intensity for
+  sunglasses detection
+\item
+  \textbf{Gaze Calibration}: Add per-driver gaze calibration for
+  improved accuracy
+\item
+  \textbf{Latency Optimization}: Target 15ms reduction through model
+  pruning
+\item
+  \textbf{Edge Case Coverage}: Expand training data for identified
+  failure modes
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix A: Methodology}\label{appendix-a-methodology}
+
+\subsubsection{A.1 Dataset Description}\label{a.1-dataset-description}
+
+The evaluation dataset (ds\_dms\_eval\_2024\_v2) contains: - 150,000
+annotated frames - 500 unique subjects - 12 lighting conditions - 8
+vehicle types
+
+\subsubsection{A.2 Evaluation Protocol}\label{a.2-evaluation-protocol}
+
+All metrics were computed using: - 5-fold cross-validation - Stratified
+sampling by subject - Held-out test set (20\% of data)
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix B: Detailed Tables
+(Verbose)}\label{appendix-b-detailed-tables-verbose}
+
+\subsubsection{B.1 Per-Subject
+Performance}\label{b.1-per-subject-performance}
+
+\subsubsection{B.2 Per-Frame Analysis}\label{b.2-per-frame-analysis}
+
+\subsubsection{B.3 Raw Feature
+Distributions}\label{b.3-raw-feature-distributions}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Appendix C: Dossier-Only
+Content}\label{appendix-c-dossier-only-content}
+
+This section contains highly condensed summary for regulatory dossier.
+
+\protect\phantomsection\label{tbl.dossier.regulatory_summary.v1}
+Regulatory compliance summary table.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Regulatory Requirement & Standard & Test Result & Compliance \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Driver Attention Detection & UNECE R79 & PASS & Compliant \\
+Drowsiness Warning & EU 2019/2144 & PASS & Compliant \\
+Distraction Warning & EU 2019/2144 & PASS & Compliant \\
+System Availability & ISO 26262 & 99.2\% & ASIL-B \\
+False Positive Rate & Internal & \textless2\% & Compliant \\
+\end{longtable}
+}
+
+\protect\phantomsection\label{metric.dossier.safety_score.v1}
+Composite safety score for regulatory filing.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lr@{}}
+\toprule\noalign{}
+Metric & Value \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Composite Safety Score & 94.8 \% \\
+\end{longtable}
+}
+
+\end{document}
