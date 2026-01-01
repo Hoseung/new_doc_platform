@@ -22,11 +22,19 @@ render/
 
 ```python
 from litepub_norm.render import render, RenderConfig
-from litepub_norm.render.config import default_html_config, default_pdf_config
+from litepub_norm.render.config import (
+    default_html_config,
+    default_html_site_config,
+    default_pdf_config,
+)
 
-# HTML rendering
+# Single-page HTML rendering
 html_config = default_html_config().with_output_dir(output_path)
 result = render(filtered_doc, context, html_config, "output.html")
+
+# Multi-page HTML site rendering
+site_config = default_html_site_config(split_level=2).with_output_dir(output_path)
+result = render(filtered_doc, context, site_config, "site")  # directory name
 
 # PDF rendering
 pdf_config = default_pdf_config().with_output_dir(output_path)
@@ -47,9 +55,49 @@ class RenderResult:
 
 ## HTML Renderer
 
-- Uses Pandoc to convert normalized JSON AST to HTML
-- Copies referenced assets to output directory
-- Generates `render_report.json` with metadata
+Supports two modes:
+
+### Single-Page Mode (default)
+
+- Uses Pandoc `html5` writer
+- Produces a single HTML file
+- Copies assets to output directory
+- Generates `render_report.json`
+
+```python
+config = default_html_config()  # html_mode="single"
+```
+
+### Multi-Page Site Mode
+
+- Uses Pandoc `chunkedhtml` writer
+- Produces multiple HTML pages with navigation
+- Includes `sitemap.json` for page hierarchy
+- Each chapter/section becomes a separate page
+
+```python
+config = default_html_site_config(split_level=1)  # html_mode="site"
+```
+
+**Configuration options:**
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `html_mode` | `"single"` | `"single"` or `"site"` |
+| `html_site_split_level` | `1` | Split at level-N headings (1=chapters, 2=sections) |
+| `html_site_chunk_template` | `"%s-%i.html"` | Filename template (`%s`=number, `%i`=id) |
+
+**Site output structure:**
+
+```
+output/site/
+├── index.html           # Top page with TOC
+├── 1-chapter-one.html   # Chapter pages
+├── 2-chapter-two.html
+├── sitemap.json         # Navigation hierarchy
+├── assets/              # CSS/JS
+└── render_report.json   # Build metadata
+```
 
 ## PDF Renderer
 

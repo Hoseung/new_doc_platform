@@ -83,7 +83,7 @@ def _stable_temp_path(content: bytes, suffix: str) -> Path:
 
 def run(
     input_ast: dict[str, Any],
-    to_format: Literal["html5", "latex", "gfm", "rst", "markdown"],
+    to_format: Literal["html5", "chunkedhtml", "latex", "gfm", "rst", "markdown"],
     output_path: Path,
     pandoc_path: Path | str | None = None,
     template: Path | None = None,
@@ -96,8 +96,8 @@ def run(
 
     Args:
         input_ast: Pandoc AST as dictionary
-        to_format: Output format (html5, latex, gfm, rst, markdown)
-        output_path: Path for output file
+        to_format: Output format (html5, chunkedhtml, latex, gfm, rst, markdown)
+        output_path: Path for output file (for chunkedhtml, this is a directory)
         pandoc_path: Path to pandoc executable (None = system pandoc)
         template: Template file path
         lua_filters: List of Lua filter paths
@@ -109,6 +109,11 @@ def run(
 
     Raises:
         PandocError: If pandoc invocation fails
+
+    Note:
+        For chunkedhtml output, the output_path should be a directory path
+        without extension. Pandoc will create multiple HTML files in that
+        directory including index.html and sitemap.json.
     """
     # Serialize AST to JSON
     ast_json = json.dumps(input_ast, ensure_ascii=False)
@@ -137,7 +142,17 @@ def run(
     cmd.append(str(input_path))
 
     # Ensure output directory exists
-    output_path.parent.mkdir(parents=True, exist_ok=True)
+    # For chunkedhtml, pandoc creates the directory itself; we create parent
+    if to_format == "chunkedhtml":
+        # For chunkedhtml, output_path is the directory to create
+        # Pandoc will error if it exists, so we ensure parent exists
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        # Remove existing output directory if it exists (for rebuild)
+        if output_path.exists():
+            import shutil
+            shutil.rmtree(output_path)
+    else:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Run pandoc
     try:
@@ -186,6 +201,7 @@ def run_to_string(
     extra_args: tuple[str, ...] | list[str] = (),
     standalone: bool = True,
 ) -> str:
+    # Note: chunkedhtml is not supported here as it outputs multiple files
     """
     Run pandoc and return output as string.
 

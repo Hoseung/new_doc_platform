@@ -103,6 +103,9 @@ class RenderReport:
     warnings: list[dict[str, Any]] = field(default_factory=list)
     errors: list[dict[str, Any]] = field(default_factory=list)
 
+    # Extra info (mode-specific details)
+    extra_info: dict[str, Any] = field(default_factory=dict)
+
     def start(self) -> None:
         """Mark the start of rendering."""
         self.started_at = datetime.now(timezone.utc).isoformat()
@@ -183,6 +186,7 @@ class RenderReport:
                 "warnings": self.warnings,
                 "errors": self.errors,
             },
+            "extra": self.extra_info if self.extra_info else None,
         }
 
     def to_json(self, indent: int = 2) -> str:

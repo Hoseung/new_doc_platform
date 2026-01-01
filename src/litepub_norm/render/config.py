@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Literal
 
 RenderTarget = Literal["html", "pdf", "md", "rst"]
+HtmlMode = Literal["single", "site"]
 
 
 @dataclass(frozen=True)
@@ -21,6 +22,9 @@ class RenderConfig:
         html_template_path: Path to HTML template
         html_assets_dir: Path to HTML assets (CSS, JS)
         html_lua_filters: List of Lua filter paths for HTML
+        html_mode: HTML rendering mode ('single' or 'site')
+        html_site_split_level: Split level for site mode (1=chapter, 2=section)
+        html_site_chunk_template: Filename template for site chunks
         latex_template_path: Path to LaTeX template
         latex_engine: LaTeX engine to use
         latex_engine_path: Path to LaTeX engine (None = use system)
@@ -41,6 +45,9 @@ class RenderConfig:
     html_template_path: Path | None = None
     html_assets_dir: Path | None = None
     html_lua_filters: tuple[Path, ...] = ()
+    html_mode: HtmlMode = "single"
+    html_site_split_level: int = 1  # Split at level-1 headings (chapters)
+    html_site_chunk_template: str = "%s-%i.html"  # section-number-identifier.html
 
     # PDF/LaTeX options
     latex_template_path: Path | None = None
@@ -90,6 +97,33 @@ class RenderConfig:
             html_template_path=self.html_template_path,
             html_assets_dir=self.html_assets_dir,
             html_lua_filters=self.html_lua_filters,
+            html_mode=self.html_mode,
+            html_site_split_level=self.html_site_split_level,
+            html_site_chunk_template=self.html_site_chunk_template,
+            latex_template_path=self.latex_template_path,
+            latex_engine=self.latex_engine,
+            latex_engine_path=self.latex_engine_path,
+            latex_runs=self.latex_runs,
+            html_writer_options=self.html_writer_options,
+            latex_writer_options=self.latex_writer_options,
+            md_writer_options=self.md_writer_options,
+            rst_writer_options=self.rst_writer_options,
+            copy_assets=self.copy_assets,
+            standalone=self.standalone,
+        )
+
+    def with_html_mode(self, mode: HtmlMode, split_level: int = 1) -> RenderConfig:
+        """Return a new config with HTML mode settings."""
+        return RenderConfig(
+            output_dir=self.output_dir,
+            pandoc_path=self.pandoc_path,
+            pandoc_required_version=self.pandoc_required_version,
+            html_template_path=self.html_template_path,
+            html_assets_dir=self.html_assets_dir,
+            html_lua_filters=self.html_lua_filters,
+            html_mode=mode,
+            html_site_split_level=split_level,
+            html_site_chunk_template=self.html_site_chunk_template,
             latex_template_path=self.latex_template_path,
             latex_engine=self.latex_engine,
             latex_engine_path=self.latex_engine_path,
@@ -104,12 +138,30 @@ class RenderConfig:
 
 
 def default_html_config() -> RenderConfig:
-    """Create a default config for HTML rendering."""
+    """Create a default config for single-page HTML rendering."""
     render_dir = Path(__file__).parent
     return RenderConfig(
         html_template_path=render_dir / "html" / "templates" / "template.html",
         html_assets_dir=render_dir / "html" / "assets",
         html_lua_filters=(render_dir / "html" / "lua" / "foldable.lua",),
+        html_mode="single",
+    )
+
+
+def default_html_site_config(split_level: int = 1) -> RenderConfig:
+    """
+    Create a default config for multi-page HTML site rendering.
+
+    Args:
+        split_level: Where to split pages (1=chapters, 2=sections)
+    """
+    render_dir = Path(__file__).parent
+    return RenderConfig(
+        html_template_path=render_dir / "html" / "templates" / "template.html",
+        html_assets_dir=render_dir / "html" / "assets",
+        html_lua_filters=(render_dir / "html" / "lua" / "foldable.lua",),
+        html_mode="site",
+        html_site_split_level=split_level,
     )
 
 

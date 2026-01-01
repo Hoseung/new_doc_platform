@@ -11,8 +11,14 @@ PIPELINE NOTES:
 - The RST adapter wraps figure/table directives with :name: as semantic blocks
 - Inline tables remain as regular content (not externalized)
 - Figures are verified against the AARC registry
+
+Usage:
+    python build.py              # Build all targets (single-page HTML/PDF)
+    python build.py --site       # Build multi-page static site
+    python build.py --help       # Show help
 """
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -24,7 +30,11 @@ from litepub_norm.normalizer import harness
 from litepub_norm.resolver import resolve, ResolutionConfig, load_registry
 from litepub_norm.filters import apply_filters, BuildContext, FilterConfig
 from litepub_norm.render import render, RenderConfig
-from litepub_norm.render.config import default_html_config, default_pdf_config
+from litepub_norm.render.config import (
+    default_html_config,
+    default_html_site_config,
+    default_pdf_config,
+)
 
 
 # Paths
@@ -115,10 +125,13 @@ def build_for_target(
     target: str,
     render_target: str = "html",
     do_render: bool = False,
+    site_mode: bool = False,
+    split_level: int = 1,
 ) -> dict:
     """Build the document for a specific target."""
+    mode_label = f"{render_target}" + (" site" if site_mode else "")
     print(f"\n{'='*60}")
-    print(f"Building for target: {target} (render: {render_target})")
+    print(f"Building for target: {target} (render: {mode_label})")
     print("=" * 60)
 
     # Resolve placeholders
@@ -148,33 +161,87 @@ def build_for_target(
 
     # Render if requested
     if do_render:
-        print(f"\n  Rendering to {render_target}...")
-        render_output_dir = OUTPUT_DIR / f"{target}_{render_target}"
+        if site_mode and render_target == "html":
+            print(f"\n  Rendering to HTML site (split_level={split_level})...")
+            render_output_dir = OUTPUT_DIR / f"{target}_site"
 
-        # Use appropriate default config and override output_dir
-        if render_target == "pdf":
-            render_config = default_pdf_config().with_output_dir(render_output_dir)
+            # Use site config
+            render_config = default_html_site_config(split_level).with_output_dir(render_output_dir)
+            output_name = "whitepaper"  # Directory name for site
+
+            render_result = render(filtered, context, render_config, output_name)
+
+            if render_result.success:
+                print(f"    Rendered successfully!")
+                print(f"    Site directory: {render_result.primary_output}")
+                # List some generated pages
+                pages = [f for f in render_result.output_files if str(f).endswith('.html')]
+                print(f"    Generated {len(pages)} pages")
+                for page in pages[:5]:
+                    print(f"      - {page.name if hasattr(page, 'name') else page}")
+                if len(pages) > 5:
+                    print(f"      ... and {len(pages) - 5} more")
+            else:
+                print(f"    Render failed!")
+                for err in render_result.errors:
+                    print(f"      Error: {err.code} - {err.message}")
         else:
-            render_config = default_html_config().with_output_dir(render_output_dir)
+            print(f"\n  Rendering to {render_target}...")
+            render_output_dir = OUTPUT_DIR / f"{target}_{render_target}"
 
-        output_name = f"whitepaper.{render_target}" if render_target != "pdf" else "whitepaper.pdf"
+            # Use appropriate default config and override output_dir
+            if render_target == "pdf":
+                render_config = default_pdf_config().with_output_dir(render_output_dir)
+            else:
+                render_config = default_html_config().with_output_dir(render_output_dir)
 
-        render_result = render(filtered, context, render_config, output_name)
+            output_name = f"whitepaper.{render_target}" if render_target != "pdf" else "whitepaper.pdf"
 
-        if render_result.success:
-            print(f"    Rendered successfully!")
-            print(f"    Primary output: {render_result.primary_output}")
-            for f in render_result.output_files[1:4]:  # Show first few secondary files
-                print(f"    Secondary: {f}")
-        else:
-            print(f"    Render failed!")
-            for err in render_result.errors:
-                print(f"      Error: {err.code} - {err.message}")
+            render_result = render(filtered, context, render_config, output_name)
+
+            if render_result.success:
+                print(f"    Rendered successfully!")
+                print(f"    Primary output: {render_result.primary_output}")
+                for f in render_result.output_files[1:4]:  # Show first few secondary files
+                    print(f"    Secondary: {f}")
+            else:
+                print(f"    Render failed!")
+                for err in render_result.errors:
+                    print(f"      Error: {err.code} - {err.message}")
 
     return filtered
 
 
 def main():
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(
+        description="Build RST source documents through the litepub_norm pipeline.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  python build.py              # Build single-page HTML and PDF
+  python build.py --site       # Build multi-page static site
+  python build.py --site --split-level=2  # Split at section level
+        """
+    )
+    parser.add_argument(
+        "--site",
+        action="store_true",
+        help="Build multi-page static site instead of single-page HTML"
+    )
+    parser.add_argument(
+        "--split-level",
+        type=int,
+        default=1,
+        help="Split level for site mode (1=chapters, 2=sections, default: 1)"
+    )
+    parser.add_argument(
+        "--only-site",
+        action="store_true",
+        help="Only build site (skip single-page HTML/PDF builds)"
+    )
+    args = parser.parse_args()
+
     OUTPUT_DIR.mkdir(exist_ok=True)
 
     print("RST Source Build Pipeline")
@@ -187,6 +254,8 @@ def main():
     print(f"Source directory: {SRC_DIR}")
     print(f"Normalization registry: {norm_registry_path}")
     print(f"AARC registry: {aarc_registry_path}")
+    if args.site:
+        print(f"Site mode: enabled (split_level={args.split_level})")
 
     # Step 0: Concatenate RST files
     print("\n" + "=" * 60)
@@ -223,15 +292,31 @@ def main():
     aarc_registry = load_registry(aarc_registry_path)
 
     # Step 2: Build for different targets
-    # Tuple: (build_target, render_target, do_render)
-    targets = [
-        ("internal", "html", True),   # Render HTML
-        ("internal", "pdf", True),    # Render PDF
-        ("external", "html", True),   # Render HTML
-        ("dossier", "pdf", True),     # Render PDF for dossier
-    ]
+    # Tuple: (build_target, render_target, do_render, site_mode)
+    if args.only_site:
+        # Only build site
+        targets = [
+            ("internal", "html", True, True),  # Render site
+        ]
+    elif args.site:
+        # Build both regular and site
+        targets = [
+            ("internal", "html", True, False),  # Single-page HTML
+            ("internal", "pdf", True, False),   # PDF
+            ("internal", "html", True, True),   # Multi-page site
+            ("external", "html", True, False),  # External HTML
+            ("dossier", "pdf", True, False),    # Dossier PDF
+        ]
+    else:
+        # Regular build (no site)
+        targets = [
+            ("internal", "html", True, False),  # Render HTML
+            ("internal", "pdf", True, False),   # Render PDF
+            ("external", "html", True, False),  # Render HTML
+            ("dossier", "pdf", True, False),    # Render PDF for dossier
+        ]
 
-    for build_target, render_target, do_render in targets:
+    for build_target, render_target, do_render, site_mode in targets:
         try:
             filtered = build_for_target(
                 normalized,
@@ -239,10 +324,13 @@ def main():
                 build_target,
                 render_target,
                 do_render=do_render,
+                site_mode=site_mode,
+                split_level=args.split_level,
             )
 
             # Save filtered AST
-            output_name = f"filtered_{build_target}_{render_target}.json"
+            suffix = "_site" if site_mode else f"_{render_target}"
+            output_name = f"filtered_{build_target}{suffix}.json"
             output_path = OUTPUT_DIR / output_name
             with open(output_path, "w") as f:
                 json.dump(filtered, f, indent=2)
@@ -261,6 +349,10 @@ def main():
     print("  - internal: ALL content (internal + external + dossier visibility)")
     print("  - external: external + dossier visibility only")
     print("  - dossier: dossier visibility only")
+
+    if args.site:
+        print("\nSite mode outputs:")
+        print(f"  - internal_site/: Multi-page static site (split_level={args.split_level})")
 
     print("\nBuild complete!")
 

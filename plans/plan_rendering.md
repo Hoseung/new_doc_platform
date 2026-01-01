@@ -1,435 +1,322 @@
-```md
-# Development Plan — Rendering Stage (v1) with Comprehensive Test Cases
+# rendering.md — Rendering Stage Specification (v1, updated: HTML Site Mode)
 
-This plan implements rendering from **filtered canonical Pandoc AST** to:
-- HTML (Pandoc HTML writer + template + assets + optional Lua filter)
-- PDF (Pandoc LaTeX writer + XeLaTeX template + fonts)
-- MD/RST exports (Pandoc writers; view-only)
+## 0. Purpose
 
-Guiding rules:
-- Deterministic builds (pinned versions, stable filenames)
-- No network I/O
-- Strict safety for `external/dossier`
-- Render reports for audit/debug
+Rendering is the **backend** of the documentation platform: it converts a **filtered canonical Pandoc AST** into target formats:
 
----
+- **HTML** (single-page document OR multi-page static site)
+- **PDF** (official delivery, via LaTeX engine)
+- **Markdown / reStructuredText** (optional “view exports”, not canonical)
 
-## 0. Deliverables
-
-### D0. Renderers + CLI/API
-- `render/` package:
-  - `render.api.render(ast, context, config) -> RenderResult`
-  - `HtmlRenderer`, `PdfRenderer`, `MdRenderer`, `RstRenderer`
-- `render/report.py`: `render_report.json` generator
-- `render/pandoc_runner.py`: stable pandoc invocation wrapper (version pinned)
-- `render/latex_runner.py`: XeLaTeX wrapper (stable flags; controlled env)
-
-### D1. Templates & assets
-- `templates/html/template.html`
-- `assets/html/theme.css`
-- `assets/html/theme.js` (foldables)
-- `templates/latex/template.tex`
-- `assets/latex/` (optional: cls, images, etc.)
-- `filters/lua/foldable.lua` (optional; recommended)
-
-### D2. Tests
-- Unit tests for config, path mapping, report generation
-- Integration tests for HTML/PDF output existence and key invariants
-- Golden tests for HTML structure (DOM-level) and for LaTeX intermediate output
-- Smoke tests for PDF generation (non-empty, stable metadata rules)
+Rendering MUST be:
+- **Deterministic** given the same input AST, renderer version, templates, and config
+- **Safe**: no network I/O; no execution of untrusted embedded raw content in strict targets
+- **Themeable** via templates/assets (HTML/CSS/JS, LaTeX class/packages)
 
 ---
 
-## 1. Module skeleton
+## 1. Rendering in the overall pipeline
+
+Pipeline (simplified):
 
 ```
-```
-docplatform/
 
-render/
-__init__.py
-api.py
-context.py
-config.py
-result.py
-report.py
-pandoc_runner.py
-latex_runner.py
-assets.py
-
-html/
-__init__.py
-renderer.py
-lua/
-foldable.lua
-templates/
-template.html
-
-assets/
-theme.css
-theme.js
-
-pdf/
-__init__.py
-renderer.py
-templates/
-template.tex
-
-assets/
-# optional cls/fonts manifests
-
-text/
-__init__.py
-md_renderer.py
-rst_renderer.py
-
-tests/
-test_render_config.py
-test_pandoc_runner.py
-test_html_render_smoke.py
-test_html_foldable_mapping.py
-test_pdf_render_smoke.py
-test_pdf_cjk_smoke.py
-test_pdf_no_raw_strict.py
-test_md_export.py
-test_rst_export.py
-
-fixtures/
-ast_minimal.json
-ast_with_wrappers.json
-ast_with_foldables.json
-ast_with_codeblocks.json
-ast_with_appendix.json
-ast_with_korean.json
-ast_with_tables.json
-ast_with_links.json
-
-expected/
-
-html/
-
-latex/
+Normalize -> Resolve -> Validate -> Filter -> Render -> Publish/Sync (optional)
 
 ```
+
+Rendering assumes:
+- Placeholders are resolved
+- Validation already enforced AST invariants and safety constraints
+- Filtering already applied target-specific removals + presentation shaping
+
 ---
 
-## 2. Foundation tasks (do first)
+## 2. Inputs and outputs
 
-### Task 2.1 — RenderContext & RenderConfig
-Implement:
-- `BuildContext` (reuse existing):
-  - build_target: internal|external|dossier
-  - render_target: html|pdf|md|rst
-  - strict: bool (forced true for external/dossier)
+### 2.1 Inputs
+- `filtered_ast`: canonical Pandoc AST (JSON or internal model)
+- `BuildContext`:
+  - `build_target`: `internal | external | dossier`
+  - `render_target`: `html | pdf | md | rst`
+  - `strict`: bool (external/dossier MUST be strict)
 - `RenderConfig`:
-  - `output_dir`
-  - `pandoc_path`
-  - `pandoc_required_version`
-  - `html_template_path`
-  - `html_assets_dir`
-  - `html_lua_filters: list[path]` (optional)
-  - `latex_template_path`
-  - `latex_engine` = xelatex
-  - `latex_engine_path`
-  - `latex_runs` (1–3; pinned)
-  - writer flags: `html_writer_options`, `latex_writer_options`, etc.
+  - template selection
+  - theme assets selection
+  - PDF engine selection and font config
+  - output paths
 
-Acceptance checklist:
-- [ ] config serializable (for report)
-- [ ] strict mode toggles safety flags in pandoc
-- [ ] all file paths resolved deterministically (no relative ambiguity)
+### 2.2 Outputs
+- HTML single-page:
+  - `output.html` (+ assets)
+- HTML site:
+  - output directory containing multiple `.html` pages + `sitemap.json` + assets
+- PDF:
+  - `output.pdf`
+- MD/RST:
+  - `output.md` / `output.rst`
+- `render_report.json` (recommended):
+  - renderer versions
+  - template names/hashes
+  - warnings/errors summary
 
-### Task 2.2 — Pandoc runner wrapper
-Implement `pandoc_runner.run(input_ast_json, to_format, options, template, lua_filters, output_path)`:
-- writes input ast to temp path with stable name (hash-based), not timestamp
-- invokes pandoc with:
-  - `--from=json`
-  - `--to=html5` or `--to=latex` or `--to=gfm` or `--to=rst`
-  - `--template`
-  - `--lua-filter` (if any)
-- captures stdout/stderr
-- fails with rich error message and report entry
+---
 
-Acceptance checklist:
-- [ ] enforces pandoc version pinning (fail if mismatch)
+## 3. Rendering strategy: Pandoc writers as backends
+
+### 3.1 Principle (v1)
+Rendering SHOULD use **Pandoc writers**:
+- HTML (single): Pandoc `html5` writer + template + assets
+- HTML (site): Pandoc `chunkedhtml` writer + template + assets :contentReference[oaicite:0]{index=0}
+- PDF: Pandoc `latex` writer + custom LaTeX template + XeLaTeX
+- MD/RST: Pandoc writers for convenience exports
+
+### 3.2 Version pinning (normative)
+Pandoc MUST be version-pinned by the build system to ensure stable output.
+
+Renderer MUST record:
+- `pandoc_version`
+- `latex_engine_version` (PDF)
+- template and asset hashes (recommended)
+
+---
+
+## 4. Render targets
+
+# 4.1 HTML rendering
+
+HTML rendering supports two modes over the **same filtered AST**:
+
+- `html_mode = single` → one HTML file (sequential document)
+- `html_mode = site` → multi-page static site (“chunked HTML”)
+
+This does not change the canonical model. It is purely a rendering backend choice.
+
+---
+
+## 4.1.1 HTML mode: single-page
+
+### Overview
+Uses:
+- Pandoc HTML writer (`--to=html5`)
+- Project template (`template.html`)
+- CSS theme (`theme.css`)
+- JS behavior (`theme.js`) for interactive features (foldables)
+
+### Foldables contract (v1)
+Presentation filter may output foldables as:
+- `Div` with class `foldable`
+- attributes:
+  - `data-title`: string (required)
+  - `data-collapsed`: `true|false` (optional; default true)
+
+Renderer SHOULD map foldables to semantic HTML behavior (recommended mapping: `<details><summary>…`). This is best done via a Pandoc Lua filter (render-time) rather than post-processing HTML.
+
+### Anchors and stable IDs
+Renderer MUST preserve:
+- wrapper `id` attributes as HTML anchors
+- appendix anchors produced by presentation filter
+
+---
+
+## 4.1.2 HTML mode: static site (chunked HTML)
+
+### Overview
+Uses Pandoc’s `chunkedhtml` writer: it produces **linked HTML files**, one per section, adjusts internal links automatically, adds navigation links, and includes a `sitemap.json` describing the hierarchy. :contentReference[oaicite:1]{index=1}
+
+Invocation conceptually:
+- `--to=chunkedhtml`
+- `--split-level=N` (where to split) :contentReference[oaicite:2]{index=2}
+- `--chunk-template=...` (stable filenames) :contentReference[oaicite:3]{index=3}
+
+### Output shape (normative)
+Pandoc `chunkedhtml` produces a zip by default; if -o is a path **without an extension**, Pandoc treats it as a directory and unpacks the output there (error if directory exists). :contentReference[oaicite:4]{index=4}
+
+Required site artifacts:
+- `index.html` (top page)
+- multiple section pages (`*.html`)
+- `sitemap.json` :contentReference[oaicite:5]{index=5}
+- theme assets (CSS/JS/fonts) copied alongside, under a stable relative path
+
+### Split policy (normative)
+`--split-level=NUMBER` determines how much content goes into each chunk (default split at level-1 headings). :contentReference[oaicite:6]{index=6}
+
+Recommended defaults:
+- one page per chapter: `split_level=1`
+- one page per section: `split_level=2`
+
+### Filename stability (normative)
+Use `--chunk-template=PATHTEMPLATE` to control filenames. In the template:
+- `%n` chunk number
+- `%s` section number
+- `%h` heading text
+- `%i` section identifier
+Default is `%s-%i.html`. :contentReference[oaicite:7]{index=7}
+
+**Strong recommendation:** base filenames primarily on `%i` (identifier), not `%h` (heading text), to keep URLs stable when titles change.
+
+### Heading identifiers (recommended contract)
+Chunked HTML uses **section identifiers** (`%i`) derived from headings. To ensure stable URLs:
+- Authors SHOULD provide explicit stable IDs for chapter/section headings, OR
+- Normalization SHOULD inject stable IDs for top-level headings derived from source structure (if applicable)
+
+This does not alter semantics; it only stabilizes navigation.
+
+### Template behavior and TOC
+Chunked HTML adds navigation links and can be customized by adjusting the template. By default, TOC is included only on the top page; to include it on every page, set the `toc` variable in the template. :contentReference[oaicite:8]{index=8}
+
+### Foldables in site mode
+Foldables contract remains identical:
+- presentation filter emits foldable Divs
+- render-time Lua filter converts to `<details>` per page
+
+### Assets in site mode (normative)
+- Renderer MUST NOT fetch remote resources.
+- Assets MUST be local files copied into the output directory under a deterministic location (e.g., `_assets/`).
+- HTML pages must reference assets with relative paths.
+
+---
+
+## 4.2 PDF rendering (via LaTeX)
+
+### Overview
+Uses:
+- Pandoc LaTeX writer
+- XeLaTeX engine
+- LaTeX template (custom)
+- Font configuration supporting Korean + English
+
+### Requirements (normative)
+- MUST support Korean + English correctly.
+- MUST avoid raw LaTeX injection in strict targets unless explicitly allowed.
+- MUST render links as clickable hyperlinks.
+
+Appendix and code-stub behaviors are governed by the Presentation Filter; PDF rendering must faithfully render those transformed structures.
+
+---
+
+## 4.3 Markdown / reStructuredText exports
+
+### Purpose
+MD/RST exports are **views**, not canonical sources. They are intended for:
+- diff-friendly review outputs
+- lightweight text-form distribution
+- patch proposal workflows
+
+### Requirements
+- MUST not reintroduce placeholders
+- SHOULD preserve wrapper IDs as best as possible
+- RST export is best-effort (no strict fidelity guarantee)
+
+---
+
+## 5. Renderer interface (implementation contract)
+
+### 5.1 API
+Renderer exposes:
+
+```
+
+render(ast, build_context, render_config) -> RenderResult
+
+```
+
+`RenderResult` includes:
+- output file(s)/directory
+- render report
+- warnings/errors
+
+### 5.2 RenderConfig (required fields)
+Common:
+- `output_dir`
+- `pandoc_path` + pinned version check
+- writer options per target
+
+HTML-specific:
+- `html_mode`: `single|site`
+- `html_template_path`
+- `html_assets_dir`
+- `html_lua_filters: list[path]` (recommended)
+- `html_site_split_level` (site mode) :contentReference[oaicite:9]{index=9}
+- `html_site_chunk_template` (site mode) :contentReference[oaicite:10]{index=10}
+
+PDF-specific:
+- `latex_template_path`
+- `latex_engine` = `xelatex`
+- engine path + run count
+
+### 5.3 Determinism rules
+- No network I/O
+- Stable file naming (no timestamps)
+- Stable asset bundling and paths
+- Sort any generated lists (e.g., assets manifest)
+
+---
+
+## 6. Recommended implementation approach (v1)
+
+### 6.1 One renderer per target, shared backend
+- `HtmlRenderer`:
+  - single mode: `--to=html5`
+  - site mode: `--to=chunkedhtml` + `--split-level` + `--chunk-template` :contentReference[oaicite:11]{index=11}
+  - apply Lua filter(s) for foldables mapping
+  - copy assets into output
+- `PdfRenderer`: `--to=latex` then XeLaTeX
+- `MdRenderer`: Pandoc Markdown writer
+- `RstRenderer`: Pandoc RST writer
+
+### 6.2 Render-time Lua filters (recommended)
+Lua filters are allowed because they are deterministic and local. Use them for:
+- foldable mapping (Div → `<details>` in HTML modes)
+- optional CSS class injection for computed wrappers
+
+---
+
+## 7. Safety requirements (strict targets)
+
+For `build_target in {external, dossier}`:
+- strict mode MUST prevent raw HTML/LaTeX injection from content
+- renderer may re-check and fail fast as defense-in-depth
+
+(Primary enforcement remains in Validation.)
+
+---
+
+## 8. Reporting
+
+Renderer SHOULD emit `render_report.json` including:
+- tool versions
+- template + assets hashes
+- `html_mode` (single/site)
+- if site mode: `split_level`, `chunk_template`, and list of generated pages
+- warnings/errors
+
+---
+
+## 9. Acceptance checklist (v1)
+
+### HTML (single)
+- [ ] foldables render as collapsible blocks
+- [ ] anchors stable for semantic wrapper IDs
+- [ ] template + assets applied
 - [ ] no network calls
-- [ ] stable ordering of args
 
-### Task 2.3 — Render report
-Implement `render_report.json` with:
-- tool versions (pandoc, xelatex)
-- template paths + file hashes
-- assets dir hash or manifest hash
-- build context snapshot
-- warnings/errors list
-- output artifact list
+### HTML (site)
+- [ ] output directory contains multiple HTML pages
+- [ ] `sitemap.json` present :contentReference[oaicite:12]{index=12}
+- [ ] navigation links work
+- [ ] internal links adjusted correctly :contentReference[oaicite:13]{index=13}
+- [ ] filenames stable via `--chunk-template` :contentReference[oaicite:14]{index=14}
+- [ ] no network calls
 
-Acceptance checklist:
-- [ ] report is deterministic
-- [ ] includes enough to reproduce build
+### PDF
+- [ ] Korean + English render correctly
+- [ ] appendix renders and links work
+- [ ] externalized code stubs hyperlink correctly
+- [ ] no raw LaTeX injection in strict builds
 
----
-
-## 3. HTML Renderer (v1)
-
-### Objective
-Convert AST → HTML with foldables + stable anchors + theme.
-
-### Task 3.1 — HTML template + assets
-- Implement `template.html` with placeholders:
-  - title, TOC placeholder, body, CSS, JS
-- `theme.css` baseline:
-  - typography, tables, code blocks, wrapper styling
-- `theme.js` baseline:
-  - optional: add anchor link icons
-  - optional: copy-code button (can be v2)
-
-Acceptance checklist:
-- [ ] template works with pandoc output
-- [ ] CSS/JS copied into output alongside HTML
-
-### Task 3.2 — Foldables mapping
-Preferred approach: Lua filter `foldable.lua`
-- Transform Div class `foldable` (and optionally `foldable-code`) into:
-  - HTML `<details>` with `<summary>`
-- Preserve semantic wrapper IDs and nested content
-
-Acceptance checklist:
-- [ ] foldables rendered as `<details>`
-- [ ] collapsed state derived from `data-collapsed`
-
-### Task 3.3 — Stable anchors
-- Ensure wrapper `id` attributes survive in HTML output
-- Ensure appendix anchors survive
-
-Acceptance checklist:
-- [ ] `id="tbl...."` appears in HTML as an anchor
-- [ ] internal links resolve to anchors
-
-### HTML test cases (comprehensive)
-#### Unit tests
-- [ ] `pandoc_runner` called with `--to=html5`, template, lua filters
-- [ ] assets copied to output dir deterministically
-- [ ] report includes template hash + assets hash
-
-#### Integration tests (HTML output)
-1) **Minimal doc**
-- Input: `ast_minimal.json`
-- Assert: output html exists, contains `<html>` and body content
-
-2) **Foldable container**
-- Input: `ast_with_foldables.json`
-- Assert:
-  - contains `<details`
-  - contains `<summary>` with expected title
-  - foldable content present
-
-3) **Code block**
-- Input: `ast_with_codeblocks.json` (with folded wrappers)
-- Assert:
-  - code appears
-  - wrapper class present
-
-4) **Anchors**
-- Input: `ast_with_wrappers.json`
-- Assert:
-  - HTML contains id for each wrapper semantic ID
-  - links reference correct anchors
-
-5) **No raw in strict**
-- Input contains RawInline/RawBlock (if you keep such fixture)
-- Context: external strict
-- Assert: render fails OR sanitizes according to policy (prefer fail)
-
-6) **Korean text**
-- Input: `ast_with_korean.json`
-- Assert: output contains Korean text intact
-
----
-
-## 4. PDF Renderer (v1)
-
-### Objective
-AST → LaTeX → PDF with XeLaTeX, CJK support, stable links, appendix, and safe strict mode.
-
-### Task 4.1 — LaTeX template
-Create `template.tex`:
-- `fontspec` + CJK font support:
-  - set main font (English)
-  - set CJK font fallback (Korean)
-  - set monospaced font
-- configure:
-  - hyperref
-  - geometry
-  - tables (longtable/booktabs as needed)
-  - code blocks (listings; minted only if you intentionally manage pygments)
-
-Acceptance checklist:
-- [ ] template builds a simple PDF with Korean + English
-- [ ] links clickable
-
-### Task 4.2 — XeLaTeX runner wrapper
-Implement `latex_runner.build(latex_path, pdf_path, runs=2)`:
-- controlled env, stable flags
-- capture logs
-- fail with clear error summary
-
-Acceptance checklist:
-- [ ] deterministic run count
-- [ ] stable output filenames
-- [ ] logs stored in output dir for debugging
-
-### Task 4.3 — Strict mode defenses
-For external/dossier:
-- pass pandoc options that avoid raw latex
-- optionally re-scan produced latex for `\begin{verbatim}`? (not needed if validator is solid)
-- fail on detection of raw blocks if you still allow them internally
-
-Acceptance checklist:
-- [ ] strict build rejects raw latex injection attempts
-
-### PDF test cases (comprehensive)
-
-#### Unit tests
-- [ ] pandoc invoked with `--to=latex` and template
-- [ ] xelatex invoked with stable flags
-- [ ] report includes xelatex version + template hash
-
-#### Integration tests
-1) **Minimal PDF**
-- Input: `ast_minimal.json`
-- Assert:
-  - PDF file exists
-  - size > minimal threshold (e.g., > 5 KB)
-
-2) **Korean + English**
-- Input: `ast_with_korean.json`
-- Assert:
-  - PDF generated successfully (smoke)
-  - optional: extract text via `pdftotext` and confirm Korean appears (if tooling available)
-
-3) **Appendix**
-- Input: `ast_with_appendix.json`
-- Assert:
-  - LaTeX intermediate contains “Appendix” heading
-  - PDF generated
-  - optional: `pdftotext` includes appendix headings
-
-4) **Externalized code stub**
-- Input: contains code stub blocks (from presentation filter)
-- Assert:
-  - PDF generated
-  - LaTeX contains hyperlink markup for stub link
-
-5) **Tables**
-- Input: `ast_with_tables.json`
-- Assert:
-  - PDF generated
-  - LaTeX contains `\begin{longtable}` or tabular depending on options
-  - no compilation errors
-
-6) **No raw in strict**
-- Input: fixture with RawBlock
-- Context: dossier strict
-- Assert: build fails with clear message
-
----
-
-## 5. Markdown and reStructuredText export renderers (v1)
-
-### Objective
-Provide view-only exports, preserving IDs where feasible.
-
-### Task 5.1 — Markdown export
-- Pandoc writer to `gfm` or chosen markdown flavor
-- Ensure:
-  - no placeholders
-  - wrapper IDs preserved using fenced Divs or HTML comments (policy decision)
-
-Tests
-1) Minimal md export exists
-2) Wrapper IDs appear (as `::: {#id}` or comment fences)
-3) Korean preserved
-
-### Task 5.2 — RST export (best effort)
-- Pandoc writer to rst
-- No strict fidelity guarantees; treat as export view
-
-Tests
-1) rst export exists
-2) Basic headings and paragraphs exported
-3) No placeholders remain
-
----
-
-## 6. Cross-cutting test matrix
-
-Run the same AST fixture under multiple contexts:
-
-Contexts:
-- internal/html (non-strict)
-- external/html (strict)
-- dossier/html (strict)
-- internal/pdf
-- external/pdf
-- dossier/pdf
-- internal/md
-- external/md (if you export)
-- internal/rst (optional)
-
-Assertions:
-- [ ] deterministic outputs (hash stable) when toolchain pinned
-- [ ] strict mode rejects raw content
-- [ ] metadata stripping is reflected only by filters (not renderer)
-- [ ] render report generated for every run
-
----
-
-## 7. Golden testing strategy
-
-### 7.1 Recommended goldens
-- For HTML: golden test the **DOM invariants**, not full HTML bytes:
-  - presence of `<details>` for foldables
-  - presence of anchors for wrapper IDs
-  - presence of CSS/JS includes
-- For LaTeX: golden test the intermediate `.tex` (more stable than PDF bytes)
-  - no timestamps
-  - contains appendix heading
-  - contains hyperref for links
-
-### 7.2 Determinism checks
-- Record tool versions in CI
-- Pin template and assets hashes
-- Compare:
-  - HTML normalized DOM snapshot (e.g., strip whitespace)
-  - LaTeX `.tex` file exact match (after normalizing line endings)
-
----
-
-## 8. Milestones
-
-### M1 — Pandoc runner + reports
-- pandoc wrapper, version pinning, render report
-
-### M2 — HTML renderer shipped
-- template/assets + foldables lua filter + smoke tests
-
-### M3 — PDF renderer shipped
-- LaTeX template + XeLaTeX wrapper + CJK smoke tests
-
-### M4 — MD/RST exports
-- stable view exports + basic tests
-
-### M5 — Full test matrix + goldens
-- run matrix across targets + strict mode enforcement
-
----
-
-## 9. Non-goals (v1)
-- Site generator features (nav, search indexing, multi-page)
-- Executing code cells (Quarto-style)
-- Auto-summarization during rendering
-- Byte-identical PDFs across OS/toolchain variants (test LaTeX instead)
-
----
+### MD/RST
+- [ ] no placeholders
+- [ ] wrapper IDs preserved as best possible
+- [ ] deterministic output
 ```

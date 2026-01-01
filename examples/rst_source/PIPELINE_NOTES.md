@@ -114,14 +114,36 @@ Created `build.py` that:
 3. Processes through resolution, filtering, and rendering
 4. Builds all three targets: internal, external, dossier
 
+### Usage
+
+```bash
+# Standard build (single-page HTML + PDF)
+python build.py
+
+# Multi-page static site
+python build.py --site
+
+# Site only with section-level split
+python build.py --only-site --split-level=2
+```
+
+### Command-line Options
+
+| Option | Description |
+|--------|-------------|
+| `--site` | Build multi-page static site in addition to regular outputs |
+| `--only-site` | Only build site (skip single-page HTML/PDF) |
+| `--split-level=N` | Split pages at heading level N (1=chapters, 2=sections) |
+
 ## Output Summary
 
-| Target   | Format | Figures | PDF Size |
-|----------|--------|---------|----------|
-| internal | HTML   | 5       | -        |
-| internal | PDF    | 5       | 970 KB   |
-| external | HTML   | 0       | -        |
-| dossier  | PDF    | 0       | 163 KB   |
+| Target   | Format | Figures | Size/Pages |
+|----------|--------|---------|------------|
+| internal | HTML   | 5       | single page |
+| internal | PDF    | 5       | 970 KB |
+| internal | Site   | 5       | 10 pages (split_level=2) |
+| external | HTML   | 0       | single page |
+| dossier  | PDF    | 0       | 163 KB |
 
 ## Key Lessons
 
