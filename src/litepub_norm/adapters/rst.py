@@ -31,6 +31,13 @@ STANDARD_DIRECTIVES = {
     "image",
 }
 
+# Sphinx-specific directives to strip (they have no Pandoc equivalent)
+SPHINX_DIRECTIVES_TO_STRIP = {
+    "toctree",
+    "only",
+    "ifconfig",
+}
+
 # Regex to match RST directive start: ".. directive-name::"
 DIRECTIVE_PATTERN = re.compile(
     r"^(\s*)\.\.\s+(" + "|".join(re.escape(d) for d in KNOWN_DIRECTIVES) + r")::\s*$"
@@ -39,6 +46,11 @@ DIRECTIVE_PATTERN = re.compile(
 # Regex to match standard RST directives: ".. figure:: path" or ".. table::"
 STANDARD_DIRECTIVE_PATTERN = re.compile(
     r"^(\s*)\.\.\s+(" + "|".join(re.escape(d) for d in STANDARD_DIRECTIVES) + r")::\s*(.*)$"
+)
+
+# Regex to match Sphinx directives that should be stripped
+SPHINX_DIRECTIVE_PATTERN = re.compile(
+    r"^(\s*)\.\.\s+(" + "|".join(re.escape(d) for d in SPHINX_DIRECTIVES_TO_STRIP) + r")::\s*(.*)$"
 )
 
 # Regex to match :id: field (for custom directives)
@@ -70,6 +82,32 @@ def preprocess_rst(text: str) -> str:
 
     while i < len(lines):
         line = lines[i]
+
+        # Check for Sphinx-specific directives to strip first
+        sphinx_match = SPHINX_DIRECTIVE_PATTERN.match(line)
+        if sphinx_match:
+            # Skip the entire directive (including all indented content)
+            indent = sphinx_match.group(1)
+            directive_indent = len(indent)
+            i += 1
+            while i < len(lines):
+                next_line = lines[i]
+                # Empty line - continue
+                if not next_line.strip():
+                    i += 1
+                    continue
+                # Check if still indented (part of directive)
+                line_indent = len(next_line) - len(next_line.lstrip())
+                if line_indent > directive_indent:
+                    i += 1
+                    continue
+                # Check for option fields (:maxdepth:, etc.)
+                if re.match(r"^\s+:\w+:", next_line):
+                    i += 1
+                    continue
+                # End of directive
+                break
+            continue
 
         # Check for custom litepub directives first
         match = DIRECTIVE_PATTERN.match(line)

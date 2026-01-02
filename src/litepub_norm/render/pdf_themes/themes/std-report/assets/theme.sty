@@ -1,0 +1,160 @@
+% std-report theme.sty
+% Technical Standard styling: dense, formal, minimal
+% This is the "CSS" for the std-report PDF theme
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theme}[2025/01/02 Standard Report Theme]
+
+%% ============================================================
+%% COLORS
+%% ============================================================
+\RequirePackage{xcolor}
+
+% Link color (subdued blue)
+\definecolor{stdLinkColor}{HTML}{2B5797}
+
+% Code block colors
+\definecolor{stdCodeBg}{HTML}{F5F5F5}
+\definecolor{stdCodeFrame}{HTML}{CCCCCC}
+\definecolor{stdCodeNumbers}{HTML}{999999}
+
+% Table colors
+\definecolor{stdTableHeader}{HTML}{E8E8E8}
+\definecolor{stdTableAlt}{HTML}{F9F9F9}
+
+%% ============================================================
+%% CODE LISTINGS
+%% ============================================================
+\RequirePackage{listings}
+
+% Define 'role' key for lstinline (Pandoc idiomatic highlighting for RST roles)
+% This allows \lstinline[role=ref]!text! to work without errors
+\makeatletter
+\lst@Key{role}{}{}
+\makeatother
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=true,
+  numbers=left,
+  numberstyle=\tiny\color{stdCodeNumbers},
+  frame=single,
+  framesep=3pt,
+  backgroundcolor=\color{stdCodeBg},
+  rulecolor=\color{stdCodeFrame},
+  showstringspaces=false,
+  tabsize=2,
+  captionpos=b,
+  xleftmargin=2em,
+  framexleftmargin=1.5em
+}
+
+%% ============================================================
+%% TABLES (booktabs style)
+%% ============================================================
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+
+% Heavier rules for formal appearance
+\setlength{\heavyrulewidth}{1.2pt}
+\setlength{\lightrulewidth}{0.5pt}
+\setlength{\cmidrulewidth}{0.4pt}
+
+%% ============================================================
+%% SECTION FORMATTING
+%% ============================================================
+\RequirePackage{titlesec}
+
+% Section titles: sans-serif, bold
+\titleformat{\section}
+  {\Large\sffamily\bfseries}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\large\sffamily\bfseries}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalsize\sffamily\bfseries}
+  {\thesubsubsection}{1em}{}
+\titleformat{\paragraph}
+  {\normalsize\sffamily\bfseries}
+  {\theparagraph}{1em}{}
+
+% Tight spacing
+\titlespacing*{\section}{0pt}{2ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{1.5ex plus 1ex minus .2ex}{0.5ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{1ex plus .5ex minus .2ex}{0.3ex plus .2ex}
+
+%% ============================================================
+%% COMPUTED ARTIFACTS (from resolver)
+%% ============================================================
+
+% Semantic ID display (monospace, small)
+\newcommand{\semanticid}[1]{%
+  \texttt{\footnotesize #1}%
+}
+
+% Computed metric display
+\newcommand{\RenderMetric}[2]{%
+  \noindent\textbf{#1:} #2%
+}
+
+%% ============================================================
+%% CALLOUT BOXES (for Pandoc Div mapping via Lua filter)
+%% ============================================================
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% Info/note callout - minimal, formal style with gray border
+\newtcolorbox{infobox}{
+  enhanced,
+  breakable,
+  colback=gray!5!white,
+  colframe=gray!50!black,
+  boxrule=0pt,
+  leftrule=2pt,
+  arc=0pt,
+  left=10pt,
+  right=10pt,
+  top=6pt,
+  bottom=6pt,
+}
+
+% Warning callout - subtle amber styling
+\newtcolorbox{warningbox}{
+  enhanced,
+  breakable,
+  colback=yellow!5!white,
+  colframe=yellow!60!black,
+  boxrule=0pt,
+  leftrule=2pt,
+  arc=0pt,
+  left=10pt,
+  right=10pt,
+  top=6pt,
+  bottom=6pt,
+}
+
+% Danger/error callout - subdued red
+\newtcolorbox{dangerbox}{
+  enhanced,
+  breakable,
+  colback=red!3!white,
+  colframe=red!50!black,
+  boxrule=0pt,
+  leftrule=2pt,
+  arc=0pt,
+  left=10pt,
+  right=10pt,
+  top=6pt,
+  bottom=6pt,
+}
+
+%% ============================================================
+%% PROVENANCE FOOTER (optional)
+%% ============================================================
+% Can be enabled via $provenance_footer$ in metadata
+% Example: \provenancefooter{abc123}{2025-01-02T10:00:00Z}
+\newcommand{\provenancefooter}[2]{%
+  \fancyfoot[C]{\tiny Run: #1 | Generated: #2}%
+}

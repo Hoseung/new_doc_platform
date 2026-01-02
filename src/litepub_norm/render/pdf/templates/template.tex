@@ -141,8 +141,18 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
-% Pandoc 3.x bounded image support
-\providecommand{\pandocbounded}[1]{#1}
+% Pandoc 3.x bounded image support - constrain to text width
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{%
+  \sbox\pandoc@box{#1}%
+  \ifdim\wd\pandoc@box>\linewidth
+    \resizebox{\linewidth}{!}{#1}%
+  \else
+    #1%
+  \fi
+}
+\makeatother
 
 % Pandoc 3.x table width support (calc package \real for column widths)
 \makeatletter
@@ -152,6 +162,9 @@
 % Allow long tables to break across pages
 \setlength{\LTpre}{0pt}
 \setlength{\LTpost}{0pt}
+
+% Fix for Pandoc's longtable without caption (requires dummy 'none' counter)
+\newcounter{none}
 
 $if(highlighting-macros)$
 $highlighting-macros$

@@ -1,5 +1,6 @@
 .. _`sec:korean`:
 
+===============================
 한글 사용 예제 / Korean Example
 ===============================
 
@@ -10,10 +11,10 @@ This chapter demonstrates how to use Korean and English together in your white p
 .. _`sec:mixed`:
 
 혼합 언어 작성 / Mixed Language Writing
----------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 기본 텍스트 / Basic Text
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 한글과 영어를 자연스럽게 섞어서 사용할 수 있습니다. You can naturally mix Korean and English text. 예를 들어, **머신러닝** (machine learning)이나 **딥러닝** (deep learning)과 같은 기술 용어를 함께 사용할 수 있습니다.
 
@@ -24,7 +25,7 @@ This chapter demonstrates how to use Korean and English together in your white p
 - **컴퓨터 비전** (Computer Vision, CV)
 
 수식과 한글 / Equations with Korean
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 한글 설명과 함께 수학 공식을 사용할 수 있습니다. Mathematical equations can be used with Korean explanations.
 
@@ -39,10 +40,10 @@ This chapter demonstrates how to use Korean and English together in your white p
 .. _`sec:korean-tables`:
 
 표와 그림 / Tables and Figures
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 한글 표 / Korean Tables
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 한글로 작성된 표의 예시입니다. Here is an example of a table with Korean text:
 
@@ -67,7 +68,7 @@ This chapter demonstrates how to use Korean and English together in your white p
 As shown in Table @tbl:korean-exp, the yield increased with temperature.
 
 방법론 비교 표 / Method Comparison Table
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. table:: 다양한 방법론의 성능 비교 / Performance comparison of different methods
 
@@ -83,10 +84,10 @@ As shown in Table @tbl:korean-exp, the yield increased with temperature.
 .. _`sec:korean-refs`:
 
 교차 참조 / Cross-References
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 섹션 참조 / Section References
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 한글로 된 섹션도 쉽게 참조할 수 있습니다. Korean sections can be easily referenced.
 
@@ -95,7 +96,7 @@ As shown in Table @tbl:korean-exp, the yield increased with temperature.
 - 이 장의 표 섹션은 Section @sec:korean-tables 에 있습니다
 
 그림 참조 / Figure References
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 영어 장의 그림도 참조할 수 있습니다:
 
@@ -104,14 +105,14 @@ As shown in Table @tbl:korean-exp, the yield increased with temperature.
 - Figure @fig:heatmap 은 상관관계 히트맵입니다
 
 수식 참조 / Equation References
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Equation @eq:korean-normal 은 정규분포를 나타내며, Equation @eq:gaussian 은 같은 공식의 영어 버전입니다.
 
 .. _`sec:korean-citations`:
 
 인용 / Citations
-----------------
+~~~~~~~~~~~~~~~~
 
 한글로 작성할 때도 인용을 동일하게 사용할 수 있습니다. Citations work the same way in Korean text.
 
@@ -122,7 +123,7 @@ Equation @eq:korean-normal 은 정규분포를 나타내며, Equation @eq:gaussi
 .. _`sec:korean-code`:
 
 코드 블록 / Code Blocks
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 한글 주석이 포함된 코드 예제:
 
@@ -146,10 +147,10 @@ Equation @eq:korean-normal 은 정규분포를 나타내며, Equation @eq:gaussi
 .. _`sec:korean-lists`:
 
 목록 / Lists
-------------
+~~~~~~~~~~~~
 
 순서 있는 목록 / Ordered List
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 연구 진행 단계:
 
@@ -174,7 +175,7 @@ Equation @eq:korean-normal 은 정규분포를 나타내며, Equation @eq:gaussi
    - 결과 해석
 
 순서 없는 목록 / Unordered List
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 주요 기여사항:
 
@@ -186,7 +187,7 @@ Equation @eq:korean-normal 은 정규분포를 나타내며, Equation @eq:gaussi
 .. _`sec:korean-formatting`:
 
 강조와 서식 / Emphasis and Formatting
--------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 한글에서도 다양한 서식을 사용할 수 있습니다:
 
@@ -199,7 +200,7 @@ Equation @eq:korean-normal 은 정규분포를 나타내며, Equation @eq:gaussi
 .. _`sec:korean-findings`:
 
 주요 결과 / Key Findings
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 이 예제 장에서 다룬 내용:
 
@@ -213,7 +214,7 @@ Equation @eq:korean-normal 은 정규분포를 나타내며, Equation @eq:gaussi
 .. _`sec:korean-conclusion`:
 
 결론 / Conclusion
------------------
+~~~~~~~~~~~~~~~~~
 
 Pandoc과 XeLaTeX를 사용하면 한글과 영어를 완벽하게 혼용할 수 있습니다. Using Pandoc with XeLaTeX enables perfect mixing of Korean and English.
 

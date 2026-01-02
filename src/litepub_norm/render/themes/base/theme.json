@@ -1,0 +1,16 @@
+{
+  "id": "base",
+  "name": "Base Theme",
+  "version": "1.0.0",
+  "description": "Minimal base theme with stable DOM skeleton. Other themes extend this.",
+  "base": null,
+  "entry": {
+    "template": "template.html",
+    "css": ["assets/theme.css"],
+    "js": ["assets/theme.js"]
+  },
+  "supports": {
+    "single": true,
+    "site": true
+  }
+}

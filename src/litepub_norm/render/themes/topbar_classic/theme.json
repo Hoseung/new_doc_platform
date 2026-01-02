@@ -1,0 +1,16 @@
+{
+  "id": "topbar_classic",
+  "name": "Topbar Classic",
+  "version": "1.0.0",
+  "description": "Python docs-inspired theme with top navigation bar and centered content.",
+  "base": "base",
+  "entry": {
+    "template": "template.html",
+    "css": ["assets/theme.css"],
+    "js": ["assets/theme.js"]
+  },
+  "supports": {
+    "single": true,
+    "site": true
+  }
+}

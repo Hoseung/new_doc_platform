@@ -1,0 +1,190 @@
+% academic-paper: Academic Analysis Template
+% Elegant typography for research papers and data-rich analysis
+% Features: Wider margins, serif fonts, refined spacing
+% Requires XeLaTeX with xeCJK for Korean support
+
+\documentclass[11pt,a4paper]{article}
+
+% Load theme style package
+\usepackage{assets/theme}
+
+% Essential packages
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{marginnote}
+\usepackage{caption}
+
+% Page geometry (wider margins for notes/annotations)
+\geometry{
+  a4paper,
+  left=3cm,
+  right=3cm,
+  top=3cm,
+  bottom=3cm,
+  marginparwidth=2cm,
+  headheight=14pt
+}
+
+% Font configuration (Serif for academic feel)
+\setmainfont{DejaVu Serif}[
+  BoldFont=DejaVu Serif Bold,
+  ItalicFont=DejaVu Serif Italic,
+  BoldItalicFont=DejaVu Serif Bold Italic
+]
+\setsansfont{DejaVu Sans}[
+  BoldFont=DejaVu Sans Bold,
+  ItalicFont=DejaVu Sans Oblique
+]
+\setmonofont{DejaVu Sans Mono}[Scale=0.85]
+
+% CJK configuration (Korean)
+\xeCJKsetup{
+  CJKspace=true,
+  CJKecglue={\hskip 0.15em plus 0.05em minus 0.05em}
+}
+\setCJKmainfont{Noto Sans CJK KR}[BoldFont=Noto Sans CJK KR Bold]
+\setCJKsansfont{Noto Sans CJK KR}
+\setCJKmonofont{Noto Sans Mono CJK KR}
+
+% Hyperref configuration (subtle links)
+\hypersetup{
+  colorlinks=true,
+  linkcolor=acadLink,
+  urlcolor=acadLink,
+  citecolor=acadLink,
+  pdfauthor={$author-meta$},
+  pdftitle={$title-meta$},
+  bookmarksnumbered=true,
+  bookmarksopen=true
+}
+
+% Headers and footers (minimal, elegant)
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small\textit{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% Caption styling (small, italic)
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  format=plain,
+  justification=justified,
+  singlelinecheck=false
+}
+
+% Section numbering depth
+\setcounter{secnumdepth}{3}
+
+% Paragraph spacing (traditional with slight indent)
+\setlength{\parindent}{1.5em}
+\setlength{\parskip}{0.3em}
+
+% List customization
+\setlist{noitemsep, topsep=0.5em}
+
+% Table styling
+\renewcommand{\arraystretch}{1.2}
+
+% Pandoc compatibility
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% passthrough for inline code with roles (idiomatic highlighting)
+\newcommand{\passthrough}[1]{#1}
+
+% Pandoc 3.x bounded image support - constrain to text width
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{%
+  \sbox\pandoc@box{#1}%
+  \ifdim\wd\pandoc@box>\linewidth
+    \resizebox{\linewidth}{!}{#1}%
+  \else
+    #1%
+  \fi
+}
+\makeatother
+\makeatletter
+\providecommand{\real}[1]{\strip@pt\dimexpr #1pt\relax}
+\makeatother
+
+% Chapter compatibility (for article class)
+\makeatletter
+\@ifundefined{chapter}{%
+  \newcommand{\@litepub@chapter}[1]{\section{#1}}
+  \newcommand{\@litepub@schapter}[1]{\section*{#1}}
+  \newcommand{\chapter}{\@ifstar\@litepub@schapter\@litepub@chapter}
+  \providecommand{\chaptermark}[1]{\markboth{#1}{}}
+}{}
+\makeatother
+
+% Long table settings
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+
+% Fix for Pandoc's longtable without caption (requires dummy 'none' counter)
+\newcounter{none}
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+% Document info
+$if(title)$
+\title{\textbf{$title$}$if(subtitle)$\\[0.5em]{\large $subtitle$}$endif$}
+$endif$
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$endif$
+$if(date)$
+\date{$date$}
+$endif$
+
+\begin{document}
+
+$if(title)$
+\maketitle
+\thispagestyle{empty}
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+\noindent $abstract$
+\end{abstract}
+\vspace{1em}
+$endif$
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(toc)$
+\tableofcontents
+\newpage
+$endif$
+
+$body$
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+\end{document}

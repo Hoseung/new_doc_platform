@@ -1,5 +1,6 @@
 .. _`sec:results`:
 
+=======
 Results
 =======
 
@@ -21,12 +22,12 @@ This chapter presents the results obtained using the methodologies described in 
 .. _`sec:visualization`:
 
 Visualization Results
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 .. _`sec:line-plots`:
 
 Line Plots
-~~~~~~~~~~
+^^^^^^^^^^
 
 Figure @fig:scatter shows the relationship between variables with a fitted trend line. The scatter plot reveals a strong linear correlation with coefficient of determination R² = 0.89.
 
@@ -40,7 +41,7 @@ Figure @fig:scatter shows the relationship between variables with a fitted trend
 .. _`sec:bar-charts`:
 
 Categorical Comparisons
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Figure @fig:bars presents a categorical comparison across five different categories. Category D shows the highest value at 78 units, while Category E demonstrates the lowest at 32 units.
 
@@ -54,7 +55,7 @@ Figure @fig:bars presents a categorical comparison across five different categor
 .. _`sec:distributions`:
 
 Distribution Analysis
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 The histogram in Figure @fig:histogram illustrates the distribution of measured values. The data closely follows a normal distribution with mean μ = 100.2 and standard deviation σ = 14.8.
 
@@ -68,7 +69,7 @@ The histogram in Figure @fig:histogram illustrates the distribution of measured 
 .. _`sec:correlation`:
 
 Correlation Analysis
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 Figure @fig:heatmap presents the correlation matrix between six different variables. Strong positive correlations (>0.7) are observed between Variables 1 and 3, while Variables 2 and 5 show weak correlation (<0.3).
 
@@ -82,12 +83,12 @@ Figure @fig:heatmap presents the correlation matrix between six different variab
 .. _`sec:tabular`:
 
 Tabular Results
----------------
+~~~~~~~~~~~~~~~
 
 .. _`sec:experimental-data`:
 
 Experimental Data
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 Table @tbl:experimental presents the experimental results across five different conditions. The data shows a clear trend of increasing yield with temperature, from 78.3% at 20.5°C to 92.5% at 40.5°C.
 
@@ -110,7 +111,7 @@ Table @tbl:experimental presents the experimental results across five different 
 .. _`sec:statistics`:
 
 Statistical Summary
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Table @tbl:stats provides a statistical summary of three datasets. Dataset B exhibits the highest mean value (119.64) and largest standard deviation (20.31), indicating greater variability compared to the other datasets.
 
@@ -127,7 +128,7 @@ Table @tbl:stats provides a statistical summary of three datasets. Dataset B exh
 .. _`sec:performance`:
 
 Performance Metrics
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 Model performance across different data splits is summarized in Table @tbl:performance. The results demonstrate good generalization, with test set performance (F1-Score: 0.915) closely matching validation set performance (F1-Score: 0.918).
 
@@ -146,7 +147,7 @@ Model performance across different data splits is summarized in Table @tbl:perfo
 .. _`sec:findings`:
 
 Key Findings
-------------
+~~~~~~~~~~~~
 
 The analysis presented in this chapter yields several important findings:
 

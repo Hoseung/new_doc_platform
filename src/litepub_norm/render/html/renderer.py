@@ -63,6 +63,12 @@ def _render_html_single(
     report.render_target = "html"
     report.strict_mode = context.strict
 
+    # Add theme info to report
+    report.extra_info = {
+        "html_mode": "single",
+        "html_theme": config.html_theme,
+    }
+
     # Check pandoc version
     report.set_pandoc_version(config.pandoc_path)
 
@@ -76,8 +82,9 @@ def _render_html_single(
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / output_name
 
-    # Build extra args for strict mode
+    # Build extra args
     extra_args = list(config.html_writer_options)
+    extra_args.append("--toc")  # Include table of contents
     if context.strict:
         # In strict mode, use safer HTML generation
         extra_args.extend(["--no-highlight"])  # Avoid JS-based highlighting
@@ -167,9 +174,10 @@ def _render_html_site(
     report.render_target = "html"
     report.strict_mode = context.strict
 
-    # Add site mode info to report
+    # Add site mode and theme info to report
     report.extra_info = {
         "html_mode": "site",
+        "html_theme": config.html_theme,
         "split_level": config.html_site_split_level,
         "chunk_template": config.html_site_chunk_template,
     }
@@ -196,7 +204,8 @@ def _render_html_site(
     extra_args.extend([
         f"--split-level={config.html_site_split_level}",
         f"--chunk-template={config.html_site_chunk_template}",
-        "--toc",  # Include table of contents
+        "--toc",  # Generate table of contents
+        "-V", "toc",  # Include TOC on all pages (not just index)
     ])
 
     if context.strict:

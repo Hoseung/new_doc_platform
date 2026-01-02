@@ -1,5 +1,6 @@
 .. _`sec:system-overview`:
 
+=============================
 System Overview and Use Cases
 =============================
 
@@ -8,7 +9,7 @@ This chapter describes the design philosophy, features, and practical use cases 
 .. _`sec:design-philosophy`:
 
 Design Philosophy
------------------
+~~~~~~~~~~~~~~~~~
 
 This documentation system is built around four core principles that address common pain points in technical writing:
 
@@ -27,7 +28,7 @@ This documentation system is built around four core principles that address comm
 .. _`sec:key-features`:
 
 Key Features
-------------
+~~~~~~~~~~~~
 
 Dual Build System
 ^^^^^^^^^^^^^^^^^
@@ -125,7 +126,7 @@ This ensures the system works across different environments without manual confi
 .. _`sec:use-cases`:
 
 Use Cases
----------
+~~~~~~~~~
 
 Technical Reports and White Papers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -197,7 +198,7 @@ Git-friendly plain text enables effective collaboration:
 .. _`sec:getting-started`:
 
 Getting Started
----------------
+~~~~~~~~~~~~~~~
 
 Quick setup for new users:
 
@@ -226,7 +227,7 @@ Output appears in ``output/html/index.html``.
 .. _`sec:system-summary`:
 
 Summary
--------
+~~~~~~~
 
 This documentation system addresses the core challenges of technical writing:
 

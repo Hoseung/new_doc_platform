@@ -1,5 +1,6 @@
 .. _`sec:introduction`:
 
+============
 Introduction
 ============
 
@@ -8,7 +9,7 @@ This document serves as an example white paper template using Pandoc and Markdow
 .. _`sec:background`:
 
 Background
-----------
+~~~~~~~~~~
 
 Technical writing often requires the integration of dynamically generated content such as figures, tables, and data visualizations. Traditional document preparation systems can make this process cumbersome and error-prone. This template provides a modern, reproducible approach to technical writing that combines:
 
@@ -22,7 +23,7 @@ As demonstrated in previous work [@example2024], automated documentation workflo
 .. _`sec:objectives`:
 
 Objectives
-----------
+~~~~~~~~~~
 
 The primary objectives of this white paper template are:
 
@@ -34,7 +35,7 @@ The primary objectives of this white paper template are:
 .. _`sec:structure`:
 
 Document Structure
-------------------
+~~~~~~~~~~~~~~~~~~
 
 This white paper is organized as follows:
 
@@ -46,7 +47,7 @@ This white paper is organized as follows:
 Each chapter is maintained as a separate Markdown file in the ``chapters/`` directory, making it easy to edit and manage content modularly.
 
 Cross-References
-----------------
+~~~~~~~~~~~~~~~~
 
 This template supports automatic cross-referencing of:
 

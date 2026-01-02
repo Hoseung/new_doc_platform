@@ -34,7 +34,9 @@ from litepub_norm.render.config import (
     default_html_config,
     default_html_site_config,
     default_pdf_config,
+    themed_pdf_config,
 )
+from litepub_norm.render.pdf_themes import list_pdf_themes
 
 
 # Paths
@@ -127,8 +129,15 @@ def build_for_target(
     do_render: bool = False,
     site_mode: bool = False,
     split_level: int = 1,
-) -> dict:
-    """Build the document for a specific target."""
+    pdf_theme: str | None = None,
+) -> tuple[dict, bool]:
+    """Build the document for a specific target.
+
+    Returns:
+        Tuple of (filtered_ast, render_success). render_success is True if
+        rendering succeeded or was not requested.
+    """
+    render_success = True
     mode_label = f"{render_target}" + (" site" if site_mode else "")
     print(f"\n{'='*60}")
     print(f"Building for target: {target} (render: {mode_label})")
@@ -140,7 +149,9 @@ def build_for_target(
     print_stats("After resolution:", resolved)
 
     # Apply filters
-    context = BuildContext(build_target=target, render_target=render_target)
+    # For internal builds, use non-strict mode to enable syntax highlighting
+    is_strict = target != "internal"
+    context = BuildContext(build_target=target, render_target=render_target, strict=is_strict)
     filter_config = FilterConfig()
     filtered, report = apply_filters(resolved, filter_config, context)
 
@@ -182,6 +193,7 @@ def build_for_target(
                 if len(pages) > 5:
                     print(f"      ... and {len(pages) - 5} more")
             else:
+                render_success = False
                 print(f"    Render failed!")
                 for err in render_result.errors:
                     print(f"      Error: {err.code} - {err.message}")
@@ -191,7 +203,11 @@ def build_for_target(
 
             # Use appropriate default config and override output_dir
             if render_target == "pdf":
-                render_config = default_pdf_config().with_output_dir(render_output_dir)
+                if pdf_theme:
+                    print(f"    Using PDF theme: {pdf_theme}")
+                    render_config = themed_pdf_config(pdf_theme).with_output_dir(render_output_dir)
+                else:
+                    render_config = default_pdf_config().with_output_dir(render_output_dir)
             else:
                 render_config = default_html_config().with_output_dir(render_output_dir)
 
@@ -205,11 +221,12 @@ def build_for_target(
                 for f in render_result.output_files[1:4]:  # Show first few secondary files
                     print(f"    Secondary: {f}")
             else:
+                render_success = False
                 print(f"    Render failed!")
                 for err in render_result.errors:
                     print(f"      Error: {err.code} - {err.message}")
 
-    return filtered
+    return filtered, render_success
 
 
 def main():
@@ -221,7 +238,7 @@ def main():
 Examples:
   python build.py              # Build single-page HTML and PDF
   python build.py --site       # Build multi-page static site
-  python build.py --site --split-level=2  # Split at section level
+  python build.py --site --split-level=1  # Split at section level
         """
     )
     parser.add_argument(
@@ -233,12 +250,19 @@ Examples:
         "--split-level",
         type=int,
         default=1,
-        help="Split level for site mode (1=chapters, 2=sections, default: 1)"
+        help="Split level for site mode (1=chapters, 2=sections, 3=subsections, default: 1)"
     )
     parser.add_argument(
         "--only-site",
         action="store_true",
         help="Only build site (skip single-page HTML/PDF builds)"
+    )
+    parser.add_argument(
+        "--pdf-theme",
+        type=str,
+        default=None,
+        choices=list_pdf_themes(),
+        help=f"PDF theme to use. Available: {', '.join(list_pdf_themes())}"
     )
     args = parser.parse_args()
 
@@ -256,6 +280,8 @@ Examples:
     print(f"AARC registry: {aarc_registry_path}")
     if args.site:
         print(f"Site mode: enabled (split_level={args.split_level})")
+    if args.pdf_theme:
+        print(f"PDF theme: {args.pdf_theme}")
 
     # Step 0: Concatenate RST files
     print("\n" + "=" * 60)
@@ -316,9 +342,10 @@ Examples:
             ("dossier", "pdf", True, False),    # Render PDF for dossier
         ]
 
+    failures = []
     for build_target, render_target, do_render, site_mode in targets:
         try:
-            filtered = build_for_target(
+            filtered, render_success = build_for_target(
                 normalized,
                 aarc_registry,
                 build_target,
@@ -326,7 +353,12 @@ Examples:
                 do_render=do_render,
                 site_mode=site_mode,
                 split_level=args.split_level,
+                pdf_theme=args.pdf_theme,
             )
+
+            if not render_success:
+                mode_suffix = " (site)" if site_mode else ""
+                failures.append(f"{build_target}/{render_target}{mode_suffix}")
 
             # Save filtered AST
             suffix = "_site" if site_mode else f"_{render_target}"
@@ -336,6 +368,8 @@ Examples:
                 json.dump(filtered, f, indent=2)
             print(f"Saved: {output_path}")
         except Exception as e:
+            mode_suffix = " (site)" if site_mode else ""
+            failures.append(f"{build_target}/{render_target}{mode_suffix}")
             print(f"  ERROR during {build_target}/{render_target}: {e}")
             import traceback
             traceback.print_exc()
@@ -354,7 +388,14 @@ Examples:
         print("\nSite mode outputs:")
         print(f"  - internal_site/: Multi-page static site (split_level={args.split_level})")
 
-    print("\nBuild complete!")
+    # Final status
+    if failures:
+        print(f"\nBuild completed with {len(failures)} failure(s):")
+        for f in failures:
+            print(f"  - {f}")
+        sys.exit(1)
+    else:
+        print("\nBuild complete!")
 
 
 if __name__ == "__main__":

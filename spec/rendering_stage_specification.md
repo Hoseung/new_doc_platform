@@ -13,6 +13,13 @@ Rendering MUST be:
 - **Safe**: no network I/O; no execution of untrusted embedded raw content in strict targets
 - **Themeable** via templates/assets (HTML/CSS/JS, LaTeX class/packages)
 
+> **Note: Sphinx-specific RST directives are not supported.**
+> This pipeline uses Pandoc as the parsing and rendering backend, not Sphinx.
+> Sphinx-only constructs such as `toctree`, `:ref:`, `:doc:`, `genindex`, `search`,
+> and other Sphinx domain directives will either be ignored or rendered as plain text.
+> For table of contents, use Pandoc metadata (`toc: true`) or template-level TOC generation.
+> For cross-references, use standard RST or Markdown link syntax.
+
 ---
 
 ## 1. Rendering in the overall pipeline

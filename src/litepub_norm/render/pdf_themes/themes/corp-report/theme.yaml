@@ -1,0 +1,26 @@
+# corp-report: Modern Corporate Theme
+# Intent: Executive summaries, external whitepapers
+# Style: Clean, polished, brand-aligned. Resembles Eisvogel or Stripe guides.
+
+id: corp-report
+name: Corporate Report
+version: 1.0.0
+description: Modern corporate style for executive summaries and whitepapers
+archetype: corp-report
+
+fonts:
+  mainfont: DejaVu Sans
+  sansfont: DejaVu Sans
+  monofont: DejaVu Sans Mono
+  monofont_options: Scale=0.85
+  cjkmainfont: Noto Sans CJK KR
+
+geometry:
+  paper: a4paper
+  margin: 2.5cm
+  top: 3.5cm
+  bottom: 3cm
+
+secnumdepth: 3
+toc: true
+provenance_footer: false

@@ -1,5 +1,6 @@
 .. _`sec:conclusion`:
 
+==========
 Conclusion
 ==========
 
@@ -8,7 +9,7 @@ This white paper has demonstrated a comprehensive approach to technical document
 .. _`sec:summary`:
 
 Summary of Contributions
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 The key contributions of this template system include:
 
@@ -23,7 +24,7 @@ As discussed in Section @sec:methodology, the modular architecture separates con
 .. _`sec:results-overview`:
 
 Results Overview
-----------------
+~~~~~~~~~~~~~~~~
 
 The results presented in Chapter @sec:results demonstrate the capabilities of this system:
 
@@ -35,33 +36,33 @@ The results presented in Chapter @sec:results demonstrate the capabilities of th
 .. _`sec:best-practices`:
 
 Best Practices
---------------
+~~~~~~~~~~~~~~
 
 Based on the implementation of this system, several best practices emerge:
 
 Content Management
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 - **Modular Chapters**: Maintain each chapter in a separate file for easier editing and collaboration
 - **Meaningful IDs**: Use descriptive identifiers for cross-references (e.g., ``#fig:methodology-flowchart`` rather than ``#fig1``)
 - **Version Control**: Commit source files (.md, .py, .yaml) but exclude generated outputs (.pdf, .png)
 
 Figure Generation
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 - **High Resolution**: Save figures at 300 DPI or higher for publication quality
 - **Consistent Styling**: Define standard plot styles in a configuration file or module
 - **Descriptive Names**: Use clear, descriptive filenames for generated figures
 
 Table Generation
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 - **Data-Driven**: Generate tables from actual data rather than manual entry
 - **Standard Format**: Use pandas DataFrames for consistency across all tables
 - **Precision Control**: Specify appropriate decimal places for numerical values
 
 Build Automation
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 - **Makefile Targets**: Define clear targets for common build operations
 - **Dependency Tracking**: Ensure figures and tables are regenerated before document compilation
@@ -70,7 +71,7 @@ Build Automation
 .. _`sec:limitations`:
 
 Limitations and Future Work
----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 While this system provides a robust foundation for technical writing, several areas merit future development:
 
@@ -83,7 +84,7 @@ While this system provides a robust foundation for technical writing, several ar
 .. _`sec:final-remarks`:
 
 Final Remarks
--------------
+~~~~~~~~~~~~~
 
 This white paper template provides a modern, efficient approach to technical writing that addresses the common challenges of reproducibility, version control, and multi-format output. By combining the simplicity of Markdown with the power of Pandoc and Python, authors can focus on content creation while maintaining professional standards.
 
@@ -94,7 +95,7 @@ As noted in the Pandoc documentation [@exampleweb2024], the future of technical 
 .. _`sec:acknowledgments`:
 
 Acknowledgments
----------------
+~~~~~~~~~~~~~~~
 
 This template builds upon the excellent work of the Pandoc development team, the Python scientific computing community, and countless contributors to open-source documentation tools. Special thanks to the maintainers of pandoc-crossref for enabling sophisticated cross-referencing capabilities.
 

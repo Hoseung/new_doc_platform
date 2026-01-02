@@ -5,9 +5,11 @@ from .config import (
     RenderConfig,
     RenderTarget,
     HtmlMode,
+    DEFAULT_THEME,
     default_html_config,
     default_html_site_config,
     default_pdf_config,
+    themed_html_config,
 )
 from .result import RenderResult, RenderWarning, RenderError
 from .report import RenderReport
@@ -20,9 +22,11 @@ __all__ = [
     "RenderConfig",
     "RenderTarget",
     "HtmlMode",
+    "DEFAULT_THEME",
     "default_html_config",
     "default_html_site_config",
     "default_pdf_config",
+    "themed_html_config",
     # Result
     "RenderResult",
     "RenderWarning",
