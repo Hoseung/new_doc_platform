@@ -231,7 +231,10 @@ def default_html_site_config(
     Create a default config for multi-page HTML site rendering.
 
     Args:
-        split_level: Where to split pages (1=chapters, 2=sections)
+        split_level: Where to split pages (default: 1 for chapter-level splitting)
+                     1 = split at h1 (chapters - recommended for most documents)
+                     2 = split at h2 (sections)
+                     3 = split at h3 (subsections)
         theme_id: Theme to use (default: "base")
                   Available: "base", "sidebar_docs", "topbar_classic", "book_tutorial"
     """

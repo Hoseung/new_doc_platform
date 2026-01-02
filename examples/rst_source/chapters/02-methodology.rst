@@ -1,5 +1,6 @@
 .. _`sec:methodology`:
 
+===========
 Methodology
 ===========
 
@@ -8,7 +9,7 @@ This chapter describes the technical approach and methodology used in this white
 .. _`sec:architecture`:
 
 System Architecture
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 The documentation system consists of several integrated components:
 
@@ -22,14 +23,14 @@ This modular architecture ensures that each component can be developed and maint
 .. _`sec:content-generation`:
 
 Content Generation
-------------------
+~~~~~~~~~~~~~~~~~~
 
 .. _`sec:figures`:
 
 Figure Generation
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
-Figures are generated programmatically using Python’s matplotlib library. The generation process follows these steps:
+Figures are generated programmatically using Python's matplotlib library. The generation process follows these steps:
 
 1. Define the data and visualization parameters
 2. Create the plot using matplotlib
@@ -55,7 +56,7 @@ For example, the sine wave shown in Figure @fig:example_plot is generated using:
 .. _`sec:tables`:
 
 Table Generation
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 Tables are generated using pandas DataFrames and exported as Markdown format. This ensures:
 
@@ -79,7 +80,7 @@ Table @tbl:comparison shows an example of a comparison table generated from the 
 .. _`sec:mathematics`:
 
 Mathematical Notation
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 The system supports mathematical equations using LaTeX syntax. For instance, the Gaussian function is defined as:
 
@@ -100,7 +101,7 @@ where :math:`W` is the weight matrix, :math:`\mathbf{b}` is the bias vector, and
 .. _`sec:build`:
 
 Build Process
--------------
+~~~~~~~~~~~~~
 
 The document build process is automated using a Makefile:
 

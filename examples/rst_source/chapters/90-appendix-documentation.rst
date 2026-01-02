@@ -1,5 +1,6 @@
 .. _`sec:appendix`:
 
+===============================
 Appendix: Project Documentation
 ===============================
 
@@ -8,10 +9,10 @@ This appendix contains comprehensive documentation for the Pandoc white paper au
 .. _`sec:quickstart`:
 
 A. Quick Start Guide
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Installation (Linux)
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -27,7 +28,7 @@ Installation (Linux)
    uv pip install matplotlib numpy pandas seaborn scipy pillow tabulate pyyaml
 
 Daily Workflow
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -42,7 +43,7 @@ Daily Workflow
    make pdf              # or: make html, make all
 
 Common Commands
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 ============== =================================
 Command        Description
@@ -57,17 +58,17 @@ Command        Description
 .. _`sec:build-guide`:
 
 B. Build System Guide
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Makefile vs Shell Script
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Use ``make pdf`` (Recommended):** - Simpler commands - Automatic dependency handling - Includes pandoc-crossref filter - Industry standard
 
 **Use ``./build_example.sh`` (For learning):** - Shows exact Pandoc commands - Useful for debugging - Educational purposes
 
 Build Process
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 ::
 
@@ -77,10 +78,10 @@ Build Process
 .. _`sec:korean-support`:
 
 C. Korean/CJK Language Support
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Setup
-~~~~~
+^^^^^
 
 .. code:: bash
 
@@ -91,7 +92,7 @@ Setup
    # CJKmainfont: "Noto Serif CJK KR"
 
 Usage
-~~~~~
+^^^^^
 
 Simply write Korean in your markdown:
 
@@ -104,7 +105,7 @@ Simply write Korean in your markdown:
    {{table:tbl:05-korean-data}}
 
 Korean in Matplotlib
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 .. code:: python
 
@@ -117,10 +118,10 @@ Korean in Matplotlib
 .. _`sec:automatic-tables`:
 
 D. Automatic Table System
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Table Format (Self-Contained Objects)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each table is a ``.md`` file with YAML frontmatter:
 
@@ -139,7 +140,7 @@ Each table is a ``.md`` file with YAML frontmatter:
    | Data     | Data     |
 
 Creating Tables
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 .. code:: python
 
@@ -156,7 +157,7 @@ Creating Tables
    # Saves to: ../_static/tables/chapter-03/table-my-results.md
 
 Using Tables in Chapters
-~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Placeholder syntax:**
 
@@ -175,7 +176,7 @@ Using Tables in Chapters
 .. _build-process-1:
 
 Build Process
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -184,7 +185,7 @@ Build Process
 The preprocessor: 1. Scans chapters for ``{{table:...}}`` placeholders 2. Loads tables from ``../_static/tables/`` 3. Replaces placeholders with actual content 4. Builds document
 
 Manual Preprocessing
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -200,10 +201,10 @@ Manual Preprocessing
 .. _`sec:paths`:
 
 E. Path Configuration
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Path Rules
-~~~~~~~~~~
+^^^^^^^^^^
 
 All paths in markdown files are **relative to project root**:
 
@@ -222,7 +223,7 @@ All paths in markdown files are **relative to project root**:
            └── logo.png         → assets/images/logo.png
 
 Correct Paths
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 .. code:: markdown
 
@@ -235,7 +236,7 @@ Correct Paths
    ![Plot](../../_static/figures/example_plot.png)
 
 Fixing Path Issues
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -245,12 +246,12 @@ Fixing Path Issues
 .. _`sec:troubleshooting`:
 
 F. Troubleshooting
-------------------
+~~~~~~~~~~~~~~~~~~
 
 Common Issues
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
-**Makefile: “source: not found”** - Fixed! Makefile now uses bash shell directly - Python called via ``.venv/bin/python``
+**Makefile: "source: not found"** - Fixed! Makefile now uses bash shell directly - Python called via ``.venv/bin/python``
 
 **Images not found** - Check paths are from project root: ``../_static/figures/plot.png`` - Not relative to chapter: ``../../_static/figures/plot.png``
 
@@ -281,13 +282,13 @@ Common Issues
    source .venv/bin/activate
    uv pip install matplotlib numpy pandas seaborn scipy pillow tabulate pyyaml
 
-.. _`sec:architecture`:
+.. _`sec:arch`:
 
 G. Project Architecture
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Directory Structure
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 ::
 
@@ -319,19 +320,19 @@ Directory Structure
    └── README.md            # Quick start guide
 
 File Organization
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 **Source files (commit to git):** - ``chapters/*.md`` - Your content - ``scripts/*.py`` - Analysis and generation - ``metadata.yaml`` - Document configuration - ``Makefile`` - Build system - ``pyproject.toml`` - Dependencies
 
-**Generated files (don’t commit):** - ``../_static/figures/*.png`` - Generated plots - ``../_static/tables/**/*.md`` - Generated tables - ``*.pdf``, ``*.html`` - Build outputs - ``.venv/`` - Virtual environment
+**Generated files (don't commit):** - ``../_static/figures/*.png`` - Generated plots - ``../_static/tables/**/*.md`` - Generated tables - ``*.pdf``, ``*.html`` - Build outputs - ``.venv/`` - Virtual environment
 
 .. _`sec:advanced`:
 
 H. Advanced Features
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Cross-References
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 .. code:: markdown
 
@@ -353,7 +354,7 @@ Cross-References
    Table @tbl:data, and Equation @eq:einstein.
 
 Citations
-~~~~~~~~~
+^^^^^^^^^
 
 .. code:: markdown
 
@@ -372,7 +373,7 @@ Add entries to ``references/references.bib``:
    }
 
 Custom Pandoc Options
-~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^
 
 Edit ``Makefile`` to add options:
 
@@ -383,7 +384,7 @@ Edit ``Makefile`` to add options:
                  --variable=geometry:margin=1in
 
 Multiple Output Formats
-~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -392,13 +393,13 @@ Multiple Output Formats
    make docx         # Microsoft Word
    make all-formats  # All formats
 
-.. _`sec:best-practices`:
+.. _`sec:bp`:
 
 I. Best Practices
------------------
+~~~~~~~~~~~~~~~~~
 
 1. Version Control
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 .. code:: gitignore
 
@@ -416,7 +417,7 @@ I. Best Practices
    .venv/
 
 2. Table Management
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 - Use descriptive names: ``table-temperature-results.md``
 - Include descriptions for context
@@ -424,7 +425,7 @@ I. Best Practices
 - Regenerate when data changes
 
 3. Figure Quality
-~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^
 
 .. code:: python
 
@@ -432,14 +433,14 @@ I. Best Practices
    plt.savefig('../_static/figures/plot.png', dpi=300, bbox_inches='tight')
 
 4. Modular Chapters
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 - One chapter per file
 - Use meaningful section IDs
 - Keep chapters focused
 
 5. Reproducibility
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -450,10 +451,10 @@ I. Best Practices
 .. _`sec:reference`:
 
 J. Quick Reference
-------------------
+~~~~~~~~~~~~~~~~~~
 
 Build Commands
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -464,7 +465,7 @@ Build Commands
    make help         # Show options
 
 Python Scripts
-~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -478,7 +479,7 @@ Python Scripts
    python scripts/table_preprocessor.py --dry-run
 
 Markdown Syntax
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 .. code:: markdown
 
@@ -491,7 +492,7 @@ Markdown Syntax
    @fig:id, @tbl:id, @sec:id
 
 File Paths
-~~~~~~~~~~
+^^^^^^^^^^
 
 ============= =============================
 Resource      Path Format
@@ -505,10 +506,10 @@ Bibliography  ``references/references.bib``
 .. _`sec:resources`:
 
 K. Resources
-------------
+~~~~~~~~~~~~
 
 Documentation
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 - Pandoc Manual: https://pandoc.org/MANUAL.html
 - Pandoc-Crossref: https://lierdakil.github.io/pandoc-crossref/
@@ -517,7 +518,7 @@ Documentation
 - Matplotlib: https://matplotlib.org/
 
 Project Files
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^
 
 - ``scripts/table_manager.py`` - TableManager API
 - ``scripts/table_preprocessor.py`` - Preprocessor
@@ -525,7 +526,7 @@ Project Files
 - ``Makefile`` - Build system reference
 
 Getting Help
-~~~~~~~~~~~~
+^^^^^^^^^^^^
 
 .. code:: bash
 
@@ -543,10 +544,10 @@ Getting Help
 .. _`sec:feature-summary`:
 
 L. Summary of Features
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
-✅ Implemented Features
-~~~~~~~~~~~~~~~~~~~~~~~
+Implemented Features
+^^^^^^^^^^^^^^^^^^^^
 
 1. **Automated Build System**
 

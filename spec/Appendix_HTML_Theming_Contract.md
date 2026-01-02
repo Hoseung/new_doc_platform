@@ -35,11 +35,11 @@ my_theme/
 ├── template.html
 └── assets/
     ├── theme.css
-    └── theme.js        (optional but strongly recommended)
+    └── theme.js        (optional - CSS handles core interactions)
 
 ```
 
-Why these files exist (the “3 components” contract): template provides structure, CSS provides look, JS provides optional interactions (e.g., foldable sections).
+Why these files exist: template provides structure, CSS provides look **and core interactions** (collapsible TOC, sticky sidebar), JS provides **optional enhancements** (current-section highlighting, state persistence).
 
 Recommended additions:
 
@@ -130,6 +130,74 @@ Custom variables are allowed via document metadata (YAML front matter), and refe
 For site mode, templates may render navigation if provided, e.g. iterating over `navigation`.
 
 Your build will also emit `sitemap.json` describing page hierarchy.
+
+### 5.5 CSS-Only Navigation Contract
+
+The base theme implements **core navigation using CSS only**, without JavaScript dependency. This ensures:
+
+1. **Reliability**: Navigation works with JavaScript disabled
+2. **Performance**: No JS bundle required for basic functionality
+3. **Accessibility**: Native browser behavior for links and focus
+
+**Required CSS patterns for collapsible TOC:**
+
+```css
+/* Hide nested levels by default */
+#lp-toc > ul > li > ul {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+/* Expand on hover or keyboard focus */
+#lp-toc > ul > li:hover > ul,
+#lp-toc > ul > li:focus-within > ul {
+  max-height: 2000px;
+  transition: max-height 0.3s ease-in;
+}
+```
+
+**Visual indicator for expandable items:**
+
+```css
+#lp-toc > ul > li:has(> ul) > a::after {
+  content: " ▸";
+  font-size: 0.7em;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+#lp-toc > ul > li:hover:has(> ul) > a::after {
+  transform: rotate(90deg);
+}
+```
+
+**Sticky sidebar:**
+
+```css
+#lp-toc {
+  position: sticky;
+  top: var(--spacing-lg);
+  max-height: calc(100vh - var(--spacing-xl) * 2);
+  overflow-y: auto;
+}
+```
+
+**What CSS provides:**
+- Expand/collapse on hover
+- Keyboard navigation via `:focus-within`
+- Visual expand indicator (arrow rotation)
+- Smooth transitions
+- Fixed/sticky sidebar
+- Works offline
+
+**What requires JavaScript (optional enhancements):**
+- Highlight current section while scrolling
+- Remember expand/collapse state
+- Smooth scroll to sections
+- Search within TOC
+
+See `implementation/07_html_site_navigation.md` for full details.
 
 ---
 
@@ -275,14 +343,15 @@ This is the “good enough” baseline that matches your variable contract and k
     $body$
   </main>
 
-  <script src="assets/theme.js"></script>
+  <!-- Optional: JavaScript for enhanced features -->
+  <!-- <script src="assets/theme.js"></script> -->
 
-  $for(include-after-body)$
-  $include-after-body$
+  $for(include-after)$
+  $include-after$
   $endfor$
 </body>
 </html>
 
 ```
 
-This aligns with your documented template variables and the “template + css + js” model.
+This aligns with your documented template variables. Note that JavaScript is optional; the base theme provides full navigation functionality via CSS alone.

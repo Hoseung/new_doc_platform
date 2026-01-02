@@ -204,7 +204,8 @@ def _render_html_site(
     extra_args.extend([
         f"--split-level={config.html_site_split_level}",
         f"--chunk-template={config.html_site_chunk_template}",
-        "--toc",  # Include table of contents
+        "--toc",  # Generate table of contents
+        "-V", "toc",  # Include TOC on all pages (not just index)
     ])
 
     if context.strict:

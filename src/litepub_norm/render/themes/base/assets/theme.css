@@ -199,10 +199,66 @@ body {
   color: var(--color-text-secondary);
   text-decoration: none;
   font-size: 0.875rem;
+  display: block;
+  padding: 2px 0;
 }
 
 #lp-toc a:hover {
   color: var(--color-link);
+}
+
+/* CSS-only collapsible TOC sections
+   - Level 1 items (top-level chapters) are always visible
+   - Level 2 items (sections) are hidden by default, shown on parent hover/focus
+   - Level 3+ items (subsections) follow the same pattern
+   This provides a clean, compact TOC without JavaScript */
+
+/* Hide nested levels by default (levels 2+) */
+#lp-toc > ul > li > ul {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+/* Show nested items when hovering on parent li or when item is focused */
+#lp-toc > ul > li:hover > ul,
+#lp-toc > ul > li:focus-within > ul {
+  max-height: 2000px;  /* Large enough for any TOC depth */
+  transition: max-height 0.3s ease-in;
+}
+
+/* Visual indicator for items with children */
+#lp-toc > ul > li:has(> ul) > a::after {
+  content: " ▸";
+  font-size: 0.7em;
+  color: var(--color-text-secondary);
+  transition: transform 0.2s;
+  display: inline-block;
+}
+
+#lp-toc > ul > li:hover:has(> ul) > a::after,
+#lp-toc > ul > li:focus-within:has(> ul) > a::after {
+  transform: rotate(90deg);
+}
+
+/* Third level and deeper - similar collapse pattern */
+#lp-toc ul ul ul {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+#lp-toc ul ul li:hover > ul,
+#lp-toc ul ul li:focus-within > ul {
+  max-height: 1000px;  /* Large enough for deep nesting */
+  transition: max-height 0.3s ease-in;
+}
+
+/* Highlight current section (via :target) */
+#lp-toc a:target,
+#lp-toc a.active {
+  color: var(--color-link);
+  font-weight: 600;
 }
 
 /* ==========================================================================
@@ -463,11 +519,16 @@ details.foldable > *:not(summary) {
 
   #lp-sidebar {
     width: 100%;
-    order: 1;  /* Sidebar comes after main content on mobile */
+    order: 1;  /* Default: sidebar after content */
   }
 
   #lp-content {
-    order: 0;  /* Main content first on mobile */
+    order: 0;  /* Default: content first */
+  }
+
+  /* When content is empty, sidebar becomes primary (order: 0) */
+  .page-wrapper:has(#lp-content:empty) #lp-sidebar {
+    order: 0;
   }
 
   #lp-toc {
