@@ -492,6 +492,83 @@ details.foldable > *:not(summary) {
 }
 
 /* ==========================================================================
+   Page Navigation (prev/next buttons for multi-page sites)
+   ========================================================================== */
+
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.page-nav-prev,
+.page-nav-next {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md);
+  max-width: 45%;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.page-nav-prev:hover,
+.page-nav-next:hover {
+  border-color: var(--color-link);
+  background-color: var(--color-background-secondary);
+  text-decoration: none;
+}
+
+.page-nav-prev {
+  align-items: flex-start;
+}
+
+.page-nav-next {
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+.page-nav-direction {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.page-nav-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-link);
+  margin-top: var(--spacing-xs);
+}
+
+/* Empty placeholder for layout consistency */
+.page-nav span.page-nav-prev {
+  visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .page-nav {
+    flex-direction: column;
+  }
+
+  .page-nav-prev,
+  .page-nav-next {
+    max-width: 100%;
+  }
+
+  .page-nav-next {
+    margin-left: 0;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================================================
    Footer (#lp-footer)
    ========================================================================== */
 

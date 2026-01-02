@@ -83,6 +83,32 @@ $endif$
     <!-- Main Content -->
     <main id="lp-content">
       $body$
+
+      <!-- Page Navigation (prev/next) for multi-page sites -->
+$if(previous.url)$
+      <nav class="page-nav" aria-label="Page navigation">
+        <a href="$previous.url$" class="page-nav-prev" rel="prev">
+          <span class="page-nav-direction">← Previous</span>
+          <span class="page-nav-title">$previous.title$</span>
+        </a>
+$if(next.url)$
+        <a href="$next.url$" class="page-nav-next" rel="next">
+          <span class="page-nav-direction">Next →</span>
+          <span class="page-nav-title">$next.title$</span>
+        </a>
+$endif$
+      </nav>
+$else$
+$if(next.url)$
+      <nav class="page-nav" aria-label="Page navigation">
+        <span class="page-nav-prev"></span>
+        <a href="$next.url$" class="page-nav-next" rel="next">
+          <span class="page-nav-direction">Next →</span>
+          <span class="page-nav-title">$next.title$</span>
+        </a>
+      </nav>
+$endif$
+$endif$
     </main>
   </div>
 
