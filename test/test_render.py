@@ -157,7 +157,8 @@ class TestRenderConfig:
         config = default_html_config()
         assert config.html_template_path is not None
         assert config.html_assets_dir is not None
-        assert len(config.html_lua_filters) > 0
+        # html_lua_filters is empty by default (HTML handles div classes natively)
+        assert isinstance(config.html_lua_filters, tuple)
 
     def test_default_pdf_config(self):
         """default_pdf_config has latex template."""

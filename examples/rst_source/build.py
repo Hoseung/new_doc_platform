@@ -34,7 +34,9 @@ from litepub_norm.render.config import (
     default_html_config,
     default_html_site_config,
     default_pdf_config,
+    themed_pdf_config,
 )
+from litepub_norm.render.pdf_themes import list_pdf_themes
 
 
 # Paths
@@ -127,6 +129,7 @@ def build_for_target(
     do_render: bool = False,
     site_mode: bool = False,
     split_level: int = 1,
+    pdf_theme: str | None = None,
 ) -> dict:
     """Build the document for a specific target."""
     mode_label = f"{render_target}" + (" site" if site_mode else "")
@@ -140,7 +143,9 @@ def build_for_target(
     print_stats("After resolution:", resolved)
 
     # Apply filters
-    context = BuildContext(build_target=target, render_target=render_target)
+    # For internal builds, use non-strict mode to enable syntax highlighting
+    is_strict = target != "internal"
+    context = BuildContext(build_target=target, render_target=render_target, strict=is_strict)
     filter_config = FilterConfig()
     filtered, report = apply_filters(resolved, filter_config, context)
 
@@ -191,7 +196,11 @@ def build_for_target(
 
             # Use appropriate default config and override output_dir
             if render_target == "pdf":
-                render_config = default_pdf_config().with_output_dir(render_output_dir)
+                if pdf_theme:
+                    print(f"    Using PDF theme: {pdf_theme}")
+                    render_config = themed_pdf_config(pdf_theme).with_output_dir(render_output_dir)
+                else:
+                    render_config = default_pdf_config().with_output_dir(render_output_dir)
             else:
                 render_config = default_html_config().with_output_dir(render_output_dir)
 
@@ -240,6 +249,13 @@ Examples:
         action="store_true",
         help="Only build site (skip single-page HTML/PDF builds)"
     )
+    parser.add_argument(
+        "--pdf-theme",
+        type=str,
+        default=None,
+        choices=list_pdf_themes(),
+        help=f"PDF theme to use. Available: {', '.join(list_pdf_themes())}"
+    )
     args = parser.parse_args()
 
     OUTPUT_DIR.mkdir(exist_ok=True)
@@ -256,6 +272,8 @@ Examples:
     print(f"AARC registry: {aarc_registry_path}")
     if args.site:
         print(f"Site mode: enabled (split_level={args.split_level})")
+    if args.pdf_theme:
+        print(f"PDF theme: {args.pdf_theme}")
 
     # Step 0: Concatenate RST files
     print("\n" + "=" * 60)
@@ -326,6 +344,7 @@ Examples:
                 do_render=do_render,
                 site_mode=site_mode,
                 split_level=args.split_level,
+                pdf_theme=args.pdf_theme,
             )
 
             # Save filtered AST
