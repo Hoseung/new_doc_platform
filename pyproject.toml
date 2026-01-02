@@ -3,10 +3,15 @@ name = "litepub-norm"
 version = "0.1.0"
 description = "AST normalization pipeline for documentation platform"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
     "pypandoc>=1.13",
 ]
+
+# External tool requirements (not enforced by pip):
+# - Pandoc >= 3.1 (for chunkedhtml writer, multi-page HTML sites)
+# - XeLaTeX (TeX Live 2023+ recommended) for PDF rendering
+# - Noto Sans CJK fonts for Korean support
 
 [project.optional-dependencies]
 dev = [

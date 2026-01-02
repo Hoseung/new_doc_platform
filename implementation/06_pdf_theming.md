@@ -270,14 +270,14 @@ def _stage_assets(assets_dir: Path, output_dir: Path) -> Path:
 
 ### Syntax Highlighting
 
-Pandoc 3.x uses `--syntax-highlighting=idiomatic` to generate `\lstlisting` environments:
+The renderer uses `--listings` to generate `\lstlisting` environments:
 
 ```python
 # In renderer.py
 if context.strict:
-    extra_args.append("--syntax-highlighting=none")
+    extra_args.append("--no-highlight")
 else:
-    extra_args.append("--syntax-highlighting=idiomatic")
+    extra_args.append("--listings")
 ```
 
 This enables theme.sty to control code block styling via `\lstset`.

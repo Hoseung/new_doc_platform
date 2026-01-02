@@ -97,14 +97,16 @@ def render_pdf(
     # Build extra args for Pandoc
     extra_args = list(config.latex_writer_options)
 
-    # Use idiomatic syntax highlighting (generates \lstlisting environments)
+    # Include table of contents
+    extra_args.append("--toc")
+
+    # Use listings package for code blocks (generates \lstlisting environments)
     # This enables theme.sty styling via \lstset configuration
-    # Note: --listings is deprecated in Pandoc 3.x, use --syntax-highlighting=idiomatic
     if context.strict:
         # Disable highlighting in strict mode
-        extra_args.append("--syntax-highlighting=none")
+        extra_args.append("--no-highlight")
     else:
-        extra_args.append("--syntax-highlighting=idiomatic")
+        extra_args.append("--listings")
 
     # Collect Lua filters for Pandoc
     lua_filters: list[Path] = []
