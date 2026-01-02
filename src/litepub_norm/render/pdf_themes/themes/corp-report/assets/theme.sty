@@ -1,0 +1,219 @@
+% corp-report theme.sty
+% Modern Corporate styling: clean, polished, professional
+% Features colored boxes, modern typography, cover page support
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theme}[2025/01/02 Corporate Report Theme]
+
+%% ============================================================
+%% COLORS
+%% ============================================================
+\RequirePackage{xcolor}
+
+% Brand colors
+\definecolor{corpAccent}{HTML}{0366D6}      % Primary accent (blue)
+\definecolor{corpDark}{HTML}{24292E}        % Dark text
+\definecolor{corpGray}{HTML}{6A737D}        % Secondary text
+\definecolor{corpLight}{HTML}{F6F8FA}       % Light backgrounds
+
+% Box colors
+\definecolor{corpBoxBg}{HTML}{F1F8FF}       % Info box background
+\definecolor{corpBoxBorder}{HTML}{C8E1FF}   % Info box border
+\definecolor{corpCodeBg}{HTML}{F6F8FA}      % Code background
+\definecolor{corpCodeBorder}{HTML}{E1E4E8}  % Code border
+
+% Status colors
+\definecolor{corpSuccess}{HTML}{28A745}
+\definecolor{corpWarning}{HTML}{FFC107}
+\definecolor{corpDanger}{HTML}{DC3545}
+
+%% ============================================================
+%% TCOLORBOX DEFINITIONS
+%% ============================================================
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% General info/highlight box
+\newtcolorbox{corpbox}{
+  enhanced,
+  breakable,
+  colback=corpBoxBg,
+  colframe=corpBoxBorder,
+  boxrule=1pt,
+  arc=3pt,
+  left=10pt,
+  right=10pt,
+  top=8pt,
+  bottom=8pt,
+}
+
+% Metric display box
+\newtcolorbox{metricbox}[1][]{
+  enhanced,
+  colback=corpLight,
+  colframe=corpAccent,
+  boxrule=0pt,
+  borderline west={3pt}{0pt}{corpAccent},
+  arc=0pt,
+  left=12pt,
+  right=10pt,
+  top=8pt,
+  bottom=8pt,
+  fonttitle=\bfseries,
+  #1
+}
+
+% Code block box
+\newtcolorbox{codebox}{
+  enhanced,
+  breakable,
+  colback=corpCodeBg,
+  colframe=corpCodeBorder,
+  boxrule=1pt,
+  arc=2pt,
+  left=8pt,
+  right=8pt,
+  top=6pt,
+  bottom=6pt,
+}
+
+%% ============================================================
+%% CALLOUT BOXES (for Pandoc Div mapping via Lua filter)
+%% ============================================================
+
+% Info/note callout - blue left border, light blue background
+\newtcolorbox{infobox}{
+  enhanced,
+  breakable,
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  boxrule=0pt,
+  leftrule=3pt,
+  arc=0pt,
+  left=10pt,
+  right=10pt,
+  top=8pt,
+  bottom=8pt,
+}
+
+% Warning callout - orange/yellow left border
+\newtcolorbox{warningbox}{
+  enhanced,
+  breakable,
+  colback=yellow!10!white,
+  colframe=orange!80!black,
+  boxrule=0pt,
+  leftrule=3pt,
+  arc=0pt,
+  left=10pt,
+  right=10pt,
+  top=8pt,
+  bottom=8pt,
+}
+
+% Danger/error callout - red left border
+\newtcolorbox{dangerbox}{
+  enhanced,
+  breakable,
+  colback=red!5!white,
+  colframe=red!75!black,
+  boxrule=0pt,
+  leftrule=3pt,
+  arc=0pt,
+  left=10pt,
+  right=10pt,
+  top=8pt,
+  bottom=8pt,
+}
+
+%% ============================================================
+%% CODE LISTINGS
+%% ============================================================
+\RequirePackage{listings}
+
+% Define 'role' key for lstinline (Pandoc idiomatic highlighting for RST roles)
+% This allows \lstinline[role=ref]!text! to work without errors
+\makeatletter
+\lst@Key{role}{}{}
+\makeatother
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=true,
+  numbers=left,
+  numberstyle=\tiny\color{corpGray},
+  frame=none,
+  backgroundcolor=\color{corpCodeBg},
+  showstringspaces=false,
+  tabsize=2,
+  captionpos=b,
+  xleftmargin=1em,
+  aboveskip=1em,
+  belowskip=1em,
+}
+
+%% ============================================================
+%% TABLES
+%% ============================================================
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+
+\setlength{\heavyrulewidth}{1pt}
+\setlength{\lightrulewidth}{0.5pt}
+
+%% ============================================================
+%% SECTION FORMATTING
+%% ============================================================
+\RequirePackage{titlesec}
+
+% Modern section titles with accent color
+\titleformat{\section}
+  {\Large\bfseries\color{corpDark}}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\large\bfseries\color{corpDark}}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalsize\bfseries\color{corpDark}}
+  {\thesubsubsection}{1em}{}
+
+% Relaxed spacing
+\titlespacing*{\section}{0pt}{2.5ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{2ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{1.5ex plus .5ex minus .2ex}{0.5ex plus .2ex}
+
+%% ============================================================
+%% COMPUTED ARTIFACTS
+%% ============================================================
+
+% Metric display with accent styling
+\newcommand{\RenderMetric}[2]{%
+  \begin{metricbox}
+    \textbf{#1}\\[0.3em]
+    {\Large\color{corpAccent} #2}
+  \end{metricbox}
+}
+
+% Semantic ID (subtle, gray)
+\newcommand{\semanticid}[1]{%
+  \texttt{\footnotesize\color{corpGray} #1}%
+}
+
+%% ============================================================
+%% WATERMARK SUPPORT
+%% ============================================================
+% Usage: \setwatermark{CONFIDENTIAL} in document
+\newcommand{\setwatermark}[1]{%
+  \RequirePackage{draftwatermark}
+  \SetWatermarkText{#1}
+  \SetWatermarkScale{0.5}
+  \SetWatermarkColor[gray]{0.9}
+}
+
+%% ============================================================
+%% PROVENANCE FOOTER
+%% ============================================================
+\newcommand{\provenancefooter}[2]{%
+  \fancyfoot[R]{\tiny\color{corpGray} Build: #1 | #2}%
+}

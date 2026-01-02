@@ -1,0 +1,27 @@
+# academic-paper: Academic Analysis Theme
+# Intent: Deep dives, research notes, complex analysis
+# Style: Elegant typography, high data density. Resembles Tufte or ArXiv papers.
+
+id: academic-paper
+name: Academic Paper
+version: 1.0.0
+description: Elegant typography for research papers and data-rich analysis
+archetype: academic-paper
+
+fonts:
+  mainfont: DejaVu Serif
+  mainfont_options: ""
+  sansfont: DejaVu Sans
+  monofont: DejaVu Sans Mono
+  monofont_options: Scale=0.85
+  cjkmainfont: Noto Sans CJK KR
+
+geometry:
+  paper: a4paper
+  margin: 3cm
+  top: 3cm
+  bottom: 3cm
+
+secnumdepth: 3
+toc: true
+provenance_footer: false

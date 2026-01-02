@@ -1,9 +1,11 @@
-% LitePub Norm - LaTeX Template for PDF Generation
-% Supports English + Korean (CJK) text with XeLaTeX
-%
-% Required: XeLaTeX engine with fontspec
+% std-report: Technical Standard Template
+% Dense, formal style for technical specifications and audits
+% Requires XeLaTeX with xeCJK for Korean support
 
 \documentclass[11pt,a4paper]{article}
+
+% Load theme style package
+\usepackage{assets/theme}
 
 % Essential packages
 \usepackage{fontspec}
@@ -31,50 +33,35 @@
   headheight=14pt
 }
 
-% Font configuration
-% Main font (Latin)
+% Font configuration (Latin)
 \setmainfont{DejaVu Serif}[
   BoldFont=DejaVu Serif Bold,
   ItalicFont=DejaVu Serif Italic,
   BoldItalicFont=DejaVu Serif Bold Italic
 ]
-
-% Sans font
 \setsansfont{DejaVu Sans}[
   BoldFont=DejaVu Sans Bold,
   ItalicFont=DejaVu Sans Oblique
 ]
+\setmonofont{DejaVu Sans Mono}[Scale=0.9]
 
-% Monospace font for code
-\setmonofont{DejaVu Sans Mono}[
-  Scale=0.9
-]
-
-% CJK configuration
-% Preserve spaces in CJK text (important for Korean)
+% CJK configuration (Korean)
 \xeCJKsetup{
   CJKspace=true,
   CJKecglue={\hskip 0.15em plus 0.05em minus 0.05em}
 }
-
-% CJK font (Korean)
-% Try common Korean fonts, fallback to available CJK font
-\setCJKmainfont{Noto Sans CJK KR}[
-  BoldFont=Noto Sans CJK KR Bold
-]
+\setCJKmainfont{Noto Sans CJK KR}[BoldFont=Noto Sans CJK KR Bold]
 \setCJKsansfont{Noto Sans CJK KR}
 \setCJKmonofont{Noto Sans Mono CJK KR}
 
 % Hyperref configuration
 \hypersetup{
   colorlinks=true,
-  linkcolor=blue!60!black,
-  urlcolor=blue!60!black,
+  linkcolor=stdLinkColor,
+  urlcolor=stdLinkColor,
   citecolor=green!50!black,
   pdfauthor={$author-meta$},
   pdftitle={$title-meta$},
-  pdfsubject={$subject$},
-  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
   bookmarksnumbered=true,
   bookmarksopen=true
 }
@@ -82,64 +69,28 @@
 % Headers and footers
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\leftmark}
+\fancyhead[L]{\small\leftmark}
 \fancyhead[R]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 
-% Code listing style
-\lstset{
-  basicstyle=\ttfamily\small,
-  breaklines=true,
-  breakatwhitespace=true,
-  numbers=left,
-  numberstyle=\tiny\color{gray},
-  frame=single,
-  framesep=3pt,
-  backgroundcolor=\color{gray!5},
-  rulecolor=\color{gray!30},
-  showstringspaces=false,
-  tabsize=2,
-  captionpos=b
-}
+% Deep section numbering (1.2.3.4)
+\setcounter{secnumdepth}{4}
 
-% Section title formatting
-\titleformat{\section}
-  {\Large\bfseries}
-  {\thesection}{1em}{}
-\titleformat{\subsection}
-  {\large\bfseries}
-  {\thesubsection}{1em}{}
-\titleformat{\subsubsection}
-  {\normalsize\bfseries}
-  {\thesubsubsection}{1em}{}
+% Paragraph spacing (dense, no indent)
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% List customization (compact)
+\setlist{noitemsep, topsep=0.5em}
 
 % Table styling
 \renewcommand{\arraystretch}{1.3}
 
-% Paragraph spacing
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5em}
-
-% List customization
-\setlist{noitemsep, topsep=0.5em}
-
-% Custom commands
-\newcommand{\placeholder}[1]{\textcolor{red}{\textbf{[#1]}}}
-
-% Compatibility: Define \chapter for article class (used by some RST sources)
-\makeatletter
-\@ifundefined{chapter}{%
-  % Handle both \chapter and \chapter* using unique names to avoid conflicts
-  \newcommand{\@litepub@chapter}[1]{\section{#1}}
-  \newcommand{\@litepub@schapter}[1]{\section*{#1}}
-  \newcommand{\chapter}{\@ifstar\@litepub@schapter\@litepub@chapter}
-  \providecommand{\chaptermark}[1]{\markboth{#1}{}}
-}{}
-\makeatother
-
-% Pandoc-specific settings
+% Pandoc compatibility
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% passthrough for inline code with roles (idiomatic highlighting)
+\newcommand{\passthrough}[1]{#1}
 
 % Pandoc 3.x bounded image support - constrain to text width
 \makeatletter
@@ -153,13 +104,21 @@
   \fi
 }
 \makeatother
-
-% Pandoc 3.x table width support (calc package \real for column widths)
 \makeatletter
 \providecommand{\real}[1]{\strip@pt\dimexpr #1pt\relax}
 \makeatother
 
-% Allow long tables to break across pages
+% Chapter compatibility (for article class)
+\makeatletter
+\@ifundefined{chapter}{%
+  \newcommand{\@litepub@chapter}[1]{\section{#1}}
+  \newcommand{\@litepub@schapter}[1]{\section*{#1}}
+  \newcommand{\chapter}{\@ifstar\@litepub@schapter\@litepub@chapter}
+  \providecommand{\chaptermark}[1]{\markboth{#1}{}}
+}{}
+\makeatother
+
+% Long table settings
 \setlength{\LTpre}{0pt}
 \setlength{\LTpost}{0pt}
 

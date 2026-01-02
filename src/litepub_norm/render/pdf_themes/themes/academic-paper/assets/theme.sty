@@ -1,0 +1,193 @@
+% academic-paper theme.sty
+% Academic styling: elegant typography, refined spacing, high data density
+% Inspired by Tufte and arXiv paper styles
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{theme}[2025/01/02 Academic Paper Theme]
+
+%% ============================================================
+%% COLORS
+%% ============================================================
+\RequirePackage{xcolor}
+
+% Subdued, scholarly palette
+\definecolor{acadLink}{HTML}{8B0000}        % Dark red for links (traditional)
+\definecolor{acadDark}{HTML}{333333}        % Text color
+\definecolor{acadGray}{HTML}{666666}        % Secondary text
+\definecolor{acadLight}{HTML}{F8F8F8}       % Light backgrounds
+
+% Code colors (muted)
+\definecolor{acadCodeBg}{HTML}{F5F5F5}
+\definecolor{acadCodeFrame}{HTML}{DDDDDD}
+
+%% ============================================================
+%% CODE LISTINGS
+%% ============================================================
+\RequirePackage{listings}
+
+% Define 'role' key for lstinline (Pandoc idiomatic highlighting for RST roles)
+% This allows \lstinline[role=ref]!text! to work without errors
+\makeatletter
+\lst@Key{role}{}{}
+\makeatother
+
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  breakatwhitespace=true,
+  numbers=left,
+  numberstyle=\tiny\color{acadGray},
+  frame=leftline,
+  framesep=5pt,
+  framerule=1pt,
+  rulecolor=\color{acadCodeFrame},
+  backgroundcolor=\color{acadCodeBg},
+  showstringspaces=false,
+  tabsize=2,
+  captionpos=b,
+  xleftmargin=2em,
+  aboveskip=1em,
+  belowskip=1em,
+}
+
+%% ============================================================
+%% TABLES
+%% ============================================================
+\RequirePackage{booktabs}
+\RequirePackage{longtable}
+
+% Refined rules
+\setlength{\heavyrulewidth}{0.8pt}
+\setlength{\lightrulewidth}{0.4pt}
+\setlength{\cmidrulewidth}{0.3pt}
+\setlength{\abovetopsep}{0.5ex}
+\setlength{\belowbottomsep}{0.5ex}
+
+%% ============================================================
+%% SECTION FORMATTING
+%% ============================================================
+\RequirePackage{titlesec}
+
+% Small caps for section titles (academic style)
+\titleformat{\section}
+  {\large\bfseries}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalsize\bfseries}
+  {\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalsize\itshape}
+  {\thesubsubsection}{1em}{}
+
+% Compact spacing
+\titlespacing*{\section}{0pt}{2ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{1.5ex plus 1ex minus .2ex}{0.5ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{1ex plus .5ex minus .2ex}{0.3ex plus .2ex}
+
+%% ============================================================
+%% FIGURE AND TABLE CAPTIONS
+%% ============================================================
+\RequirePackage{caption}
+
+\captionsetup{
+  font=small,
+  labelfont=bf,
+  textfont=it,
+  format=plain,
+  justification=justified,
+  singlelinecheck=false,
+  skip=0.5em
+}
+
+%% ============================================================
+%% MARGIN NOTES (Tufte-style)
+%% ============================================================
+\RequirePackage{marginnote}
+
+\renewcommand*{\marginfont}{\footnotesize\itshape\color{acadGray}}
+
+% Side note command
+\newcommand{\sidenote}[1]{%
+  \marginnote{#1}%
+}
+
+%% ============================================================
+%% COMPUTED ARTIFACTS
+%% ============================================================
+
+% Metric inline display (subtle)
+\newcommand{\RenderMetric}[2]{%
+  \textbf{#1}: #2%
+}
+
+% Semantic ID (very subtle, for reference)
+\newcommand{\semanticid}[1]{%
+  {\footnotesize\color{acadGray}\texttt{#1}}%
+}
+
+%% ============================================================
+%% ABSTRACT STYLING
+%% ============================================================
+\RequirePackage{abstract}
+\renewcommand{\abstractnamefont}{\normalfont\bfseries}
+\renewcommand{\abstracttextfont}{\normalfont\small}
+\setlength{\absleftindent}{2em}
+\setlength{\absrightindent}{2em}
+
+%% ============================================================
+%% CALLOUT BOXES (for Pandoc Div mapping via Lua filter)
+%% ============================================================
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% Info/note callout - scholarly, subtle styling
+\newtcolorbox{infobox}{
+  enhanced,
+  breakable,
+  colback=acadLight,
+  colframe=acadGray,
+  boxrule=0pt,
+  leftrule=1.5pt,
+  arc=0pt,
+  left=10pt,
+  right=10pt,
+  top=6pt,
+  bottom=6pt,
+}
+
+% Warning callout - muted amber
+\newtcolorbox{warningbox}{
+  enhanced,
+  breakable,
+  colback=yellow!3!white,
+  colframe=yellow!50!black,
+  boxrule=0pt,
+  leftrule=1.5pt,
+  arc=0pt,
+  left=10pt,
+  right=10pt,
+  top=6pt,
+  bottom=6pt,
+}
+
+% Danger/error callout - subdued red (matching acadLink)
+\newtcolorbox{dangerbox}{
+  enhanced,
+  breakable,
+  colback=red!2!white,
+  colframe=acadLink,
+  boxrule=0pt,
+  leftrule=1.5pt,
+  arc=0pt,
+  left=10pt,
+  right=10pt,
+  top=6pt,
+  bottom=6pt,
+}
+
+%% ============================================================
+%% PROVENANCE FOOTER
+%% ============================================================
+\newcommand{\provenancefooter}[2]{%
+  \fancyfoot[R]{\tiny\color{acadGray} #1 | #2}%
+}

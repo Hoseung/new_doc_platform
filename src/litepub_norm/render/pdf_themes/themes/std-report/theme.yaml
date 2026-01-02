@@ -1,0 +1,26 @@
+# std-report: Technical Standard Theme
+# Intent: Audits, specifications, regulatory dossiers
+# Style: Dense, rigid, minimal. Resembles ISO standards or IETF RFCs.
+
+id: std-report
+name: Technical Standard Report
+version: 1.0.0
+description: Dense, formal style for technical specifications and audits
+archetype: std-report
+
+fonts:
+  mainfont: DejaVu Serif
+  sansfont: DejaVu Sans
+  monofont: DejaVu Sans Mono
+  monofont_options: Scale=0.9
+  cjkmainfont: Noto Sans CJK KR
+
+geometry:
+  paper: a4paper
+  margin: 2.5cm
+  top: 3cm
+  bottom: 3cm
+
+secnumdepth: 4
+toc: true
+provenance_footer: false

@@ -58,7 +58,11 @@ class RenderConfig:
     html_site_chunk_template: str = "%s-%i.html"  # section-number-identifier.html
 
     # PDF/LaTeX options
+    pdf_theme: str | None = None  # PDF theme ID (e.g., "std-report")
+    pdf_theme_dir: Path | None = None  # Explicit theme directory path
     latex_template_path: Path | None = None
+    latex_style_path: Path | None = None  # theme.sty path
+    latex_assets_dir: Path | None = None  # Assets directory for staging
     latex_engine: str = "xelatex"
     latex_engine_path: Path | None = None
     latex_runs: int = 2
@@ -96,55 +100,42 @@ class RenderConfig:
             return self.latex_template_path
         return None
 
+    def _copy_with(self, **overrides) -> RenderConfig:
+        """Create a copy with specified field overrides."""
+        return RenderConfig(
+            output_dir=overrides.get("output_dir", self.output_dir),
+            pandoc_path=overrides.get("pandoc_path", self.pandoc_path),
+            pandoc_required_version=overrides.get("pandoc_required_version", self.pandoc_required_version),
+            html_theme=overrides.get("html_theme", self.html_theme),
+            html_template_path=overrides.get("html_template_path", self.html_template_path),
+            html_assets_dir=overrides.get("html_assets_dir", self.html_assets_dir),
+            html_lua_filters=overrides.get("html_lua_filters", self.html_lua_filters),
+            html_mode=overrides.get("html_mode", self.html_mode),
+            html_site_split_level=overrides.get("html_site_split_level", self.html_site_split_level),
+            html_site_chunk_template=overrides.get("html_site_chunk_template", self.html_site_chunk_template),
+            pdf_theme=overrides.get("pdf_theme", self.pdf_theme),
+            pdf_theme_dir=overrides.get("pdf_theme_dir", self.pdf_theme_dir),
+            latex_template_path=overrides.get("latex_template_path", self.latex_template_path),
+            latex_style_path=overrides.get("latex_style_path", self.latex_style_path),
+            latex_assets_dir=overrides.get("latex_assets_dir", self.latex_assets_dir),
+            latex_engine=overrides.get("latex_engine", self.latex_engine),
+            latex_engine_path=overrides.get("latex_engine_path", self.latex_engine_path),
+            latex_runs=overrides.get("latex_runs", self.latex_runs),
+            html_writer_options=overrides.get("html_writer_options", self.html_writer_options),
+            latex_writer_options=overrides.get("latex_writer_options", self.latex_writer_options),
+            md_writer_options=overrides.get("md_writer_options", self.md_writer_options),
+            rst_writer_options=overrides.get("rst_writer_options", self.rst_writer_options),
+            copy_assets=overrides.get("copy_assets", self.copy_assets),
+            standalone=overrides.get("standalone", self.standalone),
+        )
+
     def with_output_dir(self, output_dir: Path | str) -> RenderConfig:
         """Return a new config with a different output directory."""
-        return RenderConfig(
-            output_dir=Path(output_dir),
-            pandoc_path=self.pandoc_path,
-            pandoc_required_version=self.pandoc_required_version,
-            html_theme=self.html_theme,
-            html_template_path=self.html_template_path,
-            html_assets_dir=self.html_assets_dir,
-            html_lua_filters=self.html_lua_filters,
-            html_mode=self.html_mode,
-            html_site_split_level=self.html_site_split_level,
-            html_site_chunk_template=self.html_site_chunk_template,
-            latex_template_path=self.latex_template_path,
-            latex_engine=self.latex_engine,
-            latex_engine_path=self.latex_engine_path,
-            latex_runs=self.latex_runs,
-            html_writer_options=self.html_writer_options,
-            latex_writer_options=self.latex_writer_options,
-            md_writer_options=self.md_writer_options,
-            rst_writer_options=self.rst_writer_options,
-            copy_assets=self.copy_assets,
-            standalone=self.standalone,
-        )
+        return self._copy_with(output_dir=Path(output_dir))
 
     def with_html_mode(self, mode: HtmlMode, split_level: int = 1) -> RenderConfig:
         """Return a new config with HTML mode settings."""
-        return RenderConfig(
-            output_dir=self.output_dir,
-            pandoc_path=self.pandoc_path,
-            pandoc_required_version=self.pandoc_required_version,
-            html_theme=self.html_theme,
-            html_template_path=self.html_template_path,
-            html_assets_dir=self.html_assets_dir,
-            html_lua_filters=self.html_lua_filters,
-            html_mode=mode,
-            html_site_split_level=split_level,
-            html_site_chunk_template=self.html_site_chunk_template,
-            latex_template_path=self.latex_template_path,
-            latex_engine=self.latex_engine,
-            latex_engine_path=self.latex_engine_path,
-            latex_runs=self.latex_runs,
-            html_writer_options=self.html_writer_options,
-            latex_writer_options=self.latex_writer_options,
-            md_writer_options=self.md_writer_options,
-            rst_writer_options=self.rst_writer_options,
-            copy_assets=self.copy_assets,
-            standalone=self.standalone,
-        )
+        return self._copy_with(html_mode=mode, html_site_split_level=split_level)
 
     def with_theme(
         self,
@@ -152,7 +143,7 @@ class RenderConfig:
         project_themes_dir: Path | None = None,
     ) -> RenderConfig:
         """
-        Return a new config with theme settings applied.
+        Return a new config with HTML theme settings applied.
 
         This resolves the theme and sets template/assets paths.
 
@@ -167,27 +158,39 @@ class RenderConfig:
 
         bundle = resolve_theme(theme_id, project_themes_dir)
 
-        return RenderConfig(
-            output_dir=self.output_dir,
-            pandoc_path=self.pandoc_path,
-            pandoc_required_version=self.pandoc_required_version,
+        return self._copy_with(
             html_theme=theme_id,
             html_template_path=bundle.template_path,
             html_assets_dir=bundle.assets_dir,
-            html_lua_filters=self.html_lua_filters,
-            html_mode=self.html_mode,
-            html_site_split_level=self.html_site_split_level,
-            html_site_chunk_template=self.html_site_chunk_template,
-            latex_template_path=self.latex_template_path,
-            latex_engine=self.latex_engine,
-            latex_engine_path=self.latex_engine_path,
-            latex_runs=self.latex_runs,
-            html_writer_options=self.html_writer_options,
-            latex_writer_options=self.latex_writer_options,
-            md_writer_options=self.md_writer_options,
-            rst_writer_options=self.rst_writer_options,
-            copy_assets=self.copy_assets,
-            standalone=self.standalone,
+        )
+
+    def with_pdf_theme(
+        self,
+        theme_id: str,
+        project_themes_dir: Path | None = None,
+    ) -> RenderConfig:
+        """
+        Return a new config with PDF theme settings applied.
+
+        This resolves the PDF theme and sets template/style/assets paths.
+
+        Args:
+            theme_id: PDF theme identifier (e.g., "std-report", "corp-report")
+            project_themes_dir: Optional project-local PDF themes directory
+
+        Returns:
+            New RenderConfig with PDF theme configured
+        """
+        from .pdf_themes import resolve_pdf_theme
+
+        bundle = resolve_pdf_theme(theme_id, project_themes_dir)
+
+        return self._copy_with(
+            pdf_theme=theme_id,
+            pdf_theme_dir=bundle.theme_dir,
+            latex_template_path=bundle.template_path,
+            latex_style_path=bundle.style_path,
+            latex_assets_dir=bundle.assets_dir,
         )
 
 
@@ -254,11 +257,61 @@ def default_html_site_config(
     )
 
 
-def default_pdf_config() -> RenderConfig:
-    """Create a default config for PDF rendering."""
-    render_dir = Path(__file__).parent
+# Default PDF theme
+DEFAULT_PDF_THEME = "std-report"
+
+
+def default_pdf_config(theme_id: str | None = None) -> RenderConfig:
+    """
+    Create a default config for PDF rendering.
+
+    Args:
+        theme_id: Optional PDF theme ID. If provided, resolves and uses that theme.
+                  If None, uses the legacy template.tex directly.
+                  Available themes: "std-report", "corp-report", "academic-paper"
+    """
+    if theme_id:
+        from .pdf_themes import resolve_pdf_theme
+        bundle = resolve_pdf_theme(theme_id)
+        return RenderConfig(
+            pdf_theme=theme_id,
+            pdf_theme_dir=bundle.theme_dir,
+            latex_template_path=bundle.template_path,
+            latex_style_path=bundle.style_path,
+            latex_assets_dir=bundle.assets_dir,
+        )
+    else:
+        # Legacy: use built-in template directly
+        render_dir = Path(__file__).parent
+        return RenderConfig(
+            latex_template_path=render_dir / "pdf" / "templates" / "template.tex",
+        )
+
+
+def themed_pdf_config(
+    theme_id: str,
+    project_themes_dir: Path | None = None,
+) -> RenderConfig:
+    """
+    Create a PDF config with a specific theme.
+
+    Args:
+        theme_id: PDF theme identifier (e.g., "std-report", "corp-report", "academic-paper")
+        project_themes_dir: Optional project-local PDF themes directory
+
+    Returns:
+        RenderConfig with PDF theme applied
+    """
+    from .pdf_themes import resolve_pdf_theme
+
+    bundle = resolve_pdf_theme(theme_id, project_themes_dir)
+
     return RenderConfig(
-        latex_template_path=render_dir / "pdf" / "templates" / "template.tex",
+        pdf_theme=theme_id,
+        pdf_theme_dir=bundle.theme_dir,
+        latex_template_path=bundle.template_path,
+        latex_style_path=bundle.style_path,
+        latex_assets_dir=bundle.assets_dir,
     )
 
 
