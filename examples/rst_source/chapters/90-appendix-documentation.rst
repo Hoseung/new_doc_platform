@@ -14,33 +14,39 @@ A. Quick Start Guide
 Installation (Linux)
 ^^^^^^^^^^^^^^^^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-install
 
-   # System dependencies
-   sudo apt update
-   sudo apt install pandoc texlive-full fonts-noto-cjk build-essential
+   .. code:: bash
 
-   # Python environment
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   cd pandoc_report
-   uv venv
-   source .venv/bin/activate
-   uv pip install matplotlib numpy pandas seaborn scipy pillow tabulate pyyaml
+      # System dependencies
+      sudo apt update
+      sudo apt install pandoc texlive-full fonts-noto-cjk build-essential
+
+      # Python environment
+      curl -LsSf https://astral.sh/uv/install.sh | sh
+      cd pandoc_report
+      uv venv
+      source .venv/bin/activate
+      uv pip install matplotlib numpy pandas seaborn scipy pillow tabulate pyyaml
 
 Daily Workflow
 ^^^^^^^^^^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-structure
 
-   # 1. Activate environment
-   source .venv/bin/activate
+   .. code:: bash
 
-   # 2. Generate content
-   python scripts/generate_figures.py
-   python scripts/generate_tables_v2.py
+      # 1. Activate environment
+      source .venv/bin/activate
 
-   # 3. Build document
-   make pdf              # or: make html, make all
+      # 2. Generate content
+      python scripts/generate_figures.py
+      python scripts/generate_tables_v2.py
+
+      # 3. Build document
+      make pdf              # or: make html, make all
 
 Common Commands
 ^^^^^^^^^^^^^^^
@@ -83,37 +89,46 @@ C. Korean/CJK Language Support
 Setup
 ^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-korean-setup
 
-   # Install Korean fonts
-   sudo apt install fonts-noto-cjk fonts-noto-cjk-extra
+   .. code:: bash
 
-   # Fonts are pre-configured in metadata.yaml:
-   # CJKmainfont: "Noto Serif CJK KR"
+      # Install Korean fonts
+      sudo apt install fonts-noto-cjk fonts-noto-cjk-extra
+
+      # Fonts are pre-configured in metadata.yaml:
+      # CJKmainfont: "Noto Serif CJK KR"
 
 Usage
 ^^^^^
 
 Simply write Korean in your markdown:
 
-.. code:: markdown
+.. prose::
+   :id: code:appendix-korean-usage
 
-   # 서론 {#sec:intro}
+   .. code:: markdown
 
-   한글과 English를 자유롭게 섞어 사용할 수 있습니다.
+      # 서론 {#sec:intro}
 
-   {{table:tbl:05-korean-data}}
+      한글과 English를 자유롭게 섞어 사용할 수 있습니다.
+
+      {{table:tbl:05-korean-data}}
 
 Korean in Matplotlib
 ^^^^^^^^^^^^^^^^^^^^
 
-.. code:: python
+.. prose::
+   :id: code:appendix-korean-matplotlib
 
-   from utils.korean_plot import setup_korean_font
-   setup_korean_font()
+   .. code:: python
 
-   plt.xlabel('한글 레이블')
-   plt.ylabel('값')
+      from utils.korean_plot import setup_korean_font
+      setup_korean_font()
+
+      plt.xlabel('한글 레이블')
+      plt.ylabel('값')
 
 .. _`sec:automatic-tables`:
 
@@ -125,51 +140,60 @@ Table Format (Self-Contained Objects)
 
 Each table is a ``.md`` file with YAML frontmatter:
 
-.. code:: yaml
+.. prose::
+   :id: code:appendix-table-format
 
-   ---
-   id: tbl:03-results
-   caption: "Experimental results"
-   description: "Detailed context about the table"
-   chapter: 3
-   tags: [experimental, temperature]
-   ---
+   .. code:: yaml
 
-   | Column 1 | Column 2 |
-   |----------|----------|
-   | Data     | Data     |
+      ---
+      id: tbl:03-results
+      caption: "Experimental results"
+      description: "Detailed context about the table"
+      chapter: 3
+      tags: [experimental, temperature]
+      ---
+
+      | Column 1 | Column 2 |
+      |----------|----------|
+      | Data     | Data     |
 
 Creating Tables
 ^^^^^^^^^^^^^^^
 
-.. code:: python
+.. prose::
+   :id: code:appendix-table-create
 
-   from table_manager import TableManager
+   .. code:: python
 
-   tm = TableManager(chapter=3)
-   tm.save_table(
-       data,
-       name="my-results",
-       caption="Experimental results",
-       description="Results from temperature experiments",
-       tags=["experimental"]
-   )
-   # Saves to: ../_static/tables/chapter-03/table-my-results.md
+      from table_manager import TableManager
+
+      tm = TableManager(chapter=3)
+      tm.save_table(
+          data,
+          name="my-results",
+          caption="Experimental results",
+          description="Results from temperature experiments",
+          tags=["experimental"]
+      )
+      # Saves to: ../_static/tables/chapter-03/table-my-results.md
 
 Using Tables in Chapters
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Placeholder syntax:**
 
-.. code:: markdown
+.. prose::
+   :id: code:appendix-table-usage
 
-   ## Results
+   .. code:: markdown
 
-   We conducted experiments:
+      ## Results
 
-   {{table:tbl:03-my-results}}
+      We conducted experiments:
 
-   The results show...
+      {{table:tbl:03-my-results}}
+
+      The results show...
 
 **Modes:** - ``{{table:tbl:03-name}}`` - Full mode (includes description) - ``{{table:tbl:03-name|inline}}`` - Inline mode (table only)
 
@@ -178,25 +202,31 @@ Using Tables in Chapters
 Build Process
 ^^^^^^^^^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-table-build
 
-   make pdf  # Automatically replaces placeholders!
+   .. code:: bash
+
+      make pdf  # Automatically replaces placeholders!
 
 The preprocessor: 1. Scans chapters for ``{{table:...}}`` placeholders 2. Loads tables from ``../_static/tables/`` 3. Replaces placeholders with actual content 4. Builds document
 
 Manual Preprocessing
 ^^^^^^^^^^^^^^^^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-table-preprocess
 
-   # Preview changes
-   python scripts/table_preprocessor.py --dry-run
+   .. code:: bash
 
-   # Replace placeholders
-   python scripts/table_preprocessor.py
+      # Preview changes
+      python scripts/table_preprocessor.py --dry-run
 
-   # List available tables
-   python scripts/table_preprocessor.py --list-tables
+      # Replace placeholders
+      python scripts/table_preprocessor.py
+
+      # List available tables
+      python scripts/table_preprocessor.py --list-tables
 
 .. _`sec:paths`:
 
@@ -225,23 +255,29 @@ All paths in markdown files are **relative to project root**:
 Correct Paths
 ^^^^^^^^^^^^^
 
-.. code:: markdown
+.. prose::
+   :id: code:appendix-paths
 
-   <!-- ✅ CORRECT -->
-   ![Plot](../_static/figures/example_plot.png){#fig:plot}
-   ![Logo](assets/images/logo.png)
-   {{table:tbl:03-results}}
+   .. code:: markdown
 
-   <!-- ❌ WRONG -->
-   ![Plot](../../_static/figures/example_plot.png)
+      <!-- ✅ CORRECT -->
+      ![Plot](../_static/figures/example_plot.png){#fig:plot}
+      ![Logo](assets/images/logo.png)
+      {{table:tbl:03-results}}
+
+      <!-- ❌ WRONG -->
+      ![Plot](../../_static/figures/example_plot.png)
 
 Fixing Path Issues
 ^^^^^^^^^^^^^^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-paths-fix
 
-   # Fix all image paths
-   find chapters/ -name "*.md" -exec sed -i 's|../../_static/|../_static/|g' {} \;
+   .. code:: bash
+
+      # Fix all image paths
+      find chapters/ -name "*.md" -exec sed -i 's|../../_static/|../_static/|g' {} \;
 
 .. _`sec:troubleshooting`:
 
@@ -257,30 +293,39 @@ Common Issues
 
 **Korean text shows as boxes**
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-troubleshoot-korean
 
-   sudo apt install fonts-noto-cjk
-   fc-cache -fv
+   .. code:: bash
+
+      sudo apt install fonts-noto-cjk
+      fc-cache -fv
 
 **Table placeholder not replaced**
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-troubleshoot-table
 
-   # List available tables
-   python scripts/table_preprocessor.py --list-tables
+   .. code:: bash
 
-   # Check placeholder syntax
-   {{table:tbl:03-name}}  # ✅ Correct
-   {{tbl:03-name}}        # ❌ Wrong
+      # List available tables
+      python scripts/table_preprocessor.py --list-tables
+
+      # Check placeholder syntax
+      {{table:tbl:03-name}}  # ✅ Correct
+      {{tbl:03-name}}        # ❌ Wrong
 
 **pandoc-crossref version warning** - Minor warning, usually safe to ignore - Cross-references still work - Update pandoc-crossref to match Pandoc version if needed - See: https://github.com/lierdakil/pandoc-crossref/releases
 
 **Python ModuleNotFoundError**
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-troubleshoot-python
 
-   source .venv/bin/activate
-   uv pip install matplotlib numpy pandas seaborn scipy pillow tabulate pyyaml
+   .. code:: bash
+
+      source .venv/bin/activate
+      uv pip install matplotlib numpy pandas seaborn scipy pillow tabulate pyyaml
 
 .. _`sec:arch`:
 
@@ -334,64 +379,79 @@ H. Advanced Features
 Cross-References
 ^^^^^^^^^^^^^^^^
 
-.. code:: markdown
+.. prose::
+   :id: code:appendix-crossref
 
-   # Chapter {#sec:chapter}
+   .. code:: markdown
 
-   ## Results {#sec:results}
+      # Chapter {#sec:chapter}
 
-   ![Plot](../_static/figures/plot.png){#fig:plot width=80%}
+      ## Results {#sec:results}
 
-   | A | B |
-   |---|---|
-   | 1 | 2 |
+      ![Plot](../_static/figures/plot.png){#fig:plot width=80%}
 
-   : Caption {#tbl:data}
+      | A | B |
+      |---|---|
+      | 1 | 2 |
 
-   $$E = mc^2$$ {#eq:einstein}
+      : Caption {#tbl:data}
 
-   See Section @sec:results, Figure @fig:plot,
-   Table @tbl:data, and Equation @eq:einstein.
+      $$E = mc^2$$ {#eq:einstein}
+
+      See Section @sec:results, Figure @fig:plot,
+      Table @tbl:data, and Equation @eq:einstein.
 
 Citations
 ^^^^^^^^^
 
-.. code:: markdown
+.. prose::
+   :id: code:appendix-citations
 
-   Recent work [@smith2020; @jones2021] shows...
-   @smith2020 demonstrated that...
+   .. code:: markdown
+
+      Recent work [@smith2020; @jones2021] shows...
+      @smith2020 demonstrated that...
 
 Add entries to ``references/references.bib``:
 
-.. code:: bibtex
+.. prose::
+   :id: code:appendix-bibtex
 
-   @article{smith2020,
-     title={Example Article},
-     author={Smith, John},
-     journal={Example Journal},
-     year={2020}
-   }
+   .. code:: bibtex
+
+      @article{smith2020,
+        title={Example Article},
+        author={Smith, John},
+        journal={Example Journal},
+        year={2020}
+      }
 
 Custom Pandoc Options
 ^^^^^^^^^^^^^^^^^^^^^
 
 Edit ``Makefile`` to add options:
 
-.. code:: makefile
+.. prose::
+   :id: code:appendix-pandoc-opts
 
-   COMMON_OPTS = --number-sections --toc --toc-depth=3 \
-                 --highlight-style=tango \
-                 --variable=geometry:margin=1in
+   .. code:: makefile
+
+      COMMON_OPTS = --number-sections --toc --toc-depth=3 \
+                    --highlight-style=tango \
+                    --variable=geometry:margin=1in
 
 Multiple Output Formats
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-formats
 
-   make pdf          # PDF via LaTeX
-   make html         # Standalone HTML
-   make docx         # Microsoft Word
-   make all-formats  # All formats
+   .. code:: bash
+
+      make pdf          # PDF via LaTeX
+      make html         # Standalone HTML
+      make docx         # Microsoft Word
+      make all-formats  # All formats
 
 .. _`sec:bp`:
 
@@ -401,20 +461,23 @@ I. Best Practices
 1. Version Control
 ^^^^^^^^^^^^^^^^^^
 
-.. code:: gitignore
+.. prose::
+   :id: code:appendix-gitignore
 
-   # Commit source files
-   chapters/
-   scripts/
-   metadata.yaml
-   Makefile
-   pyproject.toml
+   .. code:: gitignore
 
-   # Don't commit generated files
-   ../_static/
-   *.pdf
-   *.html
-   .venv/
+      # Commit source files
+      chapters/
+      scripts/
+      metadata.yaml
+      Makefile
+      pyproject.toml
+
+      # Don't commit generated files
+      ../_static/
+      *.pdf
+      *.html
+      .venv/
 
 2. Table Management
 ^^^^^^^^^^^^^^^^^^^
@@ -427,10 +490,13 @@ I. Best Practices
 3. Figure Quality
 ^^^^^^^^^^^^^^^^^
 
-.. code:: python
+.. prose::
+   :id: code:appendix-figure-quality
 
-   # Save at high DPI for publication
-   plt.savefig('../_static/figures/plot.png', dpi=300, bbox_inches='tight')
+   .. code:: python
+
+      # Save at high DPI for publication
+      plt.savefig('../_static/figures/plot.png', dpi=300, bbox_inches='tight')
 
 4. Modular Chapters
 ^^^^^^^^^^^^^^^^^^^
@@ -442,11 +508,14 @@ I. Best Practices
 5. Reproducibility
 ^^^^^^^^^^^^^^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-reproducibility
 
-   # Document your workflow
-   make clean-all    # Remove everything
-   make all          # Rebuild from scratch
+   .. code:: bash
+
+      # Document your workflow
+      make clean-all    # Remove everything
+      make all          # Rebuild from scratch
 
 .. _`sec:reference`:
 
@@ -456,40 +525,49 @@ J. Quick Reference
 Build Commands
 ^^^^^^^^^^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-ref-build
 
-   make pdf          # Build PDF
-   make html         # Build HTML
-   make all          # Everything
-   make clean        # Remove outputs
-   make help         # Show options
+   .. code:: bash
+
+      make pdf          # Build PDF
+      make html         # Build HTML
+      make all          # Everything
+      make clean        # Remove outputs
+      make help         # Show options
 
 Python Scripts
 ^^^^^^^^^^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-ref-python
 
-   # Generate content
-   python scripts/generate_figures.py
-   python scripts/generate_tables_v2.py
-   python scripts/my_analysis.py
+   .. code:: bash
 
-   # Manage tables
-   python scripts/table_preprocessor.py --list-tables
-   python scripts/table_preprocessor.py --dry-run
+      # Generate content
+      python scripts/generate_figures.py
+      python scripts/generate_tables_v2.py
+      python scripts/my_analysis.py
+
+      # Manage tables
+      python scripts/table_preprocessor.py --list-tables
+      python scripts/table_preprocessor.py --dry-run
 
 Markdown Syntax
 ^^^^^^^^^^^^^^^
 
-.. code:: markdown
+.. prose::
+   :id: code:appendix-ref-markdown
 
-   # Heading {#sec:id}
-   ![Caption](path){#fig:id width=80%}
-   : Caption {#tbl:id}
-   $$equation$$ {#eq:id}
-   {{table:tbl:03-name}}
-   [@citation]
-   @fig:id, @tbl:id, @sec:id
+   .. code:: markdown
+
+      # Heading {#sec:id}
+      ![Caption](path){#fig:id width=80%}
+      : Caption {#tbl:id}
+      $$equation$$ {#eq:id}
+      {{table:tbl:03-name}}
+      [@citation]
+      @fig:id, @tbl:id, @sec:id
 
 File Paths
 ^^^^^^^^^^
@@ -528,18 +606,21 @@ Project Files
 Getting Help
 ^^^^^^^^^^^^
 
-.. code:: bash
+.. prose::
+   :id: code:appendix-ref-help
 
-   # Show available make targets
-   make help
+   .. code:: bash
 
-   # List available tables
-   python scripts/table_preprocessor.py --list-tables
+      # Show available make targets
+      make help
 
-   # Check versions
-   pandoc --version
-   python --version
-   make --version
+      # List available tables
+      python scripts/table_preprocessor.py --list-tables
+
+      # Check versions
+      pandoc --version
+      python --version
+      make --version
 
 .. _`sec:feature-summary`:
 

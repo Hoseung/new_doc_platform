@@ -39,12 +39,15 @@ Figures are generated programmatically using Python's matplotlib library. The ge
 
 For example, the sine wave shown in Figure @fig:example_plot is generated using:
 
-.. code:: python
+.. prose::
+   :id: code:methodology-generation
 
-   x = np.linspace(0, 10, 1000)
-   y = np.sin(x)
-   plt.plot(x, y)
-   plt.savefig('../_static/figures/example_line_plot.png', dpi=300)
+   .. code:: python
+
+      x = np.linspace(0, 10, 1000)
+      y = np.sin(x)
+      plt.plot(x, y)
+      plt.savefig('../_static/figures/example_line_plot.png', dpi=300)
 
 .. figure:: ../_static/figures/example_line_plot.png
    :name: fig:example_plot
@@ -67,6 +70,7 @@ Tables are generated using pandas DataFrames and exported as Markdown format. Th
 Table @tbl:comparison shows an example of a comparison table generated from the ``generate_tables.py`` script.
 
 .. table:: Comparison of different methodological approaches
+   :name: tbl:method-comparison
 
    ======== ============ ========== =========== ==========
    Method   Accuracy (%) Speed (ms) Memory (MB) Complexity
@@ -105,11 +109,14 @@ Build Process
 
 The document build process is automated using a Makefile:
 
-.. code:: bash
+.. prose::
+   :id: code:methodology-build
 
-   make all      # Generate figures, tables, and PDF
-   make pdf      # Build PDF only
-   make html     # Build HTML version
-   make clean    # Remove generated files
+   .. code:: bash
+
+      make all      # Generate figures, tables, and PDF
+      make pdf      # Build PDF only
+      make html     # Build HTML version
+      make clean    # Remove generated files
 
 This automation ensures reproducibility and simplifies the workflow for authors, as noted in recent conference proceedings [@exampleconf2024].

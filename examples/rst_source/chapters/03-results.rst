@@ -13,9 +13,12 @@ This chapter presents the results obtained using the methodologies described in 
 
    Tables in this chapter are generated using the TableManager system. They are automatically created by running:
 
-   .. code:: bash
+   .. prose::
+      :id: code:results-automation
 
-      python scripts/generate_tables_v2.py
+      .. code:: bash
+
+         python scripts/generate_tables_v2.py
 
    Tables are saved to ``../_static/tables/chapter-03/`` and can be easily included or updated. See `TABLE_WORKFLOW.md <../TABLE_WORKFLOW.md>`__ for details.
 
@@ -93,6 +96,7 @@ Experimental Data
 Table @tbl:experimental presents the experimental results across five different conditions. The data shows a clear trend of increasing yield with temperature, from 78.3% at 20.5°C to 92.5% at 40.5°C.
 
 .. table:: Experimental results under different temperature and pressure conditions
+   :name: tbl:experimental-results
 
    +------------+------------------+----------------+-----------+------------+
    | Experiment | Temperature (°C) | Pressure (kPa) | Yield (%) | Time (min) |
@@ -116,6 +120,7 @@ Statistical Summary
 Table @tbl:stats provides a statistical summary of three datasets. Dataset B exhibits the highest mean value (119.64) and largest standard deviation (20.31), indicating greater variability compared to the other datasets.
 
 .. table:: Statistical summary of experimental datasets
+   :name: tbl:statistical-summary
 
    ========= ====== ======= ===== ====== ======
    Dataset   Mean   Std Dev Min   Max    Median
@@ -133,6 +138,7 @@ Performance Metrics
 Model performance across different data splits is summarized in Table @tbl:performance. The results demonstrate good generalization, with test set performance (F1-Score: 0.915) closely matching validation set performance (F1-Score: 0.918).
 
 .. table:: Performance metrics evaluated on training, validation, and test sets
+   :name: tbl:performance-metrics
 
    ========= ============ ============== ========
    Metric    Training Set Validation Set Test Set

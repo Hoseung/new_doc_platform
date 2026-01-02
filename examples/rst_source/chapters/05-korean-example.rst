@@ -48,6 +48,7 @@ This chapter demonstrates how to use Korean and English together in your white p
 한글로 작성된 표의 예시입니다. Here is an example of a table with Korean text:
 
 .. table:: 온도에 따른 실험 결과 / Experimental results by temperature
+   :name: tbl:korean-experiment
 
    +-----------+-----------+------------+----------+------------+-------------+-------+
    | 실험 번호 | 온도 (°C) | 압력 (kPa) | 수율 (%) | Experiment | Temperature | Yield |
@@ -71,6 +72,7 @@ As shown in Table @tbl:korean-exp, the yield increased with temperature.
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. table:: 다양한 방법론의 성능 비교 / Performance comparison of different methods
+   :name: tbl:korean-methods
 
    ====== ========== ========= =========== ======
    방법   정확도 (%) 속도 (ms) 메모리 (MB) 복잡도
@@ -127,22 +129,25 @@ Equation @eq:korean-normal 은 정규분포를 나타내며, Equation @eq:gaussi
 
 한글 주석이 포함된 코드 예제:
 
-.. code:: python
+.. prose::
+   :id: code:korean-example
 
-   # 한글 주석도 잘 표시됩니다
-   import numpy as np
-   import matplotlib.pyplot as plt
+   .. code:: python
 
-   # 데이터 생성
-   x = np.linspace(0, 10, 100)
-   y = np.sin(x)
+      # 한글 주석도 잘 표시됩니다
+      import numpy as np
+      import matplotlib.pyplot as plt
 
-   # 그래프 그리기
-   plt.plot(x, y)
-   plt.xlabel('시간 (초)')  # X축 레이블
-   plt.ylabel('진폭')       # Y축 레이블
-   plt.title('사인파 그래프')
-   plt.show()
+      # 데이터 생성
+      x = np.linspace(0, 10, 100)
+      y = np.sin(x)
+
+      # 그래프 그리기
+      plt.plot(x, y)
+      plt.xlabel('시간 (초)')  # X축 레이블
+      plt.ylabel('진폭')       # Y축 레이블
+      plt.title('사인파 그래프')
+      plt.show()
 
 .. _`sec:korean-lists`:
 

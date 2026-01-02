@@ -100,7 +100,9 @@ def count_wrappers(ast: dict) -> dict:
                     vis = kv.get("visibility", "unknown")
 
                     counts["by_kind"][kind] = counts["by_kind"].get(kind, 0) + 1
-                    counts["by_visibility"][vis] = counts["by_visibility"].get(vis, 0) + 1
+                    counts["by_visibility"][vis] = (
+                        counts["by_visibility"].get(vis, 0) + 1
+                    )
 
             for v in node.values():
                 walk(v)
@@ -151,7 +153,9 @@ def build_for_target(
     # Apply filters
     # For internal builds, use non-strict mode to enable syntax highlighting
     is_strict = target != "internal"
-    context = BuildContext(build_target=target, render_target=render_target, strict=is_strict)
+    context = BuildContext(
+        build_target=target, render_target=render_target, strict=is_strict
+    )
     filter_config = FilterConfig()
     filtered, report = apply_filters(resolved, filter_config, context)
 
@@ -168,7 +172,9 @@ def build_for_target(
             actions[key] = []
         actions[key].append(entry.semantic_id)
     for action, ids in sorted(actions.items()):
-        print(f"      [{action}] ({len(ids)} items): {', '.join(ids[:5])}{'...' if len(ids) > 5 else ''}")
+        print(
+            f"      [{action}] ({len(ids)} items): {', '.join(ids[:5])}{'...' if len(ids) > 5 else ''}"
+        )
 
     # Render if requested
     if do_render:
@@ -177,7 +183,9 @@ def build_for_target(
             render_output_dir = OUTPUT_DIR / f"{target}_site"
 
             # Use site config
-            render_config = default_html_site_config(split_level).with_output_dir(render_output_dir)
+            render_config = default_html_site_config(split_level).with_output_dir(
+                render_output_dir
+            )
             output_name = "whitepaper"  # Directory name for site
 
             render_result = render(filtered, context, render_config, output_name)
@@ -186,7 +194,9 @@ def build_for_target(
                 print(f"    Rendered successfully!")
                 print(f"    Site directory: {render_result.primary_output}")
                 # List some generated pages
-                pages = [f for f in render_result.output_files if str(f).endswith('.html')]
+                pages = [
+                    f for f in render_result.output_files if str(f).endswith(".html")
+                ]
                 print(f"    Generated {len(pages)} pages")
                 for page in pages[:5]:
                     print(f"      - {page.name if hasattr(page, 'name') else page}")
@@ -205,20 +215,30 @@ def build_for_target(
             if render_target == "pdf":
                 if pdf_theme:
                     print(f"    Using PDF theme: {pdf_theme}")
-                    render_config = themed_pdf_config(pdf_theme).with_output_dir(render_output_dir)
+                    render_config = themed_pdf_config(pdf_theme).with_output_dir(
+                        render_output_dir
+                    )
                 else:
-                    render_config = default_pdf_config().with_output_dir(render_output_dir)
+                    render_config = default_pdf_config().with_output_dir(
+                        render_output_dir
+                    )
             else:
                 render_config = default_html_config().with_output_dir(render_output_dir)
 
-            output_name = f"whitepaper.{render_target}" if render_target != "pdf" else "whitepaper.pdf"
+            output_name = (
+                f"whitepaper.{render_target}"
+                if render_target != "pdf"
+                else "whitepaper.pdf"
+            )
 
             render_result = render(filtered, context, render_config, output_name)
 
             if render_result.success:
                 print(f"    Rendered successfully!")
                 print(f"    Primary output: {render_result.primary_output}")
-                for f in render_result.output_files[1:4]:  # Show first few secondary files
+                for f in render_result.output_files[
+                    1:4
+                ]:  # Show first few secondary files
                     print(f"    Secondary: {f}")
             else:
                 render_success = False
@@ -239,30 +259,30 @@ Examples:
   python build.py              # Build single-page HTML and PDF
   python build.py --site       # Build multi-page static site
   python build.py --site --split-level=1  # Split at section level
-        """
+        """,
     )
     parser.add_argument(
         "--site",
         action="store_true",
-        help="Build multi-page static site instead of single-page HTML"
+        help="Build multi-page static site instead of single-page HTML",
     )
     parser.add_argument(
         "--split-level",
         type=int,
         default=1,
-        help="Split level for site mode (1=chapters, 2=sections, 3=subsections, default: 1)"
+        help="Split level for site mode (1=chapters, 2=sections, 3=subsections, default: 1)",
     )
     parser.add_argument(
         "--only-site",
         action="store_true",
-        help="Only build site (skip single-page HTML/PDF builds)"
+        help="Only build site (skip single-page HTML/PDF builds)",
     )
     parser.add_argument(
         "--pdf-theme",
         type=str,
-        default=None,
+        default="std-report",
         choices=list_pdf_themes(),
-        help=f"PDF theme to use. Available: {', '.join(list_pdf_themes())}"
+        help=f"PDF theme to use. Available: {', '.join(list_pdf_themes())}",
     )
     args = parser.parse_args()
 
@@ -304,7 +324,7 @@ Examples:
         combined_rst,
         "rst",
         norm_registry_path,
-        mode="draft"  # Allow unknown IDs as warnings
+        mode="draft",  # Allow unknown IDs as warnings
     )
     print_stats("After normalization:", normalized)
 
@@ -328,18 +348,18 @@ Examples:
         # Build both regular and site
         targets = [
             ("internal", "html", True, False),  # Single-page HTML
-            ("internal", "pdf", True, False),   # PDF
-            ("internal", "html", True, True),   # Multi-page site
+            ("internal", "pdf", True, False),  # PDF
+            ("internal", "html", True, True),  # Multi-page site
             ("external", "html", True, False),  # External HTML
-            ("dossier", "pdf", True, False),    # Dossier PDF
+            ("dossier", "pdf", True, False),  # Dossier PDF
         ]
     else:
         # Regular build (no site)
         targets = [
             ("internal", "html", True, False),  # Render HTML
-            ("internal", "pdf", True, False),   # Render PDF
+            ("internal", "pdf", True, False),  # Render PDF
             ("external", "html", True, False),  # Render HTML
-            ("dossier", "pdf", True, False),    # Render PDF for dossier
+            ("dossier", "pdf", True, False),  # Render PDF for dossier
         ]
 
     failures = []
@@ -372,6 +392,7 @@ Examples:
             failures.append(f"{build_target}/{render_target}{mode_suffix}")
             print(f"  ERROR during {build_target}/{render_target}: {e}")
             import traceback
+
             traceback.print_exc()
 
     # Summary comparison
@@ -386,7 +407,9 @@ Examples:
 
     if args.site:
         print("\nSite mode outputs:")
-        print(f"  - internal_site/: Multi-page static site (split_level={args.split_level})")
+        print(
+            f"  - internal_site/: Multi-page static site (split_level={args.split_level})"
+        )
 
     # Final status
     if failures:

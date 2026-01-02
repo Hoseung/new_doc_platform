@@ -9,7 +9,7 @@
   "fig:scatter": {
     "role": "computed",
     "kind": "figure",
-    "visibility": "external",
+    "visibility": "internal",
     "policy": [],
     "source": "figures/example_scatter_plot.png"
   },
@@ -23,15 +23,261 @@
   "fig:histogram": {
     "role": "computed",
     "kind": "figure",
-    "visibility": "external",
+    "visibility": "internal",
     "policy": [],
     "source": "figures/example_histogram.png"
   },
   "fig:heatmap": {
     "role": "computed",
     "kind": "figure",
-    "visibility": "external",
+    "visibility": "dossier",
     "policy": [],
     "source": "figures/example_heatmap.png"
+  },
+  "tbl:method-comparison": {
+    "role": "authored",
+    "kind": "table",
+    "visibility": "external",
+    "policy": []
+  },
+  "tbl:experimental-results": {
+    "role": "authored",
+    "kind": "table",
+    "visibility": "internal",
+    "policy": []
+  },
+  "tbl:statistical-summary": {
+    "role": "authored",
+    "kind": "table",
+    "visibility": "internal",
+    "policy": []
+  },
+  "tbl:performance-metrics": {
+    "role": "authored",
+    "kind": "table",
+    "visibility": "dossier",
+    "policy": []
+  },
+  "tbl:korean-experiment": {
+    "role": "authored",
+    "kind": "table",
+    "visibility": "external",
+    "policy": []
+  },
+  "tbl:korean-methods": {
+    "role": "authored",
+    "kind": "table",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:methodology-generation": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:methodology-build": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:results-automation": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:korean-example": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:system-build": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:system-tablemanager": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:system-table-yaml": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:system-korean": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-install": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-structure": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-korean-setup": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-korean-usage": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-korean-matplotlib": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-table-format": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-table-create": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-table-usage": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-table-build": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-table-preprocess": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-paths": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-paths-fix": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-troubleshoot-korean": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-troubleshoot-table": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-troubleshoot-python": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-crossref": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-citations": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-bibtex": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-pandoc-opts": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-formats": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-gitignore": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-figure-quality": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-reproducibility": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-ref-build": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-ref-python": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-ref-markdown": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
+  },
+  "code:appendix-ref-help": {
+    "role": "authored",
+    "kind": "code",
+    "visibility": "internal",
+    "policy": []
   }
 }
