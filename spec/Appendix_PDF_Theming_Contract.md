@@ -250,3 +250,11 @@ For `build_target` = `external` or `dossier`:
 | Callouts render as plain text | No Lua filter applied | Section 7 |
 | Images overflow margins | Missing `\pandocbounded` | Section 5.1 |
 | Empty TOC / counter errors | Missing `\newcounter{none}` | Section 5.1 |
+
+---
+
+## 11. Implementation Reference
+
+For implementation details, module organization, and code examples, see:
+
+- **[implementation/06_pdf_theming.md](../implementation/06_pdf_theming.md)** — PDF theming implementation guide

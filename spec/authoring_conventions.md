@@ -217,6 +217,22 @@ For any semantic block:
 
 If a semantic ID cannot be resolved during validation, the build fails (or warns in draft mode).
 
+### 4.1 Semantic ID Format Requirements
+
+**Computed and hybrid blocks MUST include a version suffix:**
+- Pattern: `<prefix>.<name>.v<N>` where `N` is a positive integer
+- Examples: `tbl.kpi.face.yaw_mae.v1`, `fig.occlusion.confusion_matrix.v2`, `metric.face.yaw_mae.v1`
+
+**Prose owner blocks do NOT require a version suffix:**
+- Pattern: `prose.<name>`
+- Examples: `prose.yaw_explanation`, `prose.methodology_overview`
+
+**Annotations follow their bound computed block's version:**
+- Pattern: `<computed-id>.annotation`
+- Examples: `tbl.kpi.face.yaw_mae.v1.annotation`
+
+See [AST Invariants G4](ast_invariants.md#g4-semantic-ids-are-stable-strings-must) for the normative ID patterns.
+
 ---
 
 ## 5. Computed Blocks
@@ -472,3 +488,11 @@ This document defines the **complete front-end authoring contract** for both Mar
 - **RST**: Custom directives with `:id:` are primary; standard directives with `:name:` are secondary
 
 All downstream tooling operates on the canonical AST produced after normalization.
+
+---
+
+## Related Documents
+
+- **[normalization_v1.md](normalization_v1.md)** — How authoring constructs are transformed into canonical AST
+- **[ast_invariants.md](ast_invariants.md)** — Invariants that must hold after normalization
+- **[implementation/01_normalization.md](../implementation/01_normalization.md)** — Implementation details for adapters

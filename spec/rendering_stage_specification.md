@@ -344,3 +344,9 @@ This report is especially useful for internal builds and audit trails.
 - [ ] deterministic output
 
 ---
+
+## 11. Related Documents
+
+- **[Appendix_HTML_Theming_Contract.md](Appendix_HTML_Theming_Contract.md)** — HTML theming specification
+- **[Appendix_PDF_Theming_Contract.md](Appendix_PDF_Theming_Contract.md)** — PDF theming specification
+- **[implementation/05_rendering.md](../implementation/05_rendering.md)** — Rendering implementation guide
