@@ -141,6 +141,9 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+% Pandoc inline code passthrough (for \passthrough{\lstinline!...!})
+\newcommand{\passthrough}[1]{#1}
+
 % Pandoc 3.x bounded image support - constrain to text width
 \makeatletter
 \newsavebox\pandoc@box

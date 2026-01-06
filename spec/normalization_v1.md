@@ -249,7 +249,7 @@ Core normalization takes wrapper candidates from adapters and produces the canon
 
 ### 8.2 Metadata completion via analysis registry (MUST)
 
-For every wrapper `Div` with identifier `<id>`, normalization MUST consult the **analysis registry**.
+For every wrapper `Div` with identifier `<id>`, normalization MUST consult the **analysis registry** (also called "normalization registry").
 
 Registry completion injects:
 
@@ -267,6 +267,65 @@ Failure modes:
 - contradictory author-specified attributes (if present) → validation failure
 
 Note: author-specified metadata is discouraged. In v1, the system MAY ignore non-ID metadata from authoring forms and rely solely on registry.
+
+### 8.2.1 Normalization Registry Schema (Normative)
+
+The normalization registry is a JSON file mapping semantic IDs to their metadata:
+
+```json
+{
+  "<semantic-id>": {
+    "role": "computed | hybrid | authored",
+    "kind": "table | figure | metric | annotation",
+    "source": "path/to/artifact.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "internal | external | dossier",
+    "bind-to": "<target-semantic-id>"
+  }
+}
+```
+
+**Field definitions:**
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `role` | Yes | Content role: `computed`, `hybrid`, or `authored` |
+| `kind` | Yes | Content type: `table`, `figure`, `metric`, or `annotation` |
+| `source` | For computed | Path to the artifact file (relative to registry or absolute) |
+| `schema` | For computed tables/metrics | Payload schema identifier (e.g., `metric.json@v1`, `table.simple.json@v1`) |
+| `visibility` | Optional | Visibility level; if absent, defaults to `internal` |
+| `bind-to` | For annotations | Semantic ID of the target computed block this annotation binds to |
+
+**Required fields by role:**
+
+- `role=computed`: `role`, `kind`, `source`, `schema` (except figures which don't require `schema`)
+- `role=hybrid`: `role`, `kind`
+- `role=authored`: `role`, `kind`
+
+**Example registry:**
+
+```json
+{
+  "tbl.kpi.face.yaw_mae.v1": {
+    "role": "computed",
+    "kind": "table",
+    "source": "artifacts/tables/yaw_mae.json",
+    "schema": "table.simple.json@v1",
+    "visibility": "external"
+  },
+  "fig.occlusion.confusion_matrix.v1": {
+    "role": "computed",
+    "kind": "figure",
+    "source": "artifacts/figures/confusion_matrix.png",
+    "visibility": "internal"
+  },
+  "tbl.kpi.face.yaw_mae.v1.annotation": {
+    "role": "hybrid",
+    "kind": "annotation",
+    "bind-to": "tbl.kpi.face.yaw_mae.v1"
+  }
+}
+```
 
 ### 8.3 Wrapper enforcement (MUST)
 
@@ -301,19 +360,23 @@ If it is a `Div` but ID is not on the wrapper, lift it.
 
 ## 9. Placeholder Normalization (Pre-Resolution)
 
-Normalization may optionally inject placeholders to make resolution easier and deterministic.
+Normalization MUST inject placeholders into computed blocks to enable deterministic resolution.
 
-Recommended placeholders (non-normative):
+**Required placeholders (normative for v1):**
 
-- `[[COMPUTED:TABLE]]`
-- `[[COMPUTED:FIGURE]]`
-- `[[COMPUTED:METRIC]]`
+- `[[COMPUTED:TABLE]]` — for `role=computed`, `kind=table`
+- `[[COMPUTED:FIGURE]]` — for `role=computed`, `kind=figure`
+- `[[COMPUTED:METRIC]]` — for `role=computed`, `kind=metric`
 
-Rules:
+**Rules:**
 
-- Placeholders are optional but must be deterministic if used.
-- Placeholders are not truth; they are compiler markers.
-- Placeholders MUST NOT survive into the final rendered target if resolution succeeds.
+- Placeholders are REQUIRED for all computed blocks in v1.
+- Each computed block wrapper MUST contain exactly one placeholder token after normalization.
+- Placeholders are not truth; they are compiler markers for the resolution stage.
+- Placeholders MUST NOT survive into the final rendered target; resolution MUST replace them.
+- If a placeholder survives to rendering, validation MUST fail.
+
+**Rationale:** Mandatory placeholders ensure the resolution stage has a clear, unambiguous target for payload injection. This simplifies the resolver implementation and guarantees that every computed block is properly processed.
 
 ---
 
@@ -323,22 +386,79 @@ Ownership is required to prevent orphaned computed content when prose is removed
 
 Normalization MUST prepare the AST so ownership can be enforced downstream by validation/filtering.
 
-### 10.1 Default ownership
+### 10.1 Ownership Model (Normative)
 
-- Computed blocks are owned by their nearest enclosing section by structure.
+Every computed or hybrid block MUST have an owner. Ownership determines what happens to a block when its context is removed.
 
-### 10.2 Explicit prose owners (optional)
+**Ownership hierarchy (in priority order):**
 
-If explicit prose owner blocks exist (e.g., IDs with `prose.` prefix), they may act as ownership anchors.
+1. **Explicit binding** (`bind-to` attribute): The block is owned by the specified target ID
+2. **Naming convention**: Annotations with ID `<target>.annotation` are owned by `<target>`
+3. **Explicit prose owner**: Blocks nested inside a `prose.*` wrapper are owned by that prose block
+4. **Structural ownership**: Blocks are owned by their nearest enclosing section (Header-delimited scope)
 
-### 10.3 Annotation binding
+### 10.2 Ownership Computation Algorithm
+
+```
+function compute_owner(block, ast):
+    # Priority 1: Explicit bind-to attribute
+    if block.attributes.has("bind-to"):
+        return block.attributes["bind-to"]
+
+    # Priority 2: Naming convention for annotations
+    if block.id.endswith(".annotation"):
+        return block.id.removesuffix(".annotation")
+
+    # Priority 3: Enclosing prose owner
+    for ancestor in block.ancestors():
+        if ancestor.id and ancestor.id.startswith("prose."):
+            return ancestor.id
+
+    # Priority 4: Nearest enclosing section
+    for ancestor in block.ancestors():
+        if ancestor.type == "Header":
+            return section_id_for(ancestor)
+
+    # Fallback: document root (independent)
+    return None  # Block is independent
+```
+
+### 10.3 Orphan Handling (Normative)
+
+When an owner is removed (by visibility or policy filtering), all blocks it owns MUST also be removed.
+
+**Orphan removal rules:**
+
+- If a prose owner block is removed → remove all owned computed/hybrid blocks
+- If a computed block is removed → remove all bound annotations
+- If a section is removed → remove all structurally-owned blocks within it
+
+**Independent blocks:**
+
+Blocks without an owner (or with `independent=true`) are not subject to orphan removal. They are only removed by their own visibility/policy settings.
+
+### 10.4 Annotation Binding
 
 Annotations are bound to computed content by:
 
-- registry binding, or
-- naming convention (strip `.annotation`), unless overridden
+- **Registry binding**: `bind-to` field in normalization registry (highest priority)
+- **Naming convention**: Strip `.annotation` suffix to find target (e.g., `tbl.kpi.v1.annotation` → `tbl.kpi.v1`)
+- **Explicit attribute**: `bind-to` attribute on the annotation wrapper
 
-Normalization MAY add derived attribute `owner=<id>` for convenience, but this must be treated as derived and recomputable.
+**Binding validation:**
+
+- Binding target MUST exist in the document
+- Binding target MUST be a computed block
+- If binding target is removed, annotation MUST also be removed
+
+### 10.5 Derived `owner` Attribute
+
+Normalization MAY add a derived `owner=<id>` attribute to blocks for convenience. This attribute:
+
+- Is computed, not authored
+- May be recomputed at any pipeline stage
+- Is stripped during metadata sanitization for external targets
+- Should not be relied upon for correctness (ownership can always be recomputed from structure)
 
 ---
 
@@ -391,3 +511,11 @@ This does not weaken invariants; it changes when you enforce them.
 - `.md` and `.rst` are ingestion formats.
 - Markdown author intent is defined **only** in the Markdown Front-End Authoring Conventions document.
 - Normalization converts front-end intent into canonical wrapper `Div`s, completes metadata via registry, enforces determinism, and prepares for resolution/visibility/patching.
+
+---
+
+## 15. Implementation Reference
+
+For implementation details, module organization, and code examples, see:
+
+- **[implementation/01_normalization.md](../implementation/01_normalization.md)** — Detailed implementation guide covering adapters, registry, and core normalization

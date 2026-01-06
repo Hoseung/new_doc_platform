@@ -355,3 +355,107 @@ This is the “good enough” baseline that matches your variable contract and k
 ```
 
 This aligns with your documented template variables. Note that JavaScript is optional; the base theme provides full navigation functionality via CSS alone.
+
+---
+
+## 13. Contract: Foldable Content
+
+Foldable content is used to collapse long code blocks and additional sections in HTML output. This section defines the contract between the filter stage and the rendering stage.
+
+### 13.1 AST Contract (Filter → Renderer)
+
+The presentation filter wraps content to be folded in a `Div` with specific attributes:
+
+```json
+{
+  "t": "Div",
+  "c": [
+    ["", ["foldable"], [["data-title", "Code Block"], ["data-collapsed", "true"]]],
+    [/* original content blocks */]
+  ]
+}
+```
+
+**Required attributes:**
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `class` | Must include `foldable` | Identifies this Div as foldable content |
+| `data-title` | String | Summary text shown in collapsed state |
+| `data-collapsed` | `"true"` or `"false"` | Initial collapsed state (default: `"true"`) |
+
+### 13.2 HTML Output Contract (Renderer)
+
+The renderer MUST convert foldable Divs to `<details>/<summary>` HTML elements:
+
+```html
+<details class="foldable" open>
+  <summary>Code Block</summary>
+  <!-- original content -->
+</details>
+```
+
+**Rendering rules:**
+
+- `class="foldable"` is preserved for CSS styling
+- `data-title` becomes the `<summary>` content
+- `data-collapsed="false"` adds the `open` attribute; `"true"` omits it
+- Original content is placed after `<summary>`
+
+### 13.3 CSS Contract (Theme)
+
+Themes MUST provide styling for foldable elements:
+
+```css
+/* Base foldable styling */
+details.foldable {
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+details.foldable > summary {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  background: var(--bg-secondary);
+  font-weight: 500;
+}
+
+details.foldable > summary::-webkit-details-marker,
+details.foldable > summary::marker {
+  color: var(--accent-color);
+}
+
+details.foldable[open] > summary {
+  border-bottom: 1px solid var(--border-color);
+}
+
+details.foldable > pre {
+  margin: 0;
+  border-radius: 0 0 4px 4px;
+}
+```
+
+### 13.4 Filter Report Codes
+
+When the presentation filter creates foldable content, it emits these report codes:
+
+| Code | Description |
+|------|-------------|
+| `PRES_HTML_FOLDED` | Additional content wrapped as foldable |
+| `PRES_HTML_CODEBLOCK_FOLDED` | Long code block wrapped as foldable |
+
+### 13.5 Accessibility Requirements
+
+- Foldables MUST be keyboard accessible (native `<details>` provides this)
+- Summary text MUST be descriptive
+- Foldables SHOULD NOT nest more than 2 levels deep
+
+---
+
+## 14. Implementation Reference
+
+For implementation details, module organization, and code examples, see:
+
+- **[implementation/05_rendering.md](../implementation/05_rendering.md)** — HTML rendering implementation
+- **[implementation/07_html_site_navigation.md](../implementation/07_html_site_navigation.md)** — Multi-page navigation implementation

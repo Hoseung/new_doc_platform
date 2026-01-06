@@ -159,6 +159,8 @@ These belong to the presentation/theming layer.
 
 ## 7. Confluence Synchronization Policy
 
+> **Note**: This section defines the policy contract for Confluence synchronization. Implementation of the sync mechanism is **deferred to a future version**. The policy is documented here to establish the contract that any future implementation must follow.
+
 - Confluence is a **presentation front-end**, not the canonical source
 - Canonical documents live in the repository and AST
 - Confluence edits are treated as **patch proposals**
@@ -206,3 +208,11 @@ The build pipeline must validate:
 - compliance with visibility and redaction rules
 
 Validation failures are build failures, not warnings.
+
+---
+
+## 10. Related Documents
+
+- **[ast_invariants.md](ast_invariants.md)** — Detailed AST invariants by pipeline stage
+- **[normalization_v1.md](normalization_v1.md)** — Normalization specification
+- **[filter_design.md](filter_design.md)** — Visibility and policy filtering

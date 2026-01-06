@@ -68,13 +68,28 @@ Each invariant specifies the stage(s) where it must hold.
 
 **Applies:** Normalized, Resolved, Target
 
-- `id` must be a non-empty string matching a strict pattern.
-- `^[a-z][a-z0-9_.-]*\.v[0-9]+$`
-    - Start with a lowercase letter (a-z)
-    - Then any combination of lowercase letters, numbers, underscores, dots, or hyphens (can be empty too)
-    - End with `.v` followed by a version number (one or more digits)
+Semantic IDs must be non-empty strings matching role-specific patterns:
 
-**Rationale:** reduces accidental breakage and improves tooling compatibility.
+**For computed and hybrid blocks (versioned):**
+- Pattern: `^[a-z][a-z0-9_.-]*\.v[0-9]+$`
+- Start with a lowercase letter (a-z)
+- Then any combination of lowercase letters, numbers, underscores, dots, or hyphens
+- End with `.v` followed by a version number (one or more digits)
+- Examples: `tbl.kpi.face.yaw_mae.v1`, `fig.occlusion.confusion_matrix.v2`
+
+**For authored prose owner blocks (unversioned):**
+- Pattern: `^prose\.[a-z][a-z0-9_.-]*$`
+- Start with `prose.` prefix
+- Followed by lowercase letters, numbers, underscores, dots, or hyphens
+- No version suffix required
+- Examples: `prose.yaw_explanation`, `prose.methodology_overview`
+
+**For annotations (versioned, bound to computed blocks):**
+- Pattern: `^[a-z][a-z0-9_.-]*\.v[0-9]+\.annotation$`
+- Same as computed ID pattern with `.annotation` suffix
+- Examples: `tbl.kpi.face.yaw_mae.v1.annotation`
+
+**Rationale:** Versioning is required for computed content to track schema/meaning changes across document revisions. Prose owner blocks don't require versioning as they represent structural anchors, not versioned artifacts.
 
 ---
 
@@ -308,3 +323,11 @@ For targets `internal`, `external`, `dossier`:
 - Normalize whitespace-only nodes (remove empty paragraphs)
 - Wrap computed elements in a `Div` if the front-end cannot attach attributes directly
 - Enforce that `id` lives on the wrapper boundary, not on nested children
+
+---
+
+## 10. Implementation Reference
+
+For implementation details, module organization, and code examples, see:
+
+- **[implementation/03_validation.md](../implementation/03_validation.md)** — Document AST validation implementation

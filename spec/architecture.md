@@ -283,3 +283,115 @@ Phase 3:
 - **Rendering is back-end** (presentation only).
 - **Confluence is a view** plus patch suggestions.
 
+---
+
+## 8. Validation Timing
+
+Validation runs at **multiple points** in the pipeline to catch errors early and ensure safety:
+
+### 8.1 Post-Normalization Validation
+
+After normalization, validate:
+- **Structural correctness**: wrapper boundaries, ID uniqueness, required metadata
+- **Registry resolution**: all semantic IDs found, no missing entries
+- **Fence well-formedness**: matched BEGIN/END, no overlaps
+
+Errors at this stage are typically authoring errors or registry configuration issues.
+
+### 8.2 Post-Resolution Validation
+
+After resolution, validate:
+- **Payload correctness**: artifact schemas, data types, value ranges
+- **Content safety**: no forbidden raw content, no injection risks
+- **Placeholder elimination**: all placeholders replaced
+
+Errors at this stage are typically analysis pipeline issues or artifact corruption.
+
+### 8.3 Post-Filter Validation
+
+After filtering, validate:
+- **Visibility compliance**: no internal content in external builds
+- **Reference integrity**: no broken links to removed content
+- **Monotonic condensation**: target subsets are valid
+
+---
+
+## 9. Strictness Model
+
+The pipeline has multiple strictness concepts that interact:
+
+### 9.1 Build Mode (Draft vs Release)
+
+Controls error tolerance during development:
+
+| Mode | Unknown IDs | Incomplete Registry | Audience |
+|------|-------------|---------------------|----------|
+| **Draft** | Warning | Warning | Development, iteration |
+| **Release** | Error | Error | Production builds |
+
+Draft mode allows authors to work incrementally without complete registry entries.
+
+### 9.2 Registry Strict Mode
+
+Controls whether the normalization registry raises errors:
+
+- **Strict (default)**: Unknown IDs and incomplete entries raise errors
+- **Lenient**: Unknown IDs return empty metadata; incomplete entries return partial data
+
+Typically: Draft mode uses lenient registry; Release mode uses strict registry.
+
+### 9.3 Safety Strict vs Completeness Strict
+
+Validation has two orthogonal strictness dimensions:
+
+**Safety Strict** (always enabled):
+- Forbidden raw content
+- Injection prevention
+- Type safety
+- Cannot be disabled
+
+**Completeness Strict** (profile-based):
+- Missing optional fields
+- Recommended attributes
+- Schema version checks
+- Configurable per build profile
+
+### 9.4 Build Target Profiles
+
+Each build target has a strictness profile:
+
+| Profile | Build Mode | Safety Strict | Completeness Strict |
+|---------|------------|---------------|---------------------|
+| `internal_dev` | Draft | Yes | No |
+| `internal_ci` | Release | Yes | Yes |
+| `external` | Release | Yes | Yes |
+| `dossier` | Release | Yes | Yes (enhanced) |
+
+---
+
+## 10. Document Map
+
+This section maps specification documents to implementation documents:
+
+### 10.1 Spec → Implementation Mapping
+
+| Spec Document | Implementation Document |
+|---------------|------------------------|
+| `normalization_v1.md` | `implementation/01_normalization.md` |
+| `Resolution Spec.v1.md` | `implementation/02_resolution.md` |
+| `ast_invariants.md` | `implementation/03_validation.md` |
+| `filter_design.md` | `implementation/04_filtering.md` |
+| `rendering_stage_specification.md` | `implementation/05_rendering.md` |
+| `Appendix_PDF_Theming_Contract.md` | `implementation/06_pdf_theming.md` |
+| `Appendix_HTML_Theming_Contract.md` | `implementation/07_html_site_navigation.md` |
+
+### 10.2 Supporting Documents
+
+| Document | Purpose |
+|----------|---------|
+| `authoring_conventions.md` | Author-facing authoring guide |
+| `canonical_model_n_contract.md` | Core semantic model definition |
+| `Analysis Artifact Payload Specs.v1.md` | Payload format specifications |
+| `Analysis Artifact Registry Contract (AARC)v1.1.md` | AARC registry format |
+| `dependencies.md` | Version requirements |
+| `error_codes.md` | Consolidated error code registry |

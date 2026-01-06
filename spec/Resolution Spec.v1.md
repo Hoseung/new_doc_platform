@@ -46,3 +46,11 @@ Determinism:
 
 - `dossier/external`: missing payload, hash mismatch, validation fail ⇒ **hard fail**
 - `internal`: you may allow warnings if you want, but the resolver should still be capable of strict mode
+
+---
+
+## Related Documents
+
+- **[Analysis Artifact Registry Contract (AARC)v1.1.md](Analysis%20Artifact%20Registry%20Contract%20(AARC)v1.1.md)** — Registry format specification
+- **[Analysis Artifact Payload Specs.v1.md](Analysis%20Artifact%20Payload%20Specs.v1.md)** — Payload format specifications
+- **[implementation/02_resolution.md](../implementation/02_resolution.md)** — Resolution implementation guide
