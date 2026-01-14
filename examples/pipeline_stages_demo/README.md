@@ -1,11 +1,22 @@
-# Demo Report Example
+# Pipeline Stages Demo (Normalization + Resolution)
 
-A complete example documentation project demonstrating the LitePub pipeline.
+This example demonstrates the **AST processing stages** of the LitePub pipeline.
+It does **NOT** produce final document output (HTML/PDF) - only intermediate JSON
+AST files for inspection and debugging.
+
+**For a complete example that renders actual documents, see `examples/rst_source/`.**
+
+## What This Demo Does
+
+1. **Normalization**: Parses Markdown source into Pandoc AST with semantic metadata
+2. **Resolution**: Replaces placeholders with computed content from artifact files
+3. **Transformation**: *(not implemented - placeholder only)*
+4. **Presentation**: *(not implemented - placeholder only)*
 
 ## Project Structure
 
 ```
-demo_report/
+pipeline_stages_demo/
 ├── src/                          # Source documents
 │   └── report.md                 # Main report (Markdown with semantic blocks)
 ├── config/                       # Configuration files
@@ -39,37 +50,23 @@ demo_report/
 
 ```bash
 # From the project root
-uv run python examples/demo_report/build.py --output-ast --skip-hash-verify
+uv run python examples/pipeline_stages_demo/build.py --output-ast --skip-hash-verify
 
 # With hash verification (for production)
-uv run python examples/demo_report/build.py --output-ast
+uv run python examples/pipeline_stages_demo/build.py --output-ast
 ```
 
-## Pipeline Stages
+## Output
 
-### 1. Normalization
+Running with `--output-ast` generates JSON files in `build/`:
 
-Parses the source Markdown, identifies semantic blocks (via `<!-- BEGIN/END -->` fences),
-and enriches them with metadata from the normalization registry.
+| File | Description |
+|------|-------------|
+| `01_normalized.json` | Pandoc AST with semantic Divs and placeholder tokens |
+| `02_resolution_report.json` | Debugging report with hash verification status |
+| `02_resolved.json` | Final Pandoc AST with computed content embedded |
 
-**Input:** `src/report.md` + `config/normalization_registry.json`
-**Output:** `build/01_normalized.json`
-
-### 2. Resolution
-
-Replaces placeholder tokens (`[[COMPUTED:TABLE]]`, `[[COMPUTED:METRIC]]`, etc.) with
-actual content from the artifact registry.
-
-**Input:** Normalized AST + `config/aarc_registry.json`
-**Output:** `build/02_resolved.json`
-
-### 3. Transformation (Future)
-
-Applies visibility filtering based on target (internal/external).
-
-### 4. Presentation (Future)
-
-Generates final output formats (HTML, PDF) via Pandoc.
+**Note:** No HTML or PDF files are generated. This demo only produces intermediate AST files.
 
 ## Semantic Blocks
 
@@ -136,13 +133,3 @@ with open("artifacts/metrics/yaw_mae.json") as f:
 
 jsonschema.validate(payload, schema)  # Raises if invalid
 ```
-
-## Build Outputs
-
-When running with `--output-ast`, the build script generates:
-
-| File | Description |
-|------|-------------|
-| `01_normalized.json` | Pandoc AST with semantic Divs and placeholder tokens |
-| `02_resolution_report.json` | Debugging report with hash verification and payload summaries |
-| `02_resolved.json` | Final Pandoc AST with computed content embedded |

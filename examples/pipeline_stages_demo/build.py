@@ -1,15 +1,29 @@
 #!/usr/bin/env python3
 """
-Build script for the demo report.
+Pipeline stages demo: Normalization and Resolution only.
 
-This script demonstrates the full pipeline:
-1. Normalization: Parse source markdown and inject metadata
-2. Resolution: Replace placeholders with computed content
-3. (Future) Transformation: Apply visibility filters
-4. (Future) Presentation: Generate final output formats
+This script demonstrates the AST processing stages of the LitePub pipeline.
+It does NOT produce final document output (HTML/PDF) - only intermediate
+JSON AST files for inspection and debugging.
+
+Stages implemented:
+  1. Normalization: Parse Markdown -> Pandoc AST, inject semantic metadata
+  2. Resolution: Replace placeholders with computed content from artifacts
+
+Stages NOT implemented (placeholders only):
+  3. Transformation: Visibility filtering
+  4. Presentation: HTML/PDF rendering
+
+For a complete example that produces actual documents, see:
+  examples/rst_source/
 
 Usage:
     python build.py [--target internal|external] [--output-ast]
+
+Output (with --output-ast):
+    build/01_normalized.json        - AST after normalization
+    build/02_resolved.json          - AST after resolution
+    build/02_resolution_report.json - Debug info
 """
 
 from __future__ import annotations
@@ -36,7 +50,9 @@ from litepub_norm.resolver.report import build_resolution_report
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Build demo report")
+    parser = argparse.ArgumentParser(
+        description="Demo: Normalization and Resolution stages (no document output)"
+    )
     parser.add_argument(
         "--target",
         choices=["internal", "external"],
