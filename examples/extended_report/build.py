@@ -17,7 +17,8 @@ sys.path.insert(0, str(Path(__file__).parents[2] / "src"))
 from litepub_norm.normalizer import harness
 from litepub_norm.resolver import resolve, ResolutionConfig, load_registry
 from litepub_norm.filters import apply_filters, BuildContext, FilterConfig
-from litepub_norm.render import render, RenderConfig
+from litepub_norm.render import render
+from litepub_norm.render.config import default_html_config, default_pdf_config
 
 
 # Paths
@@ -109,7 +110,13 @@ def build_for_target(
     if do_render:
         print(f"\n  Rendering to {render_target}...")
         render_output_dir = OUTPUT_DIR / f"{target}_{render_target}"
-        render_config = RenderConfig(output_dir=render_output_dir)
+
+        # Use themed config functions to ensure consistent styling
+        if render_target == "pdf":
+            render_config = default_pdf_config().with_output_dir(render_output_dir)
+        else:
+            render_config = default_html_config().with_output_dir(render_output_dir)
+
         output_name = f"report.{render_target}" if render_target != "pdf" else "report.pdf"
 
         render_result = render(filtered, context, render_config, output_name)

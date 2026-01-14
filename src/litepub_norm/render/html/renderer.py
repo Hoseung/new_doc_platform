@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 import shutil
 from pathlib import Path
 from typing import Any
@@ -11,6 +12,155 @@ from ..result import RenderResult
 from ..report import RenderReport
 from ..pandoc_runner import run as pandoc_run, PandocError
 from ...filters.context import BuildContext
+
+
+def _merge_first_chapter_into_index(site_dir: Path) -> dict[str, Any]:
+    """
+    Post-process chunkedhtml output to merge first chapter into index.html.
+
+    Pandoc's chunkedhtml creates an empty index.html with only navigation.
+    This function merges the first chapter's content into index.html and
+    removes the redundant first chapter file.
+
+    Args:
+        site_dir: Path to the chunkedhtml output directory
+
+    Returns:
+        Dict with merge info: {merged: bool, first_chapter: str, removed: bool}
+    """
+    result = {"merged": False, "first_chapter": None, "removed": False}
+
+    index_path = site_dir / "index.html"
+    if not index_path.exists():
+        return result
+
+    # Find the first chapter file (numbered files like "1-*.html")
+    chapter_files = sorted(
+        [f for f in site_dir.glob("*.html") if re.match(r"^\d+-", f.name)],
+        key=lambda f: int(re.match(r"^(\d+)-", f.name).group(1))
+    )
+
+    if not chapter_files:
+        return result
+
+    first_chapter_path = chapter_files[0]
+    result["first_chapter"] = first_chapter_path.name
+
+    # Read both files
+    index_html = index_path.read_text(encoding="utf-8")
+    chapter_html = first_chapter_path.read_text(encoding="utf-8")
+
+    # Extract main content from first chapter
+    # Look for content inside <main id="lp-content">...</main>
+    main_pattern = re.compile(
+        r'(<main[^>]*id="lp-content"[^>]*>)(.*?)(</main>)',
+        re.DOTALL
+    )
+
+    chapter_match = main_pattern.search(chapter_html)
+    if not chapter_match:
+        return result
+
+    chapter_content = chapter_match.group(2)
+
+    # Extract title from first chapter for index page
+    title_pattern = re.compile(r'<title>([^<]+)</title>')
+    chapter_title_match = title_pattern.search(chapter_html)
+    if chapter_title_match:
+        chapter_title = chapter_title_match.group(1)
+        index_html = title_pattern.sub(f'<title>{chapter_title}</title>', index_html)
+
+    # Replace index.html main content with first chapter content
+    def replace_main_content(match):
+        return match.group(1) + chapter_content + match.group(3)
+
+    new_index_html = main_pattern.sub(replace_main_content, index_html)
+
+    # Update navigation links in index.html:
+    # - Remove "previous" link pointing to index (it's now the first page)
+    # - Update "next" link to point to second chapter (if exists)
+    if len(chapter_files) > 1:
+        second_chapter = chapter_files[1].name
+        # Update next link to point to second chapter instead of first
+        new_index_html = re.sub(
+            rf'href="{re.escape(first_chapter_path.name)}"([^>]*class="page-nav-next")',
+            f'href="{second_chapter}"\\1',
+            new_index_html
+        )
+        # Also update the title in the next link
+        # Extract title from second chapter
+        second_chapter_html = chapter_files[1].read_text(encoding="utf-8")
+        second_title_match = re.search(r'<h1[^>]*>([^<]+)</h1>', second_chapter_html)
+        if second_title_match:
+            second_title = second_title_match.group(1).strip()
+            new_index_html = re.sub(
+                r'(<a[^>]*class="page-nav-next"[^>]*>.*?<span class="page-nav-title">)[^<]*(</span>)',
+                rf'\g<1>{second_title}\2',
+                new_index_html,
+                flags=re.DOTALL
+            )
+    else:
+        # No more chapters, remove the next navigation entirely
+        new_index_html = re.sub(
+            r'<a[^>]*class="page-nav-next"[^>]*>.*?</a>',
+            '<span class="page-nav-next"></span>',
+            new_index_html,
+            flags=re.DOTALL
+        )
+
+    # Remove the "previous" link from index.html (it's now the first page)
+    # Replace the prev link with an empty span
+    new_index_html = re.sub(
+        r'<a[^>]*class="page-nav-prev"[^>]*>.*?</a>',
+        '<span class="page-nav-prev"></span>',
+        new_index_html,
+        flags=re.DOTALL
+    )
+
+    # Write updated index.html
+    index_path.write_text(new_index_html, encoding="utf-8")
+    result["merged"] = True
+
+    # Update links in all other chapter files:
+    # - Links pointing to first chapter should now point to index.html
+    for chapter_file in chapter_files[1:]:
+        content = chapter_file.read_text(encoding="utf-8")
+        # Replace links to first chapter with links to index.html
+        updated_content = content.replace(
+            f'href="{first_chapter_path.name}"',
+            'href="index.html"'
+        )
+        # Update prev link that points to first chapter
+        updated_content = re.sub(
+            rf'<a href="index\.html"([^>]*class="page-nav-prev"[^>]*>.*?<span class="page-nav-title">)[^<]*(</span>)',
+            rf'<a href="index.html"\1{chapter_title}\2',
+            updated_content,
+            flags=re.DOTALL
+        )
+        if updated_content != content:
+            chapter_file.write_text(updated_content, encoding="utf-8")
+
+    # Also update TOC links in all files (including index.html)
+    all_html_files = list(site_dir.glob("*.html"))
+    for html_file in all_html_files:
+        content = html_file.read_text(encoding="utf-8")
+        # Replace TOC links that reference the first chapter file
+        updated_content = content.replace(
+            f'href="{first_chapter_path.name}#',
+            'href="index.html#'
+        )
+        updated_content = updated_content.replace(
+            f'href="{first_chapter_path.name}"',
+            'href="index.html"'
+        )
+        if updated_content != content:
+            html_file.write_text(updated_content, encoding="utf-8")
+
+    # Remove the first chapter file (now redundant)
+    first_chapter_path.unlink()
+    result["removed"] = True
+
+    return result
 
 
 def render_html(
@@ -250,6 +400,16 @@ def _render_html_site(
                 shutil.copytree(config.html_assets_dir, assets_dest)
                 result.add_output_file(assets_dest)
                 report.add_output(assets_dest)
+
+        # Post-process: merge first chapter into index.html
+        # This ensures index.html has content instead of being empty
+        if site_output_dir.exists():
+            merge_result = _merge_first_chapter_into_index(site_output_dir)
+            if merge_result["merged"]:
+                report.extra_info["index_merge"] = merge_result
+                # Update pages list (first chapter file was removed)
+                html_pages = sorted(site_output_dir.glob("*.html"))
+                report.extra_info["pages"] = [p.name for p in html_pages]
 
     except PandocError as e:
         result.add_error(
